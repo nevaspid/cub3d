@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2023/12/19 20:01:37 by gloms            ###   ########.fr       */
+/*   Updated: 2023/12/28 18:55:51 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@
 
 typedef struct s_display
 {
-	mlx_t		*mlx;
+	mlx_t			*mlx;
+	int32_t			width;
+	int32_t			height;
 }	t_display;
 
 /*--------------TEMP--------------*/

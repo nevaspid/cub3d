@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2023/12/19 20:05:08 by gloms            ###   ########.fr       */
+/*   Updated: 2023/12/28 19:41:47 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,9 @@ int	main(void)
 	t_display *display;
 
 	display = malloc(sizeof(t_display));
-	display->mlx = mlx_init(25 * 64, 25 * 64, "cub3d", true);
+	mlx_get_monitor_size(0, &display->width, &display->height);
+	printf("width : %d\n", (int)display->width);
+	printf("height: %d\n", (int)display->height);
+	//display->mlx = mlx_init(display->width, display->height, "cub3d", false);
+	//mlx_loop(display->mlx);
 }
