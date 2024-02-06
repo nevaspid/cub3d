@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_init.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/12/28 00:24:30 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2023/06/08 18:16:19 by XEDGit        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_init.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/28 00:24:30 by W2Wizard          #+#    #+#             */
+/*   Updated: 2023/12/28 20:46:56 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static bool mlx_create_buffers(mlx_t* mlx)
 /**
  * Compiles the given shader source code of a given shader type.
  * Returns shader object via param.
- * 
+ *
  * @param code The shader source code.
  * @param Type GL_VERTEX_SHADER, GL_FRAGMENT_SHADER, GL_GEOMETRY_SHADER, ...
  * @return Non-zero on success, else 0.
@@ -81,7 +81,7 @@ static uint32_t mlx_compile_shader(const char* code, int32_t type)
 	int32_t success;
 	char infolog[512] = {0};
 
-	if (!code || (shader = glCreateShader(type)) == 0) 
+	if (!code || (shader = glCreateShader(type)) == 0)
 		return (0);
 
 	GLint len = strlen(code);

@@ -6,7 +6,7 @@
 #    By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2023/12/19 20:00:37 by gloms            ###   ########.fr        #
+#    Updated: 2024/01/18 20:47:15 by gloms            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,11 @@ LIBMLX		:=	./MLX42/libmlx42.a
 # ------------------------------ Sources -----------------------------
 
 SRCS		:=	cub3d.c \
+				minimap/pixelated_assets.c \
+				parsing/read_file.c \
+				utils/utils.c \
+				utils/split.c \
+				malloc/lst_alloc.c \
 
 OBJ_DIR		:=	.objs
 OBJS		:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
