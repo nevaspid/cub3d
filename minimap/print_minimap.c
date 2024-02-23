@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:41:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/02/23 16:41:24 by gloms            ###   ########.fr       */
+/*   Updated: 2024/02/23 18:38:13 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_width, int tile_
 				wall(minimap, x * tile_width, y * tile_height, tile_width, tile_height);
 			else if (minimap->minimap_array[y][x] == '0')
 				floors(minimap, x * tile_width, y * tile_height, tile_width, tile_height);
-			else if (is_char(minimap->minimap_array[y][x]))
+			else if (is_char(minimap->minimap_array[y][x])) //a affiner
 			{
 				minimap->p_y = y;
 				minimap->p_x = x;

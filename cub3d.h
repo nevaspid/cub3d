@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/02/23 16:41:42 by gloms            ###   ########.fr       */
+/*   Updated: 2024/02/23 17:12:41 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	floors(t_minimap *minimap, int x, int y, int tile_width, int tile_height);
 void	print_player(t_display *mlx, t_minimap *m, int tile_width, int tile_height);
 void	draw_player(t_minimap *minimap, int tile_width, int tile_height);
 void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_width, int tile_height);
-
 
 /*-------------parsing-------------*/
 
