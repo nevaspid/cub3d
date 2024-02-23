@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 21:13:32 by gloms             #+#    #+#             */
-/*   Updated: 2024/02/02 01:30:30 by gloms            ###   ########.fr       */
+/*   Updated: 2024/02/16 14:00:00 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,52 @@ void	floors(t_minimap *minimap, int x, int y, int tile_width, int tile_height)
 		j++;
 		y++;
 	}
+}
+
+void	draw_player(t_minimap *minimap, int tile_width, int tile_height)
+{
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+
+	while (y < tile_height / 2)
+	{
+		while (x < tile_width / 2)
+		{
+			mlx_put_pixel(minimap->player, (uint32_t)x, (uint32_t)y, 0x8B0000FF);
+			x++;
+		}
+		x -= tile_width / 2;
+		y++;
+	}
+}
+
+void	print_player(t_display *mlx, t_minimap *m, int tile_width, int tile_height)
+{
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	floors(m, m->p_x * tile_width, m->p_y * tile_height, tile_width, tile_height);
+	while (m->minimap_array[y])
+	{
+		while (m->minimap_array[y][x])
+		{
+			if (m->minimap_array[y][x] == 'N')
+				mlx_image_to_window(mlx->mlx, mlx->m->player, x * tile_width, y * tile_height);
+			else if (m->minimap_array[y][x] == 'S')
+				mlx_image_to_window(mlx->mlx, mlx->m->player, x * tile_width, y * tile_height);
+			else if (m->minimap_array[y][x] == 'E')
+				mlx_image_to_window(mlx->mlx, mlx->m->player, x * tile_width, y * tile_height);
+			else if (m->minimap_array[y][x] == 'W')
+				mlx_image_to_window(mlx->mlx, mlx->m->player, x * tile_width, y * tile_height);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	draw_player(m, tile_width, tile_height);
 }

@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/02/02 04:45:36 by gloms            ###   ########.fr       */
+/*   Updated: 2024/02/23 16:41:42 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define PI 3.14159265358979323846
 # define HEIGHT 1095
 # define WIDTH 1800
+# define SPEED 1
 
 /*-------------STRUCTS-------------*/
 
@@ -34,13 +35,6 @@ typedef struct s_mem_alloc
 	struct s_mem_alloc	*next;
 }	t_mem_alloc;
 
-typedef struct s_display
-{
-	mlx_t			*mlx;
-	int32_t			width;
-	int32_t			height;
-}	t_display;
-
 typedef struct s_minimap
 {
 	mlx_image_t		*minimap;
@@ -48,7 +42,20 @@ typedef struct s_minimap
 	char 			**minimap_array;
 	int				p_x;
 	int				p_y;
+	int				tile_size;
 }	t_minimap;
+
+typedef struct s_display
+{
+	mlx_t			*mlx;
+	int32_t			width;
+	int32_t			height;
+	t_minimap		*m;
+}	t_display;
+
+/*------------raycasting-------------*/
+
+void	move_player(void *param);
 
 /*------------memory-alloc-------------*/
 
@@ -58,6 +65,10 @@ void	*mem_alloc(t_mem_alloc *lst, size_t size);
 
 void	wall(t_minimap *minimap, int x, int y, int tile_width, int tile_height);
 void	floors(t_minimap *minimap, int x, int y, int tile_width, int tile_height);
+void	print_player(t_display *mlx, t_minimap *m, int tile_width, int tile_height);
+void	draw_player(t_minimap *minimap, int tile_width, int tile_height);
+void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_width, int tile_height);
+
 
 /*-------------parsing-------------*/
 
@@ -65,10 +76,12 @@ char	**read_and_store(char *file, t_mem_alloc *lst);
 
 /*-------------utils-------------*/
 
-char	*ft_strjoin(char *s1, char *s2, t_mem_alloc *lst);
-char	**ft_split(char const *s, char c, t_mem_alloc *lst);
-int		ft_strlen(char *str);
-int		is_char(char c);
+char		*ft_strjoin(char *s1, char *s2, t_mem_alloc *lst);
+char		**ft_split(char const *s, char c, t_mem_alloc *lst);
+int			ft_strlen(char *str);
+int			is_char(char c);
+int			longest_line(char **array);
+int 		count_lines(char **array);
 
 /*--------------TEMP--------------*/
 

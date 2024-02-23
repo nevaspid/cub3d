@@ -6,7 +6,7 @@
 #    By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/01/18 20:47:15 by gloms            ###   ########.fr        #
+#    Updated: 2024/02/23 16:41:57 by gloms            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,13 @@ LIBMLX		:=	./MLX42/libmlx42.a
 
 SRCS		:=	cub3d.c \
 				minimap/pixelated_assets.c \
+				minimap/print_minimap.c \
 				parsing/read_file.c \
 				utils/utils.c \
+				utils/utils2.c \
 				utils/split.c \
 				malloc/lst_alloc.c \
+				raycasting/move_player.c \
 
 OBJ_DIR		:=	.objs
 OBJS		:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
