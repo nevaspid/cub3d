@@ -6,12 +6,12 @@
 #    By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/02/23 17:12:21 by gloms            ###   ########.fr        #
+#    Updated: 2024/02/23 18:57:21 by gloms            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	cub3d
-LIBMLX		:=	./MLX42/libmlx42.a
+LIBMLX		:=	./MLX42/build/libmlx42.a
 # ------------------------------ Sources -----------------------------
 
 SRCS		:=	cub3d.c \
@@ -52,9 +52,9 @@ CYAN 		:=	\033[1;36m
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				@ make -C MLX42 all
+				# @ make -C MLX42
 				@ echo "$(GREEN)Compilation $(CLR_RMV)of $(YELLOW)$(NAME) $(CLR_RMV)..."
-				@ $(CC) $(FLAGS) -o $(NAME) $(OBJS) MLX42/libmlx42.a -I include -lglfw -L "$(BREW)/Cellar/glfw/3.3.9/lib/"
+				@ $(CC) $(FLAGS) -o $(NAME) $(OBJS) MLX42/build/libmlx42.a -I include -lglfw -L "$(BREW)/Cellar/glfw/3.3.9/lib/"
 				@ echo "$(YELLOW)$(NAME) $(GREEN)created $(CLR_RMV)✔️"
 
 

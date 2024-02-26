@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 19:34:03 by gloms             #+#    #+#             */
-/*   Updated: 2024/02/02 01:38:50 by gloms            ###   ########.fr       */
+/*   Updated: 2024/02/26 21:21:42 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,18 @@ void	print_tab(char **tab)
 	}
 }
 
-int	is_char(char c)
+int	is_char(char c, t_minimap *minimap)
 {
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (1);
-	return (0);
+	if (c == 'N')
+		minimap->p_angle = PI / 2;
+	else if (c == 'S')
+		minimap->p_angle = 3 * PI / 2;
+	else if (c == 'E')
+		minimap->p_angle = 0;
+	else if (c == 'W')
+		minimap->p_angle = PI;
+	else
+		return (0);
+	printf("player angle: %f\n", minimap->p_angle);
+	return (1);
 }

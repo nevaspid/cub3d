@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/02/23 17:12:41 by gloms            ###   ########.fr       */
+/*   Updated: 2024/02/26 21:09:04 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@ typedef struct s_mem_alloc
 
 typedef struct s_minimap
 {
-	mlx_image_t		*minimap;
-	mlx_image_t		*player;
-	char 			**minimap_array;
-	int				p_x;
-	int				p_y;
-	int				tile_size;
+	mlx_image_t			*minimap;
+	mlx_image_t			*player;
+	char 				**minimap_array;
+	int					p_x;
+	int					p_y;
+	double				p_angle;
+	int					tile_size;
 }	t_minimap;
 
 typedef struct s_display
@@ -78,7 +79,7 @@ char	**read_and_store(char *file, t_mem_alloc *lst);
 char		*ft_strjoin(char *s1, char *s2, t_mem_alloc *lst);
 char		**ft_split(char const *s, char c, t_mem_alloc *lst);
 int			ft_strlen(char *str);
-int			is_char(char c);
+int			is_char(char c, t_minimap *minimap);
 int			longest_line(char **array);
 int 		count_lines(char **array);
 
