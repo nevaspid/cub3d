@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/02/26 21:09:04 by gloms            ###   ########.fr       */
+/*   Updated: 2024/03/12 14:23:48 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define HEIGHT 1095
 # define WIDTH 1800
 # define SPEED 1
+# define NB_RAYS 50
 
 /*-------------STRUCTS-------------*/
 
@@ -35,11 +36,19 @@ typedef struct s_mem_alloc
 	struct s_mem_alloc	*next;
 }	t_mem_alloc;
 
+typedef struct s_rays
+{
+	double				angle;
+	double				len;
+	mlx_image_t			*ray;
+}	t_ray;
+
 typedef struct s_minimap
 {
+	t_ray				*rays;
 	mlx_image_t			*minimap;
 	mlx_image_t			*player;
-	char 				**minimap_array;
+	char				**minimap_array;
 	int					p_x;
 	int					p_y;
 	double				p_angle;
@@ -57,6 +66,7 @@ typedef struct s_display
 /*------------raycasting-------------*/
 
 void	move_player(void *param);
+void	player_angle(void *param);
 
 /*------------memory-alloc-------------*/
 
@@ -64,10 +74,10 @@ void	*mem_alloc(t_mem_alloc *lst, size_t size);
 
 /*-------------pixelling-------------*/
 
+void	draw_player(t_minimap *minimap, int tile_width, int tile_height);
 void	wall(t_minimap *minimap, int x, int y, int tile_width, int tile_height);
 void	floors(t_minimap *minimap, int x, int y, int tile_width, int tile_height);
 void	print_player(t_display *mlx, t_minimap *m, int tile_width, int tile_height);
-void	draw_player(t_minimap *minimap, int tile_width, int tile_height);
 void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_width, int tile_height);
 
 /*-------------parsing-------------*/
@@ -82,6 +92,8 @@ int			ft_strlen(char *str);
 int			is_char(char c, t_minimap *minimap);
 int			longest_line(char **array);
 int 		count_lines(char **array);
+int			search_str(char *str, char *substr); //! ne marche pas bien
+int			check_filename(char *file);
 
 /*--------------TEMP--------------*/
 

@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/05 18:57:31 by gloms             #+#    #+#             */
-/*   Updated: 2024/03/12 14:51:27 by gloms            ###   ########.fr       */
+/*   Created: 2024/03/07 15:56:38 by gloms             #+#    #+#             */
+/*   Updated: 2024/03/12 14:58:00 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char	**read_and_store(char *file, t_mem_alloc *lst)
+int	check_filename(char *file)
 {
-	int		fd;
-	char	*line;
-	char	buf[2];
+	int i;
 
-	if (!check_filename(file))
+	i = -1;
+	while (file[++i] != '\0')
 	{
-		printf("Error\nFile is not a .cub file\n");
-		exit(0); //! a free & exit
+		if (file[i] == '.')
+		{
+			if (file[i + 1] == 'c' && file[i + 2] == 'u' && file[i + 3] == 'b' && file[i + 4] == '\0')
+				return (1);
+		}
 	}
-	line = NULL;
-	buf[1] = '\0';
-	fd = open(file, O_RDONLY);
-	while (read(fd, buf, 1) == 1)
-		line = ft_strjoin(line, buf, lst);
-	return (ft_split(line, '\n', lst));
+	return (0);
 }

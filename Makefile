@@ -6,7 +6,7 @@
 #    By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/02/23 18:57:21 by gloms            ###   ########.fr        #
+#    Updated: 2024/03/07 15:59:56 by gloms            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS		:=	cub3d.c \
 				minimap/pixelated_assets.c \
 				minimap/print_minimap.c \
 				parsing/read_file.c \
+				parsing/check_file.c \
 				utils/utils.c \
 				utils/utils2.c \
 				utils/split.c \
@@ -52,7 +53,6 @@ CYAN 		:=	\033[1;36m
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				# @ make -C MLX42
 				@ echo "$(GREEN)Compilation $(CLR_RMV)of $(YELLOW)$(NAME) $(CLR_RMV)..."
 				@ $(CC) $(FLAGS) -o $(NAME) $(OBJS) MLX42/build/libmlx42.a -I include -lglfw -L "$(BREW)/Cellar/glfw/3.3.9/lib/"
 				@ echo "$(YELLOW)$(NAME) $(GREEN)created $(CLR_RMV)✔️"

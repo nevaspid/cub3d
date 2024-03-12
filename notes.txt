@@ -1,2 +1,16 @@
 
 https://www.youtube.com/watch?v=NbSee-XM7WA
+
+pour trouver les taches a realiser utilise la loupe et cherche " //! "
+
+pour les raycasting visuel :
+  - generer 1 image_t par ray
+  - put pixel dans ce image_t
+  - effacer le rayon apres un mouvement
+  	- pour en regénérer un de taille différente dans le meme image_t
+
+verifier qu'un seul arg
+si ça se finit en .cub
+if fd >= 0
+file is readable
+si le player est entouré de murs

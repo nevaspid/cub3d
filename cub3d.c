@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/02/23 16:58:46 by gloms            ###   ########.fr       */
+/*   Updated: 2024/03/06 16:57:50 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ int	main(int ac, char **av)
 	int			tile_size;
 
 	(void)ac;
+
 	mylloc = malloc(sizeof(t_mem_alloc));
 	display = mem_alloc(mylloc, sizeof(t_display));
 	display->m = mem_alloc(mylloc, sizeof(t_minimap));
+	display->m->rays = mem_alloc(mylloc, sizeof(t_ray *) * NB_RAYS);
 	display->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	display->m->minimap = mlx_new_image(display->mlx, WIDTH * 0.2, HEIGHT * 0.2);
 	display->m->minimap_array = read_and_store(av[1], mylloc);
@@ -33,5 +35,6 @@ int	main(int ac, char **av)
 	mlx_image_to_window(display->mlx, display->m->minimap, 0, 0);
 	display->m->minimap->instances[0].z = 0;
 	mlx_loop_hook(display->mlx, move_player, display);
+	mlx_loop_hook(display->mlx, player_angle, display);
 	mlx_loop(display->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 19:34:03 by gloms             #+#    #+#             */
-/*   Updated: 2024/02/26 21:21:42 by gloms            ###   ########.fr       */
+/*   Updated: 2024/02/27 16:46:57 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,5 @@ int	is_char(char c, t_minimap *minimap)
 		minimap->p_angle = PI;
 	else
 		return (0);
-	printf("player angle: %f\n", minimap->p_angle);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:52:56 by gloms             #+#    #+#             */
-/*   Updated: 2024/02/23 15:53:32 by gloms            ###   ########.fr       */
+/*   Updated: 2024/02/29 17:06:52 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,30 @@ void	move_player(void *param)
 	if (mlx_is_key_down(display->mlx, MLX_KEY_S))
 		display->m->player->instances[0].y += SPEED;
 	printf("x: %d, y: %d\n", display->m->player->instances[0].x, display->m->player->instances[0].y);
+}
+
+int is_2pi(double number)
+{
+	double epsilon = 0.01;
+
+	if (number < 0)
+		number = number * -1;
+    if (fabs(number - 2.0 * PI) < epsilon)
+        return 1;
+    else
+        return 0;
+}
+
+void	player_angle(void *param)
+{
+	t_display	*display;
+
+	display = (t_display *)param;
+	if (mlx_is_key_down(display->mlx, MLX_KEY_LEFT))
+		display->m->p_angle -= 0.01;
+	if (mlx_is_key_down(display->mlx, MLX_KEY_RIGHT))
+		display->m->p_angle += 0.01;
+	if (is_2pi(display->m->p_angle))
+		display->m->p_angle = 0;
+	printf("angle: %f\n", display->m->p_angle);
 }
