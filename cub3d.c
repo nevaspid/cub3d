@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/04/24 22:06:21 by gloms            ###   ########.fr       */
+/*   Updated: 2024/04/25 16:38:55 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 	display->m->paths = mem_alloc(mylloc, sizeof(t_paths));
 	display->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	display->m->minimap = mlx_new_image(display->mlx, WIDTH * 0.2, HEIGHT * 0.2);
-	read_parse_store(av[1], mylloc, display);
+	read_parse_store(av[1], mylloc, display); //! parsing part minimap n'est pas encore stored et checked pour l'instant
 	if (longest_line(display->m->minimap_array) > count_lines(display->m->minimap_array))
 		tile_size = (WIDTH * 0.2) / longest_line(display->m->minimap_array);
 	else
