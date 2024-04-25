@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:29:08 by gloms             #+#    #+#             */
-/*   Updated: 2024/03/08 18:00:08 by gloms            ###   ########.fr       */
+/*   Updated: 2024/04/16 18:46:18 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,9 @@ int count_lines(char **array)
     return count;
 }
 
-int	search_str(char *str, char *substr)
+int	is_digit(char c)
 {
-    int	i;
-    int	j;
-
-    i = 0;
-    while (str[i])
-    {
-        j = 0;
-        while (substr[j] == str[i + j])
-        {
-            if (substr[j + 1] == '\0')
-                return (1);
-            j++;
-        }
-        i++;
-    }
-    return (0);
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

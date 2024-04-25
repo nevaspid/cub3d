@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/03/12 14:23:48 by gloms            ###   ########.fr       */
+/*   Updated: 2024/04/24 21:10:18 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,23 @@ typedef struct s_mem_alloc
 	struct s_mem_alloc	*next;
 }	t_mem_alloc;
 
-typedef struct s_rays
+typedef	struct s_paths
 {
-	double				angle;
-	double				len;
-	mlx_image_t			*ray;
-}	t_ray;
+	char	*NO;
+	char	*SO;
+	char	*WE;
+	char	*EA;
+	char	*F;
+	char	*C;
+}	t_paths;
 
 typedef struct s_minimap
 {
-	t_ray				*rays;
 	mlx_image_t			*minimap;
 	mlx_image_t			*player;
+	char				**file;
 	char				**minimap_array;
+	t_paths				paths;
 	int					p_x;
 	int					p_y;
 	double				p_angle;
@@ -82,7 +86,10 @@ void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_width, int tile_
 
 /*-------------parsing-------------*/
 
-char	**read_and_store(char *file, t_mem_alloc *lst);
+void	read_parse_store(char *file, t_mem_alloc *lst, t_display *d);
+int		find_path_in_line(char *tab_line);
+int		find_rgb_in_line(char *tab_line);
+int		search_flag_in_tab(char *to_find, char **tab);
 
 /*-------------utils-------------*/
 
@@ -90,10 +97,12 @@ char		*ft_strjoin(char *s1, char *s2, t_mem_alloc *lst);
 char		**ft_split(char const *s, char c, t_mem_alloc *lst);
 int			ft_strlen(char *str);
 int			is_char(char c, t_minimap *minimap);
+int			is_digit(char c);
 int			longest_line(char **array);
 int 		count_lines(char **array);
-int			search_str(char *str, char *substr); //! ne marche pas bien
 int			check_filename(char *file);
+int			ft_strcmp(char *a, char *to_cmp);
+char		*ft_substr(char *s, unsigned int start, size_t len, t_mem_alloc *lst); //! a verifier
 
 /*--------------TEMP--------------*/
 

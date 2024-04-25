@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 19:34:03 by gloms             #+#    #+#             */
-/*   Updated: 2024/02/27 16:46:57 by gloms            ###   ########.fr       */
+/*   Updated: 2024/04/15 20:20:43 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,25 @@ int	is_char(char c, t_minimap *minimap)
 	else
 		return (0);
 	return (1);
+}
+
+char *ft_substr(char *s, unsigned int start, size_t len, t_mem_alloc *lst)
+{
+	char	*str;
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	str = mem_alloc(lst, sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	while (i < len && s[start])
+	{
+		str[i] = s[start];
+		i++;
+		start++;
+	}
+	str[i] = '\0';
+	return (str);
 }

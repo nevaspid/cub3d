@@ -6,7 +6,7 @@
 #    By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/03/07 15:59:56 by gloms            ###   ########.fr        #
+#    Updated: 2024/04/15 19:49:36 by gloms            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ SRCS		:=	cub3d.c \
 				minimap/pixelated_assets.c \
 				minimap/print_minimap.c \
 				parsing/read_file.c \
-				parsing/check_file.c \
+				parsing/check_filename.c \
+				parsing/parsing_utils.c \
+				parsing/check_stored_tab.c \
 				utils/utils.c \
 				utils/utils2.c \
 				utils/split.c \

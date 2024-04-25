@@ -6,13 +6,13 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:57:31 by gloms             #+#    #+#             */
-/*   Updated: 2024/03/12 14:51:27 by gloms            ###   ########.fr       */
+/*   Updated: 2024/04/24 22:14:07 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char	**read_and_store(char *file, t_mem_alloc *lst)
+void	read_parse_store(char *file, t_mem_alloc *lst, t_display *d)
 {
 	int		fd;
 	char	*line;
@@ -28,5 +28,7 @@ char	**read_and_store(char *file, t_mem_alloc *lst)
 	fd = open(file, O_RDONLY);
 	while (read(fd, buf, 1) == 1)
 		line = ft_strjoin(line, buf, lst);
-	return (ft_split(line, '\n', lst));
+	ft_split(line, '\n', lst);
+	//! suite du parsing part d'ici
+	return;
 }
