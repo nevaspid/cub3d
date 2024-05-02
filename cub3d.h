@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/04/24 21:10:18 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/02 12:17:36 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_minimap
 	mlx_image_t			*player;
 	char				**file;
 	char				**minimap_array;
-	t_paths				paths;
+	t_paths				*paths;
 	int					p_x;
 	int					p_y;
 	double				p_angle;
@@ -87,9 +87,13 @@ void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_width, int tile_
 /*-------------parsing-------------*/
 
 void	read_parse_store(char *file, t_mem_alloc *lst, t_display *d);
+char	*return_paths(char *to_search, char **file, t_mem_alloc *m);
+char	*return_rgb(char *to_search, char **file, t_mem_alloc *m);
 int		find_path_in_line(char *tab_line);
 int		find_rgb_in_line(char *tab_line);
 int		search_flag_in_tab(char *to_find, char **tab);
+int		check_tab(t_display *d, t_mem_alloc *malloc);
+void	store_paths(char **file, t_paths *p, t_mem_alloc *m);
 
 /*-------------utils-------------*/
 
@@ -103,6 +107,9 @@ int 		count_lines(char **array);
 int			check_filename(char *file);
 int			ft_strcmp(char *a, char *to_cmp);
 char		*ft_substr(char *s, unsigned int start, size_t len, t_mem_alloc *lst); //! a verifier
+int			go_to_endof_file(char **file);
+int			is_space(char c);
+int			is_empty_line(char *line);
 
 /*--------------TEMP--------------*/
 

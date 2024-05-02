@@ -6,30 +6,11 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:11:16 by gloms             #+#    #+#             */
-/*   Updated: 2024/04/24 20:49:30 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/02 12:41:42 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-//- je veux chercher un morceau de string dans un char **, flaggé par une suite de lettres
-//- je parcours chaque string du char ** en utilisant strcmp pour chercher le flag
-//- je retourne le nº de la ligne flaggée
-//- je cherche dans la ligne flaggée le morceau de string commençant part "./"
-//- je le stocke dans la structure adéquate
-//- je recommence
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
-}
 
 int	ft_strcmp(char *a, char *to_cmp)
 {

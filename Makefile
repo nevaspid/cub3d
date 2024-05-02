@@ -6,7 +6,7 @@
 #    By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/04/15 19:49:36 by gloms            ###   ########.fr        #
+#    Updated: 2024/04/25 16:59:06 by gloms            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS		:=	cub3d.c \
 				parsing/read_file.c \
 				parsing/check_filename.c \
 				parsing/parsing_utils.c \
+				parsing/parsing_utils2.c \
 				parsing/check_stored_tab.c \
 				utils/utils.c \
 				utils/utils2.c \
