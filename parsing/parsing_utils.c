@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:11:16 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/02 12:41:42 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/03 16:40:13 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int search_flag_in_tab(char *to_find, char **tab)
 	i = -1;
 	while (tab[++i])
 	{
-		if (ft_strcmp(tab[i], to_find))
+		if (ft_strcmp(tab[i], to_find) == 1)
 			return (i);
 	}
 	return (-1);

@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/02 12:15:11 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/03 18:46:14 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,16 @@ int	main(int ac, char **av)
 	(void)ac;
 
 	mylloc = malloc(sizeof(t_mem_alloc));
+	mylloc->next = NULL;
+	mylloc->content = NULL;
 	display = mem_alloc(mylloc, sizeof(t_display));
 	display->m = mem_alloc(mylloc, sizeof(t_minimap));
 	display->m->paths = mem_alloc(mylloc, sizeof(t_paths));
 	display->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	display->m->minimap = mlx_new_image(display->mlx, WIDTH * 0.2, HEIGHT * 0.2);
 	read_parse_store(av[1], mylloc, display);
+	printf("HEEEEEEEEEEEEEEREEEEEEEEEEEEEEEEEEEEE");
+	print_tab(display->m->minimap_array);
 	if (longest_line(display->m->minimap_array) > count_lines(display->m->minimap_array))
 		tile_size = (WIDTH * 0.2) / longest_line(display->m->minimap_array);
 	else
@@ -34,7 +38,7 @@ int	main(int ac, char **av)
 	print_minimap(display, display->m, tile_size, tile_size);
 	mlx_image_to_window(display->mlx, display->m->minimap, 0, 0);
 	display->m->minimap->instances[0].z = 0;
-	mlx_loop_hook(display->mlx, move_player, display);
-	mlx_loop_hook(display->mlx, player_angle, display);
-	mlx_loop(display->mlx);
+	// mlx_loop_hook(display->mlx, move_player, display);
+	// mlx_loop_hook(display->mlx, player_angle, display);
+	// mlx_loop(display->mlx);
 }

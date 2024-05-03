@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:57:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/02 12:48:06 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/03 16:55:40 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*return_paths(char *to_search, char **file, t_mem_alloc *m)
 	int		start;
 	char	*path;
 
-	if (search_flag_in_tab(to_search, file))
+	if (search_flag_in_tab(to_search, file) != -1)
 		file_line = search_flag_in_tab(to_search, file);
 	else
 	{
@@ -40,7 +40,7 @@ char *return_rgb(char *to_search, char **file, t_mem_alloc *m)
 	int		start;
 	char	*rgb;
 
-	if (search_flag_in_tab(to_search, file))
+	if (search_flag_in_tab(to_search, file) != -1)
 		file_line = search_flag_in_tab(to_search, file);
 	else
 	{
@@ -63,7 +63,7 @@ int	go_to_endof_file(char **file)
 	i = 0;
 	while (file[i])
 		i++;
-	return (i);
+	return (--i);
 }
 
 int	is_empty_line(char *line)
@@ -71,7 +71,7 @@ int	is_empty_line(char *line)
 	int i;
 
 	i = 0;
-	while (line[i])
+	while (line && line[i])
 	{
 		if (!is_space(line[i]))
 			return (0);
