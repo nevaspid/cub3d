@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:57:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/03 16:55:40 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/03 23:07:23 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,6 @@ int	go_to_endof_file(char **file)
 	while (file[i])
 		i++;
 	return (--i);
-}
-
-int	is_empty_line(char *line)
-{
-	int i;
-
-	i = 0;
-	while (line && line[i])
-	{
-		if (!is_space(line[i]))
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 int	is_space(char c)

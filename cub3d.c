@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/03 22:52:34 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/03 23:14:07 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	main(int ac, char **av)
 	display->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	display->m->minimap = mlx_new_image(display->mlx, WIDTH * 0.2, HEIGHT * 0.2);
 	read_parse_store(av[1], mylloc, display);
-	print_tab(display->m->minimap_array);
 	if (longest_line(display->m->minimap_array) > count_lines(display->m->minimap_array))
 		tile_size = (WIDTH * 0.2) / longest_line(display->m->minimap_array);
 	else

@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/03 16:49:27 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/03 23:02:30 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int		search_flag_in_tab(char *to_find, char **tab);
 int		check_tab(t_display *d, t_mem_alloc *malloc);
 void	store_paths(char **file, t_paths *p, t_mem_alloc *m);
 void	store_minimap(char **file, t_minimap *m, t_mem_alloc *malloc);
+int		is_filled_with_ones(char *line);
 
 /*-------------utils-------------*/
 

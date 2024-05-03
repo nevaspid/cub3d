@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:14:22 by gloms             #+#    #+#             */
-/*   Updated: 2024/01/26 18:59:15 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/03 23:14:11 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,5 @@ char	**ft_split(const char *s, char c, t_mem_alloc *lst)
 		y++;
 	}
 	tab[wordcount(s, c)] = NULL;
-	print_tab(tab);
 	return (tab);
 }
