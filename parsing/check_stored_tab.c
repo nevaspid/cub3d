@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:49:34 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/03 23:10:53 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/06 15:20:51 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	store_minimap(char **file, t_minimap *m, t_mem_alloc *malloc)
 
 	i = 6;
 	j = 0;
-	map_height = go_to_endof_file(file) - 6;
+	map_height = go_to_endof_file(file) - 5;
 	m->minimap_array = mem_alloc(malloc, sizeof(char *) * (map_height + 1));
 	m->minimap_array[map_height] = NULL;
 	while (file[i])

@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:57:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/03 23:07:23 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/06 14:21:29 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char	*return_paths(char *to_search, char **file, t_mem_alloc *m)
 	else
 		exit(0); //! a free and exit
 	path = ft_substr(file[file_line], start, ft_strlen(file[file_line]) - start, m);
-	printf("path : %s\n", path);
 	return (path);
 }
 
@@ -52,7 +51,6 @@ char *return_rgb(char *to_search, char **file, t_mem_alloc *m)
 	else
 		exit(0); //! a free and exit
 	rgb = ft_substr(file[file_line], start, ft_strlen(file[file_line]) - start, m);
-	printf("rgb : %s\n", rgb);
 	return (rgb);
 }
 

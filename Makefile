@@ -6,7 +6,7 @@
 #    By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/05/03 23:17:08 by gloms            ###   ########.fr        #
+#    Updated: 2024/05/06 14:00:27 by gloms            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ OBJS		:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 BREW		:=	$(shell brew --prefix)
 CC			:=	gcc
-FLAGS		:=	-Wall -Wextra -Werror -g3 #-fsanitize=address
+FLAGS		:=	-Wall -Wextra -Werror -g3 -fsanitize=address
 RM			:=	rm -rf
 
 $(OBJ_DIR)/%.o :%.c

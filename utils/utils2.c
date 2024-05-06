@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:29:08 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/03 18:52:07 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/06 14:18:31 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ int	longest_line(char **array)
     max_length = 0;
 	if (!array)
 		return (0);
+	print_tab(array);
     while (array[i])
     {
         length = ft_strlen(array[i]);
         if (length > max_length)
             max_length = length;
-        i++;
+		i++;
     }
     return (max_length);
 }
