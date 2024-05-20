@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:57:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/06 14:21:29 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/13 16:39:00 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,20 @@ int	is_space(char c)
 	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r' || c == '\0')
 		return (1);
 	return (0);
+}
+
+char	**copy_tab(char **src, t_mem_alloc *m)
+{
+	char 	**dst;
+	int		i;
+
+	i = 0;
+	dst = mem_alloc(m, sizeof(char *) * (count_lines(src) + 1));
+	while (src[i])
+	{
+		dst[i] = ft_strdup(src[i], m);
+		i++;
+	}
+	dst[i] = NULL;
+	return (dst);
 }

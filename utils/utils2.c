@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:29:08 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/06 14:18:31 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/15 15:28:53 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	longest_line(char **array)
     max_length = 0;
 	if (!array)
 		return (0);
-	print_tab(array);
     while (array[i])
     {
         length = ft_strlen(array[i]);
@@ -47,4 +46,22 @@ int	is_digit(char c)
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
+}
+
+char	*ft_strdup(char *s1, t_mem_alloc *lst)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = mem_alloc(lst, sizeof(char) * (ft_strlen(s1) + 1));
+	if (!str)
+		return (NULL);
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

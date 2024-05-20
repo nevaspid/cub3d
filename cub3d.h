@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/03 23:02:30 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/14 17:42:29 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_minimap
 	mlx_image_t			*player;
 	char				**file;
 	char				**minimap_array;
+	char				**copy;
 	t_paths				*paths;
 	int					p_x;
 	int					p_y;
@@ -87,6 +88,7 @@ void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_width, int tile_
 /*-------------parsing-------------*/
 
 void	read_parse_store(char *file, t_mem_alloc *lst, t_display *d);
+int		flood_fill(char **map, int x, int y);
 char	*return_paths(char *to_search, char **file, t_mem_alloc *m);
 char	*return_rgb(char *to_search, char **file, t_mem_alloc *m);
 int		find_path_in_line(char *tab_line);
@@ -95,7 +97,7 @@ int		search_flag_in_tab(char *to_find, char **tab);
 int		check_tab(t_display *d, t_mem_alloc *malloc);
 void	store_paths(char **file, t_paths *p, t_mem_alloc *m);
 void	store_minimap(char **file, t_minimap *m, t_mem_alloc *malloc);
-int		is_filled_with_ones(char *line);
+int		check_map(char **map);
 
 /*-------------utils-------------*/
 
@@ -112,6 +114,9 @@ char		*ft_substr(char *s, unsigned int start, size_t len, t_mem_alloc *lst); //!
 int			go_to_endof_file(char **file);
 int			is_space(char c);
 int			is_empty_line(char *line);
+char		*ft_strdup(char *s1, t_mem_alloc *lst);
+char		**copy_tab(char **src, t_mem_alloc *m);
+int			is_valid_char(char c);
 
 /*--------------TEMP--------------*/
 
