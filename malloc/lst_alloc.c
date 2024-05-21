@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:45:59 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/03 16:45:46 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/21 14:46:13 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	lst_add_back(t_mem_alloc *lst, t_mem_alloc *new_alloc)
 
 void	*mem_alloc(t_mem_alloc *lst, size_t size)
 {
-	void 		*ret;
-	t_mem_alloc *new_alloc;
+	void		*ret;
+	t_mem_alloc	*new_alloc;
 
 	new_alloc = mem_lstnew();
 	ret = malloc(size);

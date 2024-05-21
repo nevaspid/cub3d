@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/15 16:48:55 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/21 14:07:00 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 	{
 		printf("ERROR : Wrong number of arguments\n");
-		exit(0); //! free & exit
+		exit(0);
 	}
 	mylloc = malloc(sizeof(t_mem_alloc));
 	mylloc->next = NULL;
@@ -36,15 +36,13 @@ int	main(int ac, char **av)
 		tile_size = (WIDTH * 0.2) / longest_line(display->m->minimap_array);
 	else
 		tile_size = (HEIGHT * 0.2) / count_lines(display->m->minimap_array);
-	print_minimap(display, display->m, tile_size, tile_size);
+	print_minimap(display, display->m, tile_size);
 	display->m->tile_size = tile_size;
 	if (flood_fill(display->m->copy, display->m->p_x, display->m->p_y) > 0)
 	{
 		printf("ERROR : Map is not closed\n");
-		exit(0); //! free & exit
+		free_and_exit(mylloc);
 	}
-	mlx_image_to_window(display->mlx, display->m->minimap, 0, 0);
-	display->m->minimap->instances[0].z = 0;
 	mlx_loop_hook(display->mlx, move_player, display);
 	mlx_loop_hook(display->mlx, player_angle, display);
 	mlx_loop(display->mlx);

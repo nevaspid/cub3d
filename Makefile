@@ -6,7 +6,7 @@
 #    By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/05/16 15:42:01 by gloms            ###   ########.fr        #
+#    Updated: 2024/05/21 14:42:13 by gloms            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS		:=	cub3d.c \
 				malloc/lst_alloc.c \
 				raycasting/move_player.c \
 				utils/free_and_exit.c \
+				parsing/flood_fill.c \
 
 OBJ_DIR		:=	.objs
 OBJS		:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

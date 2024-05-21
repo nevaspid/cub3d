@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/14 17:42:29 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/21 14:01:32 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,15 @@ void	player_angle(void *param);
 /*------------memory-alloc-------------*/
 
 void	*mem_alloc(t_mem_alloc *lst, size_t size);
+void	free_and_exit(t_mem_alloc *malloc);
 
 /*-------------pixelling-------------*/
 
-void	draw_player(t_minimap *minimap, int tile_width, int tile_height);
-void	wall(t_minimap *minimap, int x, int y, int tile_width, int tile_height);
-void	floors(t_minimap *minimap, int x, int y, int tile_width, int tile_height);
-void	print_player(t_display *mlx, t_minimap *m, int tile_width, int tile_height);
-void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_width, int tile_height);
+void	draw_player(t_minimap *minimap, int tile_size);
+void	wall(t_minimap *minimap, int x, int y, int tile_size);
+void	floors(t_minimap *minimap, int x, int y, int tile_size);
+void	print_player(t_display *mlx, t_minimap *m, int tile_size);
+void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_size);
 
 /*-------------parsing-------------*/
 
@@ -110,10 +111,9 @@ int			longest_line(char **array);
 int 		count_lines(char **array);
 int			check_filename(char *file);
 int			ft_strcmp(char *a, char *to_cmp);
-char		*ft_substr(char *s, unsigned int start, size_t len, t_mem_alloc *lst); //! a verifier
+char		*ft_substr(char *s, unsigned int start, size_t len, t_mem_alloc *lst);
 int			go_to_endof_file(char **file);
 int			is_space(char c);
-int			is_empty_line(char *line);
 char		*ft_strdup(char *s1, t_mem_alloc *lst);
 char		**copy_tab(char **src, t_mem_alloc *m);
 int			is_valid_char(char c);

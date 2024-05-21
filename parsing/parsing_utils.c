@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:11:16 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/03 16:40:13 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/21 14:44:44 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_strcmp(char *a, char *to_cmp)
 	int	j;
 
 	j = 0;
-	while(*a)
+	while (*a)
 	{
 		if (*a == to_cmp[j])
 		{
@@ -44,7 +44,7 @@ int	find_path_in_line(char *tab_line)
 		path_start++;
 	if (path_start == ft_strlen(tab_line))
 		printf("ERROR : path is not referenced as following : ./PATH");
-	return (path_start); //! verifier si path_start == len(tab_line) dans la fonction parente
+	return (path_start);
 }
 
 int	find_rgb_in_line(char *tab_line)
@@ -56,12 +56,12 @@ int	find_rgb_in_line(char *tab_line)
 		path_start++;
 	if (path_start == ft_strlen(tab_line))
 		printf("ERROR : RGB code is not referenced as following : R,G,B");
-	return (path_start); //! verifier si path_start == len(tab_line) dans la fonction parente
+	return (path_start);
 }
 
-int search_flag_in_tab(char *to_find, char **tab)
+int	search_flag_in_tab(char *to_find, char **tab)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (tab[++i])

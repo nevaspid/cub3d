@@ -6,13 +6,13 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 19:34:03 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/06 14:22:29 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/21 14:29:47 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char *ft_strjoin(char *s1, char *s2, t_mem_alloc *lst)
+char	*ft_strjoin(char *s1, char *s2, t_mem_alloc *lst)
 {
 	char	*str;
 	int		i;
@@ -78,7 +78,7 @@ int	is_char(char c, t_minimap *minimap)
 	return (1);
 }
 
-char *ft_substr(char *s, unsigned int start, size_t len, t_mem_alloc *lst)
+char	*ft_substr(char *s, unsigned int start, size_t len, t_mem_alloc *lst)
 {
 	char	*str;
 	size_t	i;

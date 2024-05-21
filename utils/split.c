@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:14:22 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/03 23:14:11 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/21 14:36:11 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ static size_t	wordcount(const char *s, char c)
 	return (count);
 }
 
-static char	*nextword(const char *s, size_t *i, char c, size_t len,
+static char	*nextword(const char *s, size_t *i, size_t len,
 	t_mem_alloc *lst)
 {
 	char	*cpy;
 	size_t	y;
 
 	y = 0;
-	while (s[*i] == c)
+	while (s[*i] == '\n')
 		(*i)++;
 	cpy = mem_alloc(lst, sizeof(char) * (len + 1));
 	if (!cpy)
@@ -79,7 +79,7 @@ char	**ft_split(const char *s, char c, t_mem_alloc *lst)
 		return (NULL);
 	while (y < wordcount(s, c))
 	{
-		tab[y] = nextword(s, &i, c, nextlen(s, i, c), lst);
+		tab[y] = nextword(s, &i, nextlen(s, i, c), lst);
 		if (!tab[y])
 			return (0);
 		y++;
