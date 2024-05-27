@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/05/27 19:37:23 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/27 23:53:01 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,54 @@ void init_player(t_display *display, t_player *player)
     player->pos.x = display->m->player->instances[0].x;
     player->pos.y = display->m->player->instances[0].y;
     player->angle = display->m->p_angle;
+    player->dir.x = 0;
+    player->dir.y = 0;
+    player->plane.x = 0;
+    player->plane.y = 0;
 
 }
 
+void init_ray(t_ray *ray)
+{
+    ray->dir.x = 0;
+    ray->dir.y = 0;
+    ray->draw_end = 0;
+    ray->draw_start = 0;
+    ray->step.x = 0;
+    ray->step.y = 0;
+    ray->map.x = 0;
+    ray->map.y = 0;
+    ray->delta_dist.x = 0;
+    ray->delta_dist.y = 0;
+    ray->wall_dist = 0;
+    ray->line_height = 0;
+    ray->side = 0;
+    ray->hit = 0;
+    ray->hit_side = 0;
+    ray->angle = 0;
+    ray->fov = 0;
+    ray->wall_x = 0;
+    ray->prev_ray.x = 0;
+    ray->prev_ray.y = 0;
+    ray->nb_ray = 0;
+    ray->start.x = 0;
+    ray->start.y = 0;
+    ray->end.x = 0;
+    ray->end.y = 0;
+}
+
+void init_camma(t_camera *camera)
+{
+    camera->angle_cam = 0;
+    camera->angle_min = 0;
+    camera->angle_max = 0;
+    camera->angle_ray = 0;
+    camera->dir.x = 0;
+    camera->dir.y = 0;
+    camera->nb_ray = 0;
+    camera->plane.x = 0;
+    camera->plane.y = 0;
+}
 
 void init_layers(t_display *data)
 {
@@ -139,12 +184,7 @@ void draw_circle(mlx_image_t *img, int center_x, int center_y, int radius, int c
 
 
 void draw_compass(t_display *display, t_compass *compass , t_player *player)
- {
-    // (void)player;
-    // (void)data;
-    // (void)compass;
-
-    // printf("in o_cimoas img = %p\n", display->raycast->compass->img);
+{
     init_player(display,player);
     init_compass(compass);
     draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius, MY_WHITE,1);
@@ -157,18 +197,4 @@ void draw_compass(t_display *display, t_compass *compass , t_player *player)
     draw_line(compass->img, (t_vec_d){compass->center_x, compass->center_y}, (t_vec_d){compass->needle_end_x, compass->needle_end_y}, MY_RED);
     mlx_put_pixel(compass->img, compass->center_x, compass->center_y, MY_WHITE);
     mlx_image_to_window(display->mlx, compass->img, WIDTH /2,0);
-    // draw_line(compass->img, (t_vec_d){compass->center_x, compass->center_y}, (t_vec_d){compass->center_x + compass->radius, compass->center_y}, my_red); 
-    // draw_line(data->display->player->img, (t_vec_d){center_x, center_y}, (t_vec_d){center_x, center_y + radius}, my_red); 
-    
-    
- }
-
-
-
-
-
-// void draw_compass(t_display *display ,t_compass *cmp)
-// {
-//     mlx_new_image(display->mlx,)
-    
-// }
+}

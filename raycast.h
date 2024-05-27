@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/05/27 19:35:04 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/27 23:19:11 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,13 +144,16 @@ typedef struct s_ray
 	t_vec_d			step;
 	t_vec_d			side_dist;
 	t_vec_d			delta_dist;
+	int				draw_start;
+	int 			draw_end;
 	
 	
 	double			wall_dist;
 	double 			line_height;
 	int 			wall_x;
 	int 			hit;
-	int			hit_side;
+	int				hit_side;
+	int 			side;
 	double			fov;
 	double			angle;
 

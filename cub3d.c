@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/27 19:13:10 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/27 23:22:32 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int ac, char **av)
 	display->raycast = mem_alloc(mylloc, sizeof(t_raycast));
 	display->raycast->compass = mem_alloc(mylloc, sizeof(t_compass));
 	display->raycast->player = mem_alloc(mylloc,sizeof(t_player));
+	display->raycast->ray = mem_alloc(mylloc,sizeof(t_ray));
 	display->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	display->m->minimap = mlx_new_image(display->mlx, WIDTH * 0.2, HEIGHT * 0.2);
 	display->raycast->compass->img = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
@@ -52,4 +53,5 @@ int	main(int ac, char **av)
 	mlx_loop_hook(display->mlx, move_player, display);
 	mlx_loop_hook(display->mlx, player_angle, display);
 	mlx_loop(display->mlx);
+	free_and_exit(mylloc);
 }
