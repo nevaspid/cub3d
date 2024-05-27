@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/21 14:07:00 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/27 19:13:10 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,26 @@ int	main(int ac, char **av)
 	display = mem_alloc(mylloc, sizeof(t_display));
 	display->m = mem_alloc(mylloc, sizeof(t_minimap));
 	display->m->paths = mem_alloc(mylloc, sizeof(t_paths));
+	display->raycast = mem_alloc(mylloc, sizeof(t_raycast));
+	display->raycast->compass = mem_alloc(mylloc, sizeof(t_compass));
+	display->raycast->player = mem_alloc(mylloc,sizeof(t_player));
 	display->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	display->m->minimap = mlx_new_image(display->mlx, WIDTH * 0.2, HEIGHT * 0.2);
+	display->raycast->compass->img = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
 	read_parse_store(av[1], mylloc, display);
 	if (longest_line(display->m->minimap_array) > count_lines(display->m->minimap_array))
 		tile_size = (WIDTH * 0.2) / longest_line(display->m->minimap_array);
 	else
 		tile_size = (HEIGHT * 0.2) / count_lines(display->m->minimap_array);
 	print_minimap(display, display->m, tile_size);
+	draw_compass(display, display->raycast->compass, display->raycast->player);
 	display->m->tile_size = tile_size;
 	if (flood_fill(display->m->copy, display->m->p_x, display->m->p_y) > 0)
 	{
 		printf("ERROR : Map is not closed\n");
 		free_and_exit(mylloc);
 	}
+	
 	mlx_loop_hook(display->mlx, move_player, display);
 	mlx_loop_hook(display->mlx, player_angle, display);
 	mlx_loop(display->mlx);

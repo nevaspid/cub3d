@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:52:56 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/21 14:47:10 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/27 19:38:01 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	move_player(void *param)
 		display->m->player->instances[0].y -= SPEED;
 	if (mlx_is_key_down(display->mlx, MLX_KEY_S))
 		display->m->player->instances[0].y += SPEED;
-	printf("x: %d, y: %d\n", display->m->player->instances[0].x,
-		display->m->player->instances[0].y);
+	// printf("x: %d, y: %d\n", display->m->player->instances[0].x,
+		// display->m->player->instances[0].y);
 }
 
 int	is_2pi(double number)
@@ -55,5 +55,6 @@ void	player_angle(void *param)
 		display->m->p_angle += 0.01;
 	if (is_2pi(display->m->p_angle))
 		display->m->p_angle = 0;
-	printf("angle: %f\n", display->m->p_angle);
+	draw_compass(display, display->raycast->compass, display->raycast->player);
+	// printf("angle: %f\n", display->m->p_angle);
 }

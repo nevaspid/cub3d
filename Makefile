@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+         #
+#    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/05/21 14:42:13 by gloms            ###   ########.fr        #
+#    Updated: 2024/05/27 19:09:27 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS		:=	cub3d.c \
 				utils/split.c \
 				malloc/lst_alloc.c \
 				raycasting/move_player.c \
+				raycasting/init.c \
 				utils/free_and_exit.c \
 				parsing/flood_fill.c \
 
@@ -59,7 +60,7 @@ all:			$(NAME)
 
 $(NAME):		$(OBJS)
 				@ echo "$(GREEN)Compilation $(CLR_RMV)of $(YELLOW)$(NAME) $(CLR_RMV)..."
-				@ $(CC) $(FLAGS) -o $(NAME) $(OBJS) MLX42/build/libmlx42.a -I include -lglfw -L "$(BREW)/Cellar/glfw/3.3.9/lib/"
+				@ $(CC) $(FLAGS) -o $(NAME) $(OBJS) MLX42/build/libmlx42.a -I include -lglfw -lm -L "$(BREW)/Cellar/glfw/3.3.9/lib/"
 				@ echo "$(YELLOW)$(NAME) $(GREEN)created $(CLR_RMV)✔️"
 
 

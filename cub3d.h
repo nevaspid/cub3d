@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/21 14:01:32 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/27 19:08:08 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+#include "raycast.h"
 #include "MLX42/include/MLX42/MLX42.h"
 #include <unistd.h>
 #include <stdlib.h>
@@ -59,13 +60,13 @@ typedef struct s_minimap
 	double				p_angle;
 	int					tile_size;
 }	t_minimap;
-
 typedef struct s_display
 {
 	mlx_t			*mlx;
 	int32_t			width;
 	int32_t			height;
 	t_minimap		*m;
+	t_raycast		*raycast;
 }	t_display;
 
 /*------------raycasting-------------*/
@@ -121,5 +122,17 @@ int			is_valid_char(char c);
 /*--------------TEMP--------------*/
 
 void	print_tab(char **tab);
+
+
+/*--------------PRIMITIVE-------------*/
+
+void init_struct(t_display *display);
+void init_layers(t_display *data);
+void init_compass(t_compass *cmp);
+void draw_line(mlx_image_t *img, t_vec_d start, t_vec_d end, int color);
+void draw_fill_circle(mlx_image_t *img, int x1, int x2, int y,  int color);
+void draw_circle(mlx_image_t *img, int center_x, int center_y, int radius, int color, int fill);
+void draw_compass(t_display *display, t_compass *compass , t_player *player);
+
 
 #endif
