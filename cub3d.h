@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/27 19:08:08 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/28 02:53:07 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ void	free_and_exit(t_mem_alloc *malloc);
 
 /*-------------pixelling-------------*/
 
-void	draw_player(t_minimap *minimap, int tile_size);
+void	draw_player(t_display *minimap, int tile_size);
+// void	draw_player(t_minimap *minimap, int tile_size);
 void	wall(t_minimap *minimap, int x, int y, int tile_size);
 void	floors(t_minimap *minimap, int x, int y, int tile_size);
 void	print_player(t_display *mlx, t_minimap *m, int tile_size);
@@ -134,5 +135,7 @@ void draw_fill_circle(mlx_image_t *img, int x1, int x2, int y,  int color);
 void draw_circle(mlx_image_t *img, int center_x, int center_y, int radius, int color, int fill);
 void draw_compass(t_display *display, t_compass *compass , t_player *player);
 
+/*-------------DDA_AND_OTHER-----------*/
+void run_raycast(t_display *display, t_ray *ray, t_player *player);
 
 #endif

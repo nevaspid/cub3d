@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/05/27 23:53:01 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/28 02:55:26 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void init_struct(t_display *display)
 
 void init_player(t_display *display, t_player *player)
 {
-    player->pos.x = display->m->player->instances[0].x;
-    player->pos.y = display->m->player->instances[0].y;
+    player->pos.x = display->raycast->ray->img->instances[0].x;
+    player->pos.y = display->raycast->ray->img->instances[0].y;
     player->angle = display->m->p_angle;
     player->dir.x = 0;
     player->dir.y = 0;

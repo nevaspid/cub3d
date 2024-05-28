@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixelated_assets.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 21:13:32 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/21 14:45:58 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/28 02:52:15 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	floors(t_minimap *minimap, int x, int y, int tile_size)
 	}
 }
 
-void	draw_player(t_minimap *minimap, int tile_size)
+void	draw_player(t_display *minimap, int tile_size)
 {
 	int	x;
 	int	y;
@@ -72,7 +72,7 @@ void	draw_player(t_minimap *minimap, int tile_size)
 	{
 		while (x < tile_size / 2)
 		{
-			mlx_put_pixel(minimap->player, (uint32_t)x, (uint32_t)y,
+			mlx_put_pixel(minimap->raycast->ray->img, (uint32_t)x, (uint32_t)y,
 				0x8B0000FF);
 			x++;
 		}
@@ -97,12 +97,12 @@ void	print_player(t_display *mlx, t_minimap *m, int tile_size)
 			if (m->minimap_array[y][x] == 'N' || m->minimap_array[y][x] == 'S'
 				|| m->minimap_array[y][x] == 'W'
 				|| m->minimap_array[y][x] == 'E')
-				mlx_image_to_window(mlx->mlx, mlx->m->player, (x * tile_size)
+				mlx_image_to_window(mlx->mlx, mlx->raycast->ray->img, (x * tile_size)
 					+ tile_size / 4, (y * tile_size) + tile_size / 4);
 			x++;
 		}
 		x = 0;
 		y++;
 	}
-	draw_player(m, tile_size);
+	draw_player(mlx, tile_size);
 }

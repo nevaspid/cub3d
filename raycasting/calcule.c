@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/05/27 23:55:20 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/28 03:03:28 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,12 @@ void calculate_dda(t_display *display, t_ray *ray)
             ray->map.y += ray->step.y;
             ray->side = 1;
         }
-        // printf("ray->map.y = %d\n",ray->map.y);
-        // printf("ray->map.x = %d\n",ray->map.x);
-        if (display->m->minimap_array[ray->map.y / tile ][ray->map.x / tile ] == '1')
+        printf("ray->map.y = %d\n",ray->map.y);
+        printf("ray->map.x = %d\n",ray->map.x);
+        if (display->m->minimap_array[ray->map.y / tile ][ray->map.x / tile ] == '1'){
+            printf("Hit wall\n");
             hit = 1;
+        }
     }
 
 }
@@ -147,8 +149,13 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         init_dda(ray, player);
         calculate_dda(display, ray);
         calculate_height_line(ray, player);
-        // draw_line(display, (t_vec_d){}, x);
+        printf("ray->angle = %f\n",ray->angle);
+        draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x, player->pos.y}, (t_vec_d){ray->map.x, ray->map.y}, MY_RED);
+        
+        // draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x, player->pos.y}, (t_vec_d){ray->map.x, ray->map.y}, MY_RED);
+        // draw_line(display->mlx, (t_vec_d){}, x);
         x++;
     }
+    mlx_image_to_window(display->mlx, ray->img,0,0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/27 23:22:32 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/28 01:06:32 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ int	main(int ac, char **av)
 	display->raycast->player = mem_alloc(mylloc,sizeof(t_player));
 	display->raycast->ray = mem_alloc(mylloc,sizeof(t_ray));
 	display->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
-	display->m->minimap = mlx_new_image(display->mlx, WIDTH * 0.2, HEIGHT * 0.2);
+	display->m->minimap = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
 	display->raycast->compass->img = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
+	display->raycast->ray->img = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
 	read_parse_store(av[1], mylloc, display);
 	if (longest_line(display->m->minimap_array) > count_lines(display->m->minimap_array))
-		tile_size = (WIDTH * 0.2) / longest_line(display->m->minimap_array);
+		tile_size = (WIDTH * SCALE) / longest_line(display->m->minimap_array);
 	else
-		tile_size = (HEIGHT * 0.2) / count_lines(display->m->minimap_array);
+		tile_size = (HEIGHT * SCALE) / count_lines(display->m->minimap_array);
 	print_minimap(display, display->m, tile_size);
 	draw_compass(display, display->raycast->compass, display->raycast->player);
 	display->m->tile_size = tile_size;
@@ -49,7 +50,7 @@ int	main(int ac, char **av)
 		printf("ERROR : Map is not closed\n");
 		free_and_exit(mylloc);
 	}
-	
+	run_raycast(display,display->raycast->ray, display->raycast->player);
 	mlx_loop_hook(display->mlx, move_player, display);
 	mlx_loop_hook(display->mlx, player_angle, display);
 	mlx_loop(display->mlx);
