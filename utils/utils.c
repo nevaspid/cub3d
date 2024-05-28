@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 19:34:03 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/21 14:29:47 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/24 15:38:12 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,16 @@ void	print_tab(char **tab)
 	}
 }
 
-int	is_char(char c, t_minimap *minimap)
+int	is_char(char c, t_display *d)
 {
 	if (c == 'N')
-		minimap->p_angle = PI / 2;
+		d->p_angle = 3 * PI / 2;
 	else if (c == 'S')
-		minimap->p_angle = 3 * PI / 2;
+		d->p_angle = PI / 2;
 	else if (c == 'E')
-		minimap->p_angle = 0;
+		d->p_angle = 0;
 	else if (c == 'W')
-		minimap->p_angle = PI;
+		d->p_angle = PI;
 	else
 		return (0);
 	return (1);
