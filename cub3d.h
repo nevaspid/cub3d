@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/28 02:53:07 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/30 00:13:32 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define PI 3.14159265358979323846
 # define HEIGHT 1095
 # define WIDTH 1800
-# define SPEED 1
+# define SPEED 0.1f
 # define NB_RAYS 50
 
 /*-------------STRUCTS-------------*/
@@ -57,7 +57,6 @@ typedef struct s_minimap
 	t_paths				*paths;
 	int					p_x;
 	int					p_y;
-	double				p_angle;
 	int					tile_size;
 }	t_minimap;
 typedef struct s_display
@@ -65,6 +64,9 @@ typedef struct s_display
 	mlx_t			*mlx;
 	int32_t			width;
 	int32_t			height;
+	double			p_x;
+	double			p_y;
+	double			p_angle;
 	t_minimap		*m;
 	t_raycast		*raycast;
 }	t_display;
@@ -73,6 +75,11 @@ typedef struct s_display
 
 void	move_player(void *param);
 void	player_angle(void *param);
+void	move_forwards(t_display *d);
+void	move_backwards(t_display *d);
+void	move_left(t_display *d);
+void	move_right(t_display *d);
+
 
 /*------------memory-alloc-------------*/
 
@@ -107,7 +114,7 @@ int		check_map(char **map);
 char		*ft_strjoin(char *s1, char *s2, t_mem_alloc *lst);
 char		**ft_split(char const *s, char c, t_mem_alloc *lst);
 int			ft_strlen(char *str);
-int			is_char(char c, t_minimap *minimap);
+int			is_char(char c, t_display *d);
 int			is_digit(char c);
 int			longest_line(char **array);
 int 		count_lines(char **array);

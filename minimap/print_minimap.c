@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:41:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/21 14:45:51 by gloms            ###   ########.fr       */
+/*   Updated: 2024/05/24 19:15:05 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ void	print_assets(t_display *mlx, int tile_size, int x, int y)
 		wall(mlx->m, x * tile_size, y * tile_size, tile_size);
 	else if (mlx->m->minimap_array[y][x] == '0')
 		floors(mlx->m, x * tile_size, y * tile_size, tile_size);
-	else if (is_char(mlx->m->minimap_array[y][x], mlx->m))
+	else if (is_char(mlx->m->minimap_array[y][x], mlx))
 	{
 		mlx->m->p_y = y;
 		mlx->m->p_x = x;
+		mlx->p_y = y;
+		mlx->p_x = x;
 		mlx->m->player = mlx_new_image(mlx->mlx, tile_size / 2, tile_size / 2);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:52:56 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/28 03:05:45 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/30 00:29:37 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,18 @@ void	move_player(void *param)
 	t_display	*display;
 
 	display = (t_display *)param;
+	//printf("%f cos: %f ; sin: %f\n", display->p_angle, cos(display->p_angle), sin(display->p_angle));
 	if (mlx_is_key_down(display->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(display->mlx);
 	if (mlx_is_key_down(display->mlx, MLX_KEY_A))
-		display->raycast->ray->img->instances[0].x -= SPEED;
+		move_left(display);//display->m->player->instances[0].x -= SPEED;
 	if (mlx_is_key_down(display->mlx, MLX_KEY_D))
-		display->raycast->ray->img->instances[0].x += SPEED;
-	if (mlx_is_key_down(display->mlx, MLX_KEY_W)){
-		display->raycast->ray->img->instances[0].y -= SPEED;
-		run_raycast(display, display->raycast->ray, display->raycast->player);
-	}
+		move_right(display);//display->m->player->instances[0].x += SPEED;
+	if (mlx_is_key_down(display->mlx, MLX_KEY_W))
+		move_forwards(display);//display->m->player->instances[0].y -= SPEED;
 	if (mlx_is_key_down(display->mlx, MLX_KEY_S))
-		display->raycast->ray->img->instances[0].y += SPEED;
-	// run_raycast(display, display->raycast->ray, display->raycast->player);
-	// printf("x: %d, y: %d\n", display->m->player->instances[0].x,
-		// display->m->player->instances[0].y);
+		move_backwards(display);//display->m->player->instances[0].y += SPEED;
+	printf("x: %f ; y: %f\n", display->p_x, display->p_y);
 }
 
 int	is_2pi(double number)
@@ -53,7 +50,7 @@ void	player_angle(void *param)
 
 	display = (t_display *)param;
 	if (mlx_is_key_down(display->mlx, MLX_KEY_LEFT))
-		display->m->p_angle -= 0.01;
+		display->p_angle -= 0.01;
 	if (mlx_is_key_down(display->mlx, MLX_KEY_RIGHT))
 		display->m->p_angle += 0.01;
 	if (is_2pi(display->m->p_angle))
