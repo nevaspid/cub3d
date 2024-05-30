@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:52:56 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/30 00:34:27 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/30 02:28:05 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	player_angle(void *param)
 
 	display = (t_display *)param;
 	if (mlx_is_key_down(display->mlx, MLX_KEY_LEFT))
-		display->p_angle -= 0.01;
+		display->p_angle -= 0.41;
 	if (mlx_is_key_down(display->mlx, MLX_KEY_RIGHT))
-		display->p_angle += 0.01;
+		display->p_angle += 0.04;
 	if (is_2pi(display->p_angle))
 		display->p_angle = 0;
 	draw_compass(display, display->raycast->compass, display->raycast->player);
