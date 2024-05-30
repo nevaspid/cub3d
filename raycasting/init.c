@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/05/30 00:34:44 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/30 20:12:19 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void init_struct(t_display *display)
 
 void init_player(t_display *display, t_player *player)
 {
-    player->pos.x = display->raycast->ray->img->instances[0].x;
-    player->pos.y = display->raycast->ray->img->instances[0].y;
+    player->pos.x = display->p_x; // display->raycast->ray->img->instances[0].x;
+    player->pos.y = display->p_y; // display->raycast->ray->img->instances[0].y;
     player->angle = display->p_angle;
     player->dir.x = 0;
     player->dir.y = 0;
@@ -192,6 +192,8 @@ void draw_compass(t_display *display, t_compass *compass , t_player *player)
     draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius - 1, MY_WHITE,0);
     
     compass->needle_length = compass->radius * 0.8;
+    // compass->needle_end_x = compass->center_x + compass->needle_length * cos(display->p_angle);
+    // compass->needle_end_y = compass->center_y + compass->needle_length * sin(display->p_angle);
     compass->needle_end_x = compass->center_x + compass->needle_length * cos(player->angle);
     compass->needle_end_y = compass->center_y + compass->needle_length * sin(player->angle);
     draw_line(compass->img, (t_vec_d){compass->center_x, compass->center_y}, (t_vec_d){compass->needle_end_x, compass->needle_end_y}, MY_RED);

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/05/30 08:17:03 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/30 19:55:21 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,9 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
     t_vec_d end_pos;
     x = 0;
 
-    player->angle = display->p_angle;
-    player->pos.x = display->p_x;
-    player->pos.y = display->p_y;
+    // player->angle = display->p_angle;
+    // player->pos.x = display->p_x;
+    // player->pos.y = display->p_y;
     while (x < WIDTH)
     {
         ray->angle = player->angle + FOV / 2 - x * FOV / WIDTH;
