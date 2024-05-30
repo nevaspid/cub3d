@@ -6,12 +6,15 @@
 #    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/05/30 00:25:41 by oliove           ###   ########.fr        #
+#    Updated: 2024/05/30 02:01:08 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	cub3d
-LIBMLX		:=	./MLX42/build/libmlx42.a
+LIBMLX		:=	./MLX42
+MLXA		:= $(LIBMLX)/build/libmlx42.a
+HEADERS		:= -I ./include -I $(LIBMLX)/include
+LIBS		:= $(LIBMLX)/build/libmlx42.a -lm -lglfw #-L 
 # ------------------------------ Sources -----------------------------
 
 SRCS		:=	cub3d.c \
@@ -58,13 +61,35 @@ BLUE		:=	\033[1;34m
 CYAN 		:=	\033[1;36m
 
 # ------------------------------ Compilation -------------------------
+ifeq ($(DEBUG), 1)
+	FLAGS += -g3 -fsanitize=address 
+endif
+
+ifeq ($(shell uname -s), Darwin) # if Mac
+	CXX := clang++
+# Si erreur ici a la compilation commente la ligne ci-dessous
+	LIBS += "$(BREW)/Cellar/glfw/3.3.9/lib/"
+else
+	CXX := g++
+endif
+
+
 
 all:			$(NAME)
 
-$(NAME):		$(OBJS)
+$(MLXA):
+	@cd MLX42 && cmake -B build && cmake --build build -j4
+
+$(NAME):		$(MLXA) $(OBJS)
 				@ echo "$(GREEN)Compilation $(CLR_RMV)of $(YELLOW)$(NAME) $(CLR_RMV)..."
-				@ $(CC) $(FLAGS) -o $(NAME) $(OBJS) MLX42/build/libmlx42.a -I include -lglfw -lm -L "$(BREW)/Cellar/glfw/3.3.9/lib/"
+				@ $(CC) $(FLAGS) $(OBJS) -o $(NAME) $(LIBS)
 				@ echo "$(YELLOW)$(NAME) $(GREEN)created $(CLR_RMV)✔️"
+
+
+# $(NAME):		$(OBJS)
+# 				@ echo "$(GREEN)Compilation $(CLR_RMV)of $(YELLOW)$(NAME) $(CLR_RMV)..."
+# 				@ $(CC) $(FLAGS) -o $(NAME) $(OBJS) MLX42/build/libmlx42.a -I include -lglfw -lm -L "$(BREW)/Cellar/glfw/3.3.9/lib/"
+# 				@ echo "$(YELLOW)$(NAME) $(GREEN)created $(CLR_RMV)✔️"
 
 
 
