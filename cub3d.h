@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/30 02:27:45 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/30 07:38:18 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 /*-------------DEFINES-------------*/
 
 # define PI 3.14159265358979323846
-# define HEIGHT 1095
-# define WIDTH 1800
+# define HEIGHT 800 
+# define WIDTH 800
 # define SPEED 0.1f
 # define NB_RAYS 50
 
