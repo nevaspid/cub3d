@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/05/31 05:45:29 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/31 18:46:17 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,9 @@ void calculate_height_line(t_ray *ray, t_player *player)
 void calculate_dda(t_display *display, t_ray *ray)
 {
     int hit;
-    int tile;
+    // int tile;
 
-	tile = display->m->tile_size;
+	// tile = display->m->tile_size;
     hit  = 0;
     while (hit == 0)
     {
@@ -151,7 +151,8 @@ void calculate_dda(t_display *display, t_ray *ray)
         }
         printf("C_DDAray->map.y = %d\n",ray->map.y);
         printf("C_DDAray->map.x = %d\n",ray->map.x);
-        if (display->m->minimap_array[ray->map.y / tile *(tile)][ray->map.x / tile * (tile) ] == '1'){
+        // if (display->m->minimap_array[ray->map.y / tile *(tile)][ray->map.x / tile * (tile) ] == '1'){
+        if (display->m->minimap_array[ray->map.y][ray->map.x] == '1'){
             printf("Hit wall\n");
             hit = 1;
         }
@@ -165,7 +166,7 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
     t_vec_d end_pos;
     x = 0;
 
-    init_camera(display, display->raycast->camera);
+    // init_camera(display, display->raycast->camera);
     while (x < WIDTH)
     {
         ray->angle = player->angle + FOV / 2 - x * FOV / WIDTH;
@@ -179,9 +180,12 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         // ray->dir.y = player->dir.y + player->plane.y * tan(ray->angle * PI / 180);
         printf("+PLANE ray->dir.x = %f ray->dir.y = %f\n",ray->dir.x,ray->dir.y);
         
-        ray->map.x = (int)player->pos.x * display->m->tile_size;
-        ray->map.y = (int)player->pos.y * display->m->tile_size;
+        ray->map.x = (int)player->pos.x; // display->m->tile_size  ;
+        ray->map.y = (int)player->pos.y; // display->m->tile_size ;
+        // ray->map.x = (int)(player->pos.x * display->m->tile_size)  ;
+        // ray->map.y = (int)(player->pos.y * display->m->tile_size) ;
         printf("ray->map.x = %d ray->map.y = %d\n",ray->map.x,ray->map.y);
+
         // ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
         // ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
         init_dda(ray, player);

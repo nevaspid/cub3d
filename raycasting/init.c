@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/05/31 05:34:27 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/31 18:33:53 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ void init_struct(t_display *display)
 
 void init_player(t_display *display, t_player *player)
 {
-    player->pos.x = display->p_x * display->m->tile_size * display->m->tile_size / 2; // display->raycast->ray->img->instances[0].x;
-    player->pos.y = display->p_y * display->m->tile_size * display->m->tile_size / 2; // display->raycast->ray->img->instances[0].y;
+    // player->pos.x = display->p_x * display->m->tile_size * display->m->tile_size / 2; // display->raycast->ray->img->instances[0].x;
+    // player->pos.y = display->p_y*  display->m->tile_size * display->m->tile_size / 2; // display->raycast->ray->img->instances[0].y;
+    player->pos.x = display->p_x; //* display->m->tile_size * display->m->tile_size / 2; // display->raycast->ray->img->instances[0].x;
+    player->pos.y = display->p_y; // * display->m->tile_size * display->m->tile_size / 2; // display->raycast->ray->img->instances[0].y;
+    printf("player->pos.x = %f pos_y %f\n", player->pos.x, player->pos.y);
     player->angle = display->p_angle;
     player->dir.x = 0;
     player->dir.y = 0;
