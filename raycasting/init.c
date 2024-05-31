@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/05/30 20:12:19 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/31 05:34:27 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void init_struct(t_display *display)
 
 void init_player(t_display *display, t_player *player)
 {
-    player->pos.x = display->p_x; // display->raycast->ray->img->instances[0].x;
-    player->pos.y = display->p_y; // display->raycast->ray->img->instances[0].y;
+    player->pos.x = display->p_x * display->m->tile_size * display->m->tile_size / 2; // display->raycast->ray->img->instances[0].x;
+    player->pos.y = display->p_y * display->m->tile_size * display->m->tile_size / 2; // display->raycast->ray->img->instances[0].y;
     player->angle = display->p_angle;
     player->dir.x = 0;
     player->dir.y = 0;
@@ -60,7 +60,7 @@ void init_ray(t_ray *ray)
     ray->end.y = 0;
 }
 
-void init_camma(t_camera *camera)
+void init_struct_camera(t_camera *camera)
 {
     camera->angle_cam = 0;
     camera->angle_min = 0;

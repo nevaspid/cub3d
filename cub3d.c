@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/30 19:35:54 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/31 05:39:28 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int ac, char **av)
 	display->raycast->compass = mem_alloc(mylloc, sizeof(t_compass));
 	display->raycast->player = mem_alloc(mylloc,sizeof(t_player));
 	display->raycast->ray = mem_alloc(mylloc,sizeof(t_ray));
+	display->raycast->camera = mem_alloc(mylloc,sizeof(t_camera));
 	display->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	display->m->minimap = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
 	display->raycast->compass->img = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
@@ -45,6 +46,8 @@ int	main(int ac, char **av)
 		tile_size = (HEIGHT * SCALE) / count_lines(display->m->minimap_array);
 	print_minimap(display, display->m, tile_size);
 	draw_compass(display, display->raycast->compass, display->raycast->player);
+	init_struct_camera(display->raycast->camera);
+	// init_camera(display, display->raycast->camera);
 	display->m->tile_size = tile_size;
 	if (flood_fill(display->m->copy, display->m->p_x, display->m->p_y) > 0)
 	{
