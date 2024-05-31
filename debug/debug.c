@@ -9,7 +9,7 @@ void    print_addr(char *where,void *addr)
 
 void print_info_struct(char *where, char *format, void *addr)
 {
-        
+
     printf("%s == ",where);
     printf(format,addr);
     printf("\n");
@@ -27,8 +27,8 @@ void print_value_ray(t_ray *ray, t_player *player, char *where, char *who)
 	printf("player->pos.y [%f]\n", player->pos.y);
 	printf("ray->dir->x [%f]\n", ray->dir.x);
 	printf("ray->dir->y [%f]\n", ray->dir.y);
-	printf("ray->map->x [%d]\n", ray->map.x);
-	printf("ray->map->y [%d]\n", ray->map.y);
+	printf("ray->map->x [%f]\n", ray->map.x);
+	printf("ray->map->y [%f]\n", ray->map.y);
 	// printf("ray->img_ray.width [%d]\n",ray->img_ray->width);
 	// printf("ray->img_ray.height [%d]\n",ray->img_ray->height);
     printf("\033[0;31end %s\033[0;m\n",where);
