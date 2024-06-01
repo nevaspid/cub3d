@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 19:34:03 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/01 04:56:20 by gloms            ###   ########.fr       */
+/*   Updated: 2024/06/01 05:02:41 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int	is_char(char c, t_display *d)
 	else if (c == 'E')
 		d->p_angle = 0;
 	else if (c == 'W')
-		d->p_angle = M_PI;
 		d->p_angle = M_PI;
 	else
 		return (0);
