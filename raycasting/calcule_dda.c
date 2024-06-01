@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcule_dda.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/01 04:52:08 by gloms            ###   ########.fr       */
+/*   Updated: 2024/06/01 07:00:46 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,8 +149,16 @@ void calculate_dda(t_display *display, t_ray *ray)
             ray->side = 1;
             // print_value_recast(display->raycast->player, ray, "calculate_dda", "else");
         }
-        if (ray->map.x >= 0 && ray->map.y >= 0 && display->m->minimap_array[(int)ray->map.y][(int)ray->map.x] == '1'){
-            // print_value_recast(display->raycast->player, ray, "calculate_dda", "ray");
+        if (ray->map.y < 0 || ray->map.x < 0 || ray->map.y >= display->m->minimap->height || ray->map.x >= display->m->minimap->width)
+        {
+            if (display->m->minimap_array[(int)ray->map.y][(int)ray->map.x] == '1')
+            {
+                hit = 1;
+                ray->hit = 1;
+            }
+        }
+        else
+        {
             hit = 1;
             ray->hit = 1;
         }
@@ -158,6 +166,24 @@ void calculate_dda(t_display *display, t_ray *ray)
 
 }
 
+void clear_image(mlx_image_t *img, uint32_t a)
+{
+    uint32_t x;
+    uint32_t y;
+
+    y = 0;
+
+    while (y < img->height)
+    {
+        x = 0;
+        while (x < img->width)
+        {
+            mlx_put_pixel(img, x, y, a);
+            x++;
+        }
+        y++;
+    }
+}
 
 void run_raycast(t_display *display, t_ray *ray, t_player *player)
 {
@@ -165,10 +191,13 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
     t_vec_d end_pos;
     x = 0;
 
-    init_camera(display, display->raycast->camera);
+    // init_camera(display, display->raycast->camera);
+    clear_image(display->raycast->ray->img, 0x000000);
     while (x < WIDTH)
     {
-        ray->angle = player->angle; //+ angle_rad(FOV) / 2 - x * angle_rad(FOV) / WIDTH;
+        // double angle_mini = player->angle - FOV / 2;
+        double angle_maxi = player->angle + (FOV) / 2;
+        ray->angle = angle_maxi;//player->angle; //+ angle_rad(FOV) / 2 - x * angle_rad(FOV) / WIDTH;
         ray->dir.x = cos(player->angle);
         ray->dir.y = sin(player->angle);
         ray->map.x = player->pos.x;
@@ -176,6 +205,7 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
         ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
         print_value_recast(player, ray, "run_raycast", "while");
+        
         init_dda(ray, player);
         calculate_dda(display, ray);
         calculate_height_line(ray, player);

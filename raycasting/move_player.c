@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:52:56 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/01 04:55:39 by gloms            ###   ########.fr       */
+/*   Updated: 2024/06/01 07:01:27 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ void	move_player(mlx_key_data_t key, void *param)
 	if (is_2pi(display->p_angle))
 		display->p_angle = 0;
 	draw_compass(display, display->raycast->compass, display->raycast->player);
-	//run_raycast(display, display->raycast->ray, display->raycast->player);
+	// run_raycast(display, display->raycast->ray, display->raycast->player);
 }
