@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/01 07:00:46 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/01 07:41:50 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,11 +216,7 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
             end_pos.x = player->pos.x + max_ray_lenght * ray->dir.x;
             end_pos.y = player->pos.y + max_ray_lenght * ray->dir.y;
         }
-
-        // draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * SCALE, player->pos.y * SCALE}, (t_vec_d){ray->map.x * SCALE, ray->map.y * SCALE}, MY_RED);
-
         draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size}, (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, MY_RED);
-        // print_value_recast(player, ray, "run_raycast", "ray");
         x++;
     }
 }

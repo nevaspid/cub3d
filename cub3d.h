@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/01 04:49:48 by gloms            ###   ########.fr       */
+/*   Updated: 2024/06/01 08:17:29 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 // # define PI 3.14159265358979323846
 # define HEIGHT 1095
 # define WIDTH 1800
-# define SPEED 1
+# define SPEED 0.1f
 # define NB_RAYS 50
 
 /*-------------STRUCTS-------------*/
@@ -149,5 +149,7 @@ void draw_compass(t_display *display, t_compass *compass , t_player *player);
 
 /*-------------DDA_AND_OTHER-----------*/
 void run_raycast(t_display *display, t_ray *ray, t_player *player);
+
+int check_next_move(t_display *d, double x, double y);
 
 #endif

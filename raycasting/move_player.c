@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:52:56 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/01 07:01:27 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/01 08:14:44 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,30 @@ int	is_2pi(double number)
 void	move_player(mlx_key_data_t key, void *param)
 {
 	t_display	*display;
-
+	t_vec_d		p;
 	(void)key;
 	display = (t_display *)param;
-	if (mlx_is_key_down(display->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(display->mlx);
-	if (mlx_is_key_down(display->mlx, MLX_KEY_A))
-		move_left(display);
-	if (mlx_is_key_down(display->mlx, MLX_KEY_D))
-		move_right(display);
-	if (mlx_is_key_down(display->mlx, MLX_KEY_W))
-		move_forwards(display);
-	if (mlx_is_key_down(display->mlx, MLX_KEY_S))
-		move_backwards(display);
-	if (mlx_is_key_down(display->mlx, MLX_KEY_LEFT))
-		display->p_angle -= 0.04;
-	if (mlx_is_key_down(display->mlx, MLX_KEY_RIGHT))
-		display->p_angle += 0.04;
-	if (is_2pi(display->p_angle))
-		display->p_angle = 0;
+	p.x = display->raycast->player->pos.x;
+	p.y = display->raycast->player->pos.y;
+	// if (check_next_move(display, display->raycast->player->pos.x + cos(display->p_angle) * SPEED, display->raycast->player->pos.y + sin(display->p_angle) * SPEED) == 0)
+	// {		
+		if (mlx_is_key_down(display->mlx, MLX_KEY_ESCAPE))
+			mlx_close_window(display->mlx);
+		if (check_next_move(display, p.x, p.y) == 0 && mlx_is_key_down(display->mlx, MLX_KEY_A))
+			move_left(display);
+		if (/*check_next_move(display,p.x,p.y) == 0 &&*/ mlx_is_key_down(display->mlx, MLX_KEY_D))
+			move_right(display);
+		if (check_next_move(display,p.x,p.y) == 0 && mlx_is_key_down(display->mlx, MLX_KEY_W))
+			move_forwards(display);
+		if (check_next_move(display,p.x, p.y) == 0 && mlx_is_key_down(display->mlx, MLX_KEY_S))
+			move_backwards(display);
+		if (mlx_is_key_down(display->mlx, MLX_KEY_LEFT))
+			display->p_angle -= 0.04;
+		if (mlx_is_key_down(display->mlx, MLX_KEY_RIGHT))
+			display->p_angle += 0.04;
+		if (is_2pi(display->p_angle))
+			display->p_angle = 0;
+	// }
 	draw_compass(display, display->raycast->compass, display->raycast->player);
 	// run_raycast(display, display->raycast->ray, display->raycast->player);
 }
