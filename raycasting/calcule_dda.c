@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/01 07:41:50 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/01 19:54:46 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,7 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         ray->map.y = player->pos.y;
         ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
         ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
-        print_value_recast(player, ray, "run_raycast", "while");
+        // print_value_recast(player, ray, "run_raycast", "while");
         
         init_dda(ray, player);
         calculate_dda(display, ray);

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 14:52:41 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/01 08:43:56 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/01 19:52:36 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int check_next_move(t_display *d, double x, double y)
 {
 	t_vec pos;
 	
+
 	pos.x = (int)((x + d->m->tile_size) );
 	pos.y = (int)((y + d->m->tile_size) );
 	printf("x = %d, y = %d\n", pos.x, pos.y);
@@ -28,8 +29,8 @@ int check_next_move(t_display *d, double x, double y)
 
 void	move_forwards(t_display *d)//tout droit
 {
-	d->p_x += cos(d->p_angle) * SPEED;
-	d->p_y += sin(d->p_angle) * SPEED;
+	d->p_x +=  cos(d->p_angle) * SPEED;
+	d->p_y +=  sin(d->p_angle) * SPEED;
 	d->m->player->instances[0].x = (d->p_x * d->m->tile_size);
 	d->m->player->instances[0].y = (d->p_y * d->m->tile_size);
 }
