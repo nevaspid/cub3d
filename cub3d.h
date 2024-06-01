@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/31 05:34:41 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/01 00:07:58 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	move_right(t_display *d);
 void init_camera(t_display *d, t_camera *camera);
 void init_struct_camera(t_camera *camera);
 
+double angle_rad(double angle);
+double distance(t_vec_d a, t_vec_d b);
 
 /*------------memory-alloc-------------*/
 
@@ -132,6 +134,7 @@ int			is_valid_char(char c);
 /*--------------TEMP--------------*/
 
 void	print_tab(char **tab);
+void print_value_ray(t_ray *ray, t_player *player, char *where, char *who);
 
 
 /*--------------PRIMITIVE-------------*/

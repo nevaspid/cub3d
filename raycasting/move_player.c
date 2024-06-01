@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:52:56 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/30 20:13:02 by oliove           ###   ########.fr       */
+/*   Updated: 2024/05/31 23:43:18 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,16 @@ void	move_player(void *param)
 	t_display	*display;
 
 	display = (t_display *)param;
-	//printf("%f cos: %f ; sin: %f\n", display->p_angle, cos(display->p_angle), sin(display->p_angle));
 	if (mlx_is_key_down(display->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(display->mlx);
 	if (mlx_is_key_down(display->mlx, MLX_KEY_A))
-		move_left(display);//display->m->player->instances[0].x -= SPEED;
+		move_left(display);
 	if (mlx_is_key_down(display->mlx, MLX_KEY_D))
-		move_right(display);//display->m->player->instances[0].x += SPEED;
+		move_right(display);
 	if (mlx_is_key_down(display->mlx, MLX_KEY_W))
-		move_forwards(display);//display->m->player->instances[0].y -= SPEED;
+		move_forwards(display);
 	if (mlx_is_key_down(display->mlx, MLX_KEY_S))
-		move_backwards(display);//display->m->player->instances[0].y += SPEED;
-	printf("x: %f ; y: %f\n", display->p_x, display->p_y);
+		move_backwards(display);
 }
 
 int	is_2pi(double number)

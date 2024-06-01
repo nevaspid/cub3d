@@ -6,7 +6,7 @@
 #    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/05/30 02:01:08 by oliove           ###   ########.fr        #
+#    Updated: 2024/05/31 23:29:56 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS		:=	cub3d.c \
 				raycasting/move_player.c \
 				raycasting/init.c \
 				raycasting/calcule.c \
+				raycasting/calcule_dda.c \
 				utils/free_and_exit.c \
 				parsing/flood_fill.c \
 				debug/debug.c \
