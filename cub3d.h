@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/01 08:17:29 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/01 21:34:06 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_display
 /*------------raycasting-------------*/
 
 void	move_player(mlx_key_data_t key, void *param);
-void	player_angle(mlx_key_data_t key, void *param);
+void	player_angle(void *param);
 void	move_forwards(t_display *d);
 void	move_backwards(t_display *d);
 void	move_left(t_display *d);

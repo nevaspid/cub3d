@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/01 03:29:18 by gloms            ###   ########.fr       */
+/*   Updated: 2024/06/01 21:32:54 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	main(int ac, char **av)
 		free_and_exit(mylloc);
 	}
 	run_raycast(display,display->raycast->ray, display->raycast->player);
-	mlx_key_hook(display->mlx, &move_player, display);
-	//mlx_key_hook(display->mlx, &player_angle, display);
+	// mlx_key_hook(display->mlx, &move_player, display);
+	mlx_loop_hook(display->mlx, &player_angle, display);
 	mlx_loop(display->mlx);
 	free_and_exit(mylloc);
 }

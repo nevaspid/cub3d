@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/01 20:04:42 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/01 22:01:48 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,8 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
     int x;
     t_vec_d end_pos;
     x = 0;
+    double perp_wall_dist;
+    // double line_height;
 
     // init_camera(display, display->raycast->camera);
     clear_image(display->raycast->ray->img, 0x000000);
@@ -197,25 +199,42 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
     {
         // double angle_mini = player->angle - FOV / 2;
         // double angle_maxi = player->angle + (FOV) / 2;
-        ray->angle = player->angle;//player->angle; //+ angle_rad(FOV) / 2 - x * angle_rad(FOV) / WIDTH;
-        ray->dir.x = cos(player->angle);
-        ray->dir.y = sin(player->angle);
+        // printf("player->angle = %f ray_nb == %f\n", player->angle,angle_rad(FOV) / WIDTH);
+        // double camera_x = 2 * x / (double)WIDTH - 1;
+        // ray->dir.x = player->dir.x + player->plane.x * FOV;//ray->camera_x;
+        // ray->dir.y = player->dir.y + player->plane.y * FOV;//ray->camera_x;
+        ray->nb_ray = angle_rad(FOV) / WIDTH;
+        // ray->angle_ray = FOV / ray->nb_ray;
+        // printf("player->angle = %f ray_nb == %d\n", player->angle,ray->nb_ray);
+        ray->angle = player->angle;
+        ray->dir.x = cos(player->angle);// + player->plane.x * camera_x;
+        ray->dir.y = sin(player->angle);// + player->plane.y * camera_x;
         ray->map.x = player->pos.x;
         ray->map.y = player->pos.y;
         ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
         ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
-        // print_value_recast(player, ray, "run_raycast", "while");
+        // int i = 0;
+            
         
         init_dda(ray, player);
         calculate_dda(display, ray);
+
+        if (ray->side == 0)
+            perp_wall_dist = (ray->map.x - player->pos.x + (1 - ray->step.x) / 2) / ray->dir.x;
+        else
+            perp_wall_dist = (ray->map.y - player->pos.y + (1 - ray->step.y) / 2) / ray->dir.y;
+        // line_height = (int)(HEIGHT / perp_wall_dist);
         calculate_height_line(ray, player);
-        int max_ray_lenght = 100;
-        end_pos = (t_vec_d){ray->map.x, ray->map.y};
+        int max_ray_lenght = 10000;
+        end_pos = (t_vec_d){ray->map.x + perp_wall_dist * player->dir.x , ray->map.y + perp_wall_dist * player->dir.y};
+        //  end_pos = (t_vec_d){player->pos.x + perp_wall_dist * player->dir.x , player->pos.y + perp_wall_dist * player->dir.y};
         if (hypot(end_pos.x - player->pos.x, end_pos.y - player->pos.y) > max_ray_lenght)
         {
             end_pos.x = player->pos.x + max_ray_lenght * ray->dir.x;
             end_pos.y = player->pos.y + max_ray_lenght * ray->dir.y;
         }
+        printf("end_pos.x = [%f] end_pos.y = [%f]\n", end_pos.x, end_pos.y);
+        print_value_recast(player, ray, "run_raycast", "while");
         draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size}, (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, MY_RED);
         x++;
     }
