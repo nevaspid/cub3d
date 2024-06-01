@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:52:56 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/31 23:43:18 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/01 03:57:03 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	move_player(void *param)
 		move_forwards(display);
 	if (mlx_is_key_down(display->mlx, MLX_KEY_S))
 		move_backwards(display);
+	// run_raycast(display, display->raycast->ray, display->raycast->player);
 }
 
 int	is_2pi(double number)
@@ -36,7 +37,7 @@ int	is_2pi(double number)
 	epsilon = 0.01;
 	if (number < 0)
 		number = number * -1;
-	if (fabs(number - 2.0 * PI) < epsilon)
+	if (fabs(number - 2.0 * M_PI) < epsilon)
 		return (1);
 	else
 		return (0);
@@ -54,5 +55,6 @@ void	player_angle(void *param)
 	if (is_2pi(display->p_angle))
 		display->p_angle = 0;
 	draw_compass(display, display->raycast->compass, display->raycast->player);
+	print_value_recast(display->raycast->player, display->raycast->ray, "player_angle", "ray");
 	// printf("angle: %f\n", display->m->p_angle);
 }

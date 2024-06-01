@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/01 00:07:58 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/01 03:17:41 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 /*-------------DEFINES-------------*/
 
-# define PI 3.14159265358979323846
+// # define PI 3.14159265358979323846
 # define HEIGHT 1095
 # define WIDTH 1800
 # define SPEED 0.1f
@@ -135,7 +135,7 @@ int			is_valid_char(char c);
 
 void	print_tab(char **tab);
 void print_value_ray(t_ray *ray, t_player *player, char *where, char *who);
-
+void print_value_recast(t_player *player, t_ray *ray, char *where, char *who);
 
 /*--------------PRIMITIVE-------------*/
 

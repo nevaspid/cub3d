@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/01 00:14:18 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/01 03:18:15 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ $$/ $$/   $$/ $$/    $$$$/
 
 void init_camera(t_display *d, t_camera *camera)
 {
-    camera->angle_cam = atan2(d->raycast->player->dir.y, d->raycast->player->dir.x) * 180 / PI;
+    camera->angle_cam = atan2(d->raycast->player->dir.y, d->raycast->player->dir.x) * 180 / M_PI;
     camera->angle_min = d->raycast->player->angle - FOV / 2;
     camera->angle_max = d->raycast->player->angle + FOV / 2;
     camera->nb_ray = 2; // a changer peut etre "WIDTH"-> ou += / 10;
@@ -91,7 +91,7 @@ void init_dda(t_ray *ray, t_player *player)
         ray->step.y = 1;
         ray->side_dist.y = (ray->map.y + 1.0 - player->pos.y) * ray->delta_dist.y;
     }
-    print_value_ray(ray, player, "init_dda", "ray");
+    // print_value_ray(ray, player, "init_dda", "ray");
 }
 /*
                      __                      __              __
@@ -139,18 +139,19 @@ void calculate_dda(t_display *display, t_ray *ray)
             ray->side_dist.x += ray->delta_dist.x;
             ray->map.x += ray->step.x;
             ray->side = 0;
-            print_value_ray(ray, display->raycast->player, "calculate_dda", "if");
+            // print_value_recast(display->raycast->player, ray, "calculate_dda", "if");
         }
         else
         {
             ray->side_dist.y += ray->delta_dist.y;
             ray->map.y += ray->step.y;
             ray->side = 1;
-            print_value_ray(ray, display->raycast->player, "calculate_dda", "else");
+            // print_value_recast(display->raycast->player, ray, "calculate_dda", "else");
         }
-        if (display->m->minimap_array[(int)ray->map.y][(int)ray->map.x] == '1'){
-            printf("Hit wall x,y == (%f,%f)\n", ray->map.x, ray->map.y);
+        if (ray->map.x >= 0 && ray->map.y >= 0 && display->m->minimap_array[(int)ray->map.y][(int)ray->map.x] == '1'){
+            // print_value_recast(display->raycast->player, ray, "calculate_dda", "ray");
             hit = 1;
+            ray->hit = 1;
         }
     }
 
@@ -171,8 +172,9 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         ray->dir.y = sin(player->angle);
         ray->map.x = player->pos.x;
         ray->map.y = player->pos.y;
-        // ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
-        // ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
+        ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
+        ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
+        print_value_recast(player, ray, "run_raycast", "while");
         init_dda(ray, player);
         calculate_dda(display, ray);
         calculate_height_line(ray, player);
@@ -187,8 +189,8 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
 
         // draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * SCALE, player->pos.y * SCALE}, (t_vec_d){ray->map.x * SCALE, ray->map.y * SCALE}, MY_RED);
         
-        draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size}, (t_vec_d){ray->map.x * display->m->tile_size, ray->map.y * display->m->tile_size}, MY_RED);
-      
+        draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size}, (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, MY_RED);
+        // print_value_recast(player, ray, "run_raycast", "ray"); 
         x++;
     }
 }

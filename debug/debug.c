@@ -59,3 +59,29 @@ void print_move(t_display *display)
 	// printf("data->display->player->plane->y [%f]\n", data->display->player->plane->y);
 	printf("\033[0;33mend print_move\033[0;m\n");
 }
+
+
+void print_value_recast(t_player *player, t_ray *ray, char *where, char *who)
+{
+	printf("\033[0;31m%s in %s\033[0;m \n",who,where);
+
+	printf("player->pos.x [%f]\n", player->pos.x);
+	printf("player->pos.y [%f]\n", player->pos.y);
+	printf("player->angle [%f]\n", player->angle);
+
+
+	printf("ray->dir->x [%f]\n", ray->dir.x);
+	printf("ray->dir->y [%f]\n", ray->dir.y);
+	printf("ray->map->x [%f]\n", ray->map.x);
+	printf("ray->map->y [%f]\n", ray->map.y);
+	printf("ray->step->x [%f]\n", ray->step.x);
+	printf("ray->step->y [%f]\n", ray->step.y);
+	
+	
+	printf("ray->side_dist->x [%f]\n", ray->side_dist.x);
+	printf("ray->side_dist->y [%f]\n", ray->side_dist.y);
+	
+	printf("ray->side [%d]\n", ray->side);
+	printf("ray->hit [%d]\n", ray->hit);
+	printf("\033[0;31end %s\033[0;m\n",where);
+}
