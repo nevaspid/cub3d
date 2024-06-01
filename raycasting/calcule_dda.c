@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcule_dda.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/01 00:14:18 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/01 02:17:47 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,14 +139,12 @@ void calculate_dda(t_display *display, t_ray *ray)
             ray->side_dist.x += ray->delta_dist.x;
             ray->map.x += ray->step.x;
             ray->side = 0;
-            print_value_ray(ray, display->raycast->player, "calculate_dda", "if");
         }
         else
         {
             ray->side_dist.y += ray->delta_dist.y;
             ray->map.y += ray->step.y;
             ray->side = 1;
-            print_value_ray(ray, display->raycast->player, "calculate_dda", "else");
         }
         if (display->m->minimap_array[(int)ray->map.y][(int)ray->map.x] == '1'){
             printf("Hit wall x,y == (%f,%f)\n", ray->map.x, ray->map.y);
@@ -167,7 +165,7 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
     while (x < WIDTH)
     {
         ray->angle = player->angle + angle_rad(FOV) / 2 - x * angle_rad(FOV) / WIDTH;
-        ray->dir.x = cos(player->angle); 
+        ray->dir.x = cos(player->angle);
         ray->dir.y = sin(player->angle);
         ray->map.x = player->pos.x;
         ray->map.y = player->pos.y;
@@ -186,9 +184,9 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         }
 
         // draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * SCALE, player->pos.y * SCALE}, (t_vec_d){ray->map.x * SCALE, ray->map.y * SCALE}, MY_RED);
-        
+
         draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size}, (t_vec_d){ray->map.x * display->m->tile_size, ray->map.y * display->m->tile_size}, MY_RED);
-      
+
         x++;
     }
 }
