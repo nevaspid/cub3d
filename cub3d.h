@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/01 03:17:41 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/01 04:49:48 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 // # define PI 3.14159265358979323846
 # define HEIGHT 1095
 # define WIDTH 1800
-# define SPEED 0.1f
+# define SPEED 1
 # define NB_RAYS 50
 
 /*-------------STRUCTS-------------*/
@@ -73,8 +73,8 @@ typedef struct s_display
 
 /*------------raycasting-------------*/
 
-void	move_player(void *param);
-void	player_angle(void *param);
+void	move_player(mlx_key_data_t key, void *param);
+void	player_angle(mlx_key_data_t key, void *param);
 void	move_forwards(t_display *d);
 void	move_backwards(t_display *d);
 void	move_left(t_display *d);

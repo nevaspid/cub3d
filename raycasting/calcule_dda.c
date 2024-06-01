@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcule_dda.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/01 03:18:15 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/01 04:52:08 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ $$/ $$/   $$/ $$/    $$$$/
 void init_camera(t_display *d, t_camera *camera)
 {
     camera->angle_cam = atan2(d->raycast->player->dir.y, d->raycast->player->dir.x) * 180 / M_PI;
+    camera->angle_cam = atan2(d->raycast->player->dir.y, d->raycast->player->dir.x) * 180 / M_PI;
     camera->angle_min = d->raycast->player->angle - FOV / 2;
     camera->angle_max = d->raycast->player->angle + FOV / 2;
     camera->nb_ray = 2; // a changer peut etre "WIDTH"-> ou += / 10;
     camera->angle_ray = FOV / camera->nb_ray;
     camera->dir.x = d->raycast->player->dir.x;
-    // camera->plane.x = d->raycast->player->dir.y * tan(FOV / 2 * PI / 180); // je met ca de cote pour le moment je vais voir
-    // camera->plane.y = d->display->player->dir.x * tan(FOV / 2 * PI / 180);// juste avec angle et dir
+    // camera->plane.x = d->raycast->player->dir.y * tan(FOV / 2 * M_pi/ 180); // je met ca de cote pour le moment je vais voir
+    // camera->plane.y = d->display->player->dir.x * tan(FOV / 2 * M_pi/ 180);// juste avec angle et dir
 }
 
 void init_player_dir(t_player *player)
@@ -167,8 +168,8 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
     init_camera(display, display->raycast->camera);
     while (x < WIDTH)
     {
-        ray->angle = player->angle + angle_rad(FOV) / 2 - x * angle_rad(FOV) / WIDTH;
-        ray->dir.x = cos(player->angle); 
+        ray->angle = player->angle; //+ angle_rad(FOV) / 2 - x * angle_rad(FOV) / WIDTH;
+        ray->dir.x = cos(player->angle);
         ray->dir.y = sin(player->angle);
         ray->map.x = player->pos.x;
         ray->map.y = player->pos.y;
@@ -180,7 +181,6 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         calculate_height_line(ray, player);
         int max_ray_lenght = 100;
         end_pos = (t_vec_d){ray->map.x, ray->map.y};
-
         if (hypot(end_pos.x - player->pos.x, end_pos.y - player->pos.y) > max_ray_lenght)
         {
             end_pos.x = player->pos.x + max_ray_lenght * ray->dir.x;
@@ -188,9 +188,9 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         }
 
         // draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * SCALE, player->pos.y * SCALE}, (t_vec_d){ray->map.x * SCALE, ray->map.y * SCALE}, MY_RED);
-        
+
         draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size}, (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, MY_RED);
-        // print_value_recast(player, ray, "run_raycast", "ray"); 
+        // print_value_recast(player, ray, "run_raycast", "ray");
         x++;
     }
 }
