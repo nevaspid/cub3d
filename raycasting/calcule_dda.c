@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/01 02:17:47 by gloms            ###   ########.fr       */
+/*   Updated: 2024/06/01 04:08:48 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ $$/ $$/   $$/ $$/    $$$$/
 
 void init_camera(t_display *d, t_camera *camera)
 {
-    camera->angle_cam = atan2(d->raycast->player->dir.y, d->raycast->player->dir.x) * 180 / PI;
+    camera->angle_cam = atan2(d->raycast->player->dir.y, d->raycast->player->dir.x) * 180 / M_PI;
     camera->angle_min = d->raycast->player->angle - FOV / 2;
     camera->angle_max = d->raycast->player->angle + FOV / 2;
     camera->nb_ray = 2; // a changer peut etre "WIDTH"-> ou += / 10;
     camera->angle_ray = FOV / camera->nb_ray;
     camera->dir.x = d->raycast->player->dir.x;
-    // camera->plane.x = d->raycast->player->dir.y * tan(FOV / 2 * PI / 180); // je met ca de cote pour le moment je vais voir
-    // camera->plane.y = d->display->player->dir.x * tan(FOV / 2 * PI / 180);// juste avec angle et dir
+    // camera->plane.x = d->raycast->player->dir.y * tan(FOV / 2 * M_pi/ 180); // je met ca de cote pour le moment je vais voir
+    // camera->plane.y = d->display->player->dir.x * tan(FOV / 2 * M_pi/ 180);// juste avec angle et dir
 }
 
 void init_player_dir(t_player *player)
@@ -91,7 +91,6 @@ void init_dda(t_ray *ray, t_player *player)
         ray->step.y = 1;
         ray->side_dist.y = (ray->map.y + 1.0 - player->pos.y) * ray->delta_dist.y;
     }
-    print_value_ray(ray, player, "init_dda", "ray");
 }
 /*
                      __                      __              __
@@ -164,19 +163,18 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
     init_camera(display, display->raycast->camera);
     while (x < WIDTH)
     {
-        ray->angle = player->angle + angle_rad(FOV) / 2 - x * angle_rad(FOV) / WIDTH;
+        ray->angle = player->angle; //+ angle_rad(FOV) / 2 - x * angle_rad(FOV) / WIDTH;
         ray->dir.x = cos(player->angle);
         ray->dir.y = sin(player->angle);
         ray->map.x = player->pos.x;
         ray->map.y = player->pos.y;
-        // ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
-        // ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
+        ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
+        ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
         init_dda(ray, player);
         calculate_dda(display, ray);
         calculate_height_line(ray, player);
         int max_ray_lenght = 100;
         end_pos = (t_vec_d){ray->map.x, ray->map.y};
-
         if (hypot(end_pos.x - player->pos.x, end_pos.y - player->pos.y) > max_ray_lenght)
         {
             end_pos.x = player->pos.x + max_ray_lenght * ray->dir.x;

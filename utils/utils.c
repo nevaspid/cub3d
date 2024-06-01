@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 19:34:03 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/24 15:38:12 by gloms            ###   ########.fr       */
+/*   Updated: 2024/06/01 03:23:46 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ void	print_tab(char **tab)
 int	is_char(char c, t_display *d)
 {
 	if (c == 'N')
-		d->p_angle = 3 * PI / 2;
+		d->p_angle = 3 * M_PI / 2;
 	else if (c == 'S')
-		d->p_angle = PI / 2;
+		d->p_angle = M_PI / 2;
 	else if (c == 'E')
 		d->p_angle = 0;
 	else if (c == 'W')
-		d->p_angle = PI;
+		d->p_angle = M_PI;
 	else
 		return (0);
 	return (1);
