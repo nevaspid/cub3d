@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/03 07:06:45 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/03 10:10:31 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,9 +170,7 @@ $$       |$$    $$ |$$ |$$       |$$    $$/ $$ |$$    $$ |  $$  $$/ $$       |__
 void calculate_dda(t_display *display, t_ray *ray)
 {
     int hit;
-    //int tile;
 
-	//tile = display->m->tile_size;
     hit  = 0;
     while (hit == 0)
     {
