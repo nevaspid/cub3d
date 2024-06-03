@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/03 05:08:53 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/03 07:12:53 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,5 +275,6 @@ typedef struct s_raycast
 	t_camera	*camera;
 }               t_raycast;
 
+/*commentaire pour comit un msg*/
 
 #endif
