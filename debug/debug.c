@@ -65,23 +65,19 @@ void print_value_recast(t_player *player, t_ray *ray, char *where, char *who)
 {
 	printf("\033[0;31m%s in %s\033[0;m \n",who,where);
 
-	printf("player->pos.x [%f]\n", player->pos.x);
-	printf("player->pos.y [%f]\n", player->pos.y);
-	printf("player->angle [%f]\n", player->angle);
-
-
-	printf("ray->dir->x [%f]\n", ray->dir.x);
-	printf("ray->dir->y [%f]\n", ray->dir.y);
-	printf("ray->map->x [%f]\n", ray->map.x);
-	printf("ray->map->y [%f]\n", ray->map.y);
-	printf("ray->step->x [%f]\n", ray->step.x);
-	printf("ray->step->y [%f]\n", ray->step.y);
-	
-	
-	printf("ray->side_dist->x [%f]\n", ray->side_dist.x);
-	printf("ray->side_dist->y [%f]\n", ray->side_dist.y);
-	
-	printf("ray->side [%d]\n", ray->side);
+	printf("player->angle [%f] | ", player->angle);
+	printf("player->pos.x [%f] player->pos.y [%f] | ", player->pos.x, player->pos.y);
+	printf("ray->dir->x [%f] ray->dir->y [%f] | ", ray->dir.x, ray->map.x);
+	printf("ray->map->x [%f] ray->map->y [%f |", ray->map.x, ray->map.y);
+	printf("ray->step->x [%f] ray->step->y [%f] ", ray->step.x, ray->step.y);
 	printf("ray->hit [%d]\n", ray->hit);
+
+	printf("ray->side_dist->x [%f]\n", ray->side_dist.x);
+	
+	
+	
+	// printf("ray->side_dist->x [%f]\n", ray->side_dist.x);
+	// printf("ray->side_dist->y [%f]\n", ray->side_dist.y);
+	// printf("ray->side [%d]\n", ray->side);
 	printf("\033[0;31end %s\033[0;m\n",where);
 }

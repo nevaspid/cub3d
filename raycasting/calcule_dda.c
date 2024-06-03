@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/01 20:06:21 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/03 07:09:58 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,21 @@
 
 
 /*
- __            __    __
-/  |          /  |  /  |
-$$/  _______  $$/  _$$ |_
-/  |/       \ /  |/ $$   |
-$$ |$$$$$$$  |$$ |$$$$$$/
-$$ |$$ |  $$ |$$ |  $$ | __
-$$ |$$ |  $$ |$$ |  $$ |/  |
-$$ |$$ |  $$ |$$ |  $$  $$/
-$$/ $$/   $$/ $$/    $$$$/
+  _______   ______   _____  ____   _____  ____    ______    ______   ______  
+ /       | /      \ /     \/    \ /     \/    \  /      \  /      \ /      \ 
+/$$$$$$$/  $$$$$$  |$$$$$$ $$$$  |$$$$$$ $$$$  |/$$$$$$  |/$$$$$$  |$$$$$$  |
+$$ |       /    $$ |$$ | $$ | $$ |$$ | $$ | $$ |$$    $$ |$$ |  $$/ /    $$ |
+$$ \_____ /$$$$$$$ |$$ | $$ | $$ |$$ | $$ | $$ |$$$$$$$$/ $$ |     /$$$$$$$ |
+$$       |$$    $$ |$$ | $$ | $$ |$$ | $$ | $$ |$$       |$$ |     $$    $$ |
+ $$$$$$$/  $$$$$$$/ $$/  $$/  $$/ $$/  $$/  $$/  $$$$$$$/ $$/       $$$$$$$/ 
 */
 
-void init_camera(t_display *d, t_camera *camera)
+void init_camera(t_display *d, t_camera *camera, t_player *player)
 {
-    camera->angle_cam = atan2(d->raycast->player->dir.y, d->raycast->player->dir.x) * 180 / M_PI;
-    camera->angle_cam = atan2(d->raycast->player->dir.y, d->raycast->player->dir.x) * 180 / M_PI;
-    camera->angle_min = d->raycast->player->angle - FOV / 2;
-    camera->angle_max = d->raycast->player->angle + FOV / 2;
+    // camera->angle_cam = atan2(d->raycast->player->dir.y, d->raycast->player->dir.x) * 180 / M_PI;
+    camera->angle_cam = atan2(player->dir.y, player->dir.x) * 180 / M_PI;
+    camera->angle_min = player->angle - angle_rad(FOV) / 2;
+    camera->angle_max = player->angle + angle_rad(FOV) / 2;
     camera->nb_ray = 2; // a changer peut etre "WIDTH"-> ou += / 10;
     camera->angle_ray = FOV / camera->nb_ray;
     camera->dir.x = d->raycast->player->dir.x;
@@ -38,6 +36,20 @@ void init_camera(t_display *d, t_camera *camera)
     // camera->plane.y = d->display->player->dir.x * tan(FOV / 2 * M_pi/ 180);// juste avec angle et dir
 }
 
+/*
+ __            __    __                      __                                                __  __           
+/  |          /  |  /  |                    /  |                                              /  |/  |          
+$$/  _______  $$/  _$$ |_           ______  $$ |  ______   __    __   ______    ______    ____$$ |$$/   ______  
+/  |/       \ /  |/ $$   |         /      \ $$ | /      \ /  |  /  | /      \  /      \  /    $$ |/  | /      \ 
+$$ |$$$$$$$  |$$ |$$$$$$/         /$$$$$$  |$$ | $$$$$$  |$$ |  $$ |/$$$$$$  |/$$$$$$  |/$$$$$$$ |$$ |/$$$$$$  |
+$$ |$$ |  $$ |$$ |  $$ | __       $$ |  $$ |$$ | /    $$ |$$ |  $$ |$$    $$ |$$ |  $$/ $$ |  $$ |$$ |$$ |  $$/ 
+$$ |$$ |  $$ |$$ |  $$ |/  |      $$ |__$$ |$$ |/$$$$$$$ |$$ \__$$ |$$$$$$$$/ $$ |      $$ \__$$ |$$ |$$ |      
+$$ |$$ |  $$ |$$ |  $$  $$/______ $$    $$/ $$ |$$    $$ |$$    $$ |$$       |$$ |______$$    $$ |$$ |$$ |      
+$$/ $$/   $$/ $$/    $$$$//      |$$$$$$$/  $$/  $$$$$$$/  $$$$$$$ | $$$$$$$/ $$//      |$$$$$$$/ $$/ $$/       
+                          $$$$$$/ $$ |                    /  \__$$ |             $$$$$$/                        
+                                  $$ |                    $$    $$/                                             
+                                  $$/                      $$$$$$/                                              
+*/
 void init_player_dir(t_player *player)
 {
     if (player->pos_start == 'N')
@@ -70,6 +82,22 @@ void init_player_dir(t_player *player)
     }
 }
 
+/*
+
+ __            __    __                 __        __           
+/  |          /  |  /  |               /  |      /  |          
+$$/  _______  $$/  _$$ |_          ____$$ |  ____$$ |  ______  
+/  |/       \ /  |/ $$   |        /    $$ | /    $$ | /      \ 
+$$ |$$$$$$$  |$$ |$$$$$$/        /$$$$$$$ |/$$$$$$$ | $$$$$$  |
+$$ |$$ |  $$ |$$ |  $$ | __      $$ |  $$ |$$ |  $$ | /    $$ |
+$$ |$$ |  $$ |$$ |  $$ |/  |     $$ \__$$ |$$ \__$$ |/$$$$$$$ |
+$$ |$$ |  $$ |$$ |  $$  $$/______$$    $$ |$$    $$ |$$    $$ |
+$$/ $$/   $$/ $$/    $$$$//      |$$$$$$$/  $$$$$$$/  $$$$$$$/ 
+                          $$$$$$/                              
+*/
+
+//#-> init_dda
+ 
 void init_dda(t_ray *ray, t_player *player)
 {
     if (ray->dir.x < 0)
@@ -126,6 +154,19 @@ void calculate_height_line(t_ray *ray, t_player *player)
     ray->wall_x -= floor(ray->wall_x);
 }
 
+/*
+                     __                      __              __                            __        __           
+                    /  |                    /  |            /  |                          /  |      /  |          
+  _______   ______  $$ |  _______  __    __ $$ |  ______   _$$ |_     ______          ____$$ |  ____$$ |  ______  
+ /       | /      \ $$ | /       |/  |  /  |$$ | /      \ / $$   |   /      \        /    $$ | /    $$ | /      \ 
+/$$$$$$$/  $$$$$$  |$$ |/$$$$$$$/ $$ |  $$ |$$ | $$$$$$  |$$$$$$/   /$$$$$$  |      /$$$$$$$ |/$$$$$$$ | $$$$$$  |
+$$ |       /    $$ |$$ |$$ |      $$ |  $$ |$$ | /    $$ |  $$ | __ $$    $$ |      $$ |  $$ |$$ |  $$ | /    $$ |
+$$ \_____ /$$$$$$$ |$$ |$$ \_____ $$ \__$$ |$$ |/$$$$$$$ |  $$ |/  |$$$$$$$$/       $$ \__$$ |$$ \__$$ |/$$$$$$$ |
+$$       |$$    $$ |$$ |$$       |$$    $$/ $$ |$$    $$ |  $$  $$/ $$       |______$$    $$ |$$    $$ |$$    $$ |
+ $$$$$$$/  $$$$$$$/ $$/  $$$$$$$/  $$$$$$/  $$/  $$$$$$$/    $$$$/   $$$$$$$//      |$$$$$$$/  $$$$$$$/  $$$$$$$/ 
+                                                                             $$$$$$/                              
+*/
+
 void calculate_dda(t_display *display, t_ray *ray)
 {
     int hit;
@@ -140,16 +181,14 @@ void calculate_dda(t_display *display, t_ray *ray)
             ray->side_dist.x += ray->delta_dist.x;
             ray->map.x += ray->step.x;
             ray->side = 0;
-            // print_value_recast(display->raycast->player, ray, "calculate_dda", "if");
         }
         else
         {
             ray->side_dist.y += ray->delta_dist.y;
             ray->map.y += ray->step.y;
             ray->side = 1;
-            // print_value_recast(display->raycast->player, ray, "calculate_dda", "else");
         }
-        if (ray->map.y < 0 || ray->map.x < 0 || ray->map.y >= display->m->minimap->height || ray->map.x >= display->m->minimap->width)
+        if (ray->map.y >= 0 || ray->map.x >= 0 || ray->map.y <= display->m->minimap->height || ray->map.x <= display->m->minimap->width)
         {
             if (display->m->minimap_array[(int)ray->map.y][(int)ray->map.x] == '1')
             {
@@ -165,6 +204,21 @@ void calculate_dda(t_display *display, t_ray *ray)
     }
 
 }
+
+/*
+           __                                 __                                             
+          /  |                               /  |                                            
+  _______ $$ |  ______    ______    ______   $$/  _____  ____    ______    ______    ______  
+ /       |$$ | /      \  /      \  /      \  /  |/     \/    \  /      \  /      \  /      \ 
+/$$$$$$$/ $$ |/$$$$$$  | $$$$$$  |/$$$$$$  | $$ |$$$$$$ $$$$  | $$$$$$  |/$$$$$$  |/$$$$$$  |
+$$ |      $$ |$$    $$ | /    $$ |$$ |  $$/  $$ |$$ | $$ | $$ | /    $$ |$$ |  $$ |$$    $$ |
+$$ \_____ $$ |$$$$$$$$/ /$$$$$$$ |$$ |       $$ |$$ | $$ | $$ |/$$$$$$$ |$$ \__$$ |$$$$$$$$/ 
+$$       |$$ |$$       |$$    $$ |$$ |______ $$ |$$ | $$ | $$ |$$    $$ |$$    $$ |$$       |
+ $$$$$$$/ $$/  $$$$$$$/  $$$$$$$/ $$//      |$$/ $$/  $$/  $$/  $$$$$$$/  $$$$$$$ | $$$$$$$/ 
+                                     $$$$$$/                             /  \__$$ |          
+                                                                         $$    $$/           
+                                                                          $$$$$$/            
+*/
 
 void clear_image(mlx_image_t *img, uint32_t a)
 {
@@ -185,38 +239,53 @@ void clear_image(mlx_image_t *img, uint32_t a)
     }
 }
 
+/*
+                                                                                                   __     
+                                                                                                  /  |    
+  ______   __    __  _______           ______   ______   __    __   _______   ______    _______  _$$ |_   
+ /      \ /  |  /  |/       \         /      \ /      \ /  |  /  | /       | /      \  /       |/ $$   |  
+/$$$$$$  |$$ |  $$ |$$$$$$$  |       /$$$$$$  |$$$$$$  |$$ |  $$ |/$$$$$$$/  $$$$$$  |/$$$$$$$/ $$$$$$/   
+$$ |  $$/ $$ |  $$ |$$ |  $$ |       $$ |  $$/ /    $$ |$$ |  $$ |$$ |       /    $$ |$$      \   $$ | __ 
+$$ |      $$ \__$$ |$$ |  $$ |       $$ |     /$$$$$$$ |$$ \__$$ |$$ \_____ /$$$$$$$ | $$$$$$  |  $$ |/  |
+$$ |      $$    $$/ $$ |  $$ |______ $$ |     $$    $$ |$$    $$ |$$       |$$    $$ |/     $$/   $$  $$/ 
+$$/        $$$$$$/  $$/   $$//      |$$/       $$$$$$$/  $$$$$$$ | $$$$$$$/  $$$$$$$/ $$$$$$$/     $$$$/  
+                             $$$$$$/                    /  \__$$ |                                        
+                                                        $$    $$/                                         
+                                                         $$$$$$/                                          
+*/
+
+
 void run_raycast(t_display *display, t_ray *ray, t_player *player)
 {
     int x;
     t_vec_d end_pos;
+    t_camera *camera;
+    
+    camera = display->raycast->camera;
     x = 0;
-
-    // init_camera(display, display->raycast->camera);
     clear_image(display->raycast->ray->img, 0x000000);
     while (x < WIDTH)
     {
-        // double angle_mini = player->angle - FOV / 2;
-        // double angle_maxi = player->angle + (FOV) / 2;
-        ray->angle = player->angle;//player->angle; //+ angle_rad(FOV) / 2 - x * angle_rad(FOV) / WIDTH;
-        ray->dir.x = cos(player->angle);
-        ray->dir.y = sin(player->angle);
+        camera->camera_x = 2 * x / (double)WIDTH - 1;
+        ray->angle = player->angle + atan2(camera->camera_x, tan(angle_rad(player->angle)) / 2);
+        ray->dir.x = cos(ray->angle);// + player->plane.x * camera->camera_x;
+        ray->dir.y = sin(ray->angle);// + player->plane.y * camera->camera_x;
         ray->map.x = player->pos.x;
         ray->map.y = player->pos.y;
-        ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
-        ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
-        // print_value_recast(player, ray, "run_raycast", "while");
-        
+        ray->delta_dist.x = fabs(1 / ray->dir.x);
+        ray->delta_dist.y = fabs(1 / ray->dir.y);
         init_dda(ray, player);
         calculate_dda(display, ray);
         calculate_height_line(ray, player);
-        int max_ray_lenght = 100;
-        end_pos = (t_vec_d){ray->map.x, ray->map.y};
-        if (hypot(end_pos.x - player->pos.x, end_pos.y - player->pos.y) > max_ray_lenght)
+        int max_ray_lenght = 1000;
+        end_pos = (t_vec_d){ray->map.x , ray->map.y};
+        if (hypot(ray->map.x - player->pos.x, ray->map.y - player->pos.y) > max_ray_lenght)
         {
-            end_pos.x = player->pos.x + max_ray_lenght * ray->dir.x;
-            end_pos.y = player->pos.y + max_ray_lenght * ray->dir.y;
+            ray->map.x = player->pos.x + max_ray_lenght * ray->dir.x;
+            ray->map.y = player->pos.y + max_ray_lenght * ray->dir.y;
         }
-        draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size}, (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, MY_RED);
+        draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
+                                                (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, MY_RED);
         x++;
     }
 }

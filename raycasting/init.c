@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/05/31 20:06:19 by gloms            ###   ########.fr       */
+/*   Updated: 2024/06/01 20:17:26 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void init_ray(t_ray *ray)
     ray->start.y = 0;
     ray->end.x = 0;
     ray->end.y = 0;
+    ray->nb_ray = 0;
+    ray->angle_ray = 0;
 }
 
 void init_struct_camera(t_camera *camera)
