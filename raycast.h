@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/01 20:13:28 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/03 05:08:53 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_compass
 typedef struct s_camera
 {
 	double	fov; // filed of view
+	double camera_x; // camera plane
 	double angle_cam; // angle of view
 	double angle_min; // fov / 2 side left
 	double angle_max; // fov / 2 side right
@@ -198,7 +199,7 @@ typedef struct s_player
 
 	int 			map_x;
 	int 			map_y;
-	double angle;
+	double 			angle;
 	int 			delta_x;
 	int 			delta_y;
 	double 			perp_wall_dist;

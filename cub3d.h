@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/01 21:34:06 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/03 05:21:12 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	move_forwards(t_display *d);
 void	move_backwards(t_display *d);
 void	move_left(t_display *d);
 void	move_right(t_display *d);
-void init_camera(t_display *d, t_camera *camera);
+void init_camera(t_display *d, t_camera *camera, t_player *player);
 void init_struct_camera(t_camera *camera);
 
 double angle_rad(double angle);
