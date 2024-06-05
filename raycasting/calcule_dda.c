@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcule_dda.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doctor <doctor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/04 19:29:09 by doctor           ###   ########.fr       */
+/*   Updated: 2024/06/05 01:11:37 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,19 @@ void calculate_height_line(t_ray *ray, t_player *player)
     ray->wall_x -= floor(ray->wall_x);
 }
 
+void draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color)
+{
+    int y;
+
+    y = star;
+    while ( y < end)
+    {
+        mlx_put_pixel(img, x, y, color);
+        y++;
+    }
+
+}
+
 /*
                      __                      __              __                            __        __           
                     /  |                    /  |            /  |                          /  |      /  |          
@@ -270,13 +283,15 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         ray->dir.y = sin(ray->angle);// + player->plane.y * camera->camera_x;
         ray->map.x = player->pos.x;
         ray->map.y = player->pos.y;
-        ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
-        ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
-        // ray->delta_dist.x = fabs(1 / ray->dir.x);
-        // ray->delta_dist.y = fabs(1 / ray->dir.y);
+        // ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
+        // ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
+        ray->delta_dist.x = fabs(1 / ray->dir.x);
+        ray->delta_dist.y = fabs(1 / ray->dir.y);
         init_dda(ray, player);
         calculate_dda(display, ray);
         calculate_height_line(ray, player);
+
+   
         int max_ray_lenght = 1000;
         end_pos = (t_vec_d){ray->map.x , ray->map.y};
         if (hypot(ray->map.x - player->pos.x, ray->map.y - player->pos.y) > max_ray_lenght)
@@ -286,6 +301,15 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         }
         draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
                                                 (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, MY_RED);
+        // print_value_ray(ray, player, "calculat`e_height_line", "ray",x++);
+        draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, MY_WHITE);
         x++;
     }
+    mlx_image_to_window(display->mlx, display->img,0,0);
+}
+
+
+double re_distance(double ax, double ay, double bx, double by)
+{
+    return (sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay)));
 }

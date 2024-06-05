@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 14:52:41 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/01 19:52:36 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/04 23:53:28 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 int check_next_move(t_display *d, double x, double y)
 {
-	t_vec pos;
+	// t_vec pos;
 	
 
-	pos.x = (int)((x + d->m->tile_size) );
-	pos.y = (int)((y + d->m->tile_size) );
-	printf("x = %d, y = %d\n", pos.x, pos.y);
+	// pos.x = (int)((x + d->m->tile_size) );
+	// pos.y = (int)((y + d->m->tile_size) );
+	// printf("x = %d, y = %d\n", pos.x, pos.y);
 	if (d->m->minimap_array[(int)y][(int)x] == '1')
 		return (1);
 	return (0);

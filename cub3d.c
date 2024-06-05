@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/03 07:05:09 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/05 00:43:33 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int ac, char **av)
 	display->m->minimap = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
 	display->raycast->compass->img = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
 	display->raycast->ray->img = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
+	display->img = mlx_new_image(display->mlx, WIDTH , HEIGHT );
 	// display->m->player = mlx_new_image(display->mlx, SCALE, SCALE);
 	read_parse_store(av[1], mylloc, display);
 	if (longest_line(display->m->minimap_array) > count_lines(display->m->minimap_array))

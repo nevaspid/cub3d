@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/03 05:21:12 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/05 00:43:03 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_display
 	double			p_angle;
 	t_minimap		*m;
 	t_raycast		*raycast;
+	mlx_image_t		*img;
 }	t_display;
 
 /*------------raycasting-------------*/
@@ -84,6 +85,7 @@ void init_struct_camera(t_camera *camera);
 
 double angle_rad(double angle);
 double distance(t_vec_d a, t_vec_d b);
+double re_distance(double ax, double ay, double bx, double by);
 
 /*------------memory-alloc-------------*/
 
@@ -134,7 +136,7 @@ int			is_valid_char(char c);
 /*--------------TEMP--------------*/
 
 void	print_tab(char **tab);
-void print_value_ray(t_ray *ray, t_player *player, char *where, char *who);
+void print_value_ray(t_ray *ray, t_player *player, char *where, char *who, int n);
 void print_value_recast(t_player *player, t_ray *ray, char *where, char *who);
 
 /*--------------PRIMITIVE-------------*/
