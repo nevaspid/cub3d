@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcule_dda.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doctor <doctor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/05 01:11:37 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/05 05:00:22 by doctor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,30 +275,34 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
     camera = display->raycast->camera;
     x = 0;
     clear_image(display->raycast->ray->img, 0x000000);
+    clear_image(display->img, 0x000000);
+    ray->angle = player->angle;
     while (x < WIDTH)
     {
         camera->camera_x = 2 * x / (double)WIDTH - 1;
-        ray->angle = player->angle + atan2(camera->camera_x, tan(angle_rad(player->angle)) / 2);
+        // camera->camera_x /= 50;
+        ray->angle += 0.001; 
+        // ray->angle = player->angle + atan2(camera->camera_x, tan(angle_rad(player->angle)) / 2);
         ray->dir.x = cos(ray->angle);// + player->plane.x * camera->camera_x;
         ray->dir.y = sin(ray->angle);// + player->plane.y * camera->camera_x;
         ray->map.x = player->pos.x;
         ray->map.y = player->pos.y;
-        // ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
-        // ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
-        ray->delta_dist.x = fabs(1 / ray->dir.x);
-        ray->delta_dist.y = fabs(1 / ray->dir.y);
+        ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
+        ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
+        // ray->delta_dist.x = fabs(1 / ray->dir.x);
+        // ray->delta_dist.y = fabs(1 / ray->dir.y);
         init_dda(ray, player);
         calculate_dda(display, ray);
         calculate_height_line(ray, player);
 
    
-        int max_ray_lenght = 1000;
+        // int max_ray_lenght = 1000;
         end_pos = (t_vec_d){ray->map.x , ray->map.y};
-        if (hypot(ray->map.x - player->pos.x, ray->map.y - player->pos.y) > max_ray_lenght)
-        {
-            ray->map.x = player->pos.x + max_ray_lenght * ray->dir.x;
-            ray->map.y = player->pos.y + max_ray_lenght * ray->dir.y;
-        }
+        // if (hypot(ray->map.x - player->pos.x, ray->map.y - player->pos.y) > max_ray_lenght)
+        // {
+        //     end_pos.x = player->pos.x + max_ray_lenght * ray->dir.x;
+        //     end_pos.y = player->pos.y + max_ray_lenght * ray->dir.y;
+        // }
         draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
                                                 (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, MY_RED);
         // print_value_ray(ray, player, "calculat`e_height_line", "ray",x++);
