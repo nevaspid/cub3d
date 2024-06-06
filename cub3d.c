@@ -44,7 +44,7 @@ int	main(int ac, char **av)
 		tile_size = (WIDTH * SCALE) / longest_line(display->m->minimap_array);
 	else
 		tile_size = (HEIGHT * SCALE) / count_lines(display->m->minimap_array);
-	print_minimap(display, display->m, tile_size);
+	print_minimap(display, display->m, tile_size, mylloc);
 	draw_compass(display, display->raycast->compass, display->raycast->player);
 	init_struct_camera(display->raycast->camera);
 	// init_camera(display, display->raycast->camera);
