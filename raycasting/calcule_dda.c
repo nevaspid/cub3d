@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/06 02:20:52 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/06 16:09:22 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ void calculate_height_line(t_ray *ray, t_player *player)
     // ray->draw_end = ray->draw_end / cos(ray->angle);
     if (ray->draw_end >= HEIGHT)
         ray->draw_end = HEIGHT - 1;
+    // (void)player;
     if (ray->side == 0)
         ray->wall_x = player->pos.y + ray->wall_dist * ray->dir.y;
     else
@@ -286,14 +287,16 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         // camera->camera_x /= 50;
         ray->angle += 0.001; 
         // ray->angle = player->angle + atan2(camera->camera_x, tan(angle_rad(player->angle)) / 2);
+        // ray->dir.x = cos(camera->angle_min);// + player->plane.x * camera->camera_x;
+        // ray->dir.y = sin(camera->angle_min);// + player->plane.y * camera->camera_x;
         ray->dir.x = cos(ray->angle - angle_rad(FOV) / 2);// + player->plane.x * camera->camera_x;
-        ray->dir.y = sin(ray->angle - angle_rad(FOV)/ 2);// + player->plane.y * camera->camera_x;
+        ray->dir.y = sin(ray->angle - angle_rad(FOV) / 2);// + player->plane.y * camera->camera_x;
         ray->map.x = player->pos.x;
         ray->map.y = player->pos.y;
-        // ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
-        // ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
-        ray->delta_dist.x = fabs(1 / ray->dir.x);
-        ray->delta_dist.y = fabs(1 / ray->dir.y);
+        ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
+        ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
+        // ray->delta_dist.x = fabs(1 / ray->dir.x);
+        // ray->delta_dist.y = fabs(1 / ray->dir.y);
         init_dda(ray, player);
         calculate_dda(display, ray);
         calculate_height_line(ray, player);

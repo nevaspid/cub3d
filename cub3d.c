@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/06 02:18:45 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/06 16:10:39 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int	main(int ac, char **av)
 	}
 	run_raycast(display,display->raycast->ray, display->raycast->player);
 	
-	mlx_key_hook(display->mlx, &move_player, display);
-	// mlx_loop_hook(display->mlx, &player_angle, display);
+	// mlx_key_hook(display->mlx, &move_player, display);
+	mlx_loop_hook(display->mlx, &player_angle, display);
 	mlx_loop(display->mlx);
 	free_and_exit(mylloc);
 }
