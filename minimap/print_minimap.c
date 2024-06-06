@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:41:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/30 19:36:12 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/06 23:29:33 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_size, t_mem_allo
 	int	x;
 	int	y;
 	int	print_p;
-
+	(void)mylloc;
 	x = 0;
 	y = 0;
 	print_p = 0;
@@ -42,7 +42,7 @@ void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_size, t_mem_allo
 		while (minimap->minimap_array[y][x])
 		{
 			if (is_char(mlx->m->minimap_array[y][x], mlx))
-				print_p++
+				print_p++;
 			if (print_p > 1)
 			{
 				printf("ERROR : more than one player on map");
