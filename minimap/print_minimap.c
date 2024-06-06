@@ -25,7 +25,6 @@ void	print_assets(t_display *mlx, int tile_size, int x, int y)
 		mlx->p_y = y;
 		mlx->p_x = x;
 		mlx->m->player = mlx_new_image(mlx->mlx, tile_size / 2, tile_size / 2);
-		print_p++;
 	}
 }
 
