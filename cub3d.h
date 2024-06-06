@@ -97,7 +97,7 @@ void	draw_player(t_display *minimap, int tile_size);
 void	wall(t_minimap *minimap, int x, int y, int tile_size);
 void	floors(t_minimap *minimap, int x, int y, int tile_size);
 void	print_player(t_display *mlx, t_minimap *m, int tile_size);
-void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_size);
+void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_size, t_mem_alloc *mylloc);
 
 /*-------------parsing-------------*/
 
