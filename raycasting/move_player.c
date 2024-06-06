@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:52:56 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/05 00:45:17 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/05 23:26:38 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	is_2pi(double number)
 	else
 		return (0);
 }
+
 
 void	player_angle(void *param)
 {

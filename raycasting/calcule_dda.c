@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcule_dda.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doctor <doctor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:46:50 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/05 05:00:22 by doctor           ###   ########.fr       */
+/*   Updated: 2024/06/06 02:20:52 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,11 +140,14 @@ void calculate_height_line(t_ray *ray, t_player *player)
         ray->wall_dist = (ray->side_dist.x - ray->delta_dist.x);
     else
         ray->wall_dist = (ray->side_dist.y - ray->delta_dist.y);
+    // ray->wall_dist = ray->wall_dist / fabs(cos(ray->angle - player->angle ));// gere le fish eye
     ray->line_height = (int)(HEIGHT / ray->wall_dist);
     ray->draw_start = -ray->line_height / 2 + (int)HEIGHT / 2;
+    // ray->draw_start = ray->draw_start / cos(ray->angle);
     if (ray->draw_start < 0)
         ray->draw_start = 0;
     ray->draw_end = ray->line_height / 2 + (int)HEIGHT / 2;
+    // ray->draw_end = ray->draw_end / cos(ray->angle);
     if (ray->draw_end >= HEIGHT)
         ray->draw_end = HEIGHT - 1;
     if (ray->side == 0)
@@ -283,26 +286,26 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         // camera->camera_x /= 50;
         ray->angle += 0.001; 
         // ray->angle = player->angle + atan2(camera->camera_x, tan(angle_rad(player->angle)) / 2);
-        ray->dir.x = cos(ray->angle);// + player->plane.x * camera->camera_x;
-        ray->dir.y = sin(ray->angle);// + player->plane.y * camera->camera_x;
+        ray->dir.x = cos(ray->angle - angle_rad(FOV) / 2);// + player->plane.x * camera->camera_x;
+        ray->dir.y = sin(ray->angle - angle_rad(FOV)/ 2);// + player->plane.y * camera->camera_x;
         ray->map.x = player->pos.x;
         ray->map.y = player->pos.y;
-        ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
-        ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
-        // ray->delta_dist.x = fabs(1 / ray->dir.x);
-        // ray->delta_dist.y = fabs(1 / ray->dir.y);
+        // ray->delta_dist.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
+        // ray->delta_dist.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
+        ray->delta_dist.x = fabs(1 / ray->dir.x);
+        ray->delta_dist.y = fabs(1 / ray->dir.y);
         init_dda(ray, player);
         calculate_dda(display, ray);
         calculate_height_line(ray, player);
 
-   
-        // int max_ray_lenght = 1000;
+        
+        int max_ray_lenght = 5;
         end_pos = (t_vec_d){ray->map.x , ray->map.y};
-        // if (hypot(ray->map.x - player->pos.x, ray->map.y - player->pos.y) > max_ray_lenght)
-        // {
-        //     end_pos.x = player->pos.x + max_ray_lenght * ray->dir.x;
-        //     end_pos.y = player->pos.y + max_ray_lenght * ray->dir.y;
-        // }
+        if (hypot(ray->map.x - player->pos.x, ray->map.y - player->pos.y) > max_ray_lenght)
+        {
+            end_pos.x = player->pos.x + max_ray_lenght * ray->dir.x;
+            end_pos.y = player->pos.y + max_ray_lenght * ray->dir.y;
+        }
         draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
                                                 (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, MY_RED);
         // print_value_ray(ray, player, "calculat`e_height_line", "ray",x++);
@@ -310,6 +313,7 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         x++;
     }
     mlx_image_to_window(display->mlx, display->img,0,0);
+    // display->img->instances[0].z = 0;
 }
 
 
