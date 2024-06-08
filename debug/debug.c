@@ -41,12 +41,11 @@ void print_value_ray(t_ray *ray, t_player *player, char *where, char *who, int n
 void print_value_player(t_player *player, char *where, char *who)
 {
 	printf("\033[0;31m%s in %s\033[0;m \n",who,where);
+	printf("player->angle [%f]\n ", player->angle);
 	printf("player->dir->x [%f]\n", player->dir.x);
 	printf("player->dir->y [%f]\n", player->dir.y);
 	printf("player->plane->x [%f]\n", player->plane.x);
 	printf("player->plane->y [%f]\n", player->plane.y);
-	printf("player->pos.x [%f]\n", player->pos.x);
-	printf("player->pos.y [%f]\n", player->pos.y);
 	printf("player->pos.x [%f]\n", player->pos.x);
 	printf("player->pos.y [%f]\n", player->pos.y);
 	printf("\033[0;31mend %s\033[0;m\n",where);

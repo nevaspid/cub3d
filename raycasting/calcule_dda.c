@@ -26,9 +26,9 @@ $$       |$$    $$ |$$ | $$ | $$ |$$ | $$ | $$ |$$       |$$ |     $$    $$ |
 void run_camera(t_display *d, t_camera *camera, t_player *player)
 {
     // camera->angle = 0;
-    camera->angle_cam = atan2(player->dir.y, player->dir.x) * 180 / M_PI;
-    camera->angle_min = player->angle - angle_rad(FOV) / 2;
-    camera->angle_max = player->angle + angle_rad(FOV) / 2;
+    camera->angle_cam = atan2(player->dir.y, player->dir.x) ;//* 180 / M_PI;
+    camera->angle_min = player->angle - FOV /2;// angle_rad(FOV) / 2;
+    camera->angle_max = player->angle + FOV /2;// angle_rad(FOV) / 2;
     camera->nb_ray = 2; // a changer peut etre "WIDTH"-> ou += / 10;
     camera->angle_ray = FOV / camera->nb_ray;
     camera->dir.x = d->raycast->player->dir.x;
@@ -151,7 +151,7 @@ void calculate_height_line(t_ray *ray, t_player *player)
         // ray->wall_dist = ray->map.y - player->pos.y + (1 - ray->step.y) / 2 / ray->dir.y;
         ray->wall_dist = (ray->side_dist.y - ray->delta_dist.y * SPEED);
         
-    // ray->wall_dist = ray->wall_dist / fabs(cos(angle_rad(ray->angle )- angle_rad(player->angle) ));// gere le fish eye
+    ray->wall_dist = ray->wall_dist / fabs(cos(angle_rad(ray->angle )- angle_rad(player->angle) ));// gere le fish eye
     ray->line_height = ((float)HEIGHT / ray->wall_dist);
     ray->draw_start = -ray->line_height / 2.0f + (float)HEIGHT / 2.0f;
     // ray->draw_start = ray->draw_start / cos(ray->angle);
@@ -284,21 +284,24 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
 {
     int x;
     t_vec_d end_pos;
-    // t_camera *camera;
+    t_camera *camera;
     
-    // camera = display->raycast->camera;
+   camera = display->raycast->camera;
     x = 0;
     clear_image(display->raycast->ray->img, 0x000000);
     clear_image(display->img, 0x000000);
-    ray->angle = player->angle - angle_rad(FOV) / 2;
-    // while (x < WIDTH)
-    while (ray->angle <= player->angle + angle_rad(FOV) / 2)
+    ray->angle = camera->angle_min;
+    // ray->angle = player->angle - angle_rad(FOV) / 2;
+    while (x < WIDTH)
+    // while (ray->angle <= player->angle + angle_rad(FOV) / 2)
     {
-        // camera->camera_x = 2 * x / (double)WIDTH - 1; sert a faire [plan -1 1]
+        camera->camera_x = 2 * x / (double)WIDTH - 1;// sert a faire [plan -1 1]
         
      
-        ray->dir.x = cos(ray->angle);// + player->plane.x * camera->camera_x;
-        ray->dir.y = sin(ray->angle);// + player->plane.y * camera->camera_x;
+        ray->dir.x = cos(ray->angle) + player->plane.x * camera->camera_x;
+        ray->dir.y = sin(ray->angle) + player->plane.y * camera->camera_x;
+        // ray->dir.x = cos(ray->angle);// + player->plane.x * camera->camera_x;
+        // ray->dir.y = sin(ray->angle);// + player->plane.y * camera->camera_x;
         ray->map.x = player->pos.x;
         ray->map.y = player->pos.y;
         ray->delta_dist.x = sqrt(1.0f + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
@@ -322,7 +325,7 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         else
             draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
                                                 (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, 0x800080);
-        // print_value_ray(ray, player, "calculat`e_height_line", "ray",x++);
+        // print_value_ray(ray, player, "calculate_height_line", "ray",x++);
         draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, MY_WHITE);
         ray->angle += 0.0015; 
         x++;

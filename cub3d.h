@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/08 00:05:13 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/08 06:37:16 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define HEIGHT 1095
 # define WIDTH 1800
 # define SPEED 0.1f
+# define ROTATE 0.04f
 # define NB_RAYS 50
 
 /*-------------STRUCTS-------------*/
@@ -87,12 +88,15 @@ void 	init_camera(t_display *d, t_camera *camera);
 double 	angle_rad(double angle);
 double 	istance(t_vec_d a, t_vec_d b);
 double 	re_distance(double ax, double ay, double bx, double by);
-
+void rotate_player(t_player *player, double rotSpeed);
+void init_mlx(t_display *display);
+void init_player(t_display *display, t_player *player);
+void init_value_st(t_display *display);
 /*------------memory-alloc-------------*/
 
 void	*mem_alloc(t_mem_alloc *lst, size_t size);
 void	free_and_exit(t_mem_alloc *malloc);
-
+void 	init_malloc(t_mem_alloc *mem_alloc, t_display *display);
 /*-------------pixelling-------------*/
 
 void	draw_player(t_display *minimap, int tile_size);

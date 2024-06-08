@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:52:56 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/05 23:26:38 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/08 06:19:01 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,11 @@ void	player_angle(void *param)
 		if (check_next_move(display,p.x, p.y) == 0 && mlx_is_key_down(display->mlx, MLX_KEY_S))
 			move_backwards(display);
 		if (mlx_is_key_down(display->mlx, MLX_KEY_LEFT))
-			display->p_angle -= 0.04;
+			// rotate_player(display->raycast->player, -ROTATE);
+			display->p_angle -= ROTATE;
 		if (mlx_is_key_down(display->mlx, MLX_KEY_RIGHT))
-			display->p_angle += 0.04;
+		 	// rotate_player(display->raycast->player, ROTATE);
+			display->p_angle += ROTATE;
 		if (is_2pi(display->p_angle))
 			display->p_angle = 0;
 	// }
@@ -79,12 +81,24 @@ void	move_player(mlx_key_data_t key, void *param)
 		if (check_next_move(display,p.x, p.y) == 0 && mlx_is_key_down(display->mlx, MLX_KEY_S))
 			move_backwards(display);
 		if (mlx_is_key_down(display->mlx, MLX_KEY_LEFT))
-			display->p_angle -= 0.04;
+			display->p_angle -= ROTATE;
 		if (mlx_is_key_down(display->mlx, MLX_KEY_RIGHT))
-			display->p_angle += 0.04;
+			display->p_angle += ROTATE;
 		if (is_2pi(display->p_angle))
 			display->p_angle = 0;
 	// }
 	draw_compass(display, display->raycast->compass, display->raycast->player);
 	run_raycast(display, display->raycast->ray, display->raycast->player);
+}
+
+
+void rotate_player(t_player *player, double rotSpeed)
+{
+    double oldDirX = player->dir.x;
+    player->dir.x = player->dir.x * cos(rotSpeed) - player->dir.y * sin(rotSpeed);
+    player->dir.y = oldDirX * sin(rotSpeed) + player->dir.y * cos(rotSpeed);
+
+    double oldPlaneX = player->plane.x;
+    player->plane.x = player->plane.x * cos(rotSpeed) - player->plane.y * sin(rotSpeed);
+    player->plane.y = oldPlaneX * sin(rotSpeed) + player->plane.y * cos(rotSpeed);
 }
