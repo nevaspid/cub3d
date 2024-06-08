@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/08 07:13:02 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/09 00:52:44 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ int	main(int ac, char **av)
 		free_and_exit(mylloc);
 	}
 	run_raycast(display,display->raycast->ray, display->raycast->player);
+	
+	// a mettre dans une fonction
+	mlx_image_to_window(display->mlx, display->img, 0, 0);
+	mlx_image_to_window(display->mlx, display->raycast->compass->img, WIDTH /2,0);
+	mlx_image_to_window(display->mlx, display->m->minimap, 0, 0);
+	mlx_image_to_window(display->mlx,display->m->player, display->m->p_x * tile_size, display->m->p_y * tile_size); 
+	mlx_image_to_window(display->mlx, display->raycast->ray->img,0,0);
 	// display->img->instances->z = 1;
 	// display->m->minimap->instances->z = 0;
 	

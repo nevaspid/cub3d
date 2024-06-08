@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 06:10:51 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/08 07:09:05 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/09 00:45:58 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,6 @@ void draw_compass(t_display *display, t_compass *compass , t_player *player)
     compass->needle_end_y = compass->center_y + compass->needle_length * sin(player->angle);
     draw_line(compass->img, (t_vec_d){compass->center_x, compass->center_y}, (t_vec_d){compass->needle_end_x, compass->needle_end_y}, MY_RED);
     mlx_put_pixel(compass->img, compass->center_x, compass->center_y, MY_WHITE);
-    mlx_image_to_window(display->mlx, compass->img, WIDTH /2,0);
-    printf("imgggggggggggggggggg [%d]\n",compass->img->instances->z);
+    // mlx_image_to_window(display->mlx, compass->img, WIDTH /2,0);
+    // printf("imgggggggggggggggggg [%d]\n",compass->img->instances->z);
 }
