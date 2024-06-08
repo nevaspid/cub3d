@@ -47,9 +47,9 @@ void print_value_player(t_player *player, char *where, char *who)
 	printf("player->plane->y [%f]\n", player->plane.y);
 	printf("player->pos.x [%f]\n", player->pos.x);
 	printf("player->pos.y [%f]\n", player->pos.y);
-	printf("player->px [%d]\n", player->px);
-	printf("player->py [%d]\n", player->py);
-	printf("\033[0;31end %s\033[0;m\n",where);
+	printf("player->pos.x [%f]\n", player->pos.x);
+	printf("player->pos.y [%f]\n", player->pos.y);
+	printf("\033[0;31mend %s\033[0;m\n",where);
 }
 
 void print_move(t_display *display)
@@ -84,4 +84,23 @@ void print_value_recast(t_player *player, t_ray *ray, char *where, char *who)
 	// printf("ray->side_dist->y [%f]\n", ray->side_dist.y);
 	// printf("ray->side [%d]\n", ray->side);
 	printf("\033[0;31end %s\033[0;m\n",where);
+}
+
+
+void print_value_camera(t_camera *camera, char *where, char *who)
+{
+	printf("\033[0;31m%s in %s\033[0;m \n",who,where);
+	printf("camera->angle_cam [%f]\n", camera->angle_cam);
+	printf("camera->angle_min [%f]\n", camera->angle_min);
+	printf("camera->angle_max [%f]\n", camera->angle_max);
+	printf("camera->angle_ray [%f]\n", camera->angle_ray);
+	printf("camera->dir->x [%f]\n", camera->dir.x);
+	printf("camera->dir->y [%f]\n", camera->dir.y);
+	printf("camera->plane->x [%f]\n", camera->plane.x);
+	printf("camera->plane->y [%f]\n", camera->plane.y);
+	printf("camera->nb_ray [%d]\n", camera->nb_ray);
+	printf("camera->angle_ray [%f]\n", camera->angle_ray);
+	printf("\033[0;31mend %s\033[0;m\n",where);
+
+	
 }

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/01 20:17:26 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/08 02:02:34 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void init_struct(t_display *display)
     // Pour plus tard, j'y metterai toute les alloc
 
 }
+
+
+
 
 void init_player(t_display *display, t_player *player)
 {
@@ -73,6 +76,7 @@ void init_struct_camera(t_camera *camera)
     camera->nb_ray = 0;
     camera->plane.x = 0;
     camera->plane.y = 0;
+    
 }
 
 void init_layers(t_display *data)
@@ -188,6 +192,7 @@ void draw_circle(mlx_image_t *img, int center_x, int center_y, int radius, int c
 void draw_compass(t_display *display, t_compass *compass , t_player *player)
 {
     init_player(display,player);
+    init_camera(display, display->raycast->camera);
     init_compass(compass);
     draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius, MY_WHITE,1);
     draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius -2 , MY_BLACK,0);
@@ -201,4 +206,35 @@ void draw_compass(t_display *display, t_compass *compass , t_player *player)
     draw_line(compass->img, (t_vec_d){compass->center_x, compass->center_y}, (t_vec_d){compass->needle_end_x, compass->needle_end_y}, MY_RED);
     mlx_put_pixel(compass->img, compass->center_x, compass->center_y, MY_WHITE);
     mlx_image_to_window(display->mlx, compass->img, WIDTH /2,0);
+}
+
+
+/*
+  _______   ______   _____  ____   _____  ____    ______    ______   ______  
+ /       | /      \ /     \/    \ /     \/    \  /      \  /      \ /      \ 
+/$$$$$$$/  $$$$$$  |$$$$$$ $$$$  |$$$$$$ $$$$  |/$$$$$$  |/$$$$$$  |$$$$$$  |
+$$ |       /    $$ |$$ | $$ | $$ |$$ | $$ | $$ |$$    $$ |$$ |  $$/ /    $$ |
+$$ \_____ /$$$$$$$ |$$ | $$ | $$ |$$ | $$ | $$ |$$$$$$$$/ $$ |     /$$$$$$$ |
+$$       |$$    $$ |$$ | $$ | $$ |$$ | $$ | $$ |$$       |$$ |     $$    $$ |
+ $$$$$$$/  $$$$$$$/ $$/  $$/  $$/ $$/  $$/  $$/  $$$$$$$/ $$/       $$$$$$$/ 
+*/
+
+
+void init_camera(t_display *display, t_camera *camera)
+{
+    t_player *player;
+    
+    player = display->raycast->player;
+    camera->fov = FOV;
+    camera->camera_x = 0;
+    camera->angle_cam = display->p_angle;
+    camera->angle_min = display->p_angle - angle_rad(FOV) /2;
+    camera->angle_max = display->p_angle + angle_rad(FOV) / 2;
+    camera->nb_ray = NB_RAYS;
+    camera->angle_ray = FOV / NB_RAYS;
+    camera->dir.x = cos(display->raycast->player->angle);
+    camera->dir.y = sin(display->raycast->player->angle);
+    camera->plane.x = player->dir.x * tan(camera->angle_cam);
+    camera->plane.y = player->dir.y * tan(camera->angle_cam);
+    
 }

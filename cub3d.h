@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/05 00:43:03 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/08 00:05:13 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,13 @@ void	move_forwards(t_display *d);
 void	move_backwards(t_display *d);
 void	move_left(t_display *d);
 void	move_right(t_display *d);
-void init_camera(t_display *d, t_camera *camera, t_player *player);
-void init_struct_camera(t_camera *camera);
+void 	run_camera(t_display *d, t_camera *camera, t_player *player);
+void 	init_struct_camera(t_camera *camera);
+void 	init_camera(t_display *d, t_camera *camera);
 
-double angle_rad(double angle);
-double distance(t_vec_d a, t_vec_d b);
-double re_distance(double ax, double ay, double bx, double by);
+double 	angle_rad(double angle);
+double 	istance(t_vec_d a, t_vec_d b);
+double 	re_distance(double ax, double ay, double bx, double by);
 
 /*------------memory-alloc-------------*/
 
@@ -100,6 +101,7 @@ void	wall(t_minimap *minimap, int x, int y, int tile_size);
 void	floors(t_minimap *minimap, int x, int y, int tile_size);
 void	print_player(t_display *mlx, t_minimap *m, int tile_size);
 void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_size);
+void print_value_player(t_player *player, char *where, char *who);
 
 /*-------------parsing-------------*/
 
@@ -138,7 +140,7 @@ int			is_valid_char(char c);
 void	print_tab(char **tab);
 void print_value_ray(t_ray *ray, t_player *player, char *where, char *who, int n);
 void print_value_recast(t_player *player, t_ray *ray, char *where, char *who);
-
+void print_value_camera(t_camera *camera, char *where, char *who);
 /*--------------PRIMITIVE-------------*/
 
 void init_struct(t_display *display);
