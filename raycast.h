@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/07 23:35:01 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/09 02:19:53 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 #define FOV 60
 #define SCALE 0.5
-
+#define V_MAGIE 0.02
 
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
