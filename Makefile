@@ -6,7 +6,7 @@
 #    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/06/08 06:14:29 by oliove           ###   ########.fr        #
+#    Updated: 2024/06/09 15:06:29 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS		:=	cub3d.c \
 				debug/debug.c \
 				raycasting/move_player_directions.c \
 				raycasting/draw_primitive.c \
+				raycasting/draw.c \
 
 OBJ_DIR		:=	.objs
 OBJS		:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:22:10 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/05 02:52:45 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/09 17:12:34 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,29 @@ double angle_rad(double angle)
 double distance(t_vec_d a, t_vec_d b)
 {
     return sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2));
+}
+
+t_direction getRay_direction(float x0, float y0, float x1, float y1) 
+{
+    float dx;
+    float dy;
+
+   
+    dy = y1 - y0;
+    dx = x1 - x0;
+    if (fabs(dx) > fabs(dy)) {
+        if (dx > 0) {
+            return EAST;
+        } else {
+            return WEST;
+        }
+    } else {
+        if (dy > 0) {
+            return SOUTH;
+        } else {
+            return NORTH;
+        }
+    }
 }
 
 

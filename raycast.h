@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/09 02:19:53 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/09 17:06:59 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,17 @@
 # define MY_BLACK 0x54626FFF
 
 # define MY_RED 0x8B0000FF
+
+
+typedef enum e_direction
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+}   t_direction;
+
+
 /*
                                  |  \
  __     __   ______    _______  _| $$_     ______    ______

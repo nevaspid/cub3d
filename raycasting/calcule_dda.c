@@ -294,25 +294,19 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
     clear_image(display->raycast->ray->img, 0x000000);
     clear_image(display->img, 0x000000);
     ray->angle = camera->angle_min;
-    // ray->angle = player->angle - angle_rad(FOV) / 2;
-    // int i = 0;
+    draw_bg(display, display->img);
     while (x < WIDTH)
-    // while (ray->angle <= player->angle + angle_rad(FOV) / 2)
     {
         camera->camera_x = 2 * x / (double)WIDTH - 1;// sert a faire [plan -1 1]
         
      
         ray->dir.x = cos(ray->angle) + player->plane.x * camera->camera_x;
         ray->dir.y = sin(ray->angle) + player->plane.y * camera->camera_x;
-        // ray->dir.x = cos(ray->angle);// + player->plane.x * camera->camera_x;
-        // ray->dir.y = sin(ray->angle);// + player->plane.y * camera->camera_x;
+        
         ray->map.x = player->pos.x;
         ray->map.y = player->pos.y;
-        // ray->delta_dist.x = sqrt(1.0f + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
-        // ray->delta_dist.y = sqrt(1.0f + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
         ray->delta_dist.x = fabs(1 / ray->dir.x );
         ray->delta_dist.y = fabs(1 / ray->dir.y);
-
         init_dda(ray, player);
         calculate_dda(display, ray);
         calculate_height_line(ray, player);
@@ -330,20 +324,18 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         else
             draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
                                                 (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, 0x800080);
-        // print_value_ray(ray, player, "calculate_height_line", "ray",x++);
+        /*
+            t_direction pour wall_orientation and color
+        */
+            // t_direction dir_ray = getRay_direction(player->pos.x,player->pos.y,end_pos.x,end_pos.y);
+            // draw_wall_orientation(display, ray, dir_ray, x);
         draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, MY_WHITE);
+        // print_direction(getRay_direction(player->pos.x,player->pos.y,end_pos.x,end_pos.y), x);
         if (x % 2 == 0)
             ray->angle += angle_rad(FOV) / (WIDTH / 2);// 0.0015; 
         x++;
    
     }
-    // print_value_player(display->raycast->player, "run_raycast", "player");
-    // print_value_camera(display->raycast->camera, "run_raycast", "camera");
-    // mlx_image_to_window(display->mlx, display->img,0,0);
-
-    // printf("ray->img->instances[0].z = %d\n", display->raycast->ray->img->instances->z);
-    // display->img->instances[0].z = 0;
-
 }
 
 

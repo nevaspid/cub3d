@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/09 01:49:00 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/09 17:25:27 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ void rotate_player(t_player *player, double rotSpeed);
 void init_mlx(t_display *display);
 void init_player(t_display *display, t_player *player);
 void init_value_st(t_display *display);
+void draw_bg(t_display *display, mlx_image_t *img);
+void draw_wall_orientation(t_display *display, t_ray *ray, t_direction dir, int x);
+void draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color);
 /*------------memory-alloc-------------*/
 
 void	*mem_alloc(t_mem_alloc *lst, size_t size);
@@ -145,6 +148,8 @@ void	print_tab(char **tab);
 void print_value_ray(t_ray *ray, t_player *player, char *where, char *who, int n);
 void print_value_recast(t_player *player, t_ray *ray, char *where, char *who);
 void print_value_camera(t_camera *camera, char *where, char *who);
+void print_direction(t_direction dir, int x);
+t_direction getRay_direction(float x0, float y0, float x1, float y1);
 /*--------------PRIMITIVE-------------*/
 
 void init_struct(t_display *display);
