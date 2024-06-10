@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/03 07:05:09 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/10 05:30:22 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,18 @@ int	main(int ac, char **av)
 	mylloc->next = NULL;
 	mylloc->content = NULL;
 	display = mem_alloc(mylloc, sizeof(t_display));
-	display->m = mem_alloc(mylloc, sizeof(t_minimap));
-	display->m->paths = mem_alloc(mylloc, sizeof(t_paths));
-	display->raycast = mem_alloc(mylloc, sizeof(t_raycast));
-	display->raycast->compass = mem_alloc(mylloc, sizeof(t_compass));
-	display->raycast->player = mem_alloc(mylloc,sizeof(t_player));
-	display->raycast->ray = mem_alloc(mylloc,sizeof(t_ray));
-	display->raycast->camera = mem_alloc(mylloc,sizeof(t_camera));
-	display->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
-	display->m->minimap = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
-	display->raycast->compass->img = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
-	display->raycast->ray->img = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
-	// display->m->player = mlx_new_image(display->mlx, SCALE, SCALE);
+	init_malloc(mylloc, display);
+	init_mlx(display);
 	read_parse_store(av[1], mylloc, display);
 	if (longest_line(display->m->minimap_array) > count_lines(display->m->minimap_array))
 		tile_size = (WIDTH * SCALE) / longest_line(display->m->minimap_array);
 	else
 		tile_size = (HEIGHT * SCALE) / count_lines(display->m->minimap_array);
-	print_minimap(display, display->m, tile_size, mylloc);
+		
+	print_minimap(display, display->m, tile_size);
+	init_value_st(display);
 	draw_compass(display, display->raycast->compass, display->raycast->player);
 	init_struct_camera(display->raycast->camera);
-	// init_camera(display, display->raycast->camera);
 	display->m->tile_size = tile_size;
 	if (flood_fill(display->m->copy, display->m->p_x, display->m->p_y) > 0)
 	{
@@ -55,7 +46,13 @@ int	main(int ac, char **av)
 		free_and_exit(mylloc);
 	}
 	run_raycast(display,display->raycast->ray, display->raycast->player);
-	// mlx_key_hook(display->mlx, &move_player, display);
+	
+	// a mettre dans une fonction
+	mlx_image_to_window(display->mlx, display->img, 0, 0);
+	mlx_image_to_window(display->mlx, display->raycast->compass->img, WIDTH /2,0);
+	mlx_image_to_window(display->mlx, display->m->minimap, 0, 0);
+	mlx_image_to_window(display->mlx,display->m->player, display->m->p_x * tile_size, display->m->p_y * tile_size); 
+	mlx_image_to_window(display->mlx, display->raycast->ray->img,0,0);
 	mlx_loop_hook(display->mlx, &player_angle, display);
 	mlx_loop(display->mlx);
 	free_and_exit(mylloc);

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/03 07:12:53 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/10 05:32:46 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,34 @@
 
 #define FOV 60
 #define SCALE 0.5
-
+#define V_MAGIE 0.02
 
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
 # define RED 0xFF0000
 # define GREEN 0x00FF00
-# define BLUE 0x0000FF
-# define YELLOW 0xFFFF00
+# define BLUE 0x0000FFFF
+# define YELLOW 0xFFFF00FF
 # define CYAN 0x00FFFF
 # define MAGENTA 0xFF00FF
-# define ORANGE 0xFFA500
-# define PURPLE 0x800080
-# define PINK 0xFFC0CB
+# define ORANGE 0xFFA500FF
+# define PURPLE 0x800080FF
+# define PINK 0xFFC0CBFF
 # define MY_WHITE 0xFEFEFAFF
 # define MY_BLACK 0x54626FFF
 
 # define MY_RED 0x8B0000FF
+
+
+typedef enum e_direction
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+}   t_direction;
+
+
 /*
                                  |  \
  __     __   ______    _______  _| $$_     ______    ______
@@ -115,7 +126,7 @@ typedef struct s_camera
 	int 	nb_ray;// number of ray
 	t_vec_d	plane;
 	t_vec_d	dir;
-	t_compass	*compass;
+
 
 }	t_camera;
 
@@ -158,6 +169,7 @@ typedef struct s_ray
 	double			fov;
 	double			angle;
 	double			angle_ray;
+	
 
 }	t_ray;
 

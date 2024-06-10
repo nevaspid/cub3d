@@ -6,18 +6,51 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/01 20:17:26 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/08 06:57:58 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void init_struct(t_display *display)
-{
-    (void)display;
-    // Pour plus tard, j'y metterai toute les alloc
+////// refactory !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1111
 
+void init_malloc(t_mem_alloc *mylloc, t_display *display)
+{
+    display->m = mem_alloc(mylloc, sizeof(t_minimap));
+	display->m->paths = mem_alloc(mylloc, sizeof(t_paths));
+	display->raycast = mem_alloc(mylloc, sizeof(t_raycast));
+	display->raycast->compass = mem_alloc(mylloc, sizeof(t_compass));
+	display->raycast->player = mem_alloc(mylloc,sizeof(t_player));
+	display->raycast->ray = mem_alloc(mylloc,sizeof(t_ray));
+	display->raycast->camera = mem_alloc(mylloc,sizeof(t_camera));
+    
 }
+
+void init_mlx(t_display *display)
+{
+    display->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
+    display->m->minimap = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
+    display->raycast->compass->img = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
+    display->raycast->ray->img = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT * SCALE);
+    display->img = mlx_new_image(display->mlx, WIDTH , HEIGHT );
+}
+
+
+
+/*
+ __            __    __                      __                                         
+/  |          /  |  /  |                    /  |                                        
+$$/  _______  $$/  _$$ |_           ______  $$ |  ______   __    __   ______    ______  
+/  |/       \ /  |/ $$   |         /      \ $$ | /      \ /  |  /  | /      \  /      \ 
+$$ |$$$$$$$  |$$ |$$$$$$/         /$$$$$$  |$$ | $$$$$$  |$$ |  $$ |/$$$$$$  |/$$$$$$  |
+$$ |$$ |  $$ |$$ |  $$ | __       $$ |  $$ |$$ | /    $$ |$$ |  $$ |$$    $$ |$$ |  $$/ 
+$$ |$$ |  $$ |$$ |  $$ |/  |      $$ |__$$ |$$ |/$$$$$$$ |$$ \__$$ |$$$$$$$$/ $$ |      
+$$ |$$ |  $$ |$$ |  $$  $$/______ $$    $$/ $$ |$$    $$ |$$    $$ |$$       |$$ |      
+$$/ $$/   $$/ $$/    $$$$//      |$$$$$$$/  $$/  $$$$$$$/  $$$$$$$ | $$$$$$$/ $$/       
+                          $$$$$$/ $$ |                    /  \__$$ |                    
+                                  $$ |                    $$    $$/                     
+                                  $$/                      $$$$$$/                      
+*/
 
 void init_player(t_display *display, t_player *player)
 {
@@ -30,6 +63,21 @@ void init_player(t_display *display, t_player *player)
     player->plane.y = 0;
 
 }
+
+/*
+ __            __    __                                        
+/  |          /  |  /  |                                       
+$$/  _______  $$/  _$$ |_           ______   ______   __    __ 
+/  |/       \ /  |/ $$   |         /      \ /      \ /  |  /  |
+$$ |$$$$$$$  |$$ |$$$$$$/         /$$$$$$  |$$$$$$  |$$ |  $$ |
+$$ |$$ |  $$ |$$ |  $$ | __       $$ |  $$/ /    $$ |$$ |  $$ |
+$$ |$$ |  $$ |$$ |  $$ |/  |      $$ |     /$$$$$$$ |$$ \__$$ |
+$$ |$$ |  $$ |$$ |  $$  $$/______ $$ |     $$    $$ |$$    $$ |
+$$/ $$/   $$/ $$/    $$$$//      |$$/       $$$$$$$/  $$$$$$$ |
+                          $$$$$$/                    /  \__$$ |
+                                                     $$    $$/ 
+                                                      $$$$$$/  
+*/
 
 void init_ray(t_ray *ray)
 {
@@ -61,6 +109,19 @@ void init_ray(t_ray *ray)
     ray->nb_ray = 0;
     ray->angle_ray = 0;
 }
+ /*
+ __            __    __                        __                                      __                                                                         
+/  |          /  |  /  |                      /  |                                    /  |                                                                        
+$$/  _______  $$/  _$$ |_           _______  _$$ |_     ______   __    __   _______  _$$ |_          _______   ______   _____  ____    ______    ______   ______  
+/  |/       \ /  |/ $$   |         /       |/ $$   |   /      \ /  |  /  | /       |/ $$   |        /       | /      \ /     \/    \  /      \  /      \ /      \ 
+$$ |$$$$$$$  |$$ |$$$$$$/         /$$$$$$$/ $$$$$$/   /$$$$$$  |$$ |  $$ |/$$$$$$$/ $$$$$$/        /$$$$$$$/  $$$$$$  |$$$$$$ $$$$  |/$$$$$$  |/$$$$$$  |$$$$$$  |
+$$ |$$ |  $$ |$$ |  $$ | __       $$      \   $$ | __ $$ |  $$/ $$ |  $$ |$$ |        $$ | __      $$ |       /    $$ |$$ | $$ | $$ |$$    $$ |$$ |  $$/ /    $$ |
+$$ |$$ |  $$ |$$ |  $$ |/  |       $$$$$$  |  $$ |/  |$$ |      $$ \__$$ |$$ \_____   $$ |/  |     $$ \_____ /$$$$$$$ |$$ | $$ | $$ |$$$$$$$$/ $$ |     /$$$$$$$ |
+$$ |$$ |  $$ |$$ |  $$  $$/______ /     $$/   $$  $$/ $$ |      $$    $$/ $$       |  $$  $$/______$$       |$$    $$ |$$ | $$ | $$ |$$       |$$ |     $$    $$ |
+$$/ $$/   $$/ $$/    $$$$//      |$$$$$$$/     $$$$/  $$/        $$$$$$/   $$$$$$$/    $$$$//      |$$$$$$$/  $$$$$$$/ $$/  $$/  $$/  $$$$$$$/ $$/       $$$$$$$/ 
+                          $$$$$$/                                                           $$$$$$/                                                               
+*/
+
 
 void init_struct_camera(t_camera *camera)
 {
@@ -73,6 +134,7 @@ void init_struct_camera(t_camera *camera)
     camera->nb_ray = 0;
     camera->plane.x = 0;
     camera->plane.y = 0;
+    
 }
 
 void init_layers(t_display *data)
@@ -93,112 +155,44 @@ void init_compass(t_compass *cmp)
 }
 
 
-void draw_line(mlx_image_t *img, t_vec_d start, t_vec_d end, int color)
-{
-    t_line l;
 
-    l.x1 = start.x;
-    l.y1 = start.y;
-    l.x2 = end.x;
-    l.y2 = end.y;
-    l.dx = abs(l.x2 - l.x1);
-    l.dy = abs(l.y2 - l.y1);
-    if (l.x1 < l.x2)
-        l.sx = 1;
-    else
-        l.sx = -1;
-    if (l.y1 < l.y2)
-        l.sy = 1;
-    else
-        l.sy = -1;
-    l.err = l.dx - l.dy;
-    if (l.x1 < 0 || l.x1 >= WIDTH || l.x2 < 0 || l.x2 >= WIDTH || l.y1 < 0 || l.y1 >= HEIGHT || l.y2 < 0 || l.y2 >= HEIGHT) {
-        return;
-    }
-    while (1)
-    {
-        mlx_put_pixel(img, l.x1, l.y1, color);
-        if (l.x1 == l.x2 && l.y1 == l.y2)
-            break;
-        l.err2 = 2 * l.err;
-        if (l.err2 > -l.dy)
-        {
-            l.err -= l.dy;
-            l.x1 += l.sx;
-        }
-        if (l.err2 < l.dx)
-        {
-            l.err += l.dx;
-            l.y1 += l.sy;
-        }
-    }
+/*
+  _______   ______   _____  ____   _____  ____    ______    ______   ______  
+ /       | /      \ /     \/    \ /     \/    \  /      \  /      \ /      \ 
+/$$$$$$$/  $$$$$$  |$$$$$$ $$$$  |$$$$$$ $$$$  |/$$$$$$  |/$$$$$$  |$$$$$$  |
+$$ |       /    $$ |$$ | $$ | $$ |$$ | $$ | $$ |$$    $$ |$$ |  $$/ /    $$ |
+$$ \_____ /$$$$$$$ |$$ | $$ | $$ |$$ | $$ | $$ |$$$$$$$$/ $$ |     /$$$$$$$ |
+$$       |$$    $$ |$$ | $$ | $$ |$$ | $$ | $$ |$$       |$$ |     $$    $$ |
+ $$$$$$$/  $$$$$$$/ $$/  $$/  $$/ $$/  $$/  $$/  $$$$$$$/ $$/       $$$$$$$/ 
+*/
+
+
+void init_camera(t_display *display, t_camera *camera)
+{
+    t_player *player;
+    
+    player = display->raycast->player;
+    camera->fov = FOV;
+    camera->camera_x = 0;
+    camera->angle_cam = display->p_angle;
+    camera->angle_min = display->p_angle - angle_rad(FOV) /2;
+    camera->angle_max = display->p_angle + angle_rad(FOV) / 2;
+    camera->nb_ray = NB_RAYS;
+    camera->angle_ray = FOV / NB_RAYS;
+    camera->dir.x = cos(display->raycast->player->angle);
+    camera->dir.y = sin(display->raycast->player->angle);
+    camera->plane.x = player->dir.x * tan(angle_rad(camera->angle_cam));
+    camera->plane.y = player->dir.y * tan(angle_rad(camera->angle_cam));
 }
+    
 
-void draw_fill_circle(mlx_image_t *img, int x1, int x2, int y,  int color)
+void init_value_st(t_display *display)
 {
-    while (x1 <= x2)
-    {
-        mlx_put_pixel(img, x1, y, color);
-        mlx_put_pixel(img, x2, y, color);
-        x1++;
-        x2--;
-    }
-}
+    // (void)display;
 
+    init_player(display, display->raycast->player);
+    init_camera(display, display->raycast->camera);
+    init_compass(display->raycast->compass);
+    // Pour plus tard, j'y metterai toute les alloc
 
-void draw_circle(mlx_image_t *img, int center_x, int center_y, int radius, int color, int fill)
-{
-    int x;
-    int y;
-    int d;
-
-    y = radius;
-    x = 0;
-    d = 3 - 2 * radius;
-    while (x <= y)
-    {
-        if(fill == 1){
-            draw_fill_circle(img, center_x - x, center_x + x, center_y + y, MY_BLACK);
-            draw_fill_circle(img, center_x - x, center_x + x, center_y - y, MY_BLACK);
-            draw_fill_circle(img, center_x - y, center_x + y, center_y + x, MY_BLACK);
-            draw_fill_circle(img, center_x - y, center_x + y, center_y - x, MY_BLACK);
-        }
-        mlx_put_pixel(img, center_x + x,center_y + y, color);
-        mlx_put_pixel(img, center_x + x, center_y + y, color);
-        mlx_put_pixel(img, center_x - x, center_y + y, color);
-        mlx_put_pixel(img, center_x + x, center_y - y, color);
-        mlx_put_pixel(img, center_x - x, center_y - y, color);
-        mlx_put_pixel(img, center_x + y, center_y + x, color);
-        mlx_put_pixel(img, center_x - y, center_y + x, color);
-        mlx_put_pixel(img, center_x + y, center_y - x, color);
-        mlx_put_pixel(img, center_x - y, center_y - x, color);
-
-        if (d < 0)
-            d = d + 4 * x + 6;
-        else
-        {
-            d = d + 4 * (x - y) + 10;
-            y--;
-        }
-        x++;
-    }
-}
-
-
-void draw_compass(t_display *display, t_compass *compass , t_player *player)
-{
-    init_player(display,player);
-    init_compass(compass);
-    draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius, MY_WHITE,1);
-    draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius -2 , MY_BLACK,0);
-    draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius - 1, MY_WHITE,0);
-
-    compass->needle_length = compass->radius * 0.8;
-    // compass->needle_end_x = compass->center_x + compass->needle_length * cos(display->p_angle);
-    // compass->needle_end_y = compass->center_y + compass->needle_length * sin(display->p_angle);
-    compass->needle_end_x = compass->center_x + compass->needle_length * cos(player->angle);
-    compass->needle_end_y = compass->center_y + compass->needle_length * sin(player->angle);
-    draw_line(compass->img, (t_vec_d){compass->center_x, compass->center_y}, (t_vec_d){compass->needle_end_x, compass->needle_end_y}, MY_RED);
-    mlx_put_pixel(compass->img, compass->center_x, compass->center_y, MY_WHITE);
-    mlx_image_to_window(display->mlx, compass->img, WIDTH /2,0);
 }
