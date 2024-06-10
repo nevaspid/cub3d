@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/10 05:32:02 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/10 05:36:40 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,9 @@ void	draw_player(t_display *minimap, int tile_size);
 void	wall(t_minimap *minimap, int x, int y, int tile_size);
 void	floors(t_minimap *minimap, int x, int y, int tile_size);
 void	print_player(t_display *mlx, t_minimap *m, int tile_size);
-void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_size);
+
+void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_size, t_mem_alloc *mylloc);
+// void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_size);
 void print_value_player(t_player *player, char *where, char *who);
 
 /*-------------parsing-------------*/

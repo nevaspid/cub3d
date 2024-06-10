@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/10 05:30:22 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/10 05:37:04 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int ac, char **av)
 	else
 		tile_size = (HEIGHT * SCALE) / count_lines(display->m->minimap_array);
 		
-	print_minimap(display, display->m, tile_size);
+	print_minimap(display, display->m, tile_size, mylloc);
 	init_value_st(display);
 	draw_compass(display, display->raycast->compass, display->raycast->player);
 	init_struct_camera(display->raycast->camera);
