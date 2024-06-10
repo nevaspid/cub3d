@@ -6,13 +6,13 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 14:52:41 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/10 04:03:42 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/10 05:55:44 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-
+/*fonction a gerer*/
 int check_next_move(t_display *d, double x, double y)
 {
 	// t_vec pos;
