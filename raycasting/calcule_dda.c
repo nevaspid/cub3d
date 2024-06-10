@@ -277,7 +277,7 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
         init_dda(ray, player);
         calculate_dda(display, ray);
         calculate_height_line(ray, player);
-        int max_ray_lenght = 5;
+        int max_ray_lenght = 1;
         end_pos = (t_vec_d){ray->map.x , ray->map.y};
         if (hypot(ray->map.x - player->pos.x, ray->map.y - player->pos.y) > max_ray_lenght)
         {

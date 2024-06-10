@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/10 05:32:46 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/10 09:08:48 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@
 
 typedef enum e_direction
 {
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST
+	UP,
+	DOWN,
+	RIGHT,
+	LEFT
 }   t_direction;
 
 

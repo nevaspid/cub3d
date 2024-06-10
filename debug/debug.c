@@ -104,22 +104,22 @@ void print_value_camera(t_camera *camera, char *where, char *who)
 	
 }
 
-void print_direction(t_direction dir, int x) {
-    switch(dir) {
-        case NORTH:
-            printf("ray [%d] Direction: NORTH\n",x);
-            break;
-        case SOUTH:
-            printf("ray [%d] Direction: SOUTH\n",x);
-            break;
-        case EAST:
-            printf("ray [%d] Direction: EAST\n",x);
-            break;
-        case WEST:
-            printf("ray [%d] Direction: WEST\n",x);
-            break;
-        default:
-            printf("ray [%d] Direction: UNKNOWN\n",x);
-            break;
-    }
-}
+// void print_direction(t_direction dir, int x) {
+//     switch(dir) {
+//         case NORTH:
+//             printf("ray [%d] Direction: NORTH\n",x);
+//             break;
+//         case SOUTH:
+//             printf("ray [%d] Direction: SOUTH\n",x);
+//             break;
+//         case EAST:
+//             printf("ray [%d] Direction: EAST\n",x);
+//             break;
+//         case WEST:
+//             printf("ray [%d] Direction: WEST\n",x);
+//             break;
+//         default:
+//             printf("ray [%d] Direction: UNKNOWN\n",x);
+//             break;
+//     }
+// }
