@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/08 06:57:58 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/10 21:09:24 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void init_malloc(t_mem_alloc *mylloc, t_display *display)
 	display->raycast->player = mem_alloc(mylloc,sizeof(t_player));
 	display->raycast->ray = mem_alloc(mylloc,sizeof(t_ray));
 	display->raycast->camera = mem_alloc(mylloc,sizeof(t_camera));
+    display->raycast->assets = mem_alloc(mylloc,sizeof(t_assets));
+    display->raycast->assets->portal = mem_alloc(mylloc,sizeof(t_img_portal));
     
 }
 
@@ -184,7 +186,33 @@ void init_camera(t_display *display, t_camera *camera)
     camera->plane.x = player->dir.x * tan(angle_rad(camera->angle_cam));
     camera->plane.y = player->dir.y * tan(angle_rad(camera->angle_cam));
 }
+
+/*
+ __                            __        __                            __                                   
+/  |                          /  |      /  |                          /  |                                  
+$$ |  ______    ______    ____$$ |     _$$ |_     ______   __    __  _$$ |_    __    __   ______    ______  
+$$ | /      \  /      \  /    $$ |    / $$   |   /      \ /  \  /  |/ $$   |  /  |  /  | /      \  /      \ 
+$$ |/$$$$$$  | $$$$$$  |/$$$$$$$ |    $$$$$$/   /$$$$$$  |$$  \/$$/ $$$$$$/   $$ |  $$ |/$$$$$$  |/$$$$$$  |
+$$ |$$ |  $$ | /    $$ |$$ |  $$ |      $$ | __ $$    $$ | $$  $$<    $$ | __ $$ |  $$ |$$ |  $$/ $$    $$ |
+$$ |$$ \__$$ |/$$$$$$$ |$$ \__$$ |      $$ |/  |$$$$$$$$/  /$$$$  \   $$ |/  |$$ \__$$ |$$ |      $$$$$$$$/ 
+$$ |$$    $$/ $$    $$ |$$    $$ |______$$  $$/ $$       |/$$/ $$  |  $$  $$/ $$    $$/ $$ |      $$       |
+$$/  $$$$$$/   $$$$$$$/  $$$$$$$//      |$$$$/   $$$$$$$/ $$/   $$/    $$$$/   $$$$$$/  $$/        $$$$$$$/ 
+                                 $$$$$$/                                                                    
+*/
+
+void load_texture(t_display *display, t_img_portal *portal)
+{
+    (void)display;
+    portal->tile_case_x = 32;
+    portal->tile_case_y = 32;
+    portal->img_portal_1 = mlx_load_png("srcs/assets/portal/portal_1.png");
+    portal->img_portal_2 = mlx_load_png("srcs/assets/portal/portal_2.png");
+    portal->img_portal_3 = mlx_load_png("srcs/assets/portal/portal_3.png");
+    portal->img_portal_4 = mlx_load_png("srcs/assets/portal/portal_4.png");
+    portal->img_portal_5 = mlx_load_png("srcs/assets/portal/portal_5.png");
+    portal->img_portal_6 = mlx_load_png("srcs/assets/portal/portal_6.png");
     
+}
 
 void init_value_st(t_display *display)
 {

@@ -8,3 +8,11 @@ si ça se finit en .cub
 if fd >= 0
 file is readable
 si le player est entouré de murs
+
+
+site img :
+decoupe img;
+https://www.flaticon.com/free-icon/player_3046414?term=player&page=1&position=1https://ezgif.com/maker/ezgif-5-81d044b65b-jpg-147x287-sprite-png/ezgif-5-81d044b65b.jpg
+
+croq img;
+https://www.iloveimg.com/crop-image
