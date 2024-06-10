@@ -6,13 +6,11 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 14:56:32 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/09 17:30:04 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/10 05:13:42 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-
 
 void draw_bg(t_display *display, mlx_image_t *img)
 {
@@ -37,29 +35,18 @@ void draw_bg(t_display *display, mlx_image_t *img)
 }
 
 
-void draw_wall_orientation(t_display *display, t_ray *ray, t_direction dir, int x)
+void draw_wall_orientation(t_display *display, t_ray *ray,int x)
 {
-
-    if (dir == NORTH || dir == SOUTH)
-    {
-        if (dir == NORTH)
+    if (ray->side == 1){
+        if (ray->step.y > 0) 
             draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, MY_WHITE);
         else
-            draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, MY_BLACK);
+            draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, MAGENTA);
     }
-    else
-    {
-        if (dir == EAST)
-            draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, 0xFFC0CBFF);
-        else
+    else{
+        if(ray->step.x > 0)
             draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, ORANGE);
-    }
+        else 
+            draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, BLUE);
+    } 
 }
-
-
-// void draw_3d(t_display *display, t_camera *camera, int x, t_player *player)
-// {
-
-    
-
-// }

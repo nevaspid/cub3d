@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/09 17:25:27 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/10 05:18:59 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_minimap
 	int					p_y;
 	int					tile_size;
 }	t_minimap;
+
 typedef struct s_display
 {
 	mlx_t			*mlx;
@@ -88,13 +89,14 @@ void 	init_camera(t_display *d, t_camera *camera);
 double 	angle_rad(double angle);
 double 	istance(t_vec_d a, t_vec_d b);
 double 	re_distance(double ax, double ay, double bx, double by);
-void rotate_player(t_player *player, double rotSpeed);
-void init_mlx(t_display *display);
-void init_player(t_display *display, t_player *player);
-void init_value_st(t_display *display);
-void draw_bg(t_display *display, mlx_image_t *img);
-void draw_wall_orientation(t_display *display, t_ray *ray, t_direction dir, int x);
-void draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color);
+void 	rotate_player(t_player *player, double rotSpeed);
+void 	init_mlx(t_display *display);
+void 	init_player(t_display *display, t_player *player);
+void 	init_value_st(t_display *display);
+void 	draw_bg(t_display *display, mlx_image_t *img);
+void 	draw_wall_orientation(t_display *display, t_ray *ray, int x);
+void 	draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color);
+void 	move_rotated(mlx_key_data_t key, void *param);
 /*------------memory-alloc-------------*/
 
 void	*mem_alloc(t_mem_alloc *lst, size_t size);
@@ -103,7 +105,6 @@ void 	init_malloc(t_mem_alloc *mem_alloc, t_display *display);
 /*-------------pixelling-------------*/
 
 void	draw_player(t_display *minimap, int tile_size);
-// void	draw_player(t_minimap *minimap, int tile_size);
 void	wall(t_minimap *minimap, int x, int y, int tile_size);
 void	floors(t_minimap *minimap, int x, int y, int tile_size);
 void	print_player(t_display *mlx, t_minimap *m, int tile_size);
@@ -145,10 +146,10 @@ int			is_valid_char(char c);
 /*--------------TEMP--------------*/
 
 void	print_tab(char **tab);
-void print_value_ray(t_ray *ray, t_player *player, char *where, char *who, int n);
-void print_value_recast(t_player *player, t_ray *ray, char *where, char *who);
-void print_value_camera(t_camera *camera, char *where, char *who);
-void print_direction(t_direction dir, int x);
+void 	print_value_ray(t_ray *ray, t_player *player, char *where, char *who, int n);
+void 	print_value_recast(t_player *player, t_ray *ray, char *where, char *who);
+void 	print_value_camera(t_camera *camera, char *where, char *who);
+void 	print_direction(t_direction dir, int x);
 t_direction getRay_direction(float x0, float y0, float x1, float y1);
 /*--------------PRIMITIVE-------------*/
 

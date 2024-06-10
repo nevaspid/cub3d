@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:22:10 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/09 17:12:34 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/09 23:49:53 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ t_direction getRay_direction(float x0, float y0, float x1, float y1)
         } else {
             return WEST;
         }
-    } else {
+    }
+    else {
         if (dy > 0) {
             return SOUTH;
         } else {

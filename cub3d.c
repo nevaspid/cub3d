@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/09 00:52:44 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/10 05:20:55 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	main(int ac, char **av)
 	init_value_st(display);
 	draw_compass(display, display->raycast->compass, display->raycast->player);
 	init_struct_camera(display->raycast->camera);
-	// init_camera(display, display->raycast->camera);
 	display->m->tile_size = tile_size;
 	if (flood_fill(display->m->copy, display->m->p_x, display->m->p_y) > 0)
 	{
@@ -54,12 +53,6 @@ int	main(int ac, char **av)
 	mlx_image_to_window(display->mlx, display->m->minimap, 0, 0);
 	mlx_image_to_window(display->mlx,display->m->player, display->m->p_x * tile_size, display->m->p_y * tile_size); 
 	mlx_image_to_window(display->mlx, display->raycast->ray->img,0,0);
-	// display->img->instances->z = 1;
-	// display->m->minimap->instances->z = 0;
-	
-	// display->raycast->ray->img->instances->z = 3;
-	
-	// mlx_key_hook(display->mlx, &move_player, display);
 	mlx_loop_hook(display->mlx, &player_angle, display);
 	mlx_loop(display->mlx);
 	free_and_exit(mylloc);

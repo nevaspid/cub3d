@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/09 17:06:59 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/10 01:28:27 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 # define WHITE 0xFFFFFF
 # define RED 0xFF0000
 # define GREEN 0x00FF00
-# define BLUE 0x0000FF
-# define YELLOW 0xFFFF00
+# define BLUE 0x0000FFFF
+# define YELLOW 0xFFFF00FF
 # define CYAN 0x00FFFF
 # define MAGENTA 0xFF00FF
-# define ORANGE 0xFFA500
-# define PURPLE 0x800080
-# define PINK 0xFFC0CB
+# define ORANGE 0xFFA500FF
+# define PURPLE 0x800080FF
+# define PINK 0xFFC0CBFF
 # define MY_WHITE 0xFEFEFAFF
 # define MY_BLACK 0x54626FFF
 
@@ -169,6 +169,7 @@ typedef struct s_ray
 	double			fov;
 	double			angle;
 	double			angle_ray;
+	
 
 }	t_ray;
 
