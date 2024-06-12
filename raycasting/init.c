@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/12 06:49:12 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/12 06:54:11 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,7 @@ void load_texture(t_display *display, t_img_portal *portal)
     portal->img_portal_6 = mlx_load_png("srcs/assets/portal/portal_6.png");
     
 }
-
+/*pour commit*/
 void init_value_st(t_display *display)
 {
     // (void)display;
