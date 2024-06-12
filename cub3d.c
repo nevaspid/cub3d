@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/12 06:23:46 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/12 06:46:35 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ int	main(int ac, char **av)
 		printf("ERROR : Map is not closed\n");
 		free_and_exit(mylloc);
 	}
-	run_raycast(display,display->raycast->ray, display->raycast->player);
-	
+	run_raycast(display,display->raycast->ray, display->raycast->player);	
 	// a mettre dans une fonction
 	mlx_image_to_window(display->mlx, display->img, 0, 0);
 	mlx_image_to_window(display->mlx, display->raycast->compass->img, WIDTH /2,0);
