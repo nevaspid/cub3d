@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/08 06:57:58 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/12 05:49:40 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void init_malloc(t_mem_alloc *mylloc, t_display *display)
 	display->raycast->player = mem_alloc(mylloc,sizeof(t_player));
 	display->raycast->ray = mem_alloc(mylloc,sizeof(t_ray));
 	display->raycast->camera = mem_alloc(mylloc,sizeof(t_camera));
+    display->raycast->assets = mem_alloc(mylloc,sizeof(t_assets));
     
 }
 
@@ -196,3 +197,10 @@ void init_value_st(t_display *display)
     // Pour plus tard, j'y metterai toute les alloc
 
 }
+
+
+// void init_asset(t_assets *asset)
+// {
+//     asset->img = mlx_load_png("srcs/assets/portal/Space_Background/Nebula Aqua-Pink.png");
+    
+// }

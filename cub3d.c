@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/10 05:37:04 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/12 06:23:46 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,12 @@ int	main(int ac, char **av)
 	mlx_image_to_window(display->mlx,display->m->player, display->m->p_x * tile_size, display->m->p_y * tile_size); 
 	mlx_image_to_window(display->mlx, display->raycast->ray->img,0,0);
 	mlx_loop_hook(display->mlx, &player_angle, display);
+	
+	load_asset(display, display->raycast->assets, "srcs/assets/portal/Space_Background/Nebula Aqua-Pink.png");
+	// mlx_image_to_window(display->mlx, display->raycast->assets->ceiling, 0, 0);
+	// printf("ceiling [%hhn]\n", display->raycast->assets->ceiling->pixels);
 	mlx_loop(display->mlx);
+	
+	// mlx_delete_texture(display->raycast->assets->img);
 	free_and_exit(mylloc);
 }

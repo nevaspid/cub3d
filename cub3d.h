@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/10 09:14:45 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/12 06:33:51 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <math.h>
+#include <stdint.h>
+#include <stddef.h>
 
 /*-------------DEFINES-------------*/
 
@@ -98,6 +100,11 @@ void 	draw_wall_orientation(t_display *display, t_ray *ray, int x);
 void 	draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color);
 void 	move_rotated(mlx_key_data_t key, void *param);
 int check_next_move(t_display *d,double x, double y, t_direction dir);
+void init_asset(t_assets *asset);
+void  load_asset(t_display *display,t_assets *asset, char *path);
+u_int32_t	get_rgba_tex(u_int32_t color);
+u_int32_t	get_color(t_display *display,mlx_image_t *img , int x, int y);
+
 /*------------memory-alloc-------------*/
 
 void	*mem_alloc(t_mem_alloc *lst, size_t size);

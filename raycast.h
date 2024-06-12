@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/10 09:08:48 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/12 05:43:25 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,12 +279,34 @@ $$/       $$$$$$$/  $$$$$$$ | $$$$$$$/  $$$$$$$/ $$$$$$$/     $$$$/
 */
 
 
+
+typedef struct s_assets
+{
+	char * 			name;
+	
+	mlx_texture_t		*texture;
+	mlx_image_t			*ceiling;
+	int8_t				*color;
+	// mlx_texture_t		*floor;
+	// mlx_texture_t		*ceiling;
+	// mlx_texture_t		*img_wall_north;
+	// mlx_texture_t		*img_wall_south;
+	// mlx_texture_t		*img_wall_east;
+	// mlx_texture_t		*img_wall_west;
+	// mlx_texture_t		*portal;
+	int 			tile_size;
+	int 			tile_size_x;
+	int 			tile_size_y;
+}	t_assets;
+
+
 typedef struct s_raycast
 {
     t_player    *player;
     t_compass   *compass;
     t_ray       *ray;
 	t_camera	*camera;
+	t_assets	*assets;
 }               t_raycast;
 
 /*commentaire pour comit un msg*/
