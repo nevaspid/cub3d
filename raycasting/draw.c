@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 14:56:32 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/10 05:13:42 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/12 06:43:14 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,17 @@ void draw_bg(t_display *display, mlx_image_t *img)
     y = 0;
     while (y <= HEIGHT)
     {
+        uint32_t color;
         x = 0;
+        printf("y [%d]\n", y);
         while (x <= WIDTH)
         {
-            if (y < HEIGHT / 2)
-                mlx_put_pixel(img, x, y, MY_BLACK);
+            printf("x [%d]\n", x);
+            if (y < HEIGHT / 2){
+                
+                color = get_color(display,display->raycast->assets->ceiling , x, y);
+                mlx_put_pixel(img, x, y, color);
+            }
             else
                 mlx_put_pixel(img, x, y, MY_RED);
             x++;
@@ -38,8 +44,9 @@ void draw_bg(t_display *display, mlx_image_t *img)
 void draw_wall_orientation(t_display *display, t_ray *ray,int x)
 {
     if (ray->side == 1){
-        if (ray->step.y > 0) 
+        if (ray->step.y > 0){
             draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, MY_WHITE);
+        } 
         else
             draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, MAGENTA);
     }
@@ -50,3 +57,4 @@ void draw_wall_orientation(t_display *display, t_ray *ray,int x)
             draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, BLUE);
     } 
 }
+

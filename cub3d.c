@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/13 03:40:54 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/13 04:00:19 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ int	main(int ac, char **av)
 		printf("ERROR : Map is not closed\n");
 		free_and_exit(mylloc);
 	}
-	run_raycast(display,display->raycast->ray, display->raycast->player);
-	
+	run_raycast(display,display->raycast->ray, display->raycast->player);	
 	// a mettre dans une fonction
 	mlx_image_to_window(display->mlx, display->img, 0, 0);
 	mlx_image_to_window(display->mlx, display->raycast->compass->img, WIDTH /2,0);
@@ -54,6 +53,10 @@ int	main(int ac, char **av)
 	mlx_image_to_window(display->mlx,display->m->player, display->m->p_x * tile_size, display->m->p_y * tile_size); 
 	mlx_image_to_window(display->mlx, display->raycast->ray->img,0,0);
 	mlx_loop_hook(display->mlx, &player_angle, display);
+	
+	load_asset(display, display->raycast->assets, "srcs/assets/portal/Space_Background/Nebula Aqua-Pink.png");
+	// mlx_image_to_window(display->mlx, display->raycast->assets->ceiling, 0, 0);
+	// printf("ceiling [%hhn]\n", display->raycast->assets->ceiling->pixels);
 	// mlx_mouse_hook(display->mlx, &mouse_hook, display);
 
 
@@ -80,5 +83,7 @@ int	main(int ac, char **av)
 	// mlx_delete_texture(display->raycast->asset->wall_south);
 	// mlx_delete_texture(display->raycast->asset->wall_west);
 	
+	
+	// mlx_delete_texture(display->raycast->assets->img);
 	free_and_exit(mylloc);
 }
