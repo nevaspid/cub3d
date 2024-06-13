@@ -6,7 +6,7 @@
 #    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/06/09 15:06:29 by oliove           ###   ########.fr        #
+#    Updated: 2024/06/13 01:25:40 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS		:=	cub3d.c \
 				raycasting/move_player_directions.c \
 				raycasting/draw_primitive.c \
 				raycasting/draw.c \
+				srcs/moves/direction.c \
 
 OBJ_DIR		:=	.objs
 OBJS		:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -47,7 +48,7 @@ OBJS		:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 BREW		:=	$(shell brew --prefix)
 CC			:=	gcc
-FLAGS		:=	-Wall -Wextra -Werror -g3 -fsanitize=address
+FLAGS		:=	-Wall -Wextra -Werror -g3 #-fsanitize=address
 RM			:=	rm -rf
 
 $(OBJ_DIR)/%.o :%.c

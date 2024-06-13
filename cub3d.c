@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/10 05:37:04 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/13 03:40:54 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,31 @@ int	main(int ac, char **av)
 	mlx_image_to_window(display->mlx,display->m->player, display->m->p_x * tile_size, display->m->p_y * tile_size); 
 	mlx_image_to_window(display->mlx, display->raycast->ray->img,0,0);
 	mlx_loop_hook(display->mlx, &player_angle, display);
+	// mlx_mouse_hook(display->mlx, &mouse_hook, display);
+
+
+
+
+
+
+
+	////////////////////////////test///////////////////////////////
+	init_mouse(display,display->raycast->mouse);
+
+
+
+
+
+
+
+	
 	mlx_loop(display->mlx);
+	// a mettre dans une fonction
+
+	mlx_delete_texture(display->raycast->asset->wall_east);
+	// mlx_delete_texture(display->raycast->asset->wall_north);
+	// mlx_delete_texture(display->raycast->asset->wall_south);
+	// mlx_delete_texture(display->raycast->asset->wall_west);
+	
 	free_and_exit(mylloc);
 }

@@ -6,13 +6,28 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/08 06:57:58 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/13 03:54:06 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
 ////// refactory !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1111
+
+
+
+/*
+ __            __    __                                    __  __                     
+/  |          /  |  /  |                                  /  |/  |                    
+$$/  _______  $$/  _$$ |_          _____  ____    ______  $$ |$$ |  ______    _______ 
+/  |/       \ /  |/ $$   |        /     \/    \  /      \ $$ |$$ | /      \  /       |
+$$ |$$$$$$$  |$$ |$$$$$$/         $$$$$$ $$$$  | $$$$$$  |$$ |$$ |/$$$$$$  |/$$$$$$$/ 
+$$ |$$ |  $$ |$$ |  $$ | __       $$ | $$ | $$ | /    $$ |$$ |$$ |$$ |  $$ |$$ |      
+$$ |$$ |  $$ |$$ |  $$ |/  |      $$ | $$ | $$ |/$$$$$$$ |$$ |$$ |$$ \__$$ |$$ \_____ 
+$$ |$$ |  $$ |$$ |  $$  $$/______ $$ | $$ | $$ |$$    $$ |$$ |$$ |$$    $$/ $$       |
+$$/ $$/   $$/ $$/    $$$$//      |$$/  $$/  $$/  $$$$$$$/ $$/ $$/  $$$$$$/   $$$$$$$/ 
+                          $$$$$$/                                                     
+*/
 
 void init_malloc(t_mem_alloc *mylloc, t_display *display)
 {
@@ -23,6 +38,8 @@ void init_malloc(t_mem_alloc *mylloc, t_display *display)
 	display->raycast->player = mem_alloc(mylloc,sizeof(t_player));
 	display->raycast->ray = mem_alloc(mylloc,sizeof(t_ray));
 	display->raycast->camera = mem_alloc(mylloc,sizeof(t_camera));
+    display->raycast->asset = mem_alloc(mylloc,sizeof(t_assets));
+    display->raycast->mouse = mem_alloc(mylloc,sizeof(t_mouse));
     
 }
 
@@ -137,6 +154,54 @@ void init_struct_camera(t_camera *camera)
     
 }
 
+
+/*
+ ______            __    __             ______                                  __              
+/      |          /  |  /  |           /      \                                /  |             
+$$$$$$/  _______  $$/  _$$ |_         /$$$$$$  |  _______  _______   ______   _$$ |_    _______ 
+  $$ |  /       \ /  |/ $$   |        $$ |__$$ | /       |/       | /      \ / $$   |  /       |
+  $$ |  $$$$$$$  |$$ |$$$$$$/         $$    $$ |/$$$$$$$//$$$$$$$/ /$$$$$$  |$$$$$$/  /$$$$$$$/ 
+  $$ |  $$ |  $$ |$$ |  $$ | __       $$$$$$$$ |$$      \$$      \ $$    $$ |  $$ | __$$      \ 
+ _$$ |_ $$ |  $$ |$$ |  $$ |/  |      $$ |  $$ | $$$$$$  |$$$$$$  |$$$$$$$$/   $$ |/  |$$$$$$  |
+/ $$   |$$ |  $$ |$$ |  $$  $$/______ $$ |  $$ |/     $$//     $$/ $$       |  $$  $$//     $$/ 
+$$$$$$/ $$/   $$/ $$/    $$$$//      |$$/   $$/ $$$$$$$/ $$$$$$$/   $$$$$$$/    $$$$/ $$$$$$$/  
+                              $$$$$$/                                                           
+*/
+
+void init_asset(t_display *display, t_assets *asset)
+{
+    (void)display;
+    asset->wall_east = mlx_load_png("./srcs/assets/burger_shop.png");
+    if(!asset->wall_east)
+        printf("Error loading asset East\n");
+    
+    // asset->wall_west = mlx_load_png("./srcs/assets/open.png");
+    // if(!asset->wall_west)
+    //     printf("Error loading asset West\n");
+    // asset->wall_north = mlx_load_png("./srcs/assets/creativity.png");
+    // if(!asset->wall_north)
+    //     printf("Error loading asset North\n");
+    // asset->wall_south = mlx_load_png("./srcs/assets/fake_news.png");
+    // if(!asset->wall_south)
+    //     printf("Error loading asset South\n");
+}
+
+/*
+ __            __    __            __                                                   
+/  |          /  |  /  |          /  |                                                  
+$$/  _______  $$/  _$$ |_         $$ |  ______   __    __   ______    ______    _______ 
+/  |/       \ /  |/ $$   |        $$ | /      \ /  |  /  | /      \  /      \  /       |
+$$ |$$$$$$$  |$$ |$$$$$$/         $$ | $$$$$$  |$$ |  $$ |/$$$$$$  |/$$$$$$  |/$$$$$$$/ 
+$$ |$$ |  $$ |$$ |  $$ | __       $$ | /    $$ |$$ |  $$ |$$    $$ |$$ |  $$/ $$      \ 
+$$ |$$ |  $$ |$$ |  $$ |/  |      $$ |/$$$$$$$ |$$ \__$$ |$$$$$$$$/ $$ |       $$$$$$  |
+$$ |$$ |  $$ |$$ |  $$  $$/______ $$ |$$    $$ |$$    $$ |$$       |$$ |      /     $$/ 
+$$/ $$/   $$/ $$/    $$$$//      |$$/  $$$$$$$/  $$$$$$$ | $$$$$$$/ $$/       $$$$$$$/  
+                          $$$$$$/               /  \__$$ |                              
+                                                $$    $$/                               
+                                                 $$$$$$/                                
+*/
+
+
 void init_layers(t_display *data)
 {
     t_raycast *raycast;
@@ -154,7 +219,29 @@ void init_compass(t_compass *cmp)
    cmp->needle_length = cmp->radius * 0.8;
 }
 
+/*
+ _____  ____    ______   __    __   _______   ______  
+/     \/    \  /      \ /  |  /  | /       | /      \ 
+$$$$$$ $$$$  |/$$$$$$  |$$ |  $$ |/$$$$$$$/ /$$$$$$  |
+$$ | $$ | $$ |$$ |  $$ |$$ |  $$ |$$      \ $$    $$ |
+$$ | $$ | $$ |$$ \__$$ |$$ \__$$ | $$$$$$  |$$$$$$$$/ 
+$$ | $$ | $$ |$$    $$/ $$    $$/ /     $$/ $$       |
+$$/  $$/  $$/  $$$$$$/   $$$$$$/  $$$$$$$/   $$$$$$$/ 
+*/
 
+void init_mouse(t_display *display,t_mouse *mouse)
+{
+    mouse->x = display->raycast->player->pos.x;
+    // mouse->y = display->raycast->player->pos.y;
+    mouse->x_old = 0;
+    // mouse->y_old = 0;
+    // mouse->cursor = mlx_load_png("./srcs/assets/cursor.png");
+    // if(!mouse->cursor)
+        // printf("Error loading cursor\n");
+        mlx_set_mouse_pos(display->mlx, (int32_t)display->raycast->player->pos.x, (int32_t)display->raycast->player->pos.y);
+    // mlx_get_mouse_pos(display->mlx,&mouse->x, );
+    printf("Mouse == [%d] [%d]\n",mouse->x, mouse->y );
+}
 
 /*
   _______   ______   _____  ____   _____  ____    ______    ______   ______  
@@ -185,6 +272,18 @@ void init_camera(t_display *display, t_camera *camera)
     camera->plane.y = player->dir.y * tan(angle_rad(camera->angle_cam));
 }
     
+/*
+ __            __    __                            __                                         __     
+/  |          /  |  /  |                          /  |                                       /  |    
+$$/  _______  $$/  _$$ |_      __     __  ______  $$ | __    __   ______           _______  _$$ |_   
+/  |/       \ /  |/ $$   |    /  \   /  |/      \ $$ |/  |  /  | /      \         /       |/ $$   |  
+$$ |$$$$$$$  |$$ |$$$$$$/     $$  \ /$$/ $$$$$$  |$$ |$$ |  $$ |/$$$$$$  |       /$$$$$$$/ $$$$$$/   
+$$ |$$ |  $$ |$$ |  $$ | __    $$  /$$/  /    $$ |$$ |$$ |  $$ |$$    $$ |       $$      \   $$ | __ 
+$$ |$$ |  $$ |$$ |  $$ |/  |    $$ $$/  /$$$$$$$ |$$ |$$ \__$$ |$$$$$$$$/         $$$$$$  |  $$ |/  |
+$$ |$$ |  $$ |$$ |  $$  $$/______$$$/   $$    $$ |$$ |$$    $$/ $$       |______ /     $$/   $$  $$/ 
+$$/ $$/   $$/ $$/    $$$$//      |$/     $$$$$$$/ $$/  $$$$$$/   $$$$$$$//      |$$$$$$$/     $$$$/  
+                          $$$$$$/                                        $$$$$$/                     
+*/
 
 void init_value_st(t_display *display)
 {
@@ -193,6 +292,7 @@ void init_value_st(t_display *display)
     init_player(display, display->raycast->player);
     init_camera(display, display->raycast->camera);
     init_compass(display->raycast->compass);
+    init_asset(display, display->raycast->asset);
     // Pour plus tard, j'y metterai toute les alloc
 
 }

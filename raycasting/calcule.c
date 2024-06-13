@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:22:10 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/10 09:06:49 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/13 03:48:56 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,51 @@ double distance(t_vec_d a, t_vec_d b)
     return sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2));
 }
 
-// t_direction getRay_direction(float x0, float y0, float x1, float y1) 
-// {
-//     float dx;
-//     float dy;
+uint8_t get_pixel(t_display *display, mlx_texture_t *texture,int x, int y)
+{
+    (void)display;
+    uint8_t *color;
+    int i;
+    
+    color = 0;
+    
+    color = color + (y * texture->height + x * (texture->bytes_per_pixel / 8));
 
-   
-//     dy = y1 - y0;
-//     dx = x1 - x0;
-//     if (fabs(dx) > fabs(dy)) {
-//         if (dx > 0) {
-//             return EAST;
-//         } else {
-//             return WEST;
-//         }
-//     }
-//     else {
-//         if (dy > 0) {
-//             return SOUTH;
-//         } else {
-//             return NORTH;
-//         }
-//     }
-// }
 
+    // color = texture->addr + (y * texture->height + x * (texture->bytes_per_pixel / 8));
+    i = *(unsigned int *)color;
+    return (i);
+
+}
+
+
+u_int32_t	get_rgba_tex(u_int32_t color)
+{
+	u_int8_t	r;
+	u_int8_t	g;
+	u_int8_t	b;
+	u_int8_t	a;
+
+	a = color >> 24;
+	r = color >> 16;
+	g = color >> 8;
+	b = color;
+	return (r << 8 | g << 16 | b << 24 | a << 0);
+}
+
+
+// u_int32_t	get_color(int x, int y, mlx_texture_t *img)
+u_int32_t	get_color(int x, int y, mlx_image_t *img)
+{
+	uint32_t	*pixel;
+	u_int32_t	color;
+
+	pixel = NULL;
+	pixel = (uint32_t *)(img->pixels + (x + y * (img->height * img->width) * sizeof(uint32_t)));
+	color = *pixel;
+	return (get_rgba_tex(color));
+	return (0);
+}
 
 // void render_floor(t_display *d, t_ray *ray, t_player *player)
 // {

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/10 09:08:48 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/13 03:53:13 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,6 +264,51 @@ typedef struct s_grille // rename en grid
 }	t_grille;
 
 /*
+  ______                                  __              
+ /      \                                /  |             
+/$$$$$$  |  _______  _______   ______   _$$ |_    _______ 
+$$ |__$$ | /       |/       | /      \ / $$   |  /       |
+$$    $$ |/$$$$$$$//$$$$$$$/ /$$$$$$  |$$$$$$/  /$$$$$$$/ 
+$$$$$$$$ |$$      \$$      \ $$    $$ |  $$ | __$$      \ 
+$$ |  $$ | $$$$$$  |$$$$$$  |$$$$$$$$/   $$ |/  |$$$$$$  |
+$$ |  $$ |/     $$//     $$/ $$       |  $$  $$//     $$/ 
+$$/   $$/ $$$$$$$/ $$$$$$$/   $$$$$$$/    $$$$/ $$$$$$$/  
+*/
+
+
+typedef struct s_assets
+{
+	mlx_texture_t	*wall_north;
+	mlx_texture_t	*wall_south;
+	mlx_texture_t	*wall_east;
+	mlx_texture_t	*wall_west;
+	mlx_image_t		*wall_east_img;
+	
+}	t_assets;
+
+/*
+ _____  ____    ______   __    __   _______   ______  
+/     \/    \  /      \ /  |  /  | /       | /      \ 
+$$$$$$ $$$$  |/$$$$$$  |$$ |  $$ |/$$$$$$$/ /$$$$$$  |
+$$ | $$ | $$ |$$ |  $$ |$$ |  $$ |$$      \ $$    $$ |
+$$ | $$ | $$ |$$ \__$$ |$$ \__$$ | $$$$$$  |$$$$$$$$/ 
+$$ | $$ | $$ |$$    $$/ $$    $$/ /     $$/ $$       |
+$$/  $$/  $$/  $$$$$$/   $$$$$$/  $$$$$$$/   $$$$$$$/ 
+*/
+
+typedef struct mouse
+{
+	int32_t x;
+	int32_t y;
+	int32_t x_old;
+	int32_t y_old;
+	mlx_texture_t *cursor;
+}	t_mouse;
+
+
+
+
+/*
                                                               __
                                                              /  |
   ______   ______   __    __   _______   ______    _______  _$$ |_
@@ -279,12 +324,16 @@ $$/       $$$$$$$/  $$$$$$$ | $$$$$$$/  $$$$$$$/ $$$$$$$/     $$$$/
 */
 
 
+
+
 typedef struct s_raycast
 {
     t_player    *player;
     t_compass   *compass;
     t_ray       *ray;
 	t_camera	*camera;
+	t_assets	*asset;
+	t_mouse		*mouse;
 }               t_raycast;
 
 /*commentaire pour comit un msg*/

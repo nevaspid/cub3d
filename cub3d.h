@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/10 09:14:45 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/13 03:49:07 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <math.h>
+#include <stdint.h>
+
+
+
 
 /*-------------DEFINES-------------*/
 
@@ -75,7 +79,6 @@ typedef struct s_display
 }	t_display;
 
 /*------------raycasting-------------*/
-
 void	move_player(mlx_key_data_t key, void *param);
 void	player_angle(void *param);
 void	move_forwards(t_display *d);
@@ -97,7 +100,49 @@ void 	draw_bg(t_display *display, mlx_image_t *img);
 void 	draw_wall_orientation(t_display *display, t_ray *ray, int x);
 void 	draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color);
 void 	move_rotated(mlx_key_data_t key, void *param);
-int check_next_move(t_display *d,double x, double y, t_direction dir);
+int 	check_next_move(t_display *d,double x, double y, t_direction dir);
+void 	init_asset(t_display *display, t_assets *asset);
+
+
+
+
+
+/*
+ ________                     __      __                     
+/        |                   /  |    /  |                    
+$$$$$$$$/______    _______  _$$ |_   $$/  _______    ______  
+   $$ | /      \  /       |/ $$   |  /  |/       \  /      \ 
+   $$ |/$$$$$$  |/$$$$$$$/ $$$$$$/   $$ |$$$$$$$  |/$$$$$$  |
+   $$ |$$    $$ |$$      \   $$ | __ $$ |$$ |  $$ |$$ |  $$ |
+   $$ |$$$$$$$$/  $$$$$$  |  $$ |/  |$$ |$$ |  $$ |$$ \__$$ |
+   $$ |$$       |/     $$/   $$  $$/ $$ |$$ |  $$ |$$    $$ |
+   $$/  $$$$$$$/ $$$$$$$/     $$$$/  $$/ $$/   $$/  $$$$$$$ |
+                                                   /  \__$$ |
+                                                   $$    $$/ 
+                                                    $$$$$$/  
+*/
+
+uint8_t get_pixel(t_display *display, mlx_texture_t *texture,int x, int y);
+void mouse_hook(void *param);
+void init_mouse(t_display *display,t_mouse *mouse);
+
+u_int32_t	get_color(int x, int y, mlx_image_t *img);
+// u_int32_t	get_color(int x, int y, mlx_texture_t *img);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*------------memory-alloc-------------*/
 
 void	*mem_alloc(t_mem_alloc *lst, size_t size);
