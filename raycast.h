@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/13 04:02:34 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/13 04:04:56 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,15 +276,15 @@ $$/   $$/ $$$$$$$/ $$$$$$$/   $$$$$$$/    $$$$/ $$$$$$$/
 */
 
 
-typedef struct s_assets
-{
-	mlx_texture_t	*wall_north;
-	mlx_texture_t	*wall_south;
-	mlx_texture_t	*wall_east;
-	mlx_texture_t	*wall_west;
-	mlx_image_t		*wall_east_img;
+// typedef struct s_assets
+// {
+// 	mlx_texture_t	*wall_north;
+// 	mlx_texture_t	*wall_south;
+// 	mlx_texture_t	*wall_east;
+// 	mlx_texture_t	*wall_west;
+// 	mlx_image_t		*wall_east_img;
 	
-}	t_assets;
+// }	t_assets;
 
 /*
  _____  ____    ______   __    __   _______   ______  

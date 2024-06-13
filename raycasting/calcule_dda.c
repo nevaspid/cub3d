@@ -295,7 +295,7 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
             ray->angle += angle_rad(FOV) / (WIDTH / 2);
 
         //////////////////test/////////////////////
-        printf("Pixel x : %d\n", get_color(x, HEIGHT / 2, display->raycast->asset->wall_east_img));
+        // printf("Pixel x : %d\n", get_color(x, HEIGHT / 2, display->raycast->asset->wall_east_img));
 
         x++;
    

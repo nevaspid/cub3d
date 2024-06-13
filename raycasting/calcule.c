@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:22:10 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/13 03:58:53 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/13 04:15:05 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y)
 	uint32_t	*pixel;
 	u_int32_t	color;
 
+	printf("%p\n", img->pixels);
 	pixel = NULL;
 	pixel = (uint32_t *)(img->pixels + (x + y * display->m->tile_size) * sizeof(uint32_t));
 	color = *pixel;
@@ -148,33 +149,33 @@ uint8_t get_pixel(t_display *display, mlx_texture_t *texture,int x, int y)
 }
 
 
-u_int32_t	get_rgba_tex(u_int32_t color)
-{
-	u_int8_t	r;
-	u_int8_t	g;
-	u_int8_t	b;
-	u_int8_t	a;
+// u_int32_t	get_rgba_tex(u_int32_t color)
+// {
+// 	u_int8_t	r;
+// 	u_int8_t	g;
+// 	u_int8_t	b;
+// 	u_int8_t	a;
 
-	a = color >> 24;
-	r = color >> 16;
-	g = color >> 8;
-	b = color;
-	return (r << 8 | g << 16 | b << 24 | a << 0);
-}
+// 	a = color >> 24;
+// 	r = color >> 16;
+// 	g = color >> 8;
+// 	b = color;
+// 	return (r << 8 | g << 16 | b << 24 | a << 0);
+// }
 
 
 // u_int32_t	get_color(int x, int y, mlx_texture_t *img)
-u_int32_t	get_color(int x, int y, mlx_image_t *img)
-{
-	uint32_t	*pixel;
-	u_int32_t	color;
+// u_int32_t	get_color(int x, int y, mlx_image_t *img)
+// {
+// 	uint32_t	*pixel;
+// 	u_int32_t	color;
 
-	pixel = NULL;
-	pixel = (uint32_t *)(img->pixels + (x + y * (img->height * img->width) * sizeof(uint32_t)));
-	color = *pixel;
-	return (get_rgba_tex(color));
-	return (0);
-}
+// 	pixel = NULL;
+// 	pixel = (uint32_t *)(img->pixels + (x + y * (img->height * img->width) * sizeof(uint32_t)));
+// 	color = *pixel;
+// 	return (get_rgba_tex(color));
+// 	return (0);
+// }
 
 // void render_floor(t_display *d, t_ray *ray, t_player *player)
 // {

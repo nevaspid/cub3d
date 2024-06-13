@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/13 04:01:30 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/13 04:14:03 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,9 @@ uint8_t get_pixel(t_display *display, mlx_texture_t *texture,int x, int y);
 void mouse_hook(void *param);
 void init_mouse(t_display *display,t_mouse *mouse);
 
-u_int32_t	get_color(int x, int y, mlx_image_t *img);
+u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y);
+// u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y);
+// u_int32_t	get_rgba_tex(u_int32_t color);
 // u_int32_t	get_color(int x, int y, mlx_texture_t *img);
 
 
@@ -145,10 +147,10 @@ u_int32_t	get_color(int x, int y, mlx_image_t *img);
 
 
 
-void init_asset(t_assets *asset);
+// void init_asset(t_assets *asset);
 void  load_asset(t_display *display,t_assets *asset, char *path);
 u_int32_t	get_rgba_tex(u_int32_t color);
-u_int32_t	get_color(t_display *display,mlx_image_t *img , int x, int y);
+// u_int32_t	get_color(t_display *display,mlx_image_t *img , int x, int y);
 
 /*------------memory-alloc-------------*/
 

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/13 04:03:10 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/13 04:07:14 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void init_malloc(t_mem_alloc *mylloc, t_display *display)
 	display->raycast->ray = mem_alloc(mylloc,sizeof(t_ray));
 	display->raycast->camera = mem_alloc(mylloc,sizeof(t_camera));
     display->raycast->assets = mem_alloc(mylloc,sizeof(t_assets));
-    display->raycast->assets->portal = mem_alloc(mylloc,sizeof(t_img_portal));
+    // display->raycast->assets->portal = mem_alloc(mylloc,sizeof(t_img_portal));
     display->raycast->asset = mem_alloc(mylloc,sizeof(t_assets));
     display->raycast->mouse = mem_alloc(mylloc,sizeof(t_mouse));
     
@@ -173,9 +173,10 @@ $$$$$$/ $$/   $$/ $$/    $$$$//      |$$/   $$/ $$$$$$$/ $$$$$$$/   $$$$$$$/    
 void init_asset(t_display *display, t_assets *asset)
 {
     (void)display;
-    asset->wall_east = mlx_load_png("./srcs/assets/burger_shop.png");
-    if(!asset->wall_east)
-        printf("Error loading asset East\n");
+    (void)asset;
+    // asset->wall_east = mlx_load_png("./srcs/assets/burger_shop.png");
+    // if(!asset->wall_east)
+    //     printf("Error loading asset East\n");
     
     // asset->wall_west = mlx_load_png("./srcs/assets/open.png");
     // if(!asset->wall_west)
@@ -287,19 +288,19 @@ $$/  $$$$$$/   $$$$$$$/  $$$$$$$//      |$$$$/   $$$$$$$/ $$/   $$/    $$$$/   $
                                  $$$$$$/                                                                    
 */
 
-void load_texture(t_display *display, t_img_portal *portal)
-{
-    (void)display;
-    portal->tile_case_x = 32;
-    portal->tile_case_y = 32;
-    portal->img_portal_1 = mlx_load_png("srcs/assets/portal/portal_1.png");
-    portal->img_portal_2 = mlx_load_png("srcs/assets/portal/portal_2.png");
-    portal->img_portal_3 = mlx_load_png("srcs/assets/portal/portal_3.png");
-    portal->img_portal_4 = mlx_load_png("srcs/assets/portal/portal_4.png");
-    portal->img_portal_5 = mlx_load_png("srcs/assets/portal/portal_5.png");
-    portal->img_portal_6 = mlx_load_png("srcs/assets/portal/portal_6.png");
+// void load_texture(t_display *display, t_img_portal *portal)
+// {
+//     (void)display;
+//     portal->tile_case_x = 32;
+//     portal->tile_case_y = 32;
+//     portal->img_portal_1 = mlx_load_png("srcs/assets/portal/portal_1.png");
+//     portal->img_portal_2 = mlx_load_png("srcs/assets/portal/portal_2.png");
+//     portal->img_portal_3 = mlx_load_png("srcs/assets/portal/portal_3.png");
+//     portal->img_portal_4 = mlx_load_png("srcs/assets/portal/portal_4.png");
+//     portal->img_portal_5 = mlx_load_png("srcs/assets/portal/portal_5.png");
+//     portal->img_portal_6 = mlx_load_png("srcs/assets/portal/portal_6.png");
     
-}
+// }
 /*pour commit*/
 void init_value_st(t_display *display)
 {
