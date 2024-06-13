@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 14:56:32 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/12 06:43:14 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/13 23:55:25 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ void draw_bg(t_display *display, mlx_image_t *img)
     y = 0;
     while (y <= HEIGHT)
     {
-        uint32_t color;
+        // uint32_t color;
         x = 0;
-        printf("y [%d]\n", y);
+        // printf("y [%d]\n", y);
         while (x <= WIDTH)
         {
-            printf("x [%d]\n", x);
+            // printf("x [%d]\n", x);
             if (y < HEIGHT / 2){
                 
-                color = get_color(display,display->raycast->assets->ceiling , x, y);
-                mlx_put_pixel(img, x, y, color);
+                // color = get_color(display,display->raycast->assets->ceiling , x, y);
+                mlx_put_pixel(img, x, y, MY_BLACK);
             }
             else
                 mlx_put_pixel(img, x, y, MY_RED);
@@ -55,6 +55,7 @@ void draw_wall_orientation(t_display *display, t_ray *ray,int x)
             draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, ORANGE);
         else 
             draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, BLUE);
-    } 
+    }
+    // get_tex_scale(display, display->raycast->assets->ceiling, x, 1);
 }
 

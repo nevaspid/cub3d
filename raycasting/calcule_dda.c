@@ -291,6 +291,7 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
             draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
                                                 (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, 0x800080);
         draw_wall_orientation(display, ray, x);
+        
         if (x % 2 == 0)
             ray->angle += angle_rad(FOV) / (WIDTH / 2);
 

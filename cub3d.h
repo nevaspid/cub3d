@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/13 04:14:03 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/13 23:50:06 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 
 
 
-
 /*-------------DEFINES-------------*/
 
 // # define PI 3.14159265358979323846
@@ -35,6 +34,7 @@
 # define SPEED 0.2f
 # define ROTATE 0.04f
 # define NB_RAYS 50
+
 
 /*-------------STRUCTS-------------*/
 
@@ -124,11 +124,15 @@ $$$$$$$$/______    _______  _$$ |_   $$/  _______    ______
                                                     $$$$$$/  
 */
 
-uint8_t get_pixel(t_display *display, mlx_texture_t *texture,int x, int y);
+uint8_t get_pixel(t_display *display, mlx_image_t *texture,int x, int y);
+// uint8_t get_pixel(t_display *display, mlx_texture_t *texture,int x, int y);
 void mouse_hook(void *param);
 void init_mouse(t_display *display,t_mouse *mouse);
 
-u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y);
+u_int8_t get_tex_scale(t_display *display, mlx_image_t *texture, int x, int y);
+// u_int8_t get_tex_scale(t_display *display, mlx_texture_t *texture, int x, int y);
+
+// u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y);
 // u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y);
 // u_int32_t	get_rgba_tex(u_int32_t color);
 // u_int32_t	get_color(int x, int y, mlx_texture_t *img);

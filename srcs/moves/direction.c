@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 01:10:18 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/13 03:23:31 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/13 20:32:51 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void mouse_hook(void *param)
     mlx_get_mouse_pos(display->mlx , &x, &y);
     
     mlx_set_mouse_pos(display->mlx, (int32_t)display->raycast->player->pos.x, (int32_t)display->raycast->player->pos.y);
-    if(mlx_is_mouse_down(display->mlx, 1))
-        printf("Pixel == [%d] [%d]\n",x, y );
+    // if(mlx_is_mouse_down(display->mlx, 1))
+        // printf("Pixel == [%d] [%d]\n",x, y );
     // mlx_set_mouse_pos(display->mlx, (int32_t)WIDTH / 2, (int32_t)HEIGHT / 2);
-    printf("Pixel == [%d] [%d]\n",x, y );
+    // printf("Pixel == [%d] [%d]\n",x, y );
     
     
 
