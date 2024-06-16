@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/15 18:16:37 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/16 22:06:37 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,13 +172,14 @@ $$$$$$/ $$/   $$/ $$/    $$$$//      |$$/   $$/ $$$$$$$/ $$$$$$$/   $$$$$$$/    
 
 void init_asset(t_display *display, t_assets *asset)
 {
-    (void)display;
-    (void)asset;
+    // (void)display;
+    // (void)asset;
     asset->img_wall_east = mlx_load_png("./srcs/assets/burger_shop.png");
     if(!asset->img_wall_east)
         printf("Error loading asset East\n");
+    // asset->ceiling =  mlx_new_image(display->mlx, asset->img_wall_east->width, asset->img_wall_east->height);
     asset->ceiling = mlx_texture_to_image(display->mlx, asset->img_wall_east);
-    // mlx_delete_texture(asset->img_wall_east);  
+    mlx_delete_texture(asset->img_wall_east);  
     // asset->wall_west = mlx_load_png("./srcs/assets/open.png");
     // if(!asset->wall_west)
     //     printf("Error loading asset West\n");
@@ -310,7 +311,7 @@ void init_value_st(t_display *display)
     init_player(display, display->raycast->player);
     init_camera(display, display->raycast->camera);
     init_compass(display->raycast->compass);
-    // init_asset(display, display->raycast->asset);
+    init_asset(display, display->raycast->asset);
     // Pour plus tard, j'y metterai toute les alloc
 
 }

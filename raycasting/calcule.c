@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:22:10 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/15 18:16:06 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/16 22:46:34 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y)
 	uint32_t	*pixel;
 	u_int32_t	color;
 
+
 	// printf("%d\n", *img->pixels);
 	pixel = NULL;
 	pixel = (uint32_t *)(img->pixels + (x + y * display->m->tile_size) * sizeof(uint32_t));
@@ -131,6 +132,30 @@ u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y)
 	return (get_rgba_tex(color));
 	// return (0);
 }
+
+// uint8_t* get_image_color_pixel(mlx_texture_t* texture)
+void get_image_color_pixel(mlx_texture_t* texture, t_display *mlx)
+{
+	mlx_image_t* image;
+	// mlx_image_t* image = mlx_new_image(mlx->mlx, texture->width, texture->height);
+	mlx->raycast->asset->ceiling = mlx_new_image(mlx->mlx, texture->width, texture->height);
+	image = mlx->raycast->asset->ceiling;
+	if (image == NULL)
+		return ;
+
+	uint8_t* pixelx;
+	uint8_t* pixeli;
+	for (uint32_t i = 0; i < texture->height; i++)
+	{
+		pixelx = &texture->pixels[(i * texture->width) * texture->bytes_per_pixel];
+		pixeli = &image->pixels[(i * image->width) * texture->bytes_per_pixel];
+		// memmove(pixeli, pixelx, texture->width * texture->bytes_per_pixel);
+		printf("pixeli [%d] pixelx [%d]\n", *pixeli, *pixelx);
+	}
+	// return (image);
+}
+
+
 // uint8_t get_pixel(t_display *display, mlx_image_t *texture, int x, int y)
 // {
 //     (void)display;

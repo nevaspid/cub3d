@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/15 18:11:37 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/16 22:44:11 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ void mouse_hook(void *param);
 void init_mouse(t_display *display,t_mouse *mouse);
 
 u_int8_t get_tex_scale(t_display *display, mlx_image_t *texture, int x, int y);
+u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y);
+void get_image_color_pixel(mlx_texture_t* texture, t_display *display);
 // u_int8_t get_tex_scale(t_display *display, mlx_texture_t *texture, int x, int y);
 
 // u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y);

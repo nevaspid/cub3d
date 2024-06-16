@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/15 18:20:06 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/16 22:03:41 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int ac, char **av)
 	mlx_image_to_window(display->mlx, display->raycast->ray->img,0,0);
 	mlx_loop_hook(display->mlx, &player_angle, display);
 	
-	--mlx_texture_to_image(display->mlx, display->raycast->asset->img_wall_east);
+	// --mlx_texture_to_image(display->mlx, display->raycast->asset->img_wall_east);
 	// load_asset(display, display->raycast->assets, "srcs/assets/portal/Space_Background/Nebula Aqua-Pink.png");
 	// mlx_image_to_window(display->mlx, display->raycast->assets->ceiling, 0, 0);
 	// printf("ceiling [%hhn]\n", display->raycast->assets->ceiling->pixels);
@@ -79,7 +79,7 @@ int	main(int ac, char **av)
 	mlx_loop(display->mlx);
 	// a mettre dans une fonction
 
-    mlx_delete_texture(display->raycast->asset->img_wall_east);  
+    // mlx_delete_texture(display->raycast->asset->img_wall_east);  
 	// mlx_delete_texture(display->raycast->asset->wall_east);
 	// mlx_delete_texture(display->raycast->asset->wall_north);
 	// mlx_delete_texture(display->raycast->asset->wall_south);
