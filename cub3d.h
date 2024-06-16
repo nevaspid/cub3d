@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/13 23:50:06 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/15 18:11:37 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,8 @@ $$$$$$$$/______    _______  _$$ |_   $$/  _______    ______
                                                     $$$$$$/  
 */
 
-uint8_t get_pixel(t_display *display, mlx_image_t *texture,int x, int y);
-// uint8_t get_pixel(t_display *display, mlx_texture_t *texture,int x, int y);
+// uint8_t get_pixel(t_display *display, mlx_image_t *texture,int x, int y);
+uint8_t get_pixel(t_display *display, mlx_texture_t *texture,int x, int y);
 void mouse_hook(void *param);
 void init_mouse(t_display *display,t_mouse *mouse);
 

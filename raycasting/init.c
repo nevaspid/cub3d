@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/13 23:52:20 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/15 18:16:37 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ void init_asset(t_display *display, t_assets *asset)
     if(!asset->img_wall_east)
         printf("Error loading asset East\n");
     asset->ceiling = mlx_texture_to_image(display->mlx, asset->img_wall_east);
-    mlx_delete_texture(asset->img_wall_east);  
+    // mlx_delete_texture(asset->img_wall_east);  
     // asset->wall_west = mlx_load_png("./srcs/assets/open.png");
     // if(!asset->wall_west)
     //     printf("Error loading asset West\n");

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:22:10 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/13 23:53:54 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/15 18:16:06 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,33 +131,16 @@ u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y)
 	return (get_rgba_tex(color));
 	// return (0);
 }
-uint8_t get_pixel(t_display *display, mlx_image_t *texture,int x, int y)
-{
-    (void)display;
-    uint8_t *color;
-    int i;
-    
-    color = 0;
-    
-    color = color + (y * texture->height + x * (*texture->pixels / 8));
-
-
-    // color = texture->addr + (y * texture->height + x * (texture->bytes_per_pixel / 8));
-    i = *(unsigned int *)color;
-    return (i);
-
-}
-// }
-
-// uint8_t get_pixel(t_display *display, mlx_texture_t *texture,int x, int y)
+// uint8_t get_pixel(t_display *display, mlx_image_t *texture, int x, int y)
 // {
 //     (void)display;
 //     uint8_t *color;
 //     int i;
     
+// 	printf("%p\n", texture->pixels);
 //     color = 0;
     
-//     color = color + (y * texture->height + x * (texture->bytes_per_pixel / 8));
+//     color = color + (y * texture->height + x * (*texture->pixels / 8));
 
 
 //     // color = texture->addr + (y * texture->height + x * (texture->bytes_per_pixel / 8));
@@ -165,28 +148,46 @@ uint8_t get_pixel(t_display *display, mlx_image_t *texture,int x, int y)
 //     return (i);
 
 // }
+// }
+
+uint8_t get_pixel(t_display *display, mlx_texture_t *texture,int x, int y)
+{
+    (void)display;
+    uint8_t *color;
+    int i;
+    
+	printf("texture->pixels == [%d]\n", texture->bytes_per_pixel);
+    color = 0;
+    color = color + (y * texture->height + x * (texture->bytes_per_pixel / 8));
+
+
+    // color = texture->addr + (y * texture->height + x * (texture->bytes_per_pixel / 8));
+    i = *(unsigned int *)color;
+    return (i);
+
+}
 // size texture x, y
 // size wall x, y
 // x, y
 
-u_int8_t get_tex_scale(t_display *display, mlx_image_t *texture, int x, int y)
-{
-	(void)display;
+// u_int8_t get_tex_scale(t_display *display, mlx_image_t *texture, int x, int y)
+// {
+// 	(void)display;
 	
-	u_int8_t scale_x;
-	u_int8_t scale_y;
+// 	u_int8_t scale_x;
+// 	u_int8_t scale_y;
 	
 
 	
-	// printf("scale_x [%d] scale_y [%d]\n", (x * texture->width) / display->m->tile_size,(y * texture->height) / display->m->tile_size);
-	scale_x = (x * texture->width) / display->m->tile_size;
-	scale_y = (y * texture->height) / display->m->tile_size;
+// 	// printf("scale_x [%d] scale_y [%d]\n", (x * texture->width) / display->m->tile_size,(y * texture->height) / display->m->tile_size);
+// 	scale_x = (x * texture->width) / display->m->tile_size;
+// 	scale_y = (y * texture->height) / display->m->tile_size;
 	
 	
-	if(scale_x > 0 && scale_x < texture->width && scale_y > 0  && scale_y < texture->height)
-		return (get_pixel(display, texture, scale_x, scale_y));
-	return (0);
-}
+// 	if(scale_x > 0 && scale_x < texture->width && scale_y > 0  && scale_y < texture->height)
+// 		return (get_pixel(display, texture, scale_x, scale_y));
+// 	return (0);
+// }
 // u_int8_t get_tex_scale(t_display *display, mlx_texture_t *texture, int x, int y)
 // {
 // 	(void)display;
