@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:22:10 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/16 22:46:34 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/17 15:48:03 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,9 @@ void get_image_color_pixel(mlx_texture_t* texture, t_display *mlx)
 {
 	mlx_image_t* image;
 	// mlx_image_t* image = mlx_new_image(mlx->mlx, texture->width, texture->height);
-	mlx->raycast->asset->ceiling = mlx_new_image(mlx->mlx, texture->width, texture->height);
-	image = mlx->raycast->asset->ceiling;
+	// mlx->raycast->asset->ceiling = mlx_new_image(mlx->mlx, texture->width, texture->height);
+	// image = mlx->raycast->asset->ceiling;
+	// image = mlx_load_png("srcs/assets/burger_shop.png");
 	if (image == NULL)
 		return ;
 
@@ -147,8 +148,8 @@ void get_image_color_pixel(mlx_texture_t* texture, t_display *mlx)
 	uint8_t* pixeli;
 	for (uint32_t i = 0; i < texture->height; i++)
 	{
-		pixelx = &texture->pixels[(i * texture->width) * texture->bytes_per_pixel];
-		pixeli = &image->pixels[(i * image->width) * texture->bytes_per_pixel];
+		pixelx = &texture->pixels[(i * texture->width) * texture->bytes_per_pixel /4];
+		pixeli = &image->pixels[(i * image->width) * texture->bytes_per_pixel /4];
 		// memmove(pixeli, pixelx, texture->width * texture->bytes_per_pixel);
 		printf("pixeli [%d] pixelx [%d]\n", *pixeli, *pixelx);
 	}

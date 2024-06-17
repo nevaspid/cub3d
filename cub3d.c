@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/16 22:03:41 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/17 15:26:08 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int ac, char **av)
 	mlx_loop(display->mlx);
 	// a mettre dans une fonction
 
-    // mlx_delete_texture(display->raycast->asset->img_wall_east);  
+    mlx_delete_texture(display->raycast->asset->img_wall_east);  
 	// mlx_delete_texture(display->raycast->asset->wall_east);
 	// mlx_delete_texture(display->raycast->asset->wall_north);
 	// mlx_delete_texture(display->raycast->asset->wall_south);
