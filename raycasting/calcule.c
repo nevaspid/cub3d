@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:22:10 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/17 15:48:03 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/18 22:10:05 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,52 @@ uint32_t	extract_color(char **color)
 // }
 
 
+// u_int32_t	get_rgba_tex(u_int32_t color)
+// {
+// 	u_int8_t	r;
+// 	u_int8_t	g;
+// 	u_int8_t	b;
+// 	u_int8_t	a;
+
+// 	a = color >> 24;
+// 	r = color >> 16;
+// 	g = color >> 8;
+// 	b = color;
+// 	return (r << 8 | g << 16 | b << 24 | a << 0);
+// }
+
+// u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y)
+// {
+// 	uint32_t	*pixel;
+// 	u_int32_t	color;
+
+
+// 	// printf("%d\n", *img->pixels);
+// 	pixel = NULL;
+// 	pixel = (uint32_t *)(img->pixels + (x + y * display->m->tile_size) * sizeof(uint32_t));
+// 	color = *pixel;
+// 	return (get_rgba_tex(color));
+// 	// return (0);
+// }
+
+// uint8_t* get_image_color_pixel(mlx_texture_t* texture)
+// uint32_t get_image_color_pixel(mlx_texture_t* texture, t_display *mlx)
+// {
+// 	mlx_image_t* image;
+// 	mlx_texture_t* text;
+// 	// mlx_image_t* image = mlx_new_image(mlx->mlx, texture->width, texture->height);
+// 	// mlx->raycast->asset->ceiling = mlx_new_image(mlx->mlx, texture->width, texture->height);
+// 	// image = mlx->raycast->asset->ceiling;
+// 	text = mlx_load_png("srcs/assets/burger_shop.png");
+// 	if (image == NULL)
+// 		return NULL;
+// 	image = mlx_texture_to_image(mlx->mlx, texture);
+// 	mlx_delete_texture(text);
+// 	// uint8_t* pixelx;
+// 	// uint8_t* pixeli;
+// 	return (image);
+// }
+
 u_int32_t	get_rgba_tex(u_int32_t color)
 {
 	u_int8_t	r;
@@ -119,62 +165,18 @@ u_int32_t	get_rgba_tex(u_int32_t color)
 	return (r << 8 | g << 16 | b << 24 | a << 0);
 }
 
-u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y)
+u_int32_t	get_color(int x, int y, mlx_image_t *img)
 {
 	uint32_t	*pixel;
 	u_int32_t	color;
-
-
-	// printf("%d\n", *img->pixels);
+	printf("img [%p]\n", img);
 	pixel = NULL;
-	pixel = (uint32_t *)(img->pixels + (x + y * display->m->tile_size) * sizeof(uint32_t));
+	pixel = (uint32_t *)(img->pixels + (x + y * (img->height * img->width)) * sizeof(uint32_t));
 	color = *pixel;
 	return (get_rgba_tex(color));
-	// return (0);
+	return (0);
 }
 
-// uint8_t* get_image_color_pixel(mlx_texture_t* texture)
-void get_image_color_pixel(mlx_texture_t* texture, t_display *mlx)
-{
-	mlx_image_t* image;
-	// mlx_image_t* image = mlx_new_image(mlx->mlx, texture->width, texture->height);
-	// mlx->raycast->asset->ceiling = mlx_new_image(mlx->mlx, texture->width, texture->height);
-	// image = mlx->raycast->asset->ceiling;
-	// image = mlx_load_png("srcs/assets/burger_shop.png");
-	if (image == NULL)
-		return ;
-
-	uint8_t* pixelx;
-	uint8_t* pixeli;
-	for (uint32_t i = 0; i < texture->height; i++)
-	{
-		pixelx = &texture->pixels[(i * texture->width) * texture->bytes_per_pixel /4];
-		pixeli = &image->pixels[(i * image->width) * texture->bytes_per_pixel /4];
-		// memmove(pixeli, pixelx, texture->width * texture->bytes_per_pixel);
-		printf("pixeli [%d] pixelx [%d]\n", *pixeli, *pixelx);
-	}
-	// return (image);
-}
-
-
-// uint8_t get_pixel(t_display *display, mlx_image_t *texture, int x, int y)
-// {
-//     (void)display;
-//     uint8_t *color;
-//     int i;
-    
-// 	printf("%p\n", texture->pixels);
-//     color = 0;
-    
-//     color = color + (y * texture->height + x * (*texture->pixels / 8));
-
-
-//     // color = texture->addr + (y * texture->height + x * (texture->bytes_per_pixel / 8));
-//     i = *(unsigned int *)color;
-//     return (i);
-
-// }
-// }
 
 uint8_t get_pixel(t_display *display, mlx_texture_t *texture,int x, int y)
 {

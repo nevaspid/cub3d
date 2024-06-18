@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 14:56:32 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/16 22:45:09 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/18 22:02:16 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ void draw_bg(t_display *display, mlx_image_t *img)
 
 void draw_wall_orientation(t_display *display, t_ray *ray,int x)
 {
-    // uint32_t d_color;
+    uint32_t d_color;
     
-    get_image_color_pixel(display->raycast->assets->img_wall_east, display);
+    d_color = get_color(x, ray->draw_start, display->raycast->assets->ceiling);
     // d_color = get_color(display, display->raycast->assets->ceiling, ray->draw_start, x);
     if (ray->side == 1){
         if (ray->step.y > 0){
-            draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, MY_WHITE);
+            draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, d_color);
         } 
         else
             draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, MAGENTA);
