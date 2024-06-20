@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:22:10 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/18 22:10:05 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/20 06:20:22 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,19 +162,31 @@ u_int32_t	get_rgba_tex(u_int32_t color)
 	r = color >> 16;
 	g = color >> 8;
 	b = color;
+	printf("r [%d] g [%d] b [%d] a [%d]\n", r, g, b, a);
 	return (r << 8 | g << 16 | b << 24 | a << 0);
+	
 }
+
+/*
+
+******
+******
+******
+
+****** ****** ******
+*/
 
 u_int32_t	get_color(int x, int y, mlx_image_t *img)
 {
 	uint32_t	*pixel;
 	u_int32_t	color;
-	printf("img [%p]\n", img);
+	// int pixelPos = y * img->height + x;
+	color = 0;
 	pixel = NULL;
-	pixel = (uint32_t *)(img->pixels + (x + y * (img->height * img->width)) * sizeof(uint32_t));
+	pixel = (uint32_t *)(img->pixels + (x + y * (img->width)) * sizeof(uint32_t));
 	color = *pixel;
 	return (get_rgba_tex(color));
-	return (0);
+	// return (0);
 }
 
 
@@ -183,10 +195,10 @@ uint8_t get_pixel(t_display *display, mlx_texture_t *texture,int x, int y)
     (void)display;
     uint8_t *color;
     int i;
-    
+    int pixelPos = y * texture->height + x;
 	printf("texture->pixels == [%d]\n", texture->bytes_per_pixel);
     color = 0;
-    color = color + (y * texture->height + x * (texture->bytes_per_pixel / 8));
+    color = color + pixelPos* (texture->bytes_per_pixel / 8);
 
 
     // color = texture->addr + (y * texture->height + x * (texture->bytes_per_pixel / 8));
@@ -194,6 +206,54 @@ uint8_t get_pixel(t_display *display, mlx_texture_t *texture,int x, int y)
     return (i);
 
 }
+double InverseLerp(double min, double max, double value)
+{
+	if (min != max)
+		return Clamp01((value - min) / (max - min));
+	else
+		return 0.0;
+}
+
+double Lerp(double min, double max, double t)
+{
+	return min + (max - min) * Clamp01(t);
+}
+
+double Clamp01(double value)
+{
+	if (value < 0)
+		return 0;
+	else if (value > 1)
+		return 1;
+	else
+		return value;
+}
+
+// void get_pixel_pos(t_display *display,mlx_image_t *image, t_ray *ray, int x)
+// {
+	
+// 	// Hauteur du mur en pixels à l'écran
+// 	double wallHeight = ray->line_height; // à déterminer
+
+// 	// Hauteur de la texture
+// 	double textureHeight = image->height; // à déterminer
+
+// 	// Pour chaque pixel du mur à l'écran
+// 	for (double y = 0; y < wallHeight; y++)
+// 	{
+// 		// Calculez la position relative sur le mur
+// 		double relativePosition = InverseLerp(0, wallHeight, y);
+
+// 		// Convertissez cette position en une position dans la texture
+// 		double texturePosition = Lerp(0, textureHeight, relativePosition);
+
+// 	 // Utilisez cette position pour obtenir la couleur du pixel dans la texture
+//         int pixelIndex = (int)texturePosition * image->width;
+//         int color = image->data[pixelIndex];
+
+// 	}
+// }
+
 // size texture x, y
 // size wall x, y
 // x, y

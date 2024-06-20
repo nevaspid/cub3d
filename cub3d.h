@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/18 21:57:26 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/20 05:05:17 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,12 @@ mlx_image_t get_image_color_pixel(mlx_texture_t* texture, t_display *mlx);
 u_int32_t	get_rgba_tex(u_int32_t color);
 // u_int8_t get_tex_scale(t_display *display, mlx_texture_t *texture, int x, int y);
 u_int32_t get_color(int x, int y, mlx_image_t *img);
+
+double InverseLerp(double min, double max, double value);
+double Clamp01(double value);
+double Lerp(double min, double max, double t);
+
+void get_pixel_pos(t_display *display,mlx_image_t *image, t_ray *ray, int x);
 // u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y);
 // u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y);
 // u_int32_t	get_rgba_tex(u_int32_t color);

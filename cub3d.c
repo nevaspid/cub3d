@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/17 15:26:08 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/20 06:11:12 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int ac, char **av)
 	t_display	*display;
 	t_mem_alloc	*mylloc;
 	int			tile_size;
-
 	if (ac != 2)
 	{
 		printf("ERROR : Wrong number of arguments\n");
@@ -39,6 +38,7 @@ int	main(int ac, char **av)
 	init_value_st(display);
 	draw_compass(display, display->raycast->compass, display->raycast->player);
 	init_struct_camera(display->raycast->camera);
+	init_asset(display,display->raycast->asset);
 	display->m->tile_size = tile_size;
 	if (flood_fill(display->m->copy, display->m->p_x, display->m->p_y) > 0)
 	{
@@ -79,7 +79,7 @@ int	main(int ac, char **av)
 	mlx_loop(display->mlx);
 	// a mettre dans une fonction
 
-    mlx_delete_texture(display->raycast->asset->img_wall_east);  
+    // mlx_delete_texture(display->raycast->asset->img_wall_east);  
 	// mlx_delete_texture(display->raycast->asset->wall_east);
 	// mlx_delete_texture(display->raycast->asset->wall_north);
 	// mlx_delete_texture(display->raycast->asset->wall_south);

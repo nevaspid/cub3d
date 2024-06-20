@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 06:10:51 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/09 00:45:58 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/20 06:11:33 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ void draw_compass(t_display *display, t_compass *compass , t_player *player)
     // init_camera(display, display->raycast->camera);
     // init_compass(compass);
     init_value_st(display);
+    // (void)display;
+    
     draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius, MY_WHITE,1);
     draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius -2 , MY_BLACK,0);
     draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius - 1, MY_WHITE,0);

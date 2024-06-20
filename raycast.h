@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/13 20:35:39 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/19 22:24:59 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -354,7 +354,7 @@ typedef struct s_raycast
     t_compass   *compass;
     t_ray       *ray;
 	t_camera	*camera;
-	t_assets	*assets;
+	// t_assets	*assets;
 	t_assets	*asset;
 	t_mouse		*mouse;
 }               t_raycast;

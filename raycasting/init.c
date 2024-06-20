@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/18 22:18:34 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/20 06:10:29 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void init_malloc(t_mem_alloc *mylloc, t_display *display)
 	display->raycast->player = mem_alloc(mylloc,sizeof(t_player));
 	display->raycast->ray = mem_alloc(mylloc,sizeof(t_ray));
 	display->raycast->camera = mem_alloc(mylloc,sizeof(t_camera));
-    display->raycast->assets = mem_alloc(mylloc,sizeof(t_assets));
+    display->raycast->asset = mem_alloc(mylloc,sizeof(t_assets));
     // display->raycast->assets->portal = mem_alloc(mylloc,sizeof(t_img_portal));
     display->raycast->asset = mem_alloc(mylloc,sizeof(t_assets));
     display->raycast->mouse = mem_alloc(mylloc,sizeof(t_mouse));
@@ -174,14 +174,16 @@ void init_asset(t_display *display, t_assets *asset)
 {
     // (void)display;
     // (void)asset;
-    asset->img_wall_east = mlx_load_png("./srcs/assets/burger_shop.png");
+    asset->img_wall_east = mlx_load_png("./srcs/assets/pixel_art_space_invader.png");
     if(!asset->img_wall_east)
         printf("Error loading asset East\n");
     // asset->ceiling =  mlx_new_image(display->mlx, asset->img_wall_east->width, asset->img_wall_east->height);
     asset->ceiling = mlx_texture_to_image(display->mlx, asset->img_wall_east);
     mlx_delete_texture(asset->img_wall_east);  
     // get_image_color_pixel(display->raycast->assets->img_wall_east, display);
-    printf("init_asset ceiling [%p]\n", asset->ceiling); 
+    // display->raycast.
+    // printf("init_asset ceiling [%p]\n", asset->ceiling); 
+    // printf("init_asset display [%p]\n", display->raycast->asset->ceiling); 
     
     // asset->wall_west = mlx_load_png("./srcs/assets/open.png");
     // if(!asset->wall_west)
@@ -314,7 +316,7 @@ void init_value_st(t_display *display)
     init_player(display, display->raycast->player);
     init_camera(display, display->raycast->camera);
     init_compass(display->raycast->compass);
-    init_asset(display, display->raycast->asset);
+    // init_asset(display, display->raycast->asset);
     // Pour plus tard, j'y metterai toute les alloc
 
 }
