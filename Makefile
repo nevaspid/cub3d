@@ -6,7 +6,7 @@
 #    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/06/13 01:25:40 by oliove           ###   ########.fr        #
+#    Updated: 2024/06/23 21:49:21 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,8 @@ SRCS		:=	cub3d.c \
 				raycasting/draw_primitive.c \
 				raycasting/draw.c \
 				srcs/moves/direction.c \
+				srcs/game_loop.c \
+				srcs/update/update.c \
 
 OBJ_DIR		:=	.objs
 OBJS		:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -66,6 +68,11 @@ CYAN 		:=	\033[1;36m
 
 # ------------------------------ Compilation -------------------------
 ifeq ($(DEBUG), 1)
+	FLAGS += -g3 -fsanitize=address 
+endif
+
+ifeq ($(NO_FLAGS), 1)
+	FLAGS := $(filter-out -Wall -Wextra -Werror -g3 , $(FLAGS))
 	FLAGS += -g3 -fsanitize=address 
 endif
 

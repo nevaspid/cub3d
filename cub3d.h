@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/20 05:05:17 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/23 21:48:48 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_display
 	t_minimap		*m;
 	t_raycast		*raycast;
 	mlx_image_t		*img;
+	t_mem_alloc		*mylloc;
 }	t_display;
 
 /*------------raycasting-------------*/
@@ -147,12 +148,15 @@ void get_pixel_pos(t_display *display,mlx_image_t *image, t_ray *ray, int x);
 // u_int32_t	get_rgba_tex(u_int32_t color);
 // u_int32_t	get_color(int x, int y, mlx_texture_t *img);
 
+/*--------------------GAME_LOOP-----------------------*/
 
-
-
-
-
-
+void game_loop(t_display *display, t_mem_alloc *mylloc);
+void init_game(t_display *display, t_mem_alloc *mylloc);
+void update_game(t_display *display);
+void draw_game(t_display *display);
+void clear_image(mlx_image_t *img, uint32_t a);
+void arry_nb(t_display *display);
+void update_player(t_display *display, t_player *player);
 
 
 

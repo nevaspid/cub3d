@@ -6,11 +6,54 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 06:10:51 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/20 06:11:33 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/23 21:53:15 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+// void draw_line(mlx_image_t *img, t_vec_d start, t_vec_d end, int color)
+// {
+//     t_line l;
+
+//     // l.x1 = start.x;
+//     // l.y1 = start.y;
+//     // l.x2 = end.x;
+//     // l.y2 = end.y;
+    
+//     l.dx = abs((int)end.x - (int)start.x);
+//     l.dy = abs((int)end.y - (int)start.y);
+//     printf("start.x [%f] start.y [%f] end.x [%f] end.y [%f]\n", start.x, start.y, end.x, end.y);
+//     if (start.x < end.x)
+//         l.sx = 1;
+//     else
+//         l.sx = -1;
+//     if (start.y < end.y)
+//         l.sy = 1;
+//     else
+//         l.sy = -1;
+//     l.err = l.dx - l.dy;
+//     if (start.x < 0 || start.x >= WIDTH || end.x < 0 || end.x >= WIDTH || start.y < 0 || start.y >= HEIGHT || end.y < 0 || end.y >= HEIGHT) {
+//         return;
+//     }
+//     while (1)
+//     {
+//         mlx_put_pixel(img, start.x, start.y, color);
+//         if (start.x == end.x && start.y == end.y)
+//             break;
+//         l.err2 = 2 * l.err;
+//         if (l.err2 > -l.dy)
+//         {
+//             l.err -= l.dy;
+//             start.x += l.sx;
+//         }
+//         if (l.err2 < l.dx)
+//         {
+//             l.err += l.dx;
+//             start.y += l.sy;
+//         }
+//     }
+// }
 
 void draw_line(mlx_image_t *img, t_vec_d start, t_vec_d end, int color)
 {
@@ -109,7 +152,9 @@ void draw_compass(t_display *display, t_compass *compass , t_player *player)
     // init_player(display,player);
     // init_camera(display, display->raycast->camera);
     // init_compass(compass);
-    init_value_st(display);
+    
+    init_value_st(display); // Changer en une fonction update
+    // update_player(display, player);
     // (void)display;
     
     draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius, MY_WHITE,1);

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/20 06:11:12 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/23 21:34:03 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,18 @@ int	main(int ac, char **av)
 	mylloc->next = NULL;
 	mylloc->content = NULL;
 	display = mem_alloc(mylloc, sizeof(t_display));
-	init_malloc(mylloc, display);
-	init_mlx(display);
+	init_game(display, mylloc);
 	read_parse_store(av[1], mylloc, display);
 	if (longest_line(display->m->minimap_array) > count_lines(display->m->minimap_array))
 		tile_size = (WIDTH * SCALE) / longest_line(display->m->minimap_array);
 	else
 		tile_size = (HEIGHT * SCALE) / count_lines(display->m->minimap_array);
-		
+	arry_nb(display);	
 	print_minimap(display, display->m, tile_size, mylloc);
-	init_value_st(display);
+	// init_value_st(display);
+	
 	draw_compass(display, display->raycast->compass, display->raycast->player);
+	
 	init_struct_camera(display->raycast->camera);
 	init_asset(display,display->raycast->asset);
 	display->m->tile_size = tile_size;
@@ -52,6 +53,7 @@ int	main(int ac, char **av)
 	mlx_image_to_window(display->mlx, display->m->minimap, 0, 0);
 	mlx_image_to_window(display->mlx,display->m->player, display->m->p_x * tile_size, display->m->p_y * tile_size); 
 	mlx_image_to_window(display->mlx, display->raycast->ray->img,0,0);
+	
 	mlx_loop_hook(display->mlx, &player_angle, display);
 	
 	// --mlx_texture_to_image(display->mlx, display->raycast->asset->img_wall_east);

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/20 06:10:29 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/23 21:55:33 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void init_malloc(t_mem_alloc *mylloc, t_display *display)
     // display->raycast->assets->portal = mem_alloc(mylloc,sizeof(t_img_portal));
     display->raycast->asset = mem_alloc(mylloc,sizeof(t_assets));
     display->raycast->mouse = mem_alloc(mylloc,sizeof(t_mouse));
+    // display->mylloc = mem_alloc(mylloc, sizeof(t_mem_alloc));
     
 }
 
@@ -274,12 +275,12 @@ void init_camera(t_display *display, t_camera *camera)
     camera->angle_cam = display->p_angle;
     camera->angle_min = display->p_angle - angle_rad(FOV) /2;
     camera->angle_max = display->p_angle + angle_rad(FOV) / 2;
-    camera->nb_ray = NB_RAYS;
-    camera->angle_ray = FOV / NB_RAYS;
-    camera->dir.x = cos(display->raycast->player->angle);
-    camera->dir.y = sin(display->raycast->player->angle);
-    camera->plane.x = player->dir.x * tan(angle_rad(camera->angle_cam));
-    camera->plane.y = player->dir.y * tan(angle_rad(camera->angle_cam));
+    // camera->nb_ray = NB_RAYS;
+    // camera->angle_ray = FOV / NB_RAYS;
+    // camera->dir.x = cos(display->raycast->player->angle);
+    // camera->dir.y = sin(display->raycast->player->angle);
+    // camera->plane.x = player->dir.x * tan(angle_rad(camera->angle_cam));
+    // camera->plane.y = player->dir.y * tan(angle_rad(camera->angle_cam));
 }
 
 /*
