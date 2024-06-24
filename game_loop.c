@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:44:31 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/24 23:48:49 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/25 00:12:29 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ $$    $$/ $$    $$ |$$ | $$ | $$ |$$       |______ $$       |$$    $$/ $$    $$/
    
    game_loop est la fonction qui lance le jeu et qui appelle les fonctions precedentes
    elle est appellee dans main.c                                                                                        
-                                                                                           
-
-
 */
 
 
