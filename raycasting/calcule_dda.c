@@ -256,7 +256,6 @@ $$/        $$$$$$/  $$/   $$//      |$$/       $$$$$$$/  $$$$$$$ | $$$$$$$/  $$$
 void run_raycast(t_display *display, t_ray *ray, t_player *player)
 {
     int x;
-    t_vec_d end_pos;
     t_camera *camera;
     
     x = 0;
@@ -264,36 +263,40 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
     clear_image(display->raycast->ray->img, 0x000000);
     clear_image(display->img, 0x000000);
     ray->angle = camera->angle_min;
+
     draw_bg(display, display->img);
     while (x < WIDTH)
     {
-        camera->camera_x = 2 * x / (double)WIDTH - 1;
-        ray->dir.x = cos(ray->angle) + player->plane.x * camera->camera_x;
-        ray->dir.y = sin(ray->angle) + player->plane.y * camera->camera_x;
-        ray->map.x = player->pos.x;
-        ray->map.y = player->pos.y;
-        ray->delta_dist.x = fabs( 1 /ray->dir.x);
-        ray->delta_dist.y = fabs(1 /  ray->dir.y);
+        update_cam(display, ray, player, x);
         init_dda(ray, player);
         calculate_dda(display, ray);
         calculate_height_line(ray, player);
-        int max_ray_lenght = 1;
-        end_pos = (t_vec_d){ray->map.x , ray->map.y};
-        if (hypot(ray->map.x - player->pos.x, ray->map.y - player->pos.y) > max_ray_lenght)
-        {
-            end_pos.x = player->pos.x + max_ray_lenght * ray->dir.x;
-            end_pos.y = player->pos.y + max_ray_lenght * ray->dir.y;
-        }
-        if (ray->angle >= player->angle)
-            draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
-                                                (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, MY_RED);
-        else
-            draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
-                                                (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, 0x800080);
+        draw_ray(display, ray, player);
         draw_wall_orientation(display, ray, x);
         if (x % 2 == 0)
             ray->angle += angle_rad(FOV) / (WIDTH / 2);
         x++;
-   
     }
+}
+
+void draw_ray(t_display *display, t_ray *ray, t_player *player)
+{
+    t_vec_d end_pos;
+    int max_ray_lenght;
+    
+    max_ray_lenght = 3;
+    end_pos = (t_vec_d){ray->map.x , ray->map.y};
+    if (hypot(ray->map.x - player->pos.x, ray->map.y - player->pos.y) > max_ray_lenght)
+    {
+        end_pos.x = player->pos.x + max_ray_lenght * ray->dir.x;
+        end_pos.y = player->pos.y + max_ray_lenght * ray->dir.y;
+    }
+    if (ray->angle >= player->angle)
+    draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
+                                        (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, MY_RED);
+    else
+    draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
+                                        (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, 0x800080);
+
+
 }

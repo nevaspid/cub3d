@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/10 09:14:45 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/24 18:17:08 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,13 @@ void draw_compass(t_display *display, t_compass *compass , t_player *player);
 
 /*-------------DDA_AND_OTHER-----------*/
 void run_raycast(t_display *display, t_ray *ray, t_player *player);
+void image_to_window(t_display *display);
+void clear_image(mlx_image_t *img, uint32_t a);
+void init_game(t_display *display, t_mem_alloc *mylloc);
+void update_game(t_display *display);
+void draw_game(t_display *display);
+void update_cam(t_display *display, t_ray *ray, t_player *player, int x);
+void draw_ray(t_display *display, t_ray *ray, t_player *player);
 
 // int check_next_move(t_display *d, double x, double y);
 
