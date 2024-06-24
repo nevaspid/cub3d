@@ -6,11 +6,43 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:44:31 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/24 18:21:54 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/24 23:48:49 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*
+
+
+  ______                                            __                                     
+ /      \                                          /  |                                    
+/$$$$$$  |  ______   _____  ____    ______         $$ |        ______    ______    ______  
+$$ | _$$/  /      \ /     \/    \  /      \        $$ |       /      \  /      \  /      \ 
+$$ |/    | $$$$$$  |$$$$$$ $$$$  |/$$$$$$  |       $$ |      /$$$$$$  |/$$$$$$  |/$$$$$$  |
+$$ |$$$$ | /    $$ |$$ | $$ | $$ |$$    $$ |       $$ |      $$ |  $$ |$$ |  $$ |$$ |  $$ |
+$$ \__$$ |/$$$$$$$ |$$ | $$ | $$ |$$$$$$$$/        $$ |_____ $$ \__$$ |$$ \__$$ |$$ |__$$ |
+$$    $$/ $$    $$ |$$ | $$ | $$ |$$       |______ $$       |$$    $$/ $$    $$/ $$    $$/ 
+ $$$$$$/   $$$$$$$/ $$/  $$/  $$/  $$$$$$$//      |$$$$$$$$/  $$$$$$/   $$$$$$/  $$$$$$$/  
+                                           $$$$$$/                               $$ |      
+                                                                                 $$ |      
+                                                                                 $$/       
+   
+   Elle contient les fonctions qui permettent de lancer le jeu et de le mettre a jour
+   et de l'afficher;
+   
+   je gere la logique du jeu dans update_game, donc si probleme de logique du jeu c'est ici
+   que ca se passe
+   
+   je gere l'affichage dans draw_game, donc si probleme d'affichage c'est ici que ca se passe
+   
+   game_loop est la fonction qui lance le jeu et qui appelle les fonctions precedentes
+   elle est appellee dans main.c                                                                                        
+                                                                                           
+
+
+*/
+
 
 void image_to_window(t_display *display)
 {
