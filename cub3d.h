@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/24 18:17:08 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/25 03:04:42 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,9 @@ void update_game(t_display *display);
 void draw_game(t_display *display);
 void update_cam(t_display *display, t_ray *ray, t_player *player, int x);
 void draw_ray(t_display *display, t_ray *ray, t_player *player);
-
+double Lerp(double min, double max, double t);
+double InverseLerp(double min, double max, double value);
+double Clamp01(double value);
 // int check_next_move(t_display *d, double x, double y);
 
 #endif

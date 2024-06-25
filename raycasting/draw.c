@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 14:56:32 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/10 05:13:42 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/25 03:05:24 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,14 @@ void draw_bg(t_display *display, mlx_image_t *img)
 
 void draw_wall_orientation(t_display *display, t_ray *ray,int x)
 {
+    //     uint32_t d_color;
+    //     double t = InverseLerp(0, WIDTH, x);
+    //     Lerp(0,display->raycast->asset->ceiling->width,t );
+    //     d_color = get_color(x, (int)t, display->raycast->asset->ceiling);
+    // d_color = get_color(display, display->raycast->assets->ceiling, ray->draw_start, x);
     if (ray->side == 1){
         if (ray->step.y > 0) 
+                    // draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, d_color);
             draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, MY_WHITE);
         else
             draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, MAGENTA);
