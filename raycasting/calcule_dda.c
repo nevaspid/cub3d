@@ -142,8 +142,12 @@ void calculate_height_line(t_ray *ray, t_player *player)
     ray->wall_x -= floor(ray->wall_x);
 }
 
-void draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color)
+void draw_ligne_height(mlx_image_t *img, t_display *display, int x, int star, int end, int color)
 {
+    uint32_t d_color;
+    double t = InverseLerp(0, WIDTH, x);
+    Lerp(0,display->raycast->asset->ceiling->width,t );
+    d_color = get_color(x, (int)t, display->raycast->asset->ceiling);
     int y;
 
     y = star;
