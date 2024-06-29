@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/10 09:08:48 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/29 02:23:44 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,6 +278,17 @@ $$/       $$$$$$$/  $$$$$$$ | $$$$$$$/  $$$$$$$/ $$$$$$$/     $$$$/
                     $$$$$$/
 */
 
+typedef struct s_texture
+{
+	mlx_texture_t	*west;
+	mlx_image_t		*west_img;
+	double			step;
+	double			pos;
+	int				x;
+	int				y;
+	int 			size;
+	
+}	t_texture;
 
 typedef struct s_raycast
 {
@@ -285,6 +296,7 @@ typedef struct s_raycast
     t_compass   *compass;
     t_ray       *ray;
 	t_camera	*camera;
+	t_texture	*text;
 }               t_raycast;
 
 /*commentaire pour comit un msg*/

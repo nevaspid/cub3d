@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:22:10 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/25 03:01:54 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/29 02:42:31 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,18 +120,18 @@ uint32_t	extract_color(char **color)
 			255));
 }
 
-// void load_asset(t_display *display, t_assets *asset, char *path)
-// {
+void load_asset(t_display *display, t_texture *asset, char *path)
+{
 	
-// 	asset->texture = mlx_load_png(path);
-// 	if(!asset->texture)
-// 	{
-// 		printf("ERROR : Asset not found\n");
-// 		exit(0);
-// 	}
-// 	asset->ceiling = mlx_texture_to_image(display->mlx, asset->texture);
-// 	mlx_delete_texture(asset->texture);
-// }
+	asset->west = mlx_load_png(path);
+	if(!asset->west)
+	{
+		printf("ERROR : Asset not found\n");
+		exit(0);
+	}
+	asset->west_img = mlx_texture_to_image(display->mlx, asset->west);
+	mlx_delete_texture(asset->west);
+}
 
 
 // u_int32_t	get_rgba_tex(u_int32_t color)
@@ -191,7 +191,7 @@ u_int32_t	get_rgba_tex(u_int32_t color)
 	r = color >> 16;
 	g = color >> 8;
 	b = color;
-	printf("r [%d] g [%d] b [%d] a [%d]\n", r, g, b, a);
+	// printf("r [%d] g [%d] b [%d] a [%d]\n", r, g, b, a);
 	return (r << 8 | g << 16 | b << 24 | a << 0);
 	
 }
@@ -213,6 +213,7 @@ u_int32_t	get_color(int x, int y, mlx_image_t *img)
 	color = 0;
 	pixel = NULL;
 	pixel = (uint32_t *)(img->pixels + (x + y * (img->width)) * sizeof(uint32_t));
+	printf("pixel == [%d]\n", *pixel);
 	color = *pixel;
 	return (get_rgba_tex(color));
 	// return (0);

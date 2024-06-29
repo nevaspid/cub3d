@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/25 03:04:42 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/29 02:12:12 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,5 +177,8 @@ double Lerp(double min, double max, double t);
 double InverseLerp(double min, double max, double value);
 double Clamp01(double value);
 // int check_next_move(t_display *d, double x, double y);
+void load_asset(t_display *display, t_texture *asset, char *path);
+void init_text(t_display *display);
 
+u_int32_t	get_color(int x, int y, mlx_image_t *img);
 #endif

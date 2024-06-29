@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/08 06:57:58 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/29 02:23:30 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void init_malloc(t_mem_alloc *mylloc, t_display *display)
 	display->raycast->player = mem_alloc(mylloc,sizeof(t_player));
 	display->raycast->ray = mem_alloc(mylloc,sizeof(t_ray));
 	display->raycast->camera = mem_alloc(mylloc,sizeof(t_camera));
+    display->raycast->text = mem_alloc(mylloc,sizeof(t_texture));
     
 }
 
@@ -185,6 +186,17 @@ void init_camera(t_display *display, t_camera *camera)
     camera->plane.y = player->dir.y * tan(angle_rad(camera->angle_cam));
 }
     
+void init_text(t_display *display)
+{
+    display->raycast->text->west = NULL;
+    display->raycast->text->west_img = NULL;
+    display->raycast->text->pos = 0;
+    display->raycast->text->x = 0;
+    display->raycast->text->y = 0;
+    display->raycast->text->step = 0;
+    display->raycast->text->size = 0;
+}
+
 
 void init_value_st(t_display *display)
 {
@@ -193,6 +205,7 @@ void init_value_st(t_display *display)
     init_player(display, display->raycast->player);
     init_camera(display, display->raycast->camera);
     init_compass(display->raycast->compass);
+    
     // Pour plus tard, j'y metterai toute les alloc
 
 }

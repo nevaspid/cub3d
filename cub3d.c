@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/25 14:11:50 by gloms            ###   ########.fr       */
+/*   Updated: 2024/06/29 02:09:09 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	main(int ac, char **av)
 		free_and_exit(mylloc);
 	}
 
+	init_text(display);
+	load_asset(display,display->raycast->text,"BRICK_6D.PNG");
 	run_raycast(display,display->raycast->ray, display->raycast->player);
 	image_to_window(display);
 	mlx_loop_hook(display->mlx, &player_angle, display);
