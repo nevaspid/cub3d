@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 14:52:41 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/10 09:42:52 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/29 18:09:18 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int check_next_move(t_display *d,double x, double y, t_direction dir)
 		pos.x = x - cos(d->p_angle + M_PI /2) * SPEED;
 		pos.y = y - sin(d->p_angle + M_PI /2) * SPEED;
 	}
-	printf("x = %d, y = %d\n", pos.x, pos.y);
+	// printf("x = %d, y = %d\n", pos.x, pos.y);
 	if (d->m->minimap_array[pos.y][pos.x] == '1')
 		return (1);
 	return (0);

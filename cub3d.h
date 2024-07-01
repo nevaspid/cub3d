@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/29 02:12:12 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/30 22:29:21 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void 	init_player(t_display *display, t_player *player);
 void 	init_value_st(t_display *display);
 void 	draw_bg(t_display *display, mlx_image_t *img);
 void 	draw_wall_orientation(t_display *display, t_ray *ray, int x);
-void 	draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color);
 void 	move_rotated(mlx_key_data_t key, void *param);
 int check_next_move(t_display *d,double x, double y, t_direction dir);
 /*------------memory-alloc-------------*/
@@ -180,5 +179,9 @@ double Clamp01(double value);
 void load_asset(t_display *display, t_texture *asset, char *path);
 void init_text(t_display *display);
 
+// void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end);
+void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end, int color, int flags);
+// void 	draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color);
 u_int32_t	get_color(int x, int y, mlx_image_t *img);
+void get_text(t_display *s_display, t_ray *ray, t_texture *current);
 #endif

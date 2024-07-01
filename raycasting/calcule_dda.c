@@ -140,16 +140,82 @@ void calculate_height_line(t_ray *ray, t_player *player)
     else
         ray->wall_x = player->pos.x + ray->wall_dist * ray->dir.x;
     ray->wall_x -= floor(ray->wall_x);
+    // printf("ray->wall_x = %d\n", ray->wall_x);
 }
 
-void draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color)
+// void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end)
+// {
+//     int y;
+//     // // int tex_x;
+//     // double t;
+//     // // u_int32_t d_color;
+//     t_ray *ray = display->raycast->ray;
+//     // // t_texture *tex = display->raycast->text;
+//     double r = 1.0 * (end - star) / img->height;
+//     // // tex_x = (int)(ray->wall_x * (double)tex->west_img->width);
+//     // t = InverseLerp(0, WIDTH, ray->wall_x);
+//     // Lerp(0,display->raycast->text->west_img->width,t);
+//     // d_color = 
+//     t_texture *tmp = malloc(sizeof(t_texture));
+
+//     get_text(display, display->raycast->ray, tmp);
+
+
+
+//     y = star;
+//     printf("star = %d\n", star);
+//     printf("y - star = %d\n", y - star);
+
+//     while ( y < end)
+//     {
+//         if (y < 192)
+//             mlx_put_pixel(img, x, y ,get_color(ray->wall_x, (y ) / r, display->raycast->text->west_img));
+//         // printf("r = %f\n", r);
+//         // printf("y = %d x = %d\n", y,x);
+//         // printf("ray->wall_x = %d\n", ray->wall_x);
+
+//         y++;
+//     }
+//     free(tmp);
+// }
+
+// void draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color) // original function
+// {
+//     int y;
+
+//     // (void)color;
+//     // u_int32_t d_color;
+//     // d_color = get_color(x, (int)t, display->raycast->text->west_img);
+//     y = star;
+//     while ( y < end)
+//     {
+//         mlx_put_pixel(img, x, y, color);
+//         y++;
+//     }
+
+// }
+void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end, int color, int flags)
 {
     int y;
 
+    // (void)color;
+    // u_int32_t d_color;
+    
+    double t;
+
+    t = InverseLerp(0, WIDTH / display->m->tile_size, x);
+    // t = Lerp(0,display->raycast->text->west_img->width,t);
+    // d_color = get_color(x, (int)t, display->raycast->text->west_img);
     y = star;
     while ( y < end)
     {
-        mlx_put_pixel(img, x, y, color);
+        if (flags == 1)
+            mlx_put_pixel(img, x, y, color);
+        else{
+        //    printf("x = %d\n", x);
+            mlx_put_pixel(img, x, y, get_color(x, (int)t, display->raycast->text->west_img));
+ 
+        }
         y++;
     }
 
@@ -257,7 +323,8 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
 {
     int x;
     t_camera *camera;
-    
+    t_ray tab[WIDTH];
+
     x = 0;
     camera = display->raycast->camera;
     clear_image(display->raycast->ray->img, 0x000000);
@@ -265,25 +332,78 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
     ray->angle = camera->angle_min;
 
     draw_bg(display, display->img);
-    while (x < WIDTH)
+
+    int i = 0;
+    while (i < WIDTH)
     {
-        update_cam(display, ray, player, x);
-        init_dda(ray, player);
-        calculate_dda(display, ray);
-        calculate_height_line(ray, player);
-        draw_ray(display, ray, player);
-        draw_wall_orientation(display, ray, x);
-        if (x % 2 == 0)
-            ray->angle += angle_rad(FOV) / (WIDTH / 2);
+        tab[i] = *ray;
+        if(x % 2 == 0)
+            tab[i].angle += angle_rad(FOV) / (WIDTH / 2);
+        // tab[i].angle = ray->angle;
+        tab[i].n_ray = i;
+        i++;
         x++;
     }
+
+    // i = 0;
+    x = 0;
+    while (x < WIDTH)
+    {
+        update_cam(display, &tab[x], player, x);
+        init_dda(&tab[x], player);
+        calculate_dda(display, &tab[x]);
+        calculate_height_line(&tab[x], player);
+        // draw_ray(display, &tab[x], player);
+        draw_wall_orientation(display, &tab[x], x);
+        if (x % 2 == 0)
+            tab[x].angle += angle_rad(FOV) / (WIDTH / 2);
+        x++;
+    }
+    i = 0;
+    while (i < WIDTH)
+    {
+        draw_ray(display, &tab[i], player);
+        i++;
+    }
 }
+
+
+
+
+
+
+// void run_raycast(t_display *display, t_ray *ray, t_player *player)
+// {
+//     int x;
+//     t_camera *camera;
+    
+//     x = 0;
+//     camera = display->raycast->camera;
+//     clear_image(display->raycast->ray->img, 0x000000);
+//     clear_image(display->img, 0x000000);
+//     ray->angle = camera->angle_min;
+
+//     draw_bg(display, display->img);
+//     while (x < WIDTH)
+//     {
+//         update_cam(display, ray, player, x);
+//         init_dda(ray, player);
+//         calculate_dda(display, ray);
+//         calculate_height_line(ray, player);
+//         draw_ray(display, ray, player);
+//         draw_wall_orientation(display, ray, x);
+//         if (x % 2 == 0)
+//             ray->angle += angle_rad(FOV) / (WIDTH / 2);
+//         x++;
+//     }
+// }
 
 void draw_ray(t_display *display, t_ray *ray, t_player *player)
 {
     t_vec_d end_pos;
     int max_ray_lenght;
     
+    printf("ray_n_ray = %d\n", ray->n_ray);
     max_ray_lenght = 3;
     end_pos = (t_vec_d){ray->map.x , ray->map.y};
     if (hypot(ray->map.x - player->pos.x, ray->map.y - player->pos.y) > max_ray_lenght)
@@ -300,3 +420,24 @@ void draw_ray(t_display *display, t_ray *ray, t_player *player)
 
 
 }
+// void draw_ray(t_display *display, t_ray *ray, t_player *player)// original function
+// {
+//     t_vec_d end_pos;
+//     int max_ray_lenght;
+    
+//     max_ray_lenght = 3;
+//     end_pos = (t_vec_d){ray->map.x , ray->map.y};
+//     if (hypot(ray->map.x - player->pos.x, ray->map.y - player->pos.y) > max_ray_lenght)
+//     {
+//         end_pos.x = player->pos.x + max_ray_lenght * ray->dir.x;
+//         end_pos.y = player->pos.y + max_ray_lenght * ray->dir.y;
+//     }
+//     if (ray->angle >= player->angle)
+//     draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
+//                                         (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, MY_RED);
+//     else
+//     draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
+//                                         (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, 0x800080);
+
+
+// }

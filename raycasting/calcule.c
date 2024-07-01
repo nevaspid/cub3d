@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:22:10 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/29 02:42:31 by oliove           ###   ########.fr       */
+/*   Updated: 2024/06/30 22:31:41 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void load_asset(t_display *display, t_texture *asset, char *path)
 {
 	
 	asset->west = mlx_load_png(path);
+
 	if(!asset->west)
 	{
 		printf("ERROR : Asset not found\n");
@@ -207,13 +208,24 @@ u_int32_t	get_rgba_tex(u_int32_t color)
 
 u_int32_t	get_color(int x, int y, mlx_image_t *img)
 {
+	(void)x;
 	uint32_t	*pixel;
 	u_int32_t	color;
 	// int pixelPos = y * img->height + x;
 	color = 0;
 	pixel = NULL;
+	// printf("bit_per_pixel [%d]\n", img->pixels);
+	// printf("x [%d] y [%d]\n", x, y);
 	pixel = (uint32_t *)(img->pixels + (x + y * (img->width)) * sizeof(uint32_t));
-	printf("pixel == [%d]\n", *pixel);
+	// uint32_t c = 0;
+	// c += img->pixels[(x+ y * img->height) * 4];
+	// // printf("x [%d] y [%d]\n", x, y);
+	// c += img->pixels[(x+y * img->height) * 4 + 1];
+	// c += img->pixels[(x+y * img->height) * 4 + 2];
+	// c += img->pixels[(x+y * img->height) * 4 + 3];
+	// return (c);
+	// printf("pixel == [%d]\n", *pixel);
+	
 	color = *pixel;
 	return (get_rgba_tex(color));
 	// return (0);

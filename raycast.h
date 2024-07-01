@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/29 02:23:44 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/01 02:02:46 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,29 +147,37 @@ typedef struct s_camera
 typedef struct s_ray
 {
 	mlx_image_t		*img;
-	int 			nb_ray;
+	
 	t_vec_d			map;
 	t_vec_d			dir;
+	
 	t_vec_d			prev_ray;
+	
 	t_vec_d			start;
 	t_vec_d			end;
+	
 	t_vec_d			step;
+	
 	t_vec_d			side_dist;
 	t_vec_d			delta_dist;
+	
+	int 			nb_ray;
 	int				draw_start;
 	int 			draw_end;
 
 
+	double			angle_ray;
+	
 	double			wall_dist;
-	double 			line_height;
 	int 			wall_x;
 	int 			hit;
 	int				hit_side;
+	
 	int 			side;
 	double			fov;
 	double			angle;
-	double			angle_ray;
 	
+	double 			line_height;
 
 }	t_ray;
 
@@ -263,6 +271,33 @@ typedef struct s_grille // rename en grid
 	t_vec			*end;
 }	t_grille;
 
+
+/*
+   __                            __                                   
+  /  |                          /  |                                  
+ _$$ |_     ______   __    __  _$$ |_    __    __   ______    ______  
+/ $$   |   /      \ /  \  /  |/ $$   |  /  |  /  | /      \  /      \ 
+$$$$$$/   /$$$$$$  |$$  \/$$/ $$$$$$/   $$ |  $$ |/$$$$$$  |/$$$$$$  |
+  $$ | __ $$    $$ | $$  $$<    $$ | __ $$ |  $$ |$$ |  $$/ $$    $$ |
+  $$ |/  |$$$$$$$$/  /$$$$  \   $$ |/  |$$ \__$$ |$$ |      $$$$$$$$/ 
+  $$  $$/ $$       |/$$/ $$  |  $$  $$/ $$    $$/ $$ |      $$       |
+   $$$$/   $$$$$$$/ $$/   $$/    $$$$/   $$$$$$/  $$/        $$$$$$$/ 
+*/
+
+
+typedef struct s_texture
+{
+	mlx_texture_t	*west;
+	mlx_image_t		*west_img;
+	mlx_image_t     *img;
+	double			step;
+	double			pos;
+	int				x;
+	int				y;
+	int 			size;
+	
+}	t_texture;
+
 /*
                                                               __
                                                              /  |
@@ -277,18 +312,6 @@ $$/       $$$$$$$/  $$$$$$$ | $$$$$$$/  $$$$$$$/ $$$$$$$/     $$$$/
                    $$    $$/
                     $$$$$$/
 */
-
-typedef struct s_texture
-{
-	mlx_texture_t	*west;
-	mlx_image_t		*west_img;
-	double			step;
-	double			pos;
-	int				x;
-	int				y;
-	int 			size;
-	
-}	t_texture;
 
 typedef struct s_raycast
 {
