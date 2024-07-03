@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 14:56:32 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/03 21:42:00 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/04 00:56:14 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ mlx_image_t *get_texture(t_display *s_display, t_ray *ray)
     if (ray->side == 1)
     {
         if (ray->step.y > 0)
-            img = s_display->raycast->text->west_img;
+            img = s_display->raycast->text->north_img;
         else
             img = s_display->raycast->text->south_img;
     }

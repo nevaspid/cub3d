@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/03 21:55:17 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/04 00:55:02 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,13 +137,13 @@ $$/ $$/   $$/ $$/    $$$$//      |$$$$/   $$$$$$$/ $$/   $$/    $$$$//      |$$$
 
 void	init_text_to_img(t_display *display)
 {	
-    load_asset(display,display->raycast->text->west, &display->raycast->text->west_img,"SAMPLE/CONCRETE_4A.PNG");
+    load_asset(display,display->raycast->text->west, &display->raycast->text->west_img,"SAMPLE/DOOR_1A.PNG");
 	if (display->raycast->text->west_img == NULL)
 		printf("TEXTURE _WEST NULL\n");
 	load_asset(display, display->raycast->text->north, &display->raycast->text->north_img,"SAMPLE/BRICK_6D.PNG");
 	if (display->raycast->text->north_img == NULL)
 		printf("TEXTURE NORTH NULL\n");
-	load_asset(display,display->raycast->text->east, &display->raycast->text->east_img,"SAMPLE/DOOR_1A.PNG");\
+	load_asset(display,display->raycast->text->east, &display->raycast->text->east_img,"SAMPLE/CONCRETE_4A.PNG");\
 	if (display->raycast->text->east_img == NULL)
 		printf("TEXTURE EAST NULL\n");
 	load_asset(display,display->raycast->text->south, &display->raycast->text->south_img,"SAMPLE/PAPER_1F.PNG");
