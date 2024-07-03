@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 14:56:32 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/30 22:30:13 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/03 03:25:16 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,70 +34,68 @@ void draw_bg(t_display *display, mlx_image_t *img)
     }
 }
 
-void get_text(t_display *s_display, t_ray *ray, t_texture *current)
+// void get_text(t_display *s_display, t_ray *ray, t_texture *current)
+// {
+//     if (ray->side == 1)
+//     {
+//         if (ray->step.y > 0)
+//             current->img = s_display->raycast->text->west_img;
+//         // else
+//         //     ray->text = s_display->raycast->text->south;
+//     }
+//     // else
+//     // {
+//     //     if (ray->step.x > 0)
+//     //         ray->text = s_display->raycast->text->west;
+//     //     else
+//     //         ray->text = s_display->raycast->text->east;
+//     // }
+
+// }
+
+mlx_image_t *get_texture(t_display *s_display, t_ray *ray)
 {
+    mlx_image_t *img;
+
     if (ray->side == 1)
     {
         if (ray->step.y > 0)
-            current->img = s_display->raycast->text->west_img;
-        // else
-        //     ray->text = s_display->raycast->text->south;
+            img = s_display->raycast->text->west_img;
+        else
+            img = s_display->raycast->text->south_img;
     }
-    // else
-    // {
-    //     if (ray->step.x > 0)
-    //         ray->text = s_display->raycast->text->west;
-    //     else
-    //         ray->text = s_display->raycast->text->east;
-    // }
-
+    else
+    {
+        if (ray->step.x > 0)
+            img = s_display->raycast->text->west_img;
+        else
+            img = s_display->raycast->text->east_img;
+    }
+    printf("side = [%d] step = [%f,%f]\n", ray->side, ray->step.y, ray->step.x);
+    printf("get texture img = %p\n", img);
+    return (img);
 }
 
 
-
-// void draw_wall_orientation(t_display *display, t_ray *ray,int x)
-// {
-//     // uint32_t d_color;
-//     // int y;
-//     // int tex_x;
-    
-//     // t_texture *tex = display->raycast->text;
-//     // tex_x = (int)(ray->wall_x * (double)tex->west_img->width);
-//     // double t = InverseLerp(0, WIDTH, x);
-//     // Lerp(0,display->raycast->text->west_img->width,tex_x);
-    
-//     // d_color = get_color(x, (int)t, display->raycast->text->west_img);
-    
-//     // printf("ray->draw_start = %d\n", ray->draw_start);
-//     // printf("ray->draw_end = %d\n", ray->draw_end);
-//     if (ray->side == 1){
-//         if (ray->step.y > 0) 
-//                 draw_ligne_height(display, display->img, x, ray->draw_start, ray->draw_end);
-//             // draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, MY_WHITE);
-//         else
-//             draw_ligne_height(display, display->img, x, ray->draw_start, ray->draw_end);
-//     }
-//     else{
-//         if(ray->step.x > 0)
-//             draw_ligne_height(display, display->img, x, ray->draw_start, ray->draw_end);
-//         else 
-//             draw_ligne_height(display, display->img, x, ray->draw_start, ray->draw_end);
-//     } 
-// }
-void draw_wall_orientation(t_display *display, t_ray *ray,int x)
+void draw_wall_orientation(t_display *display, t_ray *ray, int x)
 {
+   mlx_image_t *img;
+   // REPRENDRE APRES REFACOTRISATION
+    // DES PARAMETTRES DE LA FONCTION draw_wall_orientation
+    img = get_texture(display, ray);
+    printf("img = %p\n", img);
     if (ray->side == 1){
         if (ray->step.y > 0) 
-                draw_ligne_height(display, display->img, x, ray->draw_start, ray->draw_end,PURPLE, 0 );
+            draw_ligne_height(display,img,  x, ray->draw_start, ray->draw_end);
             // draw_ligne_height(display->img, x, ray->draw_start, ray->draw_end, MY_WHITE);
         else
-            draw_ligne_height(display, display->img, x, ray->draw_start, ray->draw_end,MAGENTA, 1 );
+            draw_ligne_height(display,img, x, ray->draw_start, ray->draw_end );
     }
     else{
         if(ray->step.x > 0)
-            draw_ligne_height(display, display->img, x, ray->draw_start, ray->draw_end,BLUE, 1 );
+            draw_ligne_height(display,img, x, ray->draw_start, ray->draw_end);
         else 
-            draw_ligne_height(display, display->img, x, ray->draw_start, ray->draw_end,MY_WHITE, 1 );
+            draw_ligne_height(display,img,  x, ray->draw_start, ray->draw_end);
     } 
 }
 // void draw_wall_orientation(t_display *display, t_ray *ray,int x)//original function

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/01 02:02:46 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/03 03:13:04 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ typedef struct s_camera
 typedef struct s_ray
 {
 	mlx_image_t		*img;
+	int 			id;
 	
 	t_vec_d			map;
 	t_vec_d			dir;
@@ -169,7 +170,8 @@ typedef struct s_ray
 	double			angle_ray;
 	
 	double			wall_dist;
-	int 			wall_x;
+	double 			wall_x;
+	// int 			wall_x;
 	int 			hit;
 	int				hit_side;
 	
@@ -178,6 +180,8 @@ typedef struct s_ray
 	double			angle;
 	
 	double 			line_height;
+	
+	struct s_ray			*next;
 
 }	t_ray;
 
@@ -288,7 +292,15 @@ $$$$$$/   /$$$$$$  |$$  \/$$/ $$$$$$/   $$ |  $$ |/$$$$$$  |/$$$$$$  |
 typedef struct s_texture
 {
 	mlx_texture_t	*west;
+	mlx_texture_t	*east;
+	mlx_texture_t	*north;
+	mlx_texture_t	*south;
+	
+	mlx_image_t		*north_img;
+	mlx_image_t		*south_img;
+	mlx_image_t		*east_img;
 	mlx_image_t		*west_img;
+	
 	mlx_image_t     *img;
 	double			step;
 	double			pos;
@@ -320,6 +332,7 @@ typedef struct s_raycast
     t_ray       *ray;
 	t_camera	*camera;
 	t_texture	*text;
+	int 		nb;
 }               t_raycast;
 
 /*commentaire pour comit un msg*/

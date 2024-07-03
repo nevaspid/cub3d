@@ -6,7 +6,7 @@
 #    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/06/24 17:55:37 by oliove           ###   ########.fr        #
+#    Updated: 2024/07/03 03:48:49 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,11 @@ CYAN 		:=	\033[1;36m
 
 # ------------------------------ Compilation -------------------------
 ifeq ($(DEBUG), 1)
+	FLAGS += -g3 -fsanitize=address 
+endif
+
+ifeq ($(TEST), 1)
+	FLAGS = $(filter-out $(OBJS), $(OBJS))
 	FLAGS += -g3 -fsanitize=address 
 endif
 

@@ -127,8 +127,11 @@ void calculate_height_line(t_ray *ray, t_player *player)
         ray->wall_dist = (ray->side_dist.x - ray->delta_dist.x * V_MAGIE);
     else
         ray->wall_dist = (ray->side_dist.y - ray->delta_dist.y * V_MAGIE);
-    ray->line_height = ((int)HEIGHT / ray->wall_dist);
-    ray->line_height = ray->line_height / cos(ray->angle - player->angle);
+    // if (ray->wall_dist > 0.0001)
+        ray->line_height = ((int)HEIGHT / ray->wall_dist);
+    // else
+        // ray->line_height = HEIGHT;
+    ray->line_height = ray->line_height / cos(angle_rad(ray->angle) - angle_rad(player->angle));
     ray->draw_start = -ray->line_height / 2.0f + (int)HEIGHT / 2.0f;
     if (ray->draw_start < 0)
         ray->draw_start = 0;
@@ -140,7 +143,8 @@ void calculate_height_line(t_ray *ray, t_player *player)
     else
         ray->wall_x = player->pos.x + ray->wall_dist * ray->dir.x;
     ray->wall_x -= floor(ray->wall_x);
-    // printf("ray->wall_x = %d\n", ray->wall_x);
+    printf("ray->wall_x = %f\n", ray->wall_x);
+    // printf("ray->line_height = %f\n", ray->line_height);
 }
 
 // void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end)
@@ -158,7 +162,7 @@ void calculate_height_line(t_ray *ray, t_player *player)
 //     // d_color = 
 //     t_texture *tmp = malloc(sizeof(t_texture));
 
-//     get_text(display, display->raycast->ray, tmp);
+    // get_text(display, display->raycast->ray, tmp);
 
 
 
@@ -179,7 +183,7 @@ void calculate_height_line(t_ray *ray, t_player *player)
 //     free(tmp);
 // }
 
-// void draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color) // original function
+// void draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color)
 // {
 //     int y;
 
@@ -194,32 +198,71 @@ void calculate_height_line(t_ray *ray, t_player *player)
 //     }
 
 // }
-void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end, int color, int flags)
+void draw_ligne_height(t_display *display, mlx_image_t *img, int x, int star, int end) 
 {
     int y;
-
-    // (void)color;
-    // u_int32_t d_color;
-    
     double t;
-
-    t = InverseLerp(0, WIDTH / display->m->tile_size, x);
-    // t = Lerp(0,display->raycast->text->west_img->width,t);
-    // d_color = get_color(x, (int)t, display->raycast->text->west_img);
+    double ty; 
+    t_ray *ray;
+    // mlx_image_t *img_tex;
+    if (display == NULL || img == NULL)
+        return ;
+    ray = display->raycast->ray;
+    // img_tex = get_texture(display, ray);
+    t = InverseLerp(0, WIDTH , x);
+    (void)t;
+    
+    printf("img_tex = %p\n", img);
+    int px = (int)(img->width * (ray->map.x + ray->map.y)) % img->width;
+    
+    
+    printf("px = %d \n", px);
     y = star;
-    while ( y < end)
+    while (y < end)
     {
-        if (flags == 1)
-            mlx_put_pixel(img, x, y, color);
-        else{
-        //    printf("x = %d\n", x);
-            mlx_put_pixel(img, x, y, get_color(x, (int)t, display->raycast->text->west_img));
- 
-        }
+
+        ty = InverseLerp(star, end, y);
+        mlx_put_pixel(display->img, x, y, get_color((int)(px), (int)(ty * (img->height - 1)) , img));
+            // print_value_recast(display->raycast->player, display->raycast->ray, "draw_ligne_height", "draw_ligne_height");
         y++;
     }
-
 }
+// void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end, int color, int flags) // original function
+// {
+//     int y;
+
+
+    
+//     double t;
+//     t_ray *ray = display->raycast->ray;
+//     mlx_image_t *img_tex;
+    
+//     img_tex = get_texture(display, ray); //display->raycast->text->west_img;
+//     t = InverseLerp(0, WIDTH , x);
+    
+//     printf("img_tex = %p\n", img_tex);
+//     int px = (int)(img_tex->width * (ray->map.x + ray->map.y)) % img_tex->width; // Lerp(0, img_tex->width - 1, t);
+    
+    
+//     double ty; 
+//     printf("px = %d \n", px);
+//     (void)t;
+//     y = star;
+//     while (y < end)
+//     {
+
+//         ty = InverseLerp(star, end, y);
+//         // printf("ty = %f \n", ty);
+//         if (flags == 1)
+//             mlx_put_pixel(img, x, y, color);
+//         else{
+//             mlx_put_pixel(img, x, y, get_color((int)(px), (int)(ty * (img_tex->height - 1)) , img_tex));
+//             // print_value_recast(display->raycast->player, display->raycast->ray, "draw_ligne_height", "draw_ligne_height");
+//         }
+//         y++;
+//     }
+
+// }
 
 /*
                      __                      __              __                            __        __           
@@ -249,7 +292,7 @@ void calculate_dda(t_display *display, t_ray *ray)
         }
         else
         {
-            ray->side_dist.y += ray->delta_dist.y* V_MAGIE;
+            ray->side_dist.y += ray->delta_dist.y * V_MAGIE;
             ray->map.y += ray->step.y * V_MAGIE;
             ray->side = 1;
         }
@@ -323,121 +366,45 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
 {
     int x;
     t_camera *camera;
-    t_ray tab[WIDTH];
-
+    
     x = 0;
     camera = display->raycast->camera;
     clear_image(display->raycast->ray->img, 0x000000);
     clear_image(display->img, 0x000000);
     ray->angle = camera->angle_min;
-
+    camera->camera_x = 2 * x / (double)WIDTH - 1;
     draw_bg(display, display->img);
-
-    int i = 0;
-    while (i < WIDTH)
-    {
-        tab[i] = *ray;
-        if(x % 2 == 0)
-            tab[i].angle += angle_rad(FOV) / (WIDTH / 2);
-        // tab[i].angle = ray->angle;
-        tab[i].n_ray = i;
-        i++;
-        x++;
-    }
-
-    // i = 0;
-    x = 0;
     while (x < WIDTH)
     {
-        update_cam(display, &tab[x], player, x);
-        init_dda(&tab[x], player);
-        calculate_dda(display, &tab[x]);
-        calculate_height_line(&tab[x], player);
-        // draw_ray(display, &tab[x], player);
-        draw_wall_orientation(display, &tab[x], x);
+        update_cam(display, ray, player, x);
+        init_dda(ray, player);
+        calculate_dda(display, ray);
+        calculate_height_line(ray, player);
+        draw_ray(display, ray, player);
+        draw_wall_orientation(display, ray, x);
         if (x % 2 == 0)
-            tab[x].angle += angle_rad(FOV) / (WIDTH / 2);
+            ray->angle += angle_rad(FOV) / (WIDTH / 2);
         x++;
-    }
-    i = 0;
-    while (i < WIDTH)
-    {
-        draw_ray(display, &tab[i], player);
-        i++;
     }
 }
 
 
-
-
-
-
-// void run_raycast(t_display *display, t_ray *ray, t_player *player)
-// {
-//     int x;
-//     t_camera *camera;
-    
-//     x = 0;
-//     camera = display->raycast->camera;
-//     clear_image(display->raycast->ray->img, 0x000000);
-//     clear_image(display->img, 0x000000);
-//     ray->angle = camera->angle_min;
-
-//     draw_bg(display, display->img);
-//     while (x < WIDTH)
-//     {
-//         update_cam(display, ray, player, x);
-//         init_dda(ray, player);
-//         calculate_dda(display, ray);
-//         calculate_height_line(ray, player);
-//         draw_ray(display, ray, player);
-//         draw_wall_orientation(display, ray, x);
-//         if (x % 2 == 0)
-//             ray->angle += angle_rad(FOV) / (WIDTH / 2);
-//         x++;
-//     }
-// }
-
-void draw_ray(t_display *display, t_ray *ray, t_player *player)
+void draw_ray(t_display *display, t_ray *ray, t_player *player)// original function
 {
-    t_vec_d end_pos;
     int max_ray_lenght;
     
-    printf("ray_n_ray = %d\n", ray->n_ray);
     max_ray_lenght = 3;
-    end_pos = (t_vec_d){ray->map.x , ray->map.y};
+    ray->end = (t_vec_d){ray->map.x , ray->map.y};
     if (hypot(ray->map.x - player->pos.x, ray->map.y - player->pos.y) > max_ray_lenght)
     {
-        end_pos.x = player->pos.x + max_ray_lenght * ray->dir.x;
-        end_pos.y = player->pos.y + max_ray_lenght * ray->dir.y;
+        ray->end.x = player->pos.x + max_ray_lenght * ray->dir.x;
+        ray->end.y = player->pos.y + max_ray_lenght * ray->dir.y;
     }
     if (ray->angle >= player->angle)
     draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
-                                        (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, MY_RED);
+                                        (t_vec_d){ray->end.x * display->m->tile_size, ray->end.y * display->m->tile_size}, MY_RED);
     else
     draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
-                                        (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, 0x800080);
-
-
+                                        (t_vec_d){ray->end.x * display->m->tile_size, ray->end.y * display->m->tile_size}, 0x800080);
+ 
 }
-// void draw_ray(t_display *display, t_ray *ray, t_player *player)// original function
-// {
-//     t_vec_d end_pos;
-//     int max_ray_lenght;
-    
-//     max_ray_lenght = 3;
-//     end_pos = (t_vec_d){ray->map.x , ray->map.y};
-//     if (hypot(ray->map.x - player->pos.x, ray->map.y - player->pos.y) > max_ray_lenght)
-//     {
-//         end_pos.x = player->pos.x + max_ray_lenght * ray->dir.x;
-//         end_pos.y = player->pos.y + max_ray_lenght * ray->dir.y;
-//     }
-//     if (ray->angle >= player->angle)
-//     draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
-//                                         (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, MY_RED);
-//     else
-//     draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
-//                                         (t_vec_d){end_pos.x * display->m->tile_size, end_pos.y * display->m->tile_size}, 0x800080);
-
-
-// }

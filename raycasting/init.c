@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/30 23:16:45 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/03 03:57:20 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,38 +79,161 @@ $$/ $$/   $$/ $$/    $$$$//      |$$/       $$$$$$$/  $$$$$$$ |
                                                      $$    $$/ 
                                                       $$$$$$/  
 */
-
-void init_ray(t_ray *ray)
+t_ray	*new_node(int nb)
 {
-    ray->dir.x = 0;
-    ray->dir.y = 0;
-    ray->draw_end = 0;
-    ray->draw_start = 0;
-    ray->step.x = 0;
-    ray->step.y = 0;
-    ray->map.x = 0;
-    ray->map.y = 0;
-    ray->delta_dist.x = 0;
-    ray->delta_dist.y = 0;
-    ray->wall_dist = 0;
-    ray->line_height = 0;
-    ray->side = 0;
-    ray->hit = 0;
-    ray->hit_side = 0;
-    ray->angle = 0;
-    ray->fov = 0;
-    ray->wall_x = 0;
-    ray->prev_ray.x = 0;
-    ray->prev_ray.y = 0;
-    ray->nb_ray = 0;
-    ray->start.x = 0;
-    ray->start.y = 0;
-    ray->end.x = 0;
-    ray->end.y = 0;
-    ray->nb_ray = 0;
-    ray->angle_ray = 0;
-    ray->n_ray = 0;
+	t_ray	*new;
+    // (void)ray;
+	new = malloc(sizeof(t_ray));
+	if (!new)
+		return (NULL);
+	
+    new->dir.x = 0;
+    new->dir.y = 0;
+    new->draw_end = 0;
+    new->draw_start = 0;
+    new->step.x = 0;
+    new->step.y = 0;
+    new->map.x = 0;
+    new->map.y = 0;
+    new->delta_dist.x = 0;
+    new->delta_dist.y = 0;
+    new->wall_dist = 0;
+    new->line_height = 0;
+    new->side = 0;
+    new->hit = 0;
+    new->hit_side = 0;
+    new->angle = 0;
+    new->fov = 0;
+    new->wall_x = 0;
+    new->prev_ray.x = 0;
+    new->prev_ray.y = 0;
+    new->nb_ray = 0;
+    new->start.x = 0;
+    new->start.y = 0;
+    new->end.x = 0;
+    new->end.y = 0;
+    new->angle_ray = 0;
+    new->id = 0;
+    
+    new->nb_ray = nb;
+	new->next = NULL;
+	return (new);
 }
+
+// void init_ray(t_ray *ray)
+// {
+//     ray->dir.x = 0;
+//     ray->dir.y = 0;
+//     ray->draw_end = 0;
+//     ray->draw_start = 0;
+//     ray->step.x = 0;
+//     ray->step.y = 0;
+//     ray->map.x = 0;
+//     ray->map.y = 0;
+//     ray->delta_dist.x = 0;
+//     ray->delta_dist.y = 0;
+//     ray->wall_dist = 0;
+//     ray->line_height = 0;
+//     ray->side = 0;
+//     ray->hit = 0;
+//     ray->hit_side = 0;
+//     ray->angle = 0;
+//     ray->fov = 0;
+//     ray->wall_x = 0;
+//     ray->prev_ray.x = 0;
+//     ray->prev_ray.y = 0;
+//     ray->nb_ray = 0;
+//     ray->start.x = 0;
+//     ray->start.y = 0;
+//     ray->end.x = 0;
+//     ray->end.y = 0;
+//     ray->angle_ray = 0;
+//     ray->id = 0;
+    
+//     ray->nb_ray = 1200;
+// }
+
+void	init_text_to_img(t_display *display)
+{	
+	load_asset(display,display->raycast->text->north,display->raycast->text->north_img,"SAMPLE/CONCRETE_4A.PNG");
+	if (display->raycast->text->north == NULL)
+		printf("TEXTURE NORTH NULL\n");
+	load_asset(display,display->raycast->text->east, display->raycast->text->east_img,"SAMPLE/DOOR_1A.PNG");\
+	if (display->raycast->text->east == NULL)
+		printf("TEXTURE EAST NULL\n");
+	load_asset(display,display->raycast->text->south, display->raycast->text->south_img,"SAMPLE/PAPER_1F.PNG");
+	if (display->raycast->text->south == NULL)
+		printf("TEXTURENULL SOUTH\n");
+	load_asset(display,display->raycast->text->west, display->raycast->text->west_img,"SAMPLE/PIPES_1A.PNG");
+	if (display->raycast->text->west == NULL)
+		printf("TEXTURE _WEST NULL\n");
+}
+
+void	add_node(t_ray **ray, t_ray *new)
+{
+	t_ray	*node;
+
+	if (!new)
+		return ;
+	if (!*ray)
+	{
+		*ray = new;
+		return ;
+	}
+	node = ft_lst_get_last(*ray);
+	node->next = new;
+}
+
+t_ray	*ft_lst_get_last(t_ray *ray)
+{
+	t_ray	*current;
+
+	current = ray;
+	while (current && current->next)
+		current = current->next;
+	return (current);
+}
+
+void init_tab_ray(t_display *display)
+{
+    if (display == NULL || display->raycast == NULL || display->raycast->camera == NULL) {
+        fprintf(stderr, "Error: NULL pointer in init_tab_ray\n");
+        return;
+    }
+    int i = 0;
+    t_ray *ray = display->raycast->ray;
+    while (i < NB_RAYS)
+    {
+    	if (i == 1)
+            ray = new_node(i);
+		else
+			add_node(&ray, new_node(i));
+        i++;
+    }
+
+    // for (int i = 0; i < NB_RAYS; i++) {
+        
+    //     printf("i = %d ray[%p]\n", i, &ray[i]);
+    //     ray[i].id = i;
+    //     ray[i].angle = display->raycast->camera->angle_min + i * display->raycast->camera->angle_ray;
+    // }
+}
+// void init_tab_ray(t_display *display)
+// {
+//     t_ray *ray;
+//     int i;
+
+//     i = 0;
+//     ray = display->raycast->ray;
+//     while (i < NB_RAYS)
+//     {
+//         ray[i].id = i;
+//         ray[i].angle = display->raycast->camera->angle_min + i * display->raycast->camera->angle_ray;
+//         i++;
+//     }   
+
+// }
+
  /*
  __            __    __                        __                                      __                                                                         
 /  |          /  |  /  |                      /  |                                    /  |                                                                        

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:22:10 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/30 22:31:41 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/03 03:40:51 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,19 +120,33 @@ uint32_t	extract_color(char **color)
 			255));
 }
 
-void load_asset(t_display *display, t_texture *asset, char *path)
+void load_asset(t_display *display, mlx_texture_t *text, mlx_image_t *asset, char *path)
 {
-	
-	asset->west = mlx_load_png(path);
 
-	if(!asset->west)
+	text = mlx_load_png(path);
+	printf("'PAHT == [%s]' mlx_text_t = %p\n", path, text);
+	if(!text)
 	{
 		printf("ERROR : Asset not found\n");
 		exit(0);
 	}
-	asset->west_img = mlx_texture_to_image(display->mlx, asset->west);
-	mlx_delete_texture(asset->west);
+	asset = mlx_texture_to_image(display->mlx, text);
+	mlx_delete_texture(text);
+	// (void)asset;
 }
+// void load_asset(t_display *display, t_texture *asset, char *path) // original
+// {
+	
+// 	asset->west = mlx_load_png(path);
+
+// 	if(!asset->west)
+// 	{
+// 		printf("ERROR : Asset not found\n");
+// 		exit(0);
+// 	}
+// 	asset->west_img = mlx_texture_to_image(display->mlx, asset->west);
+// 	mlx_delete_texture(asset->west);
+// }
 
 
 // u_int32_t	get_rgba_tex(u_int32_t color)
@@ -211,24 +225,12 @@ u_int32_t	get_color(int x, int y, mlx_image_t *img)
 	(void)x;
 	uint32_t	*pixel;
 	u_int32_t	color;
-	// int pixelPos = y * img->height + x;
+	
 	color = 0;
 	pixel = NULL;
-	// printf("bit_per_pixel [%d]\n", img->pixels);
-	// printf("x [%d] y [%d]\n", x, y);
 	pixel = (uint32_t *)(img->pixels + (x + y * (img->width)) * sizeof(uint32_t));
-	// uint32_t c = 0;
-	// c += img->pixels[(x+ y * img->height) * 4];
-	// // printf("x [%d] y [%d]\n", x, y);
-	// c += img->pixels[(x+y * img->height) * 4 + 1];
-	// c += img->pixels[(x+y * img->height) * 4 + 2];
-	// c += img->pixels[(x+y * img->height) * 4 + 3];
-	// return (c);
-	// printf("pixel == [%d]\n", *pixel);
-	
 	color = *pixel;
 	return (get_rgba_tex(color));
-	// return (0);
 }
 
 
@@ -258,8 +260,13 @@ double InverseLerp(double min, double max, double value)
 
 double Lerp(double min, double max, double t)
 {
-	return min + (max - min) * Clamp01(t);
+	return min + Clamp01(t) * (max - min) ;
 }
+
+// double Lerp(double min, double max, double t)
+// {
+// 	return min + (max - min) * Clamp01(t);
+// }
 
 double Clamp01(double value)
 {
