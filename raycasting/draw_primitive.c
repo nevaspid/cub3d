@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 06:10:51 by oliove            #+#    #+#             */
-/*   Updated: 2024/06/09 00:45:58 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/03 21:45:16 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,21 +106,14 @@ void draw_circle(mlx_image_t *img, int center_x, int center_y, int radius, int c
 
 void draw_compass(t_display *display, t_compass *compass , t_player *player)
 {
-    // init_player(display,player);
-    // init_camera(display, display->raycast->camera);
-    // init_compass(compass);
     init_value_st(display);
     draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius, MY_WHITE,1);
     draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius -2 , MY_BLACK,0);
     draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius - 1, MY_WHITE,0);
 
     compass->needle_length = compass->radius * 0.8;
-    // compass->needle_end_x = compass->center_x + compass->needle_length * cos(display->p_angle);
-    // compass->needle_end_y = compass->center_y + compass->needle_length * sin(display->p_angle);
     compass->needle_end_x = compass->center_x + compass->needle_length * cos(player->angle);
     compass->needle_end_y = compass->center_y + compass->needle_length * sin(player->angle);
     draw_line(compass->img, (t_vec_d){compass->center_x, compass->center_y}, (t_vec_d){compass->needle_end_x, compass->needle_end_y}, MY_RED);
     mlx_put_pixel(compass->img, compass->center_x, compass->center_y, MY_WHITE);
-    // mlx_image_to_window(display->mlx, compass->img, WIDTH /2,0);
-    // printf("imgggggggggggggggggg [%d]\n",compass->img->instances->z);
 }

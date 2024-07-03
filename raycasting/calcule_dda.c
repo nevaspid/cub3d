@@ -127,10 +127,7 @@ void calculate_height_line(t_ray *ray, t_player *player)
         ray->wall_dist = (ray->side_dist.x - ray->delta_dist.x * V_MAGIE);
     else
         ray->wall_dist = (ray->side_dist.y - ray->delta_dist.y * V_MAGIE);
-    // if (ray->wall_dist > 0.0001)
-        ray->line_height = ((int)HEIGHT / ray->wall_dist);
-    // else
-        // ray->line_height = HEIGHT;
+    ray->line_height = ((int)HEIGHT / ray->wall_dist);
     ray->line_height = ray->line_height / cos(angle_rad(ray->angle) - angle_rad(player->angle));
     ray->draw_start = -ray->line_height / 2.0f + (int)HEIGHT / 2.0f;
     if (ray->draw_start < 0)
@@ -143,126 +140,29 @@ void calculate_height_line(t_ray *ray, t_player *player)
     else
         ray->wall_x = player->pos.x + ray->wall_dist * ray->dir.x;
     ray->wall_x -= floor(ray->wall_x);
-    printf("ray->wall_x = %f\n", ray->wall_x);
-    // printf("ray->line_height = %f\n", ray->line_height);
 }
 
-// void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end)
-// {
-//     int y;
-//     // // int tex_x;
-//     // double t;
-//     // // u_int32_t d_color;
-//     t_ray *ray = display->raycast->ray;
-//     // // t_texture *tex = display->raycast->text;
-//     double r = 1.0 * (end - star) / img->height;
-//     // // tex_x = (int)(ray->wall_x * (double)tex->west_img->width);
-//     // t = InverseLerp(0, WIDTH, ray->wall_x);
-//     // Lerp(0,display->raycast->text->west_img->width,t);
-//     // d_color = 
-//     t_texture *tmp = malloc(sizeof(t_texture));
 
-    // get_text(display, display->raycast->ray, tmp);
-
-
-
-//     y = star;
-//     printf("star = %d\n", star);
-//     printf("y - star = %d\n", y - star);
-
-//     while ( y < end)
-//     {
-//         if (y < 192)
-//             mlx_put_pixel(img, x, y ,get_color(ray->wall_x, (y ) / r, display->raycast->text->west_img));
-//         // printf("r = %f\n", r);
-//         // printf("y = %d x = %d\n", y,x);
-//         // printf("ray->wall_x = %d\n", ray->wall_x);
-
-//         y++;
-//     }
-//     free(tmp);
-// }
-
-// void draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color)
-// {
-//     int y;
-
-//     // (void)color;
-//     // u_int32_t d_color;
-//     // d_color = get_color(x, (int)t, display->raycast->text->west_img);
-//     y = star;
-//     while ( y < end)
-//     {
-//         mlx_put_pixel(img, x, y, color);
-//         y++;
-//     }
-
-// }
 void draw_ligne_height(t_display *display, mlx_image_t *img, int x, int star, int end) 
 {
-    int y;
-    double t;
-    double ty; 
     t_ray *ray;
-    // mlx_image_t *img_tex;
+    double ty; 
+    int px;
+    int y;
+
     if (display == NULL || img == NULL)
         return ;
     ray = display->raycast->ray;
-    // img_tex = get_texture(display, ray);
-    t = InverseLerp(0, WIDTH , x);
-    (void)t;
-    
-    printf("draw_ligne_H img = %p\n", img);
-    int px = (int)(img->width * (ray->map.x + ray->map.y)) % img->width;
-    
-    
-    printf("px = %d \n", px);
+    px = (int)(img->width * (ray->map.x + ray->map.y)) % img->width;
     y = star;
     while (y < end)
     {
 
         ty = InverseLerp(star, end, y);
         mlx_put_pixel(display->img, x, y, get_color((int)(px), (int)(ty * (img->height - 1)) , img));
-            // print_value_recast(display->raycast->player, display->raycast->ray, "draw_ligne_height", "draw_ligne_height");
         y++;
     }
 }
-// void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end, int color, int flags) // original function
-// {
-//     int y;
-
-
-    
-//     double t;
-//     t_ray *ray = display->raycast->ray;
-//     mlx_image_t *img_tex;
-    
-//     img_tex = get_texture(display, ray); //display->raycast->text->west_img;
-//     t = InverseLerp(0, WIDTH , x);
-    
-//     printf("img_tex = %p\n", img_tex);
-//     int px = (int)(img_tex->width * (ray->map.x + ray->map.y)) % img_tex->width; // Lerp(0, img_tex->width - 1, t);
-    
-    
-//     double ty; 
-//     printf("px = %d \n", px);
-//     (void)t;
-//     y = star;
-//     while (y < end)
-//     {
-
-//         ty = InverseLerp(star, end, y);
-//         // printf("ty = %f \n", ty);
-//         if (flags == 1)
-//             mlx_put_pixel(img, x, y, color);
-//         else{
-//             mlx_put_pixel(img, x, y, get_color((int)(px), (int)(ty * (img_tex->height - 1)) , img_tex));
-//             // print_value_recast(display->raycast->player, display->raycast->ray, "draw_ligne_height", "draw_ligne_height");
-//         }
-//         y++;
-//     }
-
-// }
 
 /*
                      __                      __              __                            __        __           
@@ -408,3 +308,4 @@ void draw_ray(t_display *display, t_ray *ray, t_player *player)// original funct
                                         (t_vec_d){ray->end.x * display->m->tile_size, ray->end.y * display->m->tile_size}, 0x800080);
  
 }
+

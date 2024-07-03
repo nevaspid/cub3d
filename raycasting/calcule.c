@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:22:10 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/03 06:25:49 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/03 21:44:44 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,62 +22,6 @@ double distance(t_vec_d a, t_vec_d b)
     return sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2));
 }
 
-// t_direction getRay_direction(float x0, float y0, float x1, float y1) 
-// {
-//     float dx;
-//     float dy;
-
-   
-//     dy = y1 - y0;
-//     dx = x1 - x0;
-//     if (fabs(dx) > fabs(dy)) {
-//         if (dx > 0) {
-//             return EAST;
-//         } else {
-//             return WEST;
-//         }
-//     }
-//     else {
-//         if (dy > 0) {
-//             return SOUTH;
-//         } else {
-//             return NORTH;
-//         }
-//     }
-// }
-
-
-// void render_floor(t_display *d, t_ray *ray, t_player *player)
-// {
-//     int x;
-//     int y;
-//     int color;
-//     (void)player;
-//     (void)ray;
-
-//     while (y < HEIGHT)
-//     {
-//         y = HEIGHT / 2;
-        
-//         while (x < WIDTH)
-//         {
-//             color = 0x000000;
-//             mlx_pixel_put(d->mlx, x, y, color);
-//             x++;
-//         }
-//         y++;
-//     }
-    
-    
-
-// }
-
-
-    /**************************************************************************************************************************** */
-    /**                                                 BUG DE MERGE                                                             */
-    /************************************************************************************************************************** */
-
-    
 int	ft_atoi_mod(const char *str)
 {
 	int	i;
@@ -124,78 +68,14 @@ void load_asset(t_display *display, mlx_texture_t *text, mlx_image_t **asset, ch
 {
 	
 	text = mlx_load_png(path);
-	// printf("'PAHT == [%s]' mlx_text_t = %p\n", path, text);
 	if(!text)
 	{
 		printf("ERROR : Asset not found\n");
 		exit(0);
 	}
 	*asset = mlx_texture_to_image(display->mlx, text);
-	// printf("LA asset == [%p]\n", asset);
-
 	mlx_delete_texture(text);
-	// (void)asset;
 }
-// void load_asset(t_display *display, t_texture *asset, char *path) // original
-// {
-	
-// 	asset->west = mlx_load_png(path);
-
-// 	if(!asset->west)
-// 	{
-// 		printf("ERROR : Asset not found\n");
-// 		exit(0);
-// 	}
-// 	asset->west_img = mlx_texture_to_image(display->mlx, asset->west);
-// 	mlx_delete_texture(asset->west);
-// }
-
-
-// u_int32_t	get_rgba_tex(u_int32_t color)
-// {
-// 	u_int8_t	r;
-// 	u_int8_t	g;
-// 	u_int8_t	b;
-// 	u_int8_t	a;
-
-// 	a = color >> 24;
-// 	r = color >> 16;
-// 	g = color >> 8;
-// 	b = color;
-// 	return (r << 8 | g << 16 | b << 24 | a << 0);
-// }
-
-// u_int32_t	get_color(t_display *display, mlx_image_t *img, int x, int y)
-// {
-// 	uint32_t	*pixel;
-// 	u_int32_t	color;
-
-
-// 	// printf("%d\n", *img->pixels);
-// 	pixel = NULL;
-// 	pixel = (uint32_t *)(img->pixels + (x + y * display->m->tile_size) * sizeof(uint32_t));
-// 	color = *pixel;
-// 	return (get_rgba_tex(color));
-// 	// return (0);
-// }
-
-// uint8_t* get_image_color_pixel(mlx_texture_t* texture)
-// uint32_t get_image_color_pixel(mlx_texture_t* texture, t_display *mlx)
-// {
-// 	mlx_image_t* image;
-// 	mlx_texture_t* text;
-// 	// mlx_image_t* image = mlx_new_image(mlx->mlx, texture->width, texture->height);
-// 	// mlx->raycast->asset->ceiling = mlx_new_image(mlx->mlx, texture->width, texture->height);
-// 	// image = mlx->raycast->asset->ceiling;
-// 	text = mlx_load_png("srcs/assets/burger_shop.png");
-// 	if (image == NULL)
-// 		return NULL;
-// 	image = mlx_texture_to_image(mlx->mlx, texture);
-// 	mlx_delete_texture(text);
-// 	// uint8_t* pixelx;
-// 	// uint8_t* pixeli;
-// 	return (image);
-// }
 
 u_int32_t	get_rgba_tex(u_int32_t color)
 {
@@ -208,7 +88,6 @@ u_int32_t	get_rgba_tex(u_int32_t color)
 	r = color >> 16;
 	g = color >> 8;
 	b = color;
-	// printf("r [%d] g [%d] b [%d] a [%d]\n", r, g, b, a);
 	return (r << 8 | g << 16 | b << 24 | a << 0);
 	
 }
@@ -242,12 +121,8 @@ uint8_t get_pixel(t_display *display, mlx_texture_t *texture,int x, int y)
     uint8_t *color;
     int i;
     int pixelPos = y * texture->height + x;
-	printf("texture->pixels == [%d]\n", texture->bytes_per_pixel);
     color = 0;
     color = color + pixelPos* (texture->bytes_per_pixel / 8);
-
-
-    // color = texture->addr + (y * texture->height + x * (texture->bytes_per_pixel / 8));
     i = *(unsigned int *)color;
     return (i);
 
@@ -265,10 +140,6 @@ double Lerp(double min, double max, double t)
 	return min + Clamp01(t) * (max - min) ;
 }
 
-// double Lerp(double min, double max, double t)
-// {
-// 	return min + (max - min) * Clamp01(t);
-// }
 
 double Clamp01(double value)
 {
@@ -279,122 +150,3 @@ double Clamp01(double value)
 	else
 		return value;
 }
-
-// void get_pixel_pos(t_display *display,mlx_image_t *image, t_ray *ray, int x)
-// {
-	
-// 	// Hauteur du mur en pixels à l'écran
-// 	double wallHeight = ray->line_height; // à déterminer
-
-// 	// Hauteur de la texture
-// 	double textureHeight = image->height; // à déterminer
-
-// 	// Pour chaque pixel du mur à l'écran
-// 	for (double y = 0; y < wallHeight; y++)
-// 	{
-// 		// Calculez la position relative sur le mur
-// 		double relativePosition = InverseLerp(0, wallHeight, y);
-
-// 		// Convertissez cette position en une position dans la texture
-// 		double texturePosition = Lerp(0, textureHeight, relativePosition);
-
-// 	 // Utilisez cette position pour obtenir la couleur du pixel dans la texture
-//         int pixelIndex = (int)texturePosition * image->width;
-//         int color = image->data[pixelIndex];
-
-// 	}
-// }
-
-// size texture x, y
-// size wall x, y
-// x, y
-
-// u_int8_t get_tex_scale(t_display *display, mlx_image_t *texture, int x, int y)
-// {
-// 	(void)display;
-	
-// 	u_int8_t scale_x;
-// 	u_int8_t scale_y;
-	
-
-	
-// 	// printf("scale_x [%d] scale_y [%d]\n", (x * texture->width) / display->m->tile_size,(y * texture->height) / display->m->tile_size);
-// 	scale_x = (x * texture->width) / display->m->tile_size;
-// 	scale_y = (y * texture->height) / display->m->tile_size;
-	
-	
-// 	if(scale_x > 0 && scale_x < texture->width && scale_y > 0  && scale_y < texture->height)
-// 		return (get_pixel(display, texture, scale_x, scale_y));
-// 	return (0);
-// }
-// u_int8_t get_tex_scale(t_display *display, mlx_texture_t *texture, int x, int y)
-// {
-// 	(void)display;
-	
-// 	u_int8_t scale_x;
-// 	u_int8_t scale_y;
-	
-
-	
-// 	printf("scale_x [%d] scale_y [%d]\n", (x * texture->width) / display->m->tile_size,(y * texture->height) / display->m->tile_size);
-// 	scale_x = (x * texture->width) / display->m->tile_size;
-// 	scale_y = (y * texture->height) / display->m->tile_size;
-	
-	
-// 	if(scale_x > 0 && scale_x < texture->width && scale_y > 0  && scale_y < texture->height)
-// 		return (get_pixel(display, texture, scale_x, scale_y));
-// 	return (0);
-// }
-
-
-// u_int32_t	get_rgba_tex(u_int32_t color)
-// {
-// 	u_int8_t	r;
-// 	u_int8_t	g;
-// 	u_int8_t	b;
-// 	u_int8_t	a;
-
-// 	a = color >> 24;
-// 	r = color >> 16;
-// 	g = color >> 8;
-// 	b = color;
-// 	return (r << 8 | g << 16 | b << 24 | a << 0);
-// }
-
-
-// u_int32_t	get_color(int x, int y, mlx_texture_t *img)
-// u_int32_t	get_color(int x, int y, mlx_image_t *img)
-// {
-// 	uint32_t	*pixel;
-// 	u_int32_t	color;
-
-// 	pixel = NULL;
-// 	pixel = (uint32_t *)(img->pixels + (x + y * (img->height * img->width) * sizeof(uint32_t)));
-// 	color = *pixel;
-// 	return (get_rgba_tex(color));
-// 	return (0);
-// }
-
-// void render_floor(t_display *d, t_ray *ray, t_player *player)
-// {
-//     int x;
-//     int y;
-//     int color;
-//     (void)player;
-//     (void)ray;
-
-//     while (y < HEIGHT)
-//     {
-//         y = HEIGHT / 2;
-        
-//         while (x < WIDTH)
-//         {
-//             color = 0x000000;
-//             mlx_pixel_put(d->mlx, x, y, color);
-//             x++;
-//         }
-//         y++;
-//     }
-    
-    
-// }
