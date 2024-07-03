@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/03 03:18:58 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/03 22:00:55 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,10 +181,10 @@ void init_text(t_display *display);
 
 // void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end);
 // void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end, int color, int flags);
-void draw_ligne_height(t_display *display, mlx_image_t *img, int x, int star, int end);
-// void 	draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color);
+// void draw_ligne_height(t_display *display, mlx_image_t *img, int x, int star, int end);
+void 	draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color);
 u_int32_t	get_color(int x, int y, mlx_image_t *img);
-void get_text(t_display *s_display, t_ray *ray, t_texture *current);
+// void get_text(t_display *s_display, t_ray *ray, t_texture *current);
 void init_tab_ray(t_display *display);
 
 void game_loop(t_display *display, t_mem_alloc *mylloc);

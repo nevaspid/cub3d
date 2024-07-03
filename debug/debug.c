@@ -21,7 +21,7 @@ void print_value_ray(t_ray *ray, t_player *player, char *where, char *who, int n
 	(void)player;
 	(void)n;
     printf("\033\t[0;31m%s in %s\033[0;m \n",who,where);
-	printf("\033\t[0;34mray->id[%d]\033[0;m\n", ray->id);
+	// printf("\033\t[0;34mray->id[%d]\033[0;m\n", ray->id);
 	// printf("player->dir->x [%f]\n", player->dir.x);
 	// printf("player->dir->y [%f]\n", player->dir.y);
 	// printf("player->plane->x [%f]\n", player->plane.x);
@@ -35,7 +35,7 @@ void print_value_ray(t_ray *ray, t_player *player, char *where, char *who, int n
 	printf("[%d]ray->step->x [%f]\n",n, ray->step.x);
 	printf("[%d]ray->step->y [%f]\n",n, ray->step.y);
 	printf("[%d]ray->side [%d]\n",n, ray->side);
-	printf("[%d]ray->wall_x [%f]\n",n, ray->wall_x);
+	// printf("[%d]ray->wall_x [%f]\n",n, ray->wall_x);
 	printf("[%d]ray->wall_dist [%f]\n",n, ray->wall_dist);
 	printf("[%d]ray->end.x [%f]\n",n, ray->end.x);
 	printf("[%d]ray->end.y [%f]\n",n, ray->end.y);
