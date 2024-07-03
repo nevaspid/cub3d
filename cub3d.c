@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/25 14:11:50 by gloms            ###   ########.fr       */
+/*   Updated: 2024/07/03 00:12:17 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 
 void define_tile_size(t_display *display)
 {
@@ -45,10 +46,16 @@ int	main(int ac, char **av)
 		free_and_exit(mylloc);
 	}
 
+	init_text(display);
+	init_text_to_img(display);
 	run_raycast(display,display->raycast->ray, display->raycast->player);
 	image_to_window(display);
 	mlx_loop_hook(display->mlx, &player_angle, display);
+	// mlx_key_hook(display->mlx, &move_player, display);
 	mlx_loop(display->mlx);
 	free_and_exit(mylloc);
 }
+
+
+
 
