@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:22:10 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/03 03:40:51 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/03 06:25:49 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,17 +120,19 @@ uint32_t	extract_color(char **color)
 			255));
 }
 
-void load_asset(t_display *display, mlx_texture_t *text, mlx_image_t *asset, char *path)
+void load_asset(t_display *display, mlx_texture_t *text, mlx_image_t **asset, char *path)
 {
-
+	
 	text = mlx_load_png(path);
-	printf("'PAHT == [%s]' mlx_text_t = %p\n", path, text);
+	// printf("'PAHT == [%s]' mlx_text_t = %p\n", path, text);
 	if(!text)
 	{
 		printf("ERROR : Asset not found\n");
 		exit(0);
 	}
-	asset = mlx_texture_to_image(display->mlx, text);
+	*asset = mlx_texture_to_image(display->mlx, text);
+	// printf("LA asset == [%p]\n", asset);
+
 	mlx_delete_texture(text);
 	// (void)asset;
 }

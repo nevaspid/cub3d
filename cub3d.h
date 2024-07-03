@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/03 03:18:58 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/03 06:24:07 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ double Lerp(double min, double max, double t);
 double InverseLerp(double min, double max, double value);
 double Clamp01(double value);
 // int check_next_move(t_display *d, double x, double y);
-void load_asset(t_display *display, mlx_texture_t *text, mlx_image_t *asset, char *path);
+void load_asset(t_display *display, mlx_texture_t *text, mlx_image_t **asset, char *path);
 void init_text(t_display *display);
 
 // void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end);
@@ -194,6 +194,7 @@ t_ray	*ft_lst_get_last(t_ray *ray);
 mlx_image_t *get_texture(t_display *s_display, t_ray *ray);
 void	init_text_to_img(t_display *display);
 // t_ray	*new_node(t_ray *ray, int nb);
+void print_texture(t_texture *text, char *where, char *who);
 
 
 #endif

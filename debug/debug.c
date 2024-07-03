@@ -111,6 +111,17 @@ void print_value_camera(t_camera *camera, char *where, char *who)
 
 	
 }
+void print_texture(t_texture *text, char *where, char *who)
+{
+	printf("\033[0;31m%s in %s\033[0;m \n",who,where);
+	printf("text->north [%p] image == [%p]\n", text->north, text->north_img);
+	printf("text->south [%p] image == [%p]\n", text->south, text->south_img);
+	printf("text->west [%p] image == [%p]\n", text->west, text->west_img);
+	printf("text->east [%p] image == [%p]\n", text->east, text->east_img);
+	printf("\033[0;31mend %s\033[0;m\n",where);
+
+	
+}
 
 // void print_direction(t_direction dir, int x) {
 //     switch(dir) {

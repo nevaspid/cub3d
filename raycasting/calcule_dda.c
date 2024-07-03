@@ -212,7 +212,7 @@ void draw_ligne_height(t_display *display, mlx_image_t *img, int x, int star, in
     t = InverseLerp(0, WIDTH , x);
     (void)t;
     
-    printf("img_tex = %p\n", img);
+    printf("draw_ligne_H img = %p\n", img);
     int px = (int)(img->width * (ray->map.x + ray->map.y)) % img->width;
     
     

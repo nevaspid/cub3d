@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 14:56:32 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/03 03:25:16 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/03 06:26:11 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ mlx_image_t *get_texture(t_display *s_display, t_ray *ray)
 {
     mlx_image_t *img;
 
+    // print_texture(s_display->raycast->text, "get_texture","start");
     if (ray->side == 1)
     {
         if (ray->step.y > 0)
@@ -71,8 +72,8 @@ mlx_image_t *get_texture(t_display *s_display, t_ray *ray)
         else
             img = s_display->raycast->text->east_img;
     }
-    printf("side = [%d] step = [%f,%f]\n", ray->side, ray->step.y, ray->step.x);
-    printf("get texture img = %p\n", img);
+    // printf("side = [%d] step = [%f,%f]\n", ray->side, ray->step.y, ray->step.x);
+    // printf("get texture img = %p\n", img);
     return (img);
 }
 

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/03 03:57:20 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/03 06:30:37 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,19 +155,20 @@ t_ray	*new_node(int nb)
 
 void	init_text_to_img(t_display *display)
 {	
-	load_asset(display,display->raycast->text->north,display->raycast->text->north_img,"SAMPLE/CONCRETE_4A.PNG");
-	if (display->raycast->text->north == NULL)
-		printf("TEXTURE NORTH NULL\n");
-	load_asset(display,display->raycast->text->east, display->raycast->text->east_img,"SAMPLE/DOOR_1A.PNG");\
-	if (display->raycast->text->east == NULL)
-		printf("TEXTURE EAST NULL\n");
-	load_asset(display,display->raycast->text->south, display->raycast->text->south_img,"SAMPLE/PAPER_1F.PNG");
-	if (display->raycast->text->south == NULL)
-		printf("TEXTURENULL SOUTH\n");
-	load_asset(display,display->raycast->text->west, display->raycast->text->west_img,"SAMPLE/PIPES_1A.PNG");
-	if (display->raycast->text->west == NULL)
+    load_asset(display,display->raycast->text->west, &display->raycast->text->west_img,"SAMPLE/CONCRETE_4A.PNG");
+	if (display->raycast->text->west_img == NULL)
 		printf("TEXTURE _WEST NULL\n");
+	load_asset(display, display->raycast->text->north, &display->raycast->text->north_img,"SAMPLE/CONSOLE_1B.PNG");
+	if (display->raycast->text->north_img == NULL)
+		printf("TEXTURE NORTH NULL\n");
+	load_asset(display,display->raycast->text->east, &display->raycast->text->east_img,"SAMPLE/DOOR_1A.PNG");\
+	if (display->raycast->text->east_img == NULL)
+		printf("TEXTURE EAST NULL\n");
+	load_asset(display,display->raycast->text->south, &display->raycast->text->south_img,"SAMPLE/PAPER_1F.PNG");
+	if (display->raycast->text->south_img == NULL)
+		printf("TEXTURENULL SOUTH\n");
 }
+	
 
 void	add_node(t_ray **ray, t_ray *new)
 {
@@ -312,8 +313,8 @@ void init_camera(t_display *display, t_camera *camera)
     
 void init_text(t_display *display)
 {
-    display->raycast->text->west = NULL;
-    display->raycast->text->west_img = NULL;
+    // display->raycast->text->west = NULL;
+    // display->raycast->text->west_img = NULL;
     display->raycast->text->pos = 0;
     display->raycast->text->x = 0;
     display->raycast->text->y = 0;
