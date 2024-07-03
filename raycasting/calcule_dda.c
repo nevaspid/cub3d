@@ -123,13 +123,12 @@ $$       |$$    $$ |$$ |$$       |$$    $$/ $$ |$$    $$ |  $$  $$/ $$       |
 
 void calculate_height_line(t_ray *ray, t_player *player)
 {
-    // fisheyes a gerer
     if (ray->side == 0)
         ray->wall_dist = (ray->side_dist.x - ray->delta_dist.x * V_MAGIE);
     else
         ray->wall_dist = (ray->side_dist.y - ray->delta_dist.y * V_MAGIE);
     ray->line_height = ((int)HEIGHT / ray->wall_dist);
-    ray->line_height = ray->line_height / cos(angle_rad(ray->angle) - angle_rad(player->angle));
+    ray->line_height = ray->line_height / cos(ray->angle - player->angle);
     ray->draw_start = -ray->line_height / 2.0f + (int)HEIGHT / 2.0f;
     if (ray->draw_start < 0)
         ray->draw_start = 0;
@@ -142,7 +141,6 @@ void calculate_height_line(t_ray *ray, t_player *player)
         ray->wall_x = player->pos.x + ray->wall_dist * ray->dir.x;
     ray->wall_x -= floor(ray->wall_x);
 }
-
 
 void draw_ligne_height(t_display *display, mlx_image_t *img, int x, int star, int end) 
 {
