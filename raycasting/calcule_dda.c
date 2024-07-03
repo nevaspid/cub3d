@@ -123,6 +123,7 @@ $$       |$$    $$ |$$ |$$       |$$    $$/ $$ |$$    $$ |  $$  $$/ $$       |
 
 void calculate_height_line(t_ray *ray, t_player *player)
 {
+    // fisheyes a gerer
     if (ray->side == 0)
         ray->wall_dist = (ray->side_dist.x - ray->delta_dist.x * V_MAGIE);
     else
