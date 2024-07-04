@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/03 03:13:04 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/04 04:23:21 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ typedef struct s_ray
 	double			fov;
 	double			angle;
 	
+	
 	double 			line_height;
 	
 	struct s_ray			*next;
@@ -300,6 +301,9 @@ typedef struct s_texture
 	mlx_image_t		*south_img;
 	mlx_image_t		*east_img;
 	mlx_image_t		*west_img;
+
+	mlx_image_t		*img_portal;
+	mlx_texture_t	*portal;
 	
 	mlx_image_t     *img;
 	double			step;
@@ -324,6 +328,15 @@ $$/       $$$$$$$/  $$$$$$$ | $$$$$$$/  $$$$$$$/ $$$$$$$/     $$$$/
                    $$    $$/
                     $$$$$$/
 */
+typedef struct s_animation
+{
+    mlx_texture_t** frames;  
+    int frame_count;         
+    int current_frame;       
+    double frame_duration;   
+    double elapsed_time;     
+}	t_animation;
+
 
 typedef struct s_raycast
 {

@@ -156,7 +156,6 @@ void draw_ligne_height(t_display *display, mlx_image_t *img, int x, int star, in
     y = star;
     while (y < end)
     {
-
         ty = InverseLerp(star, end, y);
         mlx_put_pixel(display->img, x, y, get_color((int)(px), (int)(ty * (img->height - 1)) , img));
         y++;
@@ -226,7 +225,6 @@ $$       |$$ |$$       |$$    $$ |$$ |______ $$ |$$ | $$ | $$ |$$    $$ |$$    $
                                                                          $$    $$/           
                                                                           $$$$$$/            
 */
-
 void clear_image(mlx_image_t *img, uint32_t a)
 {
     uint32_t x;
@@ -244,7 +242,6 @@ void clear_image(mlx_image_t *img, uint32_t a)
         y++;
     }
 }
-
 /*
                                                                                                    __     
                                                                                                   /  |    
@@ -259,8 +256,6 @@ $$/        $$$$$$/  $$/   $$//      |$$/       $$$$$$$/  $$$$$$$ | $$$$$$$/  $$$
                                                         $$    $$/                                         
                                                          $$$$$$/                                          
 */
-
-
 void run_raycast(t_display *display, t_ray *ray, t_player *player)
 {
     int x;
@@ -287,7 +282,6 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
     }
 }
 
-
 void draw_ray(t_display *display, t_ray *ray, t_player *player)// original function
 {
     int max_ray_lenght;
@@ -305,6 +299,5 @@ void draw_ray(t_display *display, t_ray *ray, t_player *player)// original funct
     else
     draw_line(display->raycast->ray->img, (t_vec_d){player->pos.x * display->m->tile_size, player->pos.y * display->m->tile_size},
                                         (t_vec_d){ray->end.x * display->m->tile_size, ray->end.y * display->m->tile_size}, 0x800080);
- 
 }
 

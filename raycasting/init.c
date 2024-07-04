@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/04 00:55:02 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/04 04:12:45 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,16 @@ void	init_text_to_img(t_display *display)
 		printf("TEXTURENULL SOUTH\n");
 }
 	
+
+void init_portal(t_display *display)
+{
+    (void)display;
+    
+        
+
+}
+
+    
  /*
  __            __    __                        __                                      __                                                                         
 /  |          /  |  /  |                      /  |                                    /  |                                                                        
