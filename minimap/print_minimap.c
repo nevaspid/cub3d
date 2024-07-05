@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:41:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/06/10 05:36:32 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/05 04:29:30 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_assets(t_display *mlx, int tile_size, int x, int y)
 {
-	if (mlx->m->minimap_array[y][x] == '1')
+	if (mlx->m->minimap_array[y][x] == '1' || mlx->m->minimap_array[y][x] == 'P')
 		wall(mlx->m, x * tile_size, y * tile_size, tile_size);
 	else if (mlx->m->minimap_array[y][x] == '0')
 		floors(mlx->m, x * tile_size, y * tile_size, tile_size);

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 14:56:32 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/04 00:56:14 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/05 04:40:27 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ mlx_image_t *get_texture(t_display *s_display, t_ray *ray)
     if (ray->side == 1)
     {
         if (ray->step.y > 0)
-            img = s_display->raycast->text->north_img;
+            if (s_display->m->minimap_array[(int)ray->map.y][(int)ray->map.x] == 'P')
+                img = s_display->raycast->anim->frames[3];
+            else
+                img = s_display->raycast->text->north_img;
         else
             img = s_display->raycast->text->south_img;
     }
@@ -63,7 +66,11 @@ void draw_wall_orientation(t_display *display, t_ray *ray, int x)
     img = get_texture(display, ray);
     if (ray->side == 1){
         if (ray->step.y > 0) 
-            draw_ligne_height(display,img,  x, ray->draw_start, ray->draw_end);
+        {
+                draw_ligne_height(display,img, x, ray->draw_start, ray->draw_end);
+            // else
+            //     draw_ligne_height(display,img,  x, ray->draw_start, ray->draw_end);
+        }
         else
             draw_ligne_height(display,img, x, ray->draw_start, ray->draw_end );
     }

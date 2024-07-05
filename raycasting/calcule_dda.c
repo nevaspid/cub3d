@@ -196,7 +196,7 @@ void calculate_dda(t_display *display, t_ray *ray)
         }
         if (ray->map.y >= 0 || ray->map.x >= 0 || ray->map.y <= display->m->minimap->height || ray->map.x <= display->m->minimap->width)
         {
-            if (display->m->minimap_array[(int)ray->map.y][(int)ray->map.x] == '1')
+            if (display->m->minimap_array[(int)ray->map.y][(int)ray->map.x] == '1' || display->m->minimap_array[(int)ray->map.y][(int)ray->map.x] == 'P')
             {
                 hit = 1;
                 ray->hit = 1;
