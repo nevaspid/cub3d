@@ -6,7 +6,7 @@
 #    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/07/04 04:26:39 by oliove           ###   ########.fr        #
+#    Updated: 2024/07/05 00:06:14 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ HEADERS		:= -I ./include -I $(LIBMLX)/include
 LIBS		:= $(LIBMLX)/build/libmlx42.a -lm -lglfw #-L 
 # ------------------------------ Sources -----------------------------
 
-SRCS		:=	 cub3d.c \
+SRCS		:=	cub3d.c \
 				minimap/pixelated_assets.c \
 				minimap/print_minimap.c \
 				parsing/read_file.c \
@@ -41,7 +41,7 @@ SRCS		:=	 cub3d.c \
 				raycasting/draw.c \
 				game_loop.c \
 				utils/check_move.c \
-	# raycasting/animation.c\
+# raycasting/animation.c\
 
 OBJ_DIR		:=	.objs
 OBJS		:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

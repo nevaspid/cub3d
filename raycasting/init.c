@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/04 04:12:45 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/05 01:55:24 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void init_malloc(t_mem_alloc *mylloc, t_display *display)
 	display->raycast->ray = mem_alloc(mylloc,sizeof(t_ray));
 	display->raycast->camera = mem_alloc(mylloc,sizeof(t_camera));
     display->raycast->text = mem_alloc(mylloc,sizeof(t_texture));
+    display->raycast->anim = mem_alloc(mylloc,sizeof(t_animation));
     
 }
 
@@ -151,6 +152,25 @@ void	init_text_to_img(t_display *display)
 		printf("TEXTURENULL SOUTH\n");
 }
 	
+void load_text_animation(mlx_t *mlx, t_animation *anim ,const char **filenames, int frame_count) 
+{
+    int i;
+    mlx_texture_t *texture;
+    
+    i = 0;
+    while (i < frame_count){
+        printf("filename : %s\n", filenames[i]);
+        texture  = mlx_load_png(filenames[i]); 
+        if (!texture) {
+            fprintf(stderr, "Failed to load texture: %s\n", *filenames);
+            exit(1);
+        }
+        anim->frames[i] = mlx_texture_to_image(mlx, texture);
+        i++;
+        mlx_delete_texture(texture);
+    }
+
+}
 
 void init_portal(t_display *display)
 {

@@ -14,7 +14,8 @@
 
 
 // Fonction fictive pour charger une texture à partir d'un fichier
-mlx_texture_t* load_texture(mlx_t *mlx, const char* filename) {
+mlx_texture_t* load_texture(mlx_t *mlx, const char* filename) 
+{
     mlx_texture_t* texture = mlx_load_png(filename);
     if (!texture) {
         fprintf(stderr, "Failed to load texture: %s\n", filename);
@@ -25,14 +26,14 @@ mlx_texture_t* load_texture(mlx_t *mlx, const char* filename) {
 
 t_animation load_animation(mlx_t *mlx, const char** filenames, int frame_count, double frame_duration) {
     t_animation anim;
-    anim.frames = malloc(frame_count * sizeof(mlx_image_t*));
+    anim.frames = malloc(frame_count * sizeof(mlx_image_t));
     anim.frame_count = frame_count;
     anim.current_frame = 0;
     anim.frame_duration = frame_duration;
     anim.elapsed_time = 0.0;
 
     for (int i = 0; i < frame_count; i++) {
-        anim.frames[i] = load_texture(mlx, filenames[i]);
+        anim.frames[i] = mlx_texture_to_image(mlx,load_texture(mlx, filenames[i]));
     }
 
     return anim;
@@ -49,8 +50,10 @@ void update_animation(t_animation* anim, double delta_time) {
 
 // Afficher l't_animation à l'écran
 void draw_animation(mlx_t *mlx, mlx_image_t *img, t_animation anim, int x, int y) {
-    mlx_texture_t *current_texture = anim.frames[anim.current_frame];
-    mlx_draw_texture(img, current_texture, x, y);
+    mlx_image_t *current_img = anim.frames[anim.current_frame];
+    mlx_image_to_window(mlx, img, x, y);
+    
+    // mlx_draw_texture(img, current_img, x, y);
 }
 
 int main() {
@@ -87,13 +90,13 @@ int main() {
         draw_animation(mlx, img, anim, 100, 100);
 
         // Mettre à jour l'affichage
-        mlx_update(mlx);
+        // mlx_update(mlx);
     }
 
     // Libérer la mémoire des textures
-    for (int i = 0; i < frame_count; i++) {
-        mlx_delete_texture(anim.frames[i]);
-    }
+    // for (int i = 0; i < frame_count; i++) {
+    //     mlx_delete_texture(anim.frames[i]);
+    // }
     free(anim.frames);
     mlx_delete_image(mlx, img);
     mlx_terminate(mlx);

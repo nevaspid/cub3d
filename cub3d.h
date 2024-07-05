@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/04 03:51:39 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/05 01:47:39 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,7 @@ void print_texture(t_texture *text, char *where, char *who);
 
 // Test animation
 
+void load_text_animation(mlx_t *mlx, t_animation *anim ,const char **filenames, int frame_count) ;
 
 
 #endif
