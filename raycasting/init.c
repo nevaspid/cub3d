@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/05 01:55:24 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/05 02:07:15 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,6 @@ void load_text_animation(mlx_t *mlx, t_animation *anim ,const char **filenames, 
         i++;
         mlx_delete_texture(texture);
     }
-
 }
 
 void init_portal(t_display *display)

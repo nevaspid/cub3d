@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_stored_tab.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:49:34 by gloms             #+#    #+#             */
-/*   Updated: 2024/05/21 14:44:18 by gloms            ###   ########.fr       */
+/*   Updated: 2024/07/05 02:09:52 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,18 @@ int	check_map(char **map)
 	return (1);
 }
 
-int	is_valid_char(char c)
+// int	is_valid_char(char c) // original
+// {
+// 	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
+// 		|| c == 'x' || c == ' ')
+// 		return (1);
+// 	return (0);
+// }
+
+int	is_valid_char(char c) // for Bonus
 {
 	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == 'x' || c == ' ')
+		|| c == 'x' || c == ' ' || c == 'P')
 		return (1);
 	return (0);
 }
