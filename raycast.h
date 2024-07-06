@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/05 01:57:48 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/06 13:34:41 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -328,15 +328,6 @@ $$/       $$$$$$$/  $$$$$$$ | $$$$$$$/  $$$$$$$/ $$$$$$$/     $$$$/
                    $$    $$/
                     $$$$$$/
 */
-typedef struct s_animation
-{
-    mlx_image_t **frames;  
-    int frame_count;         
-    int current_frame;       
-    double frame_duration;   
-    double elapsed_time;     
-}	t_animation;
-
 
 typedef struct s_raycast
 {
@@ -346,7 +337,6 @@ typedef struct s_raycast
 	t_camera	*camera;
 	t_texture	*text;
 	int 		nb;
-	t_animation *anim;
 }               t_raycast;
 
 /*commentaire pour comit un msg*/

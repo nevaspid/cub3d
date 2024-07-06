@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/05 04:42:45 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/06 16:45:56 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ int	main(int ac, char **av)
 {
 	t_display	*display;
 	t_mem_alloc	*mylloc;
-	// int			tile_size;
-	const char* filenames[] = {"portal/tile000.png", "portal/tile001.png", "portal/tile002.png","portal/tile009.png", NULL};
+	
 	if (ac != 2)
 	{
 		printf("ERROR : Wrong number of arguments\n");
@@ -45,17 +44,12 @@ int	main(int ac, char **av)
 		printf("ERROR : Map is not closed\n");
 		free_and_exit(mylloc);
 	}
-	display->raycast->anim->frames = malloc(3 * sizeof(mlx_image_t));
-	init_text(display);
-	init_text_to_img(display);
+	init_text(display);//Mettre en fonction
+	init_text_to_img(display);//Mettre en fonction
 	run_raycast(display,display->raycast->ray, display->raycast->player);
-	load_text_animation(display->mlx, display->raycast->anim, filenames, 4);
 	image_to_window(display);
 	mlx_loop_hook(display->mlx, &player_angle, display);
-	// mlx_key_hook(display->mlx, &move_player, display);
 	mlx_loop(display->mlx);
-
-	free(display->raycast->anim->frames);// a deplacer plus tard
 	free_and_exit(mylloc);
 }
 

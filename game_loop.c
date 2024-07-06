@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:44:31 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/02 03:26:59 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/06 16:50:41 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ void arry_nb(t_display *display)// nom a changer mais pas d'idee
 
 void game_loop(t_display *display, t_mem_alloc *mylloc)
 {
-    // init_game(display,mylloc);
+    
     (void)mylloc;
     while (1)
     {
         update_game(display);
         draw_game(display);
-        image_to_window(display);
+        // image_to_window(display);
     }
 }
 
@@ -86,7 +86,8 @@ void init_game(t_display *display, t_mem_alloc *mylloc)
 
 void update_game(t_display *display)
 {
-//    (void)display; 
+//    (void)display;
+    //  clear_image(display->raycast->ray->img, 0x000000);
    run_raycast(display, display->raycast->ray, display->raycast->player); 
    
 }
@@ -107,7 +108,6 @@ void update_cam(t_display *display, t_ray *ray, t_player *player, int x)
     t_camera *camera;
     (void)x; 
     camera = display->raycast->camera;
-    // camera->camera_x = 2 * x / (double)WIDTH - 1;
     ray->dir.x = cos(ray->angle) + player->plane.x * camera->camera_x;
     ray->dir.y = sin(ray->angle) + player->plane.y * camera->camera_x;
     ray->map.x = player->pos.x;
