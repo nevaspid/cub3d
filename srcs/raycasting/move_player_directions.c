@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 14:52:41 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/07 22:20:33 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/08 00:04:33 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	move_forwards(t_display *d)//tout droit
 		return ;
 	d->p_x +=  (cos(d->p_angle) * SPEED);
 	d->p_y +=  (sin(d->p_angle) * SPEED);
-	// d->m->player->instances[0].x = (d->p_x * d->m->tile_size);
-	// d->m->player->instances[0].y = (d->p_y * d->m->tile_size);
 }
 
 void	move_backwards(t_display *d)//reculer
@@ -59,8 +57,6 @@ void	move_backwards(t_display *d)//reculer
 		return ;
 	d->p_x -= cos(d->p_angle) * SPEED;
 	d->p_y -= sin(d->p_angle) * SPEED;
-// 	d->m->player->instances[0].x = (d->p_x * d->m->tile_size);
-// 	d->m->player->instances[0].y = (d->p_y * d->m->tile_size);
 }
 
 void	move_left(t_display *d)//gauche
@@ -70,8 +66,6 @@ void	move_left(t_display *d)//gauche
 	
 	d->p_x += cos(d->p_angle + M_PI /2) * SPEED;
 	d->p_y += sin(d->p_angle + M_PI /2) * SPEED;
-	// d->m->player->instances[0].x = (d->p_x * d->m->tile_size);
-	// d->m->player->instances[0].y = (d->p_y * d->m->tile_size);
 }
 
 void	move_right(t_display *d)//droite
@@ -80,6 +74,4 @@ void	move_right(t_display *d)//droite
 		return ;
 	d->p_x -= cos(d->p_angle + M_PI /2) * SPEED;
 	d->p_y -= sin(d->p_angle + M_PI /2) * SPEED;
-	// d->m->player->instances[0].x = (d->p_x * d->m->tile_size);
-	// d->m->player->instances[0].y = (d->p_y * d->m->tile_size);
 }

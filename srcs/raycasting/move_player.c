@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:52:56 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/07 21:31:29 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/08 01:02:19 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,4 @@ void	move_player(mlx_key_data_t key, void *param)
 		display->p_angle = 0;
 	draw_compass(display, display->raycast->compass, display->raycast->player);
 	run_raycast(display, display->raycast->ray, display->raycast->player);
-}
-
-
-void rotate_player(t_player *player, double rotSpeed)
-{
-    double oldDirX = player->dir.x;
-    player->dir.x = player->dir.x * cos(rotSpeed) - player->dir.y * sin(rotSpeed);
-    player->dir.y = oldDirX * sin(rotSpeed) + player->dir.y * cos(rotSpeed);
-
-    double oldPlaneX = player->plane.x;
-    player->plane.x = player->plane.x * cos(rotSpeed) - player->plane.y * sin(rotSpeed);
-    player->plane.y = oldPlaneX * sin(rotSpeed) + player->plane.y * cos(rotSpeed);
 }
