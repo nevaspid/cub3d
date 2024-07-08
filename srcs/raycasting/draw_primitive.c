@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 06:10:51 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/08 01:42:40 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/08 15:43:00 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,19 @@ static void fill_circle(t_compass *compass, int x, int y, int color)
     draw_fill_circle(compass->img, compass->center_x - y, compass->center_x + y, compass->center_y - x, color);
 }
 
+static void print_circle(t_compass *compass, int x, int y, int color)
+{
+    mlx_put_pixel(compass->img, compass->center_x + x,compass->center_y + y, color);
+    mlx_put_pixel(compass->img, compass->center_x + x,compass->center_y + y, color);
+    mlx_put_pixel(compass->img, compass->center_x - x,compass->center_y + y, color);
+    mlx_put_pixel(compass->img, compass->center_x + x,compass->center_y - y, color);
+    mlx_put_pixel(compass->img, compass->center_x - x,compass->center_y - y, color);
+    mlx_put_pixel(compass->img, compass->center_x + y,compass->center_y + x, color);
+    mlx_put_pixel(compass->img, compass->center_x - y,compass->center_y + x, color);
+    mlx_put_pixel(compass->img, compass->center_x + y,compass->center_y - x, color);
+    mlx_put_pixel(compass->img, compass->center_x - y,compass->center_y - x, color);
+}
+
 void draw_circle(t_compass *compass, int radius, int color, int fill)
 {
     int x;
@@ -91,17 +104,7 @@ void draw_circle(t_compass *compass, int radius, int color, int fill)
     {
         if(fill == 1)
             fill_circle(compass,x, y, MY_BLACK);
-        mlx_put_pixel(compass->img, compass->center_x + x,compass->center_y + y, color);
-        mlx_put_pixel(compass->img, compass->center_x + x,compass->center_y + y, color);
-        mlx_put_pixel(compass->img, compass->center_x - x,compass->center_y + y, color);
-        mlx_put_pixel(compass->img, compass->center_x + x,compass->center_y - y, color);
-        mlx_put_pixel(compass->img, compass->center_x - x,compass->center_y - y, color);
-        mlx_put_pixel(compass->img, compass->center_x + y,compass->center_y + x, color);
-        mlx_put_pixel(compass->img, compass->center_x - y,compass->center_y + x, color);
-        mlx_put_pixel(compass->img, compass->center_x + y,compass->center_y - x, color);
-        mlx_put_pixel(compass->img, compass->center_x - y,compass->center_y - x, color);
-        printf("d = %d x = %d, y = %d\n",d, x, y);
-        // d = ajuste(d, x, y);
+        print_circle(compass, x, y, color);
         if (d < 0)
             d = d + 4 * x + 6;
         else
@@ -109,61 +112,9 @@ void draw_circle(t_compass *compass, int radius, int color, int fill)
             d = d + 4 * (x - y) + 10;
             y--;
         }
-        printf("d = %d\n\n",d);
         x++;
     }
 }
-
-int ajuste(int d, int x, int y)
-{
-    if (d < 0)
-        d = d + 4 * x + 6;
-    else
-    {
-        d = d + 4 * (x - y) + 10;
-        y--;
-    }
-    printf("\033[1;31md = %d x = %d, y = %d\033[0m\n",d, x, y);
-    return (d);
-}
-
-// void draw_circle(mlx_image_t *img, int center_x, int center_y, int radius, int color, int fill)
-// {
-//     int x;
-//     int y;
-//     int d;
-
-//     y = radius;
-//     x = 0;
-//     d = 3 - 2 * radius;
-//     while (x <= y)
-//     {
-//         if(fill == 1){
-//             draw_fill_circle(img, center_x - x, center_x + x, center_y + y, MY_BLACK);
-//             draw_fill_circle(img, center_x - x, center_x + x, center_y - y, MY_BLACK);
-//             draw_fill_circle(img, center_x - y, center_x + y, center_y + x, MY_BLACK);
-//             draw_fill_circle(img, center_x - y, center_x + y, center_y - x, MY_BLACK);
-//         }
-//         mlx_put_pixel(img, center_x + x,center_y + y, color);
-//         mlx_put_pixel(img, center_x + x, center_y + y, color);
-//         mlx_put_pixel(img, center_x - x, center_y + y, color);
-//         mlx_put_pixel(img, center_x + x, center_y - y, color);
-//         mlx_put_pixel(img, center_x - x, center_y - y, color);
-//         mlx_put_pixel(img, center_x + y, center_y + x, color);
-//         mlx_put_pixel(img, center_x - y, center_y + x, color);
-//         mlx_put_pixel(img, center_x + y, center_y - x, color);
-//         mlx_put_pixel(img, center_x - y, center_y - x, color);
-
-//         if (d < 0)
-//             d = d + 4 * x + 6;
-//         else
-//         {
-//             d = d + 4 * (x - y) + 10;
-//             y--;
-//         }
-//         x++;
-//     }
-// }
 
 
 void draw_compass(t_display *display, t_compass *compass , t_player *player)

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 21:13:32 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/07 21:30:55 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/08 16:09:10 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,20 +88,11 @@ void	print_player(t_display *mlx, t_minimap *m, int tile_size)
 
 	x = 0;
 	y = 0;
-	// mlx_image_to_window(mlx->mlx, m->minimap, 0, 0);
 	floors(m, m->p_x * tile_size, m->p_y * tile_size, tile_size);
 	while (m->minimap_array[y])
 	{
 		while (m->minimap_array[y][x])
-		{
-			if (m->minimap_array[y][x] == 'N' || m->minimap_array[y][x] == 'S'
-				|| m->minimap_array[y][x] == 'W'
-				|| m->minimap_array[y][x] == 'E'){
-					// mlx_image_to_window(mlx->mlx, mlx->raycast->ray->img,0,0);
-					// mlx_image_to_window(mlx->mlx,mlx->m->player,mlx->m->p_x * tile_size, mlx->m->p_y * tile_size); 
-				}
 			x++;
-		}
 		x = 0;
 		y++;
 	}

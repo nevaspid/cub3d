@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/08 01:33:45 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/08 15:37:40 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ void draw_fill_circle(mlx_image_t *img, int x1, int x2, int y,  int color);
 // void draw_circle(mlx_image_t *img, int center_x, int center_y, int radius, int color, int fill);//original
 void draw_circle(t_compass *compass, int radius, int color, int fill);
 void draw_compass(t_display *display, t_compass *compass , t_player *player);
-int ajuste(int d, int x, int y);
+int ajuste(int d, int x, int *y);
 /*-------------DDA_AND_OTHER-----------*/
 void run_raycast(t_display *display, t_ray *ray, t_player *player);
 void image_to_window(t_display *display);

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:41:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/07 21:31:29 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/08 15:51:13 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	print_assets(t_display *mlx, int tile_size, int x, int y)
 {
-	if (mlx->m->minimap_array[y][x] == '1' || mlx->m->minimap_array[y][x] == 'P')
+	if (mlx->m->minimap_array[y][x] == '1' ||
+			mlx->m->minimap_array[y][x] == 'P')
 		wall(mlx->m, x * tile_size, y * tile_size, tile_size);
 	else if (mlx->m->minimap_array[y][x] == '0')
 		floors(mlx->m, x * tile_size, y * tile_size, tile_size);
@@ -28,31 +29,31 @@ void	print_assets(t_display *mlx, int tile_size, int x, int y)
 	}
 }
 
-void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_size, t_mem_alloc *mylloc)
+void	print_minimap(t_display *mlx, t_minimap *min, int tz, t_mem_alloc *my)
 {
 	int	x;
 	int	y;
 	int	print_p;
-	(void)mylloc;
+
 	x = 0;
 	y = 0;
 	print_p = 0;
-	while (minimap->minimap_array[y])
+	while (min->minimap_array[y])
 	{
-		while (minimap->minimap_array[y][x])
+		while (min->minimap_array[y][x])
 		{
 			if (is_char(mlx->m->minimap_array[y][x], mlx))
 				print_p++;
 			if (print_p > 1)
 			{
 				printf("ERROR : more than one player on map");
-				free_and_exit(mylloc);
+				free_and_exit(my);
 			}
-			print_assets(mlx, tile_size, x, y);
+			print_assets(mlx, tz, x, y);
 			x++;
 		}
 		x = 0;
 		y++;
 	}
-	print_player(mlx, minimap, tile_size);
+	print_player(mlx, min, tz);
 }
