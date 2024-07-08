@@ -6,42 +6,42 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:03:31 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/08 17:08:21 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/08 19:50:57 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_addr(char *where,void *addr)
+void	print_addr(char *where, void *addr)
 {
 	printf("%s == [%p]\n", where, addr);
 }
 
 void	print_info_struct(char *where, char *format, void *addr)
 {
-    printf("%s == ",where);
-    printf(format,addr);
-    printf("\n");
+	printf("%s == ", where);
+	printf(format, addr);
+	printf("\n");
 }
 
 void	print_value_ray(t_ray *ray, t_player *player, char *where, char *who, int n)
 {
 	(void)player;
 	(void)n;
-	printf("\033\t[0;31m%s in %s\033[0;m \n",who,where);
+	printf("\033\t[0;31m%s in %s\033[0;m \n", who,where);
 	printf("\033\t[0;34mray->id[%d]\033[0;m\n", ray->id);
-	printf("[%d]ray->dir->x [%f]\n",n, ray->dir.x);
-	printf("[%d]ray->dir->y [%f]\n",n, ray->dir.y);
-	printf("[%d]ray->map->x [%f]\n",n, ray->map.x);
-	printf("[%d]ray->map->y [%f]\n",n, ray->map.y);
-	printf("[%d]ray->step->x [%f]\n",n, ray->step.x);
-	printf("[%d]ray->step->y [%f]\n",n, ray->step.y);
-	printf("[%d]ray->side [%d]\n",n, ray->side);
+	printf("[%d]ray->dir->x [%f]\n", n, ray->dir.x);
+	printf("[%d]ray->dir->y [%f]\n", n, ray->dir.y);
+	printf("[%d]ray->map->x [%f]\n", n, ray->map.x);
+	printf("[%d]ray->map->y [%f]\n", n, ray->map.y);
+	printf("[%d]ray->step->x [%f]\n", n, ray->step.x);
+	printf("[%d]ray->step->y [%f]\n", n, ray->step.y);
+	printf("[%d]ray->side [%d]\n", n, ray->side);
 	printf("[%d]ray->wall_x [%f]\n",n, ray->wall_x);
-	printf("[%d]ray->wall_dist [%f]\n",n, ray->wall_dist);
-	printf("[%d]ray->end.x [%f]\n",n, ray->end.x);
-	printf("[%d]ray->end.y [%f]\n",n, ray->end.y);
-	printf("\033[0;31m\t end [%d] %s\033[0;m\n",n,where);
+	printf("[%d]ray->wall_dist [%f]\n", n, ray->wall_dist);
+	printf("[%d]ray->end.x [%f]\n", n, ray->end.x);
+	printf("[%d]ray->end.y [%f]\n", n, ray->end.y);
+	printf("\033[0;31m\t end [%d] %s\033[0;m\n", n, where);
 }
 
 void print_value_player(t_player *player, char *where, char *who)

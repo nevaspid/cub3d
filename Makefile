@@ -6,7 +6,7 @@
 #    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/07/07 23:48:39 by oliove           ###   ########.fr        #
+#    Updated: 2024/07/08 20:01:03 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,13 @@ SRCS		:=	srcs/cub3d.c \
 				srcs/raycasting/calcule_dda.c \
 				srcs/utils/free_and_exit.c \
 				srcs/parsing/flood_fill.c \
-				srcs/debug/debug.c \
 				srcs/raycasting/move_player_directions.c \
 				srcs/raycasting/draw_primitive.c \
 				srcs/raycasting/draw.c \
 				srcs/game_loop.c \
-				srcs/utils/check_move.c \
+				srcs/raycasting/init_text.c \
+				# srcs/utils/check_move.c \
+				# srcs/utils/check_move
 
 SRCS_BONUS		:=	srcs_bonus/cub3d_bonus.c \
 				srcs_bonus/minimap_bonus/pixelated_assets_bonus.c \
