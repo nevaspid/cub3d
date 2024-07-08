@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/08 15:37:40 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/08 21:23:04 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ void 	rotate_player(t_player *player, double rotSpeed);
 void 	init_mlx(t_display *display);
 void 	init_player(t_display *display, t_player *player);
 void 	init_value_st(t_display *display);
-void 	draw_bg(t_display *display, mlx_image_t *img);
+// void 	draw_bg(t_display *display, mlx_image_t *img);
+void 	draw_bg( mlx_image_t *img);
 void 	draw_wall_orientation(t_display *display, t_ray *ray, int x);
 void 	move_rotated(mlx_key_data_t key, void *param);
 int check_next_move(t_display *d,double x, double y, t_direction dir);

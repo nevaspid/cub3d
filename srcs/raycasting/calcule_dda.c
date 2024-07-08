@@ -267,7 +267,7 @@ void run_raycast(t_display *display, t_ray *ray, t_player *player)
     // clear_image(display->img, 0x000000);
     ray->angle = camera->angle_min;
     camera->camera_x = 2 * x / (double)WIDTH - 1;
-    draw_bg(display, display->img);
+    draw_bg(display->img);
     while (x < WIDTH)
     {
         update_cam(display, ray, player, x);
