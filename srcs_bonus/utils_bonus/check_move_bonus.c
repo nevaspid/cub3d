@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_move.c                                       :+:      :+:    :+:   */
+/*   check_move_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 04:07:31 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/07 21:31:29 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/11 14:42:27 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@
 // {
 //     t_vec_d new_pos;
 
-//     new_pos.x = display->raycast->player->pos.x - cos(display->raycast->player->angle + M_PI_2) * SPEED;
-//     new_pos.y = display->raycast->player->pos.y - sin(display->raycast->player->angle + M_PI_2) * SPEED;
-//     if (!check_colision(display, &(t_ray){display->raycast->player->pos, new_pos}))
+//     new_pos.x = display->raycast->player->pos.x
+	// - cos(display->raycast->player->angle + M_PI_2) * SPEED;
+//     new_pos.y = display->raycast->player->pos.y
+	// - sin(display->raycast->player->angle + M_PI_2) * SPEED;
+//     if (!check_colision(display, &(t_ray){display->raycast->player->pos,
+		// new_pos}))
 //     {
 //         display->raycast->player->pos.x = new_pos.x;
 //         display->raycast->player->pos.y = new_pos.y;

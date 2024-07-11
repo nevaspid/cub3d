@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_player.c                                      :+:      :+:    :+:   */
+/*   move_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:52:56 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/07 21:31:29 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/11 14:45:57 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,14 @@ int	is_2pi(double number)
 		return (0);
 }
 
-
 void	player_angle(void *param)
 {
 	t_display	*display;
-	
+
 	display = (t_display *)param;
 	if (mlx_is_key_down(display->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(display->mlx);
-	if ( mlx_is_key_down(display->mlx, MLX_KEY_A) )//&& (display->raycast->player->pos.y - display-> )> )
+	if (mlx_is_key_down(display->mlx, MLX_KEY_A))
 		move_left(display);
 	if (mlx_is_key_down(display->mlx, MLX_KEY_D))
 		move_right(display);
@@ -50,10 +49,12 @@ void	player_angle(void *param)
 	draw_compass(display, display->raycast->compass, display->raycast->player);
 	run_raycast(display, display->raycast->ray, display->raycast->player);
 }
-void move_rotated(mlx_key_data_t key, void *param)
+
+void	move_rotated(mlx_key_data_t key, void *param)
 {
-	(void)key;
 	t_display	*display;
+
+	(void)key;
 	display = (t_display *)param;
 	if (mlx_is_key_down(display->mlx, MLX_KEY_LEFT))
 		display->p_angle -= ROTATE;
@@ -67,6 +68,7 @@ void move_rotated(mlx_key_data_t key, void *param)
 void	move_player(mlx_key_data_t key, void *param)
 {
 	t_display	*display;
+
 	(void)key;
 	display = (t_display *)param;
 	if (mlx_is_key_down(display->mlx, MLX_KEY_ESCAPE))
@@ -89,14 +91,18 @@ void	move_player(mlx_key_data_t key, void *param)
 	run_raycast(display, display->raycast->ray, display->raycast->player);
 }
 
-
-void rotate_player(t_player *player, double rotSpeed)
+void	rotate_player(t_player *player, double rotSpeed)
 {
-    double oldDirX = player->dir.x;
-    player->dir.x = player->dir.x * cos(rotSpeed) - player->dir.y * sin(rotSpeed);
-    player->dir.y = oldDirX * sin(rotSpeed) + player->dir.y * cos(rotSpeed);
+	double	olddir_x;
+	double	oldplane_x;
 
-    double oldPlaneX = player->plane.x;
-    player->plane.x = player->plane.x * cos(rotSpeed) - player->plane.y * sin(rotSpeed);
-    player->plane.y = oldPlaneX * sin(rotSpeed) + player->plane.y * cos(rotSpeed);
+	olddir_x = player->dir.x;
+	player->dir.x = player->dir.x * cos(rotSpeed) - player->dir.y
+		* sin(rotSpeed);
+	player->dir.y = olddir_x * sin(rotSpeed) + player->dir.y * cos(rotSpeed);
+	oldplane_x = player->plane.x;
+	player->plane.x = player->plane.x * cos(rotSpeed) - player->plane.y
+		* sin(rotSpeed);
+	player->plane.y = oldplane_x * sin(rotSpeed) + player->plane.y
+		* cos(rotSpeed);
 }
