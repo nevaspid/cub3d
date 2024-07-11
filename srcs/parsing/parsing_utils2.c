@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:57:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/07 21:31:29 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 00:12:55 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ char	*return_paths(char *to_search, char **file, t_mem_alloc *m)
 	else
 	{
 		printf("ERROR : missing flag %s\n", to_search);
-		free_and_exit(m);
+		free_and_exit(m, NULL);
 	}
 	if (find_path_in_line(file[file_line]) != ft_strlen(file[file_line]))
 		start = find_path_in_line(file[file_line]);
 	else
-		free_and_exit(m);
+		free_and_exit(m, NULL);
 	path = ft_substr(file[file_line], start, ft_strlen(file[file_line]) - start,
 			m);
 	return (path);
@@ -49,12 +49,12 @@ char	*return_rgb(char *to_search, char **file, t_mem_alloc *m)
 	else
 	{
 		printf("ERROR : missing flag %s\n", to_search);
-		free_and_exit(m);
+		free_and_exit(m, NULL);
 	}
 	if (find_rgb_in_line(file[file_line]) != ft_strlen(file[file_line]))
 		start = find_rgb_in_line(file[file_line]);
 	else
-		free_and_exit(m);
+		free_and_exit(m, NULL);
 	rgb = ft_substr(file[file_line], start, ft_strlen(file[file_line]) - start,
 			m);
 	return (rgb);

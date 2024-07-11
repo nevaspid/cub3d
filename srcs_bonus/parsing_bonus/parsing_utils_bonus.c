@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   parsing_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:11:16 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/07 21:31:29 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/11 23:44:29 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	search_flag_in_tab(char *to_find, char **tab)
 	int	i;
 
 	i = -1;
-	while (tab[++i])
+	while (tab && tab[0] && tab[++i])
 	{
 		if (ft_strcmp(tab[i], to_find) == 1)
 			return (i);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_stored_tab.c                                 :+:      :+:    :+:   */
+/*   check_stored_tab_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:49:34 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/07 21:31:29 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 00:12:06 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	store_minimap(char **file, t_minimap *m, t_mem_alloc *malloc)
 	if (check_map(m->minimap_array) == -1)
 	{
 		printf("Error\nInvalid map\n");
-		free_and_exit(malloc);
+		free_and_exit(malloc, NULL);
 	}
 }
 

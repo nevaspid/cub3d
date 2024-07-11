@@ -6,7 +6,7 @@
 #    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/07/11 01:47:58 by oliove           ###   ########.fr        #
+#    Updated: 2024/07/12 00:40:23 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,10 @@ SRCS_BONUS		:=	srcs_bonus/cub3d_bonus.c \
 				srcs_bonus/raycasting_bonus/draw_bonus.c \
 				srcs_bonus/game_loop_bonus.c \
 				srcs_bonus/utils_bonus/check_move_bonus.c \
+				srcs_bonus/utils_bonus/prim_draw_utils_bonus.c \
+				srcs_bonus/utils_bonus/init_bonus.c \
+				srcs_bonus/utils_bonus/utils_text.c \
+				srcs_bonus/utils_playeur.c \
 
 OBJ_DIR				:=	.objs
 OBJS		:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -82,7 +86,7 @@ OBJS_BONUS		:=	$(addprefix $(OBJ_DIR_BONUS)/, $(SRCS_BONUS:.c=.o))
 
 BREW		:=	$(shell brew --prefix)
 CC			:=	gcc
-FLAGS		:=	-Wall -Wextra -Werror -g3 -fsanitize=address -O3 -march=native -mtune=native -funroll-loops -finline-functions -flto -fomit-frame-pointer -ffast-math -fexpensive-optimizations
+FLAGS		:=	-Wall -Wextra -Werror -g3 #-O3 -march=native -mtune=native -funroll-loops -finline-functions -flto -fomit-frame-pointer -ffast-math -fexpensive-optimizations
 RM			:=	rm -rf
 
 $(OBJ_DIR)/%.o :%.c

@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_and_exit_bonus.c                              :+:      :+:    :+:   */
+/*   utils_text.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 15:41:34 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/12 00:13:59 by oliove           ###   ########.fr       */
+/*   Created: 2024/07/11 01:47:03 by oliove            #+#    #+#             */
+/*   Updated: 2024/07/11 01:51:00 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_and_exit(t_mem_alloc *malloc, char *str)
+double	inverse_lerp(double min, double max, double value)
 {
-	t_mem_alloc	*tmp;
+	if (min != max)
+		return (clamp01((value - min) / (max - min)));
+	else
+		return (0.0);
+}
 
-	if (str != NULL)
-		printf("%s\n", str);
-	if (!malloc)
-		exit(0);
-	while (malloc)
-	{
-		tmp = malloc->next;
-		if (malloc->content)
-			free(malloc->content);
-		free(malloc);
-		malloc = tmp;
-	}
-	exit(0);
+double	lerp(double min, double max, double t)
+{
+	return (min + clamp01(t) * (max - min));
+}
+
+double	clamp01(double value)
+{
+	if (value < 0)
+		return (0);
+	else if (value > 1)
+		return (1);
+	else
+		return (value);
 }

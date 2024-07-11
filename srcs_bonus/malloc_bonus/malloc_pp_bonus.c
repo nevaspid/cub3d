@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_pp.c                                        :+:      :+:    :+:   */
+/*   malloc_pp_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 20:12:32 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/07 21:31:29 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 00:28:47 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	lstadd_back(t_mem_alloc **first, t_mem_alloc *new)
 {
 	t_mem_alloc	*tmp;
-	printf("hey %p\n", first);
+
 	if (!first)
 		return ;
 	if (*first == NULL)
@@ -26,11 +26,10 @@ void	lstadd_back(t_mem_alloc **first, t_mem_alloc *new)
 		while (tmp && tmp->next)
 			tmp = tmp->next;
 		tmp->next = new;
-		// new->prev = tmp;
 	}
 }
 
-t_mem_alloc *ft_lst_new_malloc(void *content)
+t_mem_alloc	*ft_lst_new_malloc(void *content)
 {
 	t_mem_alloc	*new;
 
@@ -41,14 +40,13 @@ t_mem_alloc *ft_lst_new_malloc(void *content)
 	{
 		new->content = content;
 		new->next = NULL;
-		// new->prev = NULL;
 	}
 	return (new);
 }
 
 void	*malloc_new(t_mem_alloc **lst, size_t size)
 {
-	t_mem_alloc			*new;
+	t_mem_alloc		*new;
 	size_t			i;
 	unsigned char	*ret;
 
@@ -81,4 +79,3 @@ void	free_maloc(t_mem_alloc **lst)
 	free(*lst);
 	*lst = NULL;
 }
-

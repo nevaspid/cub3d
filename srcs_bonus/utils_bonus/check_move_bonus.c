@@ -6,31 +6,52 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 04:07:31 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/11 14:42:27 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 00:44:43 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// int check_colision(t_display *d, t_ray *ray)
-// {
-//     if (d->m->minimap_array[(int)ray->end.y][(int)ray->end.x] == '1')
-//         return (1);
-//     return (0);
-// }
+void	init_coor_e(t_player *player)
+{
+	if (player->pos_start == 'W')
+	{
+		player->dir.x = 0;
+		player->dir.y = -1;
+		player->plane.x = -0.66;
+		player->plane.y = 0;
+	}
+	else if (player->pos_start == 'E')
+	{
+		player->dir.x = 0;
+		player->dir.y = 1;
+		player->plane.x = 0.66;
+		player->plane.y = 0;
+	}
+}
 
-// void move_left(t_display *display)
-// {
-//     t_vec_d new_pos;
+void	init_coor_n(t_player *player)
+{
+	if (player->pos_start == 'N')
+	{
+		player->dir.x = -1;
+		player->dir.y = 0;
+		player->plane.x = 0;
+		player->plane.y = 0.66;
+	}
+	else if (player->pos_start == 'S')
+	{
+		player->dir.x = 1;
+		player->dir.y = 0;
+		player->plane.x = 0;
+		player->plane.y = -0.66;
+	}
+}
 
-//     new_pos.x = display->raycast->player->pos.x
-	// - cos(display->raycast->player->angle + M_PI_2) * SPEED;
-//     new_pos.y = display->raycast->player->pos.y
-	// - sin(display->raycast->player->angle + M_PI_2) * SPEED;
-//     if (!check_colision(display, &(t_ray){display->raycast->player->pos,
-		// new_pos}))
-//     {
-//         display->raycast->player->pos.x = new_pos.x;
-//         display->raycast->player->pos.y = new_pos.y;
-//     }
-// }
+void	init_player_dir(t_player *player)
+{
+	if (player->pos_start == 'N' || player->pos_start == 'S')
+		init_coor_n(player);
+	else if (player->pos_start == 'W' || player->pos_start == 'E')
+		init_coor_e(player);
+}

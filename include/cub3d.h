@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/11 02:11:11 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 00:08:32 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,14 @@ void 	rotate_player(t_player *player, double rotSpeed);
 void 	init_mlx(t_display *display);
 void 	init_player(t_display *display, t_player *player);
 void 	init_value_st(t_display *display);
-void 	draw_bg( mlx_image_t *img);
+void 	draw_bg(mlx_image_t *img);
 void 	draw_wall_orientation(t_display *display, t_ray *ray, int x);
 void 	move_rotated(mlx_key_data_t key, void *param);
 int check_next_move(t_display *d,double x, double y, t_direction dir);
 /*------------memory-alloc-------------*/
 
 void	*mem_alloc(t_mem_alloc *lst, size_t size);
-void	free_and_exit(t_mem_alloc *malloc);
+void	free_and_exit(t_mem_alloc *malloc, char *str);
 void 	init_malloc(t_mem_alloc *mem_alloc, t_display *display);
 /*-------------pixelling-------------*/
 
@@ -193,6 +193,7 @@ void	norsh(t_player *player);
 void	print_circle(t_compass *compass, int x, int y, int color);
 void	fill_circle(t_compass *compass, int x, int y, int color);
 void	define_tile_size(t_display *display);
+// void	set_line(t_line *l, t_vec_d start, t_vec_d end);
 #endif
 
 
