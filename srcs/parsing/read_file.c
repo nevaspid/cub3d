@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:57:31 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/08 15:29:27 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/11 01:52:03 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	read_parse_store(char *file, t_mem_alloc *lst, t_display *d)
 	line = NULL;
 	buf[1] = '\0';
 	fd = open(file, O_RDONLY);
-	if(fd < 0)
+	if (fd < 0)
 	{
 		printf("Error\nFile not found\n");
 		free_and_exit(lst);

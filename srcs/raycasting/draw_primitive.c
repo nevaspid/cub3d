@@ -6,141 +6,104 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 06:10:51 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/08 15:43:00 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/11 01:44:34 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void set_line(t_line *l, t_vec_d start, t_vec_d end)
+static void	set_line(t_line *l, t_vec_d start, t_vec_d end)
 {
-    l->x1 = start.x;
-    l->y1 = start.y;
-    l->x2 = end.x;
-    l->y2 = end.y;
-    l->dx = abs(l->x2 - l->x1);
-    l->dy = abs(l->y2 - l->y1);
-    if (l->x1 < l->x2)
-        l->sx = 1;
-    else
-        l->sx = -1;
-    if (l->y1 < l->y2)
-        l->sy = 1;
-    else
-        l->sy = -1;
-    l->err = l->dx - l->dy;
-    if (l->x1 < 0 || l->x1 >= WIDTH || l->x2 < 0 || l->x2 >= WIDTH || l->y1 < 0 || l->y1 >= HEIGHT || l->y2 < 0 || l->y2 >= HEIGHT) {
-        return;
-    }
+	l->x1 = start.x;
+	l->y1 = start.y;
+	l->x2 = end.x;
+	l->y2 = end.y;
+	l->dx = abs(l->x2 - l->x1);
+	l->dy = abs(l->y2 - l->y1);
+	if (l->x1 < l->x2)
+		l->sx = 1;
+	else
+		l->sx = -1;
+	if (l->y1 < l->y2)
+		l->sy = 1;
+	else
+		l->sy = -1;
+	l->err = l->dx - l->dy;
+	if (l->x1 < 0 || l->x1 >= WIDTH || l->x2 < 0 || l->x2 >= WIDTH || l->y1 < 0
+		|| l->y1 >= HEIGHT || l->y2 < 0 || l->y2 >= HEIGHT)
+		return ;
 }
 
-
-void draw_line(mlx_image_t *img, t_vec_d start, t_vec_d end, int color)
+void	draw_line(mlx_image_t *img, t_vec_d start, t_vec_d end, int color)
 {
-    t_line l;
+	t_line	l;
 
-    set_line(&l, start, end);
-    while (1)
-    {
-        mlx_put_pixel(img, l.x1, l.y1, color);
-        if (l.x1 == l.x2 && l.y1 == l.y2)
-            break;
-        l.err2 = 2 * l.err;
-        if (l.err2 > -l.dy)
-        {
-            l.err -= l.dy;
-            l.x1 += l.sx;
-        }
-        if (l.err2 < l.dx)
-        {
-            l.err += l.dx;
-            l.y1 += l.sy;
-        }
-    }
+	set_line(&l, start, end);
+	while (1)
+	{
+		mlx_put_pixel(img, l.x1, l.y1, color);
+		if (l.x1 == l.x2 && l.y1 == l.y2)
+			break ;
+		l.err2 = 2 * l.err;
+		if (l.err2 > -l.dy)
+		{
+			l.err -= l.dy;
+			l.x1 += l.sx;
+		}
+		if (l.err2 < l.dx)
+		{
+			l.err += l.dx;
+			l.y1 += l.sy;
+		}
+	}
 }
 
-void draw_fill_circle(mlx_image_t *img, int x1, int x2, int y,  int color)
+void	draw_fill_circle(mlx_image_t *img, t_vec *x, int y, int color)
 {
-    while (x1 <= x2)
-    {
-        mlx_put_pixel(img, x1, y, color);
-        mlx_put_pixel(img, x2, y, color);
-        x1++;
-        x2--;
-    }
+	int	x1;
+	int	x2;
+
+	x1 = x->x;
+	x2 = x->y;
+	while (x1 <= x2)
+	{
+		mlx_put_pixel(img, x1, y, color);
+		mlx_put_pixel(img, x2, y, color);
+		x1++;
+		x2--;
+	}
 }
 
-static void fill_circle(t_compass *compass, int x, int y, int color)
+void	fill_circle(t_compass *compass, int x, int y, int color)
 {
-    draw_fill_circle(compass->img, compass->center_x - x, compass->center_x + x, compass->center_y + y, color);
-    draw_fill_circle(compass->img, compass->center_x - x, compass->center_x + x, compass->center_y - y, color);
-    draw_fill_circle(compass->img, compass->center_x - y, compass->center_x + y, compass->center_y + x, color);
-    draw_fill_circle(compass->img, compass->center_x - y, compass->center_x + y, compass->center_y - x, color);
+	draw_fill_circle(compass->img, &(t_vec){compass->center_x - x,
+		compass->center_x + x}, compass->center_y + y, color);
+	draw_fill_circle(compass->img, &(t_vec){compass->center_x - x,
+		compass->center_x + x}, compass->center_y - y, color);
+	draw_fill_circle(compass->img, &(t_vec){compass->center_x - y,
+		compass->center_x + y}, compass->center_y + x, color);
+	draw_fill_circle(compass->img, &(t_vec){compass->center_x - y,
+		compass->center_x + y}, compass->center_y - x, color);
 }
 
-static void print_circle(t_compass *compass, int x, int y, int color)
+void	print_circle(t_compass *compass, int x, int y, int color)
 {
-    mlx_put_pixel(compass->img, compass->center_x + x,compass->center_y + y, color);
-    mlx_put_pixel(compass->img, compass->center_x + x,compass->center_y + y, color);
-    mlx_put_pixel(compass->img, compass->center_x - x,compass->center_y + y, color);
-    mlx_put_pixel(compass->img, compass->center_x + x,compass->center_y - y, color);
-    mlx_put_pixel(compass->img, compass->center_x - x,compass->center_y - y, color);
-    mlx_put_pixel(compass->img, compass->center_x + y,compass->center_y + x, color);
-    mlx_put_pixel(compass->img, compass->center_x - y,compass->center_y + x, color);
-    mlx_put_pixel(compass->img, compass->center_x + y,compass->center_y - x, color);
-    mlx_put_pixel(compass->img, compass->center_x - y,compass->center_y - x, color);
+	mlx_put_pixel(compass->img, compass->center_x + x, compass->center_y + y,
+		color);
+	mlx_put_pixel(compass->img, compass->center_x + x, compass->center_y + y,
+		color);
+	mlx_put_pixel(compass->img, compass->center_x - x, compass->center_y + y,
+		color);
+	mlx_put_pixel(compass->img, compass->center_x + x, compass->center_y - y,
+		color);
+	mlx_put_pixel(compass->img, compass->center_x - x, compass->center_y - y,
+		color);
+	mlx_put_pixel(compass->img, compass->center_x + y, compass->center_y + x,
+		color);
+	mlx_put_pixel(compass->img, compass->center_x - y, compass->center_y + x,
+		color);
+	mlx_put_pixel(compass->img, compass->center_x + y, compass->center_y - x,
+		color);
+	mlx_put_pixel(compass->img, compass->center_x - y, compass->center_y - x,
+		color);
 }
-
-void draw_circle(t_compass *compass, int radius, int color, int fill)
-{
-    int x;
-    int y;
-    int d;
-
-    y = radius;
-    x = 0;
-    d = 3 - 2 * radius;
-    while (x <= y)
-    {
-        if(fill == 1)
-            fill_circle(compass,x, y, MY_BLACK);
-        print_circle(compass, x, y, color);
-        if (d < 0)
-            d = d + 4 * x + 6;
-        else
-        {
-            d = d + 4 * (x - y) + 10;
-            y--;
-        }
-        x++;
-    }
-}
-
-
-void draw_compass(t_display *display, t_compass *compass , t_player *player)
-{
-    init_value_st(display);
-    draw_circle(compass, compass->radius, MY_WHITE,1);
-    draw_circle(compass, compass->radius -2 , MY_BLACK,0);
-    draw_circle(compass, compass->radius - 1, MY_WHITE,0);
-
-    compass->needle_length = compass->radius * 0.8;
-    compass->needle_end_x = compass->center_x + compass->needle_length * cos(player->angle);
-    compass->needle_end_y = compass->center_y + compass->needle_length * sin(player->angle);
-    draw_line(compass->img, (t_vec_d){compass->center_x, compass->center_y}, (t_vec_d){compass->needle_end_x, compass->needle_end_y}, MY_RED);
-    mlx_put_pixel(compass->img, compass->center_x, compass->center_y, MY_WHITE);
-}
-
-// void draw_compass(t_display *display, t_compass *compass , t_player *player)// original
-// {
-//     init_value_st(display);
-//     draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius, MY_WHITE,1);
-//     draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius -2 , MY_BLACK,0);
-//     draw_circle(compass->img,compass->center_x, compass->center_y, compass->radius - 1, MY_WHITE,0);
-
-//     compass->needle_length = compass->radius * 0.8;
-//     compass->needle_end_x = compass->center_x + compass->needle_length * cos(player->angle);
-//     compass->needle_end_y = compass->center_y + compass->needle_length * sin(player->angle);
-//     draw_line(compass->img, (t_vec_d){compass->center_x, compass->center_y}, (t_vec_d){compass->needle_end_x, compass->needle_end_y}, MY_RED);
-//     mlx_put_pixel(compass->img, compass->center_x, compass->center_y, MY_WHITE);
-// }

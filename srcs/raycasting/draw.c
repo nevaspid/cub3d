@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 14:56:32 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/08 21:27:18 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/11 01:07:27 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,61 @@ mlx_image_t	*get_texture(t_display *s_display, t_ray *ray)
 
 void	draw_wall_orientation(t_display *display, t_ray *ray, int x)
 {
-	mlx_image_t	*img;
-
-	img = get_texture(display, ray);
+	display->current_tex = get_texture(display, ray);
 	if (ray->side == 1)
 	{
 		if (ray->step.y > 0)
-			draw_ligne_height(display, img, x, ray->draw_start, ray->draw_end);
+			draw_ligne_height(display, x, ray->draw_start, ray->draw_end);
 		else
-			draw_ligne_height(display, img, x, ray->draw_start, ray->draw_end);
+			draw_ligne_height(display, x, ray->draw_start, ray->draw_end);
 	}
 	else
 	{	
 		if (ray->step.x > 0)
-			draw_ligne_height(display, img, x, ray->draw_start, ray->draw_end);
+			draw_ligne_height(display, x, ray->draw_start, ray->draw_end);
 		else
-			draw_ligne_height(display, img, x, ray->draw_start, ray->draw_end);
+			draw_ligne_height(display, x, ray->draw_start, ray->draw_end);
 	}
+}
+
+void	clear_image(mlx_image_t *img, uint32_t a)
+{
+	uint32_t	x;
+	uint32_t	y;
+
+	y = 0;
+	while (y < img->height)
+	{
+		x = 0;
+		while (x < img->width)
+		{
+			mlx_put_pixel(img, x, y, a);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_ray(t_display *display, t_ray *ray, t_player *player)
+{
+	int	max_ray_lenght;
+
+	max_ray_lenght = 3;
+	ray->end = (t_vec_d){ray->map.x, ray->map.y};
+	if (hypot(ray->map.x - player->pos.x, ray->map.y - player->pos.y) \
+		> max_ray_lenght)
+	{
+		ray->end.x = player->pos.x + max_ray_lenght * ray->dir.x;
+		ray->end.y = player->pos.y + max_ray_lenght * ray->dir.y;
+	}
+	if (ray->angle >= player->angle)
+		draw_line(display->raycast->ray->img, \
+		(t_vec_d){player->pos.x * display->m->tile_size, player->pos.y \
+		* display->m->tile_size}, (t_vec_d){ray->end.x * display->m->tile_size, \
+		ray->end.y * display->m->tile_size}, MY_RED);
+	else
+		draw_line(display->raycast->ray->img, \
+		(t_vec_d){player->pos.x * display->m->tile_size, player->pos.y \
+		* display->m->tile_size}, (t_vec_d){ray->end.x \
+		* display->m->tile_size, ray->end.y * display->m->tile_size}, 0x800080);
 }

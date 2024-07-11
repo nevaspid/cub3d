@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:41:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/08 15:51:13 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/11 02:03:55 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	print_minimap(t_display *mlx, t_minimap *min, int tz, t_mem_alloc *my)
 	x = 0;
 	y = 0;
 	print_p = 0;
+	define_tile_size(mlx);
 	while (min->minimap_array[y])
 	{
 		while (min->minimap_array[y][x])

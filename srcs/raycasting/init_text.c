@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:55:15 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/08 20:04:22 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/11 01:45:47 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,20 @@ void	init_text(t_display *display)
 	display->raycast->text->y = 0;
 	display->raycast->text->step = 0;
 	display->raycast->text->size = 0;
+}
+
+void	draw_compass(t_display *display, t_compass *compass, t_player *player)
+{
+	init_value_st(display);
+	draw_circle(compass, compass->radius, MY_WHITE, 1);
+	draw_circle(compass, compass->radius - 2, MY_BLACK, 0);
+	draw_circle(compass, compass->radius - 1, MY_WHITE, 0);
+	compass->needle_length = compass->radius * 0.8;
+	compass->needle_end_x = compass->center_x + compass->needle_length
+		* cos(player->angle);
+	compass->needle_end_y = compass->center_y + compass->needle_length
+		* sin(player->angle);
+	draw_line(compass->img, (t_vec_d){compass->center_x, compass->center_y},
+		(t_vec_d){compass->needle_end_x, compass->needle_end_y}, MY_RED);
+	mlx_put_pixel(compass->img, compass->center_x, compass->center_y, MY_WHITE);
 }

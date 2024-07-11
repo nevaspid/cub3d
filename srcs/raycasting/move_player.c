@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:52:56 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/08 01:02:19 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/11 01:20:33 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,14 @@ int	is_2pi(double number)
 		return (0);
 }
 
-
 void	player_angle(void *param)
 {
 	t_display	*display;
-	
+
 	display = (t_display *)param;
 	if (mlx_is_key_down(display->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(display->mlx);
-	if ( mlx_is_key_down(display->mlx, MLX_KEY_A) )//&& (display->raycast->player->pos.y - display-> )> )
+	if (mlx_is_key_down(display->mlx, MLX_KEY_A))
 		move_left(display);
 	if (mlx_is_key_down(display->mlx, MLX_KEY_D))
 		move_right(display);
@@ -50,10 +49,12 @@ void	player_angle(void *param)
 	draw_compass(display, display->raycast->compass, display->raycast->player);
 	run_raycast(display, display->raycast->ray, display->raycast->player);
 }
-void move_rotated(mlx_key_data_t key, void *param)
+
+void	move_rotated(mlx_key_data_t key, void *param)
 {
-	(void)key;
 	t_display	*display;
+
+	(void)key;
 	display = (t_display *)param;
 	if (mlx_is_key_down(display->mlx, MLX_KEY_LEFT))
 		display->p_angle -= ROTATE;
@@ -67,6 +68,7 @@ void move_rotated(mlx_key_data_t key, void *param)
 void	move_player(mlx_key_data_t key, void *param)
 {
 	t_display	*display;
+
 	(void)key;
 	display = (t_display *)param;
 	if (mlx_is_key_down(display->mlx, MLX_KEY_ESCAPE))
@@ -87,4 +89,12 @@ void	move_player(mlx_key_data_t key, void *param)
 		display->p_angle = 0;
 	draw_compass(display, display->raycast->compass, display->raycast->player);
 	run_raycast(display, display->raycast->ray, display->raycast->player);
+}
+
+void	init_player_dir(t_player *player)
+{
+	if (player->pos_start == 'N' || player->pos_start == 'S')
+		norsh(player);
+	else if (player->pos_start == 'W' || player->pos_start == 'E')
+		west(player);
 }

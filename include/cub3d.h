@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/08 21:23:04 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/11 02:03:36 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_display
 	t_minimap		*m;
 	t_raycast		*raycast;
 	mlx_image_t		*img;
+	mlx_image_t		*current_tex;
 }	t_display;
 
 /*------------raycasting-------------*/
@@ -160,7 +161,7 @@ void init_struct(t_display *display);
 void init_layers(t_display *data);
 void init_compass(t_compass *cmp);
 void draw_line(mlx_image_t *img, t_vec_d start, t_vec_d end, int color);
-void draw_fill_circle(mlx_image_t *img, int x1, int x2, int y,  int color);
+void draw_fill_circle(mlx_image_t *img, t_vec *x, int y, int color);// x1, int x2, int y,  int color);
 // void draw_circle(mlx_image_t *img, int center_x, int center_y, int radius, int color, int fill);//original
 void draw_circle(t_compass *compass, int radius, int color, int fill);
 void draw_compass(t_display *display, t_compass *compass , t_player *player);
@@ -174,16 +175,16 @@ void update_game(t_display *display);
 void draw_game(t_display *display);
 void update_cam(t_display *display, t_ray *ray, t_player *player, int x);
 void draw_ray(t_display *display, t_ray *ray, t_player *player);
-double Lerp(double min, double max, double t);
-double InverseLerp(double min, double max, double value);
-double Clamp01(double value);
+double lerp(double min, double max, double t);
+double inverse_lerp(double min, double max, double value);
+double clamp01(double value);
 // int check_next_move(t_display *d, double x, double y);
 void load_asset(t_display *display, mlx_texture_t *text, mlx_image_t **asset, char *path);
 void init_text(t_display *display);
 
 // void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end);
 // void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end, int color, int flags);
-void draw_ligne_height(t_display *display, mlx_image_t *img, int x, int star, int end);
+void draw_ligne_height(t_display *display, int x, int star, int end);
 // void 	draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color);
 u_int32_t	get_color(int x, int y, mlx_image_t *img);
 void get_text(t_display *s_display, t_ray *ray, t_texture *current);
@@ -197,7 +198,12 @@ mlx_image_t *get_texture(t_display *s_display, t_ray *ray);
 void	init_text_to_img(t_display *display);
 // t_ray	*new_node(t_ray *ray, int nb);
 void print_texture(t_texture *text, char *where, char *who);
+void	west(t_player *player);
+void	norsh(t_player *player);
 
+void	print_circle(t_compass *compass, int x, int y, int color);
+void	fill_circle(t_compass *compass, int x, int y, int color);
+void	define_tile_size(t_display *display);
 #endif
 
 
