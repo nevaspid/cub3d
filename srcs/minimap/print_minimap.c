@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:41:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/11 02:03:55 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/11 02:14:20 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void	print_minimap(t_display *mlx, t_minimap *min, int tz, t_mem_alloc *my)
 				printf("ERROR : more than one player on map");
 				free_and_exit(my);
 			}
-			print_assets(mlx, tz, x, y);
-			x++;
+			print_assets(mlx, tz, x++, y);
 		}
 		x = 0;
 		y++;

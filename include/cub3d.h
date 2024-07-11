@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/11 02:03:36 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/11 02:11:11 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,10 @@ void 	init_camera(t_display *d, t_camera *camera);
 
 double 	angle_rad(double angle);
 double 	istance(t_vec_d a, t_vec_d b);
-double 	re_distance(double ax, double ay, double bx, double by);
 void 	rotate_player(t_player *player, double rotSpeed);
 void 	init_mlx(t_display *display);
 void 	init_player(t_display *display, t_player *player);
 void 	init_value_st(t_display *display);
-// void 	draw_bg(t_display *display, mlx_image_t *img);
 void 	draw_bg( mlx_image_t *img);
 void 	draw_wall_orientation(t_display *display, t_ray *ray, int x);
 void 	move_rotated(mlx_key_data_t key, void *param);
@@ -112,7 +110,6 @@ void	floors(t_minimap *minimap, int x, int y, int tile_size);
 void	print_player(t_display *mlx, t_minimap *m, int tile_size);
 
 void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_size, t_mem_alloc *mylloc);
-// void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_size);
 void print_value_player(t_player *player, char *where, char *who);
 
 /*-------------parsing-------------*/
@@ -153,8 +150,7 @@ void	print_tab(char **tab);
 void 	print_value_ray(t_ray *ray, t_player *player, char *where, char *who, int n);
 void 	print_value_recast(t_player *player, t_ray *ray, char *where, char *who);
 void 	print_value_camera(t_camera *camera, char *where, char *who);
-// void 	print_direction(t_direction dir, int x);
-// t_direction getRay_direction(float x0, float y0, float x1, float y1);
+
 /*--------------PRIMITIVE-------------*/
 
 void init_struct(t_display *display);
@@ -162,7 +158,6 @@ void init_layers(t_display *data);
 void init_compass(t_compass *cmp);
 void draw_line(mlx_image_t *img, t_vec_d start, t_vec_d end, int color);
 void draw_fill_circle(mlx_image_t *img, t_vec *x, int y, int color);// x1, int x2, int y,  int color);
-// void draw_circle(mlx_image_t *img, int center_x, int center_y, int radius, int color, int fill);//original
 void draw_circle(t_compass *compass, int radius, int color, int fill);
 void draw_compass(t_display *display, t_compass *compass , t_player *player);
 int ajuste(int d, int x, int *y);
@@ -178,14 +173,9 @@ void draw_ray(t_display *display, t_ray *ray, t_player *player);
 double lerp(double min, double max, double t);
 double inverse_lerp(double min, double max, double value);
 double clamp01(double value);
-// int check_next_move(t_display *d, double x, double y);
 void load_asset(t_display *display, mlx_texture_t *text, mlx_image_t **asset, char *path);
 void init_text(t_display *display);
-
-// void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end);
-// void draw_ligne_height(t_display *display , mlx_image_t *img, int x, int star, int end, int color, int flags);
 void draw_ligne_height(t_display *display, int x, int star, int end);
-// void 	draw_ligne_height(mlx_image_t *img, int x, int star, int end, int color);
 u_int32_t	get_color(int x, int y, mlx_image_t *img);
 void get_text(t_display *s_display, t_ray *ray, t_texture *current);
 void init_tab_ray(t_display *display);
@@ -196,7 +186,6 @@ void 	init_tab_ray(t_display *display);
 t_ray	*ft_lst_get_last(t_ray *ray);
 mlx_image_t *get_texture(t_display *s_display, t_ray *ray);
 void	init_text_to_img(t_display *display);
-// t_ray	*new_node(t_ray *ray, int nb);
 void print_texture(t_texture *text, char *where, char *who);
 void	west(t_player *player);
 void	norsh(t_player *player);
