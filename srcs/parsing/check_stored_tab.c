@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:49:34 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/12 00:12:06 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 01:43:07 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int	check_tab(t_display *d, t_mem_alloc *malloc)
 
 void	store_paths(char **file, t_paths *p, t_mem_alloc *m)
 {
-	p->NO = return_paths("NO ", file, m);
-	p->SO = return_paths("SO ", file, m);
-	p->WE = return_paths("WE ", file, m);
-	p->EA = return_paths("EA ", file, m);
-	p->F = return_rgb("F ", file, m);
-	p->C = return_rgb("C ", file, m);
+	p->no = return_paths("NO ", file, m);
+	p->so = return_paths("SO ", file, m);
+	p->se = return_paths("WE ", file, m);
+	p->ea = return_paths("EA ", file, m);
+	p->f = return_rgb("F ", file, m);
+	p->c = return_rgb("C ", file, m);
 }
 
 void	store_minimap(char **file, t_minimap *m, t_mem_alloc *malloc)
