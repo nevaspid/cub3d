@@ -6,16 +6,15 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 14:52:41 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/11 14:41:53 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 22:03:11 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* MSG for push*/
 int	check_next_move(t_display *d, double x, double y, t_direction dir)
 {
-	t_vec	pos;
+	t_vec_d	pos;
 
 	if (dir == UP)
 	{
@@ -37,7 +36,7 @@ int	check_next_move(t_display *d, double x, double y, t_direction dir)
 		pos.x = x - cos(d->p_angle + M_PI / 2) * SPEED;
 		pos.y = y - sin(d->p_angle + M_PI / 2) * SPEED;
 	}
-	if (d->m->minimap_array[pos.y][pos.x] == '1')
+	if (d->m->minimap_array[(int)pos.y][(int)pos.x] == '1')
 		return (1);
 	return (0);
 }

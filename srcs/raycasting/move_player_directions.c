@@ -6,13 +6,12 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 14:52:41 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/11 01:16:15 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 22:01:38 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* MSG for push*/
 int	check_next_move(t_display *d, double x, double y, t_direction dir)
 {
 	t_vec	pos;

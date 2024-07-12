@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:41:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/12 00:29:54 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 22:03:24 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ void	print_assets(t_display *mlx, int tile_size, int x, int y)
 	{
 		mlx->m->p_y = y;
 		mlx->m->p_x = x;
-		mlx->p_y = y;
-		mlx->p_x = x;
+		mlx->p_y = y + 0.5;
+		mlx->p_x = x + 0.5;
 		mlx->m->player = mlx_new_image(mlx->mlx, tile_size / 2, tile_size / 2);
+		floors(mlx->m, x * tile_size, y * tile_size, tile_size);
 	}
 }
 
@@ -54,5 +55,4 @@ void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_size,
 		x = 0;
 		y++;
 	}
-	print_player(mlx, minimap, tile_size);
 }

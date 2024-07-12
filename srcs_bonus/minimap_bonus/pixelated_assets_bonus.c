@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 21:13:32 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/12 00:29:03 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 20:40:11 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,28 +61,30 @@ void	floors(t_minimap *minimap, int x, int y, int tile_size)
 	}
 }
 
-void	draw_player(t_display *minimap, int tile_size)
-{
-	int	x;
-	int	y;
+// void	draw_player(t_display *minimap, int tile_size)
+// {
+// 	int	x;
+// 	int	y;
 
-	x = 0;
-	y = 0;
-	while (y < tile_size / 2)
-	{
-		while (x < tile_size / 2)
-		{
-			mlx_put_pixel(minimap->m->player, (uint32_t)x, (uint32_t)y,
-				0x8B0000FF);
-			x++;
-		}
-		x -= tile_size / 2;
-		y++;
-	}
-}
+// 	x = 0;
+// 	y = 0;
+// 	(void)minimap;
+// 	while (y < tile_size / 2)
+// 	{
+// 		while (x < tile_size / 2)
+// 		{
+// 			// mlx_put_pixel(minimap->m->player, (uint32_t)x, (uint32_t)y,
+// 			// 	0x8B0000FF);
+// 			x++;
+// 		}
+// 		x -= tile_size / 2;
+// 		y++;
+// 	}
+// }
 
-void	print_player(t_display *mlx, t_minimap *m, int tile_size)
-{
-	floors(m, m->p_x * tile_size, m->p_y * tile_size, tile_size);
-	draw_player(mlx, tile_size);
-}
+// void	print_player(t_display *mlx, t_minimap *m, int tile_size)
+// {
+// 	(void)mlx;
+// 	floors(m, m->p_x * tile_size, m->p_y * tile_size, tile_size);
+// 	// draw_player(mlx, tile_size);
+// }

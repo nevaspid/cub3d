@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/12 01:47:47 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 21:05:30 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_malloc(t_mem_alloc *mylloc, t_display *display)
 	display->raycast->ray = mem_alloc(mylloc, sizeof(t_ray));
 	display->raycast->camera = mem_alloc(mylloc, sizeof(t_camera));
 	display->raycast->text = mem_alloc(mylloc, sizeof(t_texture));
+	display->raycast->gf = mem_alloc(mylloc, sizeof(t_gf));
 }
 
 void	init_player(t_display *display, t_player *player)

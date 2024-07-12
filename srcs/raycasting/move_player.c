@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:52:56 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/11 01:20:33 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 20:46:22 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	player_angle(void *param)
 	display = (t_display *)param;
 	if (mlx_is_key_down(display->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(display->mlx);
-	if (mlx_is_key_down(display->mlx, MLX_KEY_A))
-		move_left(display);
 	if (mlx_is_key_down(display->mlx, MLX_KEY_D))
+		move_left(display);
+	if (mlx_is_key_down(display->mlx, MLX_KEY_A))
 		move_right(display);
 	if (mlx_is_key_down(display->mlx, MLX_KEY_W))
 		move_forwards(display);

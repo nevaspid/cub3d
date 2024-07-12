@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/12 01:41:32 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 22:39:42 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_paths
 
 typedef struct s_minimap
 {
+	mlx_image_t			*gf;
 	mlx_image_t			*minimap;
 	mlx_image_t			*player;
 	char				**file;
@@ -219,4 +220,6 @@ void					print_circle(t_compass *compass, int x, int y,
 void					fill_circle(t_compass *compass, int x, int y,
 							int color);
 void					define_tile_size(t_display *display);
+
+char					**map_w_null_background(t_mem_alloc *x_chain, char **map);
 #endif

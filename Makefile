@@ -6,7 +6,7 @@
 #    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/07/12 00:40:23 by oliove           ###   ########.fr        #
+#    Updated: 2024/07/12 20:05:18 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,6 @@ SRCS_BONUS		:=	srcs_bonus/cub3d_bonus.c \
 				srcs_bonus/raycasting_bonus/calcule_dda_bonus.c \
 				srcs_bonus/utils_bonus/free_and_exit_bonus.c \
 				srcs_bonus/parsing_bonus/flood_fill_bonus.c \
-				srcs_bonus/debug_bonus/debug_bonus.c \
 				srcs_bonus/raycasting_bonus/move_player_directions_bonus.c \
 				srcs_bonus/raycasting_bonus/draw_primitive_bonus.c \
 				srcs_bonus/raycasting_bonus/draw_bonus.c \

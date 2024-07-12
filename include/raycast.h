@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:45:14 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/12 01:48:17 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 21:13:16 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_ray
 	double			fov;
 	double			angle;
 	double			line_height;
+	double			line_size;
 	struct s_ray	*next;
 
 }					t_ray;
@@ -180,6 +181,14 @@ typedef struct s_texture
 
 }					t_texture;
 
+typedef struct s_gf
+{
+	t_ray		*r;
+	t_ray		*l;
+	t_ray		*f;
+	t_ray		*b;
+}				t_gf;
+
 typedef struct s_raycast
 {
 	t_player		*player;
@@ -188,6 +197,7 @@ typedef struct s_raycast
 	t_camera		*camera;
 	t_texture		*text;
 	int				nb;
+	t_gf			*gf;
 }					t_raycast;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/11 19:51:49 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 22:19:45 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	init_mlx(t_display *display)
 {
 	display->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	display->m->minimap = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT
+			* SCALE);
+	display->m->gf = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT
 			* SCALE);
 	display->raycast->compass->img = mlx_new_image(display->mlx, WIDTH * SCALE,
 			HEIGHT * SCALE);
