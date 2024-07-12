@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:45:59 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/12 22:39:21 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 23:33:03 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	*mem_alloc(t_mem_alloc *lst, size_t size)
 {
 	void		*ret;
 	t_mem_alloc	*new_alloc;
-	int i;
+	size_t i;
 	
 	new_alloc = mem_lstnew();
 	ret = malloc(size);

@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:49:34 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/12 22:56:04 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 23:36:39 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	check_tab(t_display *d, t_mem_alloc *malloc)
 {
 	store_paths(d->m->file, d->m->paths, malloc);
-	d->m->copy = map_w_null_background(malloc, d->m->file);
-	// store_minimap(d->m->file, d->m, malloc);
-	// d->m->copy = copy_tab(d->m->minimap_array, malloc);
+	// d->m->copy = map_w_null_background(malloc, d->m->file);
+	store_minimap(d->m->file, d->m, malloc);
+	d->m->copy = copy_tab(d->m->minimap_array, malloc);
 	return (1);
 }
 
