@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 00:41:27 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/12 00:46:14 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/12 01:57:07 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	run_camera(t_display *d, t_camera *camera, t_player *player)
 	camera->angle_cam = atan2(player->dir.y, player->dir.x);
 	camera->angle_min = player->angle - FOV / 2;
 	camera->angle_max = player->angle + FOV / 2;
-	camera->nb_ray = 2;
-	camera->angle_ray = FOV / camera->nb_ray;
-	camera->dir.x = d->raycast->player->dir.x;
+	(void)d;
 }
 
 void	init_dda(t_ray *ray, t_player *player)
