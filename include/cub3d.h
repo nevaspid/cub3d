@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doctor <doctor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/12 22:39:42 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/13 13:30:43 by doctor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ typedef struct s_paths
 
 typedef struct s_minimap
 {
-	mlx_image_t			*gf;
+	char				**gf;
+	// mlx_image_t			*gf;
 	mlx_image_t			*minimap;
 	mlx_image_t			*player;
 	char				**file;

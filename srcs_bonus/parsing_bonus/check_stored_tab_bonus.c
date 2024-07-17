@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_stored_tab_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doctor <doctor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:49:34 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/12 23:36:39 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/17 19:12:53 by doctor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	check_tab(t_display *d, t_mem_alloc *malloc)
 	// d->m->copy = map_w_null_background(malloc, d->m->file);
 	store_minimap(d->m->file, d->m, malloc);
 	d->m->copy = copy_tab(d->m->minimap_array, malloc);
+	d->m->gf = map_w_null_background(malloc, d->m->minimap_array);
 	return (1);
 }
 
@@ -39,6 +40,10 @@ void	store_minimap(char **file, t_minimap *m, t_mem_alloc *malloc)
 
 	i = 6;
 	j = 0;
+	// (void)i;
+	// (void)j;
+	// map_w_null_background(malloc, file);
+	
 	map_height = go_to_endof_file(file) - 5;
 	m->minimap_array = mem_alloc(malloc, sizeof(char *) * (map_height + 1));
 	m->minimap_array[map_height] = NULL;

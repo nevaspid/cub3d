@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doctor <doctor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/12 00:20:25 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/17 20:47:56 by doctor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@ void	define_tile_size(t_display *display)
 			/ count_lines(display->m->minimap_array);
 }
 
+
+
+void check_map_d(t_display *display)
+{
+	int i;
+	char **tab;
+
+	tab = display->m->minimap_array;
+	i = 0;
+	printf("*tab %d && tab[i] \n",**tab);
+	while (tab[i])
+		printf("%s\n",tab[i++]);
+	
+}
+
 int	main(int ac, char **av)
 {
 	t_display	*display;
@@ -36,6 +51,9 @@ int	main(int ac, char **av)
 	display = mem_alloc(mylloc, sizeof(t_display));
 	init_game(display, mylloc);
 	read_parse_store(av[1], mylloc, display);
+	
+	check_map_d(display);
+	
 	define_tile_size(display);
 	print_minimap(display, display->m, display->m->tile_size, mylloc);
 	if (flood_fill(display->m->copy, display->m->p_x, display->m->p_y) > 0)

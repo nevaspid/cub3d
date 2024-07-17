@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcule_dda_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doctor <doctor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 00:41:27 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/12 21:36:14 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/13 08:44:12 by doctor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,10 @@ void	calculate_dda(t_display *d, t_ray *r)
 			r->side = 1;
 		}
 		if (r->map.y >= 0 || r->map.x >= 0 || r->map.y <= d->m->minimap->height
-			|| r->map.x <= d->m->minimap->width)
-			if (d->m->minimap_array[(int)r->map.y][(int)r->map.x] == '1')
+			|| r->map.x <= d->m->minimap->width){
+			if (d->m->minimap_array[(int)r->map.y][(int)r->map.x] == '1' )//|| map NULL)
 				hit = 1;
+			}
 	}
 }
 

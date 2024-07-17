@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_alloc_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doctor <doctor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:45:59 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/12 23:33:03 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/17 20:25:20 by doctor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	*mem_alloc(t_mem_alloc *lst, size_t size)
 	void		*ret;
 	t_mem_alloc	*new_alloc;
 	size_t i;
-	
+    
+	i = 0;
 	new_alloc = mem_lstnew();
 	ret = malloc(size);
 	if( ret == 0)

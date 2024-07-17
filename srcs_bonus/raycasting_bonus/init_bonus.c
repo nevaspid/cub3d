@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doctor <doctor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/12 22:19:45 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/13 13:37:36 by doctor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	init_mlx(t_display *display)
 	display->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	display->m->minimap = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT
 			* SCALE);
-	display->m->gf = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT
-			* SCALE);
+	// display->m->gf = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT
+			// * SCALE);
 	display->raycast->compass->img = mlx_new_image(display->mlx, WIDTH * SCALE,
 			HEIGHT * SCALE);
 	display->raycast->ray->img = mlx_new_image(display->mlx, WIDTH * SCALE,
@@ -29,19 +29,19 @@ void	init_mlx(t_display *display)
 void	init_text_to_img(t_display *display)
 {
 	load_asset(display, display->raycast->text->west,
-		&display->raycast->text->west_img, "SAMPLE/DOOR_1A.PNG");
+		&display->raycast->text->west_img, display->m->paths->se);
 	if (display->raycast->text->west_img == NULL)
 		printf("TEXTURE _WEST NULL\n");
 	load_asset(display, display->raycast->text->north,
-		&display->raycast->text->north_img, "SAMPLE/BRICK_6D.PNG");
+		&display->raycast->text->north_img, display->m->paths->no);
 	if (display->raycast->text->north_img == NULL)
 		printf("TEXTURE NORTH NULL\n");
 	load_asset(display, display->raycast->text->east,
-		&display->raycast->text->east_img, "SAMPLE/CONCRETE_4A.PNG");
+		&display->raycast->text->east_img, display->m->paths->ea);
 	if (display->raycast->text->east_img == NULL)
 		printf("TEXTURE EAST NULL\n");
 	load_asset(display, display->raycast->text->south,
-		&display->raycast->text->south_img, "SAMPLE/PAPER_1F.PNG");
+		&display->raycast->text->south_img, display->m->paths->so);
 	if (display->raycast->text->south_img == NULL)
 		printf("TEXTURENULL SOUTH\n");
 }

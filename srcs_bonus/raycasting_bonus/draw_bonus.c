@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doctor <doctor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 14:56:32 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/11 23:57:24 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/13 13:57:59 by doctor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,26 @@ mlx_image_t	*get_texture(t_display *s_display, t_ray *ray)
 
 void	draw_wall_orientation(t_display *display, t_ray *ray, int x)
 {
-	display->current_tex = get_texture(display, ray);
-	if (ray->side == 1)
-	{
-		if (ray->step.y > 0)
+	t_player *p;
+
+	p = display->raycast->player;
+	if (p->pos.x >= 0 || p->pos.y >= 0 || p->pos.x < display->img->width || p->pos.y < display->img->height){
+		display->current_tex = get_texture(display, ray);
+		if (ray->side == 1)
 		{
-			draw_ligne_height(display, x, ray->draw_start, ray->draw_end);
+			if (ray->step.y > 0)
+			{
+				draw_ligne_height(display, x, ray->draw_start, ray->draw_end);
+			}
+			else
+				draw_ligne_height(display, x, ray->draw_start, ray->draw_end);
 		}
 		else
-			draw_ligne_height(display, x, ray->draw_start, ray->draw_end);
-	}
-	else
-	{
-		if (ray->step.x > 0)
-			draw_ligne_height(display, x, ray->draw_start, ray->draw_end);
-		else
-			draw_ligne_height(display, x, ray->draw_start, ray->draw_end);
+		{
+			if (ray->step.x > 0)
+				draw_ligne_height(display, x, ray->draw_start, ray->draw_end);
+			else
+				draw_ligne_height(display, x, ray->draw_start, ray->draw_end);
+		}
 	}
 }
