@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_alloc_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doctor <doctor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:45:59 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/17 20:25:20 by doctor           ###   ########.fr       */
+/*   Updated: 2024/07/17 23:44:53 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	*mem_alloc(t_mem_alloc *lst, size_t size)
 	return (ret);
 }
 
+// rajouter des 1 sup NULL
+
 char    **map_w_null_background(t_mem_alloc *x_chain, char **map)
 {
     int        i;
@@ -70,6 +72,7 @@ char    **map_w_null_background(t_mem_alloc *x_chain, char **map)
     new = mem_alloc(x_chain, sizeof(char *) * (count_lines(map) + 3));
     max_len = 0;
     i = -1;
+    // F() for 1
     while (map[++i])
         if (ft_strlen(map[i]) > max_len)
             max_len = ft_strlen(map[i]);
