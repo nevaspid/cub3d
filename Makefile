@@ -6,7 +6,7 @@
 #    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/07/12 20:05:18 by oliove           ###   ########.fr        #
+#    Updated: 2024/07/18 00:29:14 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ OBJS_BONUS		:=	$(addprefix $(OBJ_DIR_BONUS)/, $(SRCS_BONUS:.c=.o))
 
 BREW		:=	$(shell brew --prefix)
 CC			:=	gcc
-FLAGS		:=	-Wall -Wextra -Werror -g3 #-O3 -march=native -mtune=native -funroll-loops -finline-functions -flto -fomit-frame-pointer -ffast-math -fexpensive-optimizations
+FLAGS		:=	-Wall -Wextra -Werror -g3 -O3 -march=native -mtune=native -funroll-loops -finline-functions -flto -fomit-frame-pointer -ffast-math -fexpensive-optimizations
 RM			:=	rm -rf
 
 $(OBJ_DIR)/%.o :%.c

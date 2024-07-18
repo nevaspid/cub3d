@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doctor <doctor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/17 20:47:56 by doctor           ###   ########.fr       */
+/*   Updated: 2024/07/18 08:07:40 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ void	define_tile_size(t_display *display)
 
 
 
-void check_map_d(t_display *display)
+void check_map_d(char **map)
 {
 	int i;
 	char **tab;
-
-	tab = display->m->minimap_array;
+	tab = map;
 	i = 0;
-	printf("*tab %d && tab[i] \n",**tab);
+	printf("\033[1;31m check map\033[0m\n");
 	while (tab[i])
 		printf("%s\n",tab[i++]);
 	
 }
 
+		
 int	main(int ac, char **av)
 {
 	t_display	*display;
@@ -52,7 +52,7 @@ int	main(int ac, char **av)
 	init_game(display, mylloc);
 	read_parse_store(av[1], mylloc, display);
 	
-	check_map_d(display);
+	check_map_d(display->m->gf);
 	
 	define_tile_size(display);
 	print_minimap(display, display->m, display->m->tile_size, mylloc);

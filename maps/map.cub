@@ -1,10 +1,11 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./SAMPLE/CONSOLE_1B.PNG
+SO ./SAMPLE/CRATE_2C.PNG
+WE ./SAMPLE/DOOR_1A.PNG
+EA ./SAMPLE/DOOR_4A.PNG
 
-F 149,165,149
+F 149,165,14
 C 176,196,222
+
 
 
 

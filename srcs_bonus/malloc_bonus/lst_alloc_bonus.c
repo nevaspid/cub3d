@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:45:59 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/17 23:44:53 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/18 04:53:04by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 char    *ft_strncpy(char *dest, const char *src, size_t n)
 {
-    size_t    i;
+	size_t    i;
 
-    i = 0;
-    while (i < n && src[i])
-    {
-        dest[i] = src[i];
-        i++;
-    }
-    return (dest);
+	i = 0;
+	printf("\033[1;33mft_strncpy\033[0m\n");
+	while (src && i < n && src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	printf("\033[1;33mdest = %s src = %s n = %zu\n\033[0m", dest, src, n);
+	return (dest);
 }
 
 t_mem_alloc	*mem_lstnew(void)
@@ -48,7 +50,7 @@ void	*mem_alloc(t_mem_alloc *lst, size_t size)
 	void		*ret;
 	t_mem_alloc	*new_alloc;
 	size_t i;
-    
+	
 	i = 0;
 	new_alloc = mem_lstnew();
 	ret = malloc(size);
@@ -62,26 +64,194 @@ void	*mem_alloc(t_mem_alloc *lst, size_t size)
 }
 
 // rajouter des 1 sup NULL
+	// F() for 1
 
-char    **map_w_null_background(t_mem_alloc *x_chain, char **map)
+char **map_gf(t_mem_alloc *malloc, char **map)
 {
-    int        i;
-    char    **new;
-    int        max_len;
+	int i;
+	char **new;
+	int max_len;
+	int j;
 
-    new = mem_alloc(x_chain, sizeof(char *) * (count_lines(map) + 3));
-    max_len = 0;
-    i = -1;
-    // F() for 1
-    while (map[++i])
-        if (ft_strlen(map[i]) > max_len)
-            max_len = ft_strlen(map[i]);
-    i = -1;
-    while (++i < count_lines(map) + 2)
-        new[i] = mem_alloc(x_chain, sizeof(char) * (max_len + 3));
-    new[i] = NULL;
-    i = -1;
-    while (map[++i])
-        ft_strncpy(&new[i + 1][1], map[i], ft_strlen(map[i]));
-    return (new);
+	new = mem_alloc(malloc, sizeof(char *) * (count_lines(map) + 3));
+	max_len = 0;
+	i = -1;
+	while (map[++i])
+	{
+		if (ft_strlen(map[i]) > max_len)
+			max_len = ft_strlen(map[i]);
+	}
+	i = -1;
+	while (++i < count_lines(map) + 2)
+	{
+		new[i] = mem_alloc(malloc, sizeof(char) * (max_len + 3));
+	}
+	new[i] = NULL;
+	i = -1;
+	j = -1;
+	while (++i < count_lines(map) + 2)
+	{
+		j = -1;
+		printf("\033[1;31mcount_line = %s i = %d \033[0m\n",map[i], i);
+		while (i == 0 || ++j < ft_strlen(map[i]) + 2)
+			new[i][j] = '1';
+	}
+	while (++i < count_lines(map) + 2)
+	{
+		printf("\033[1;32m else i = %d \033[0m\n", i);
+		new[i][0] = '1';
+		ft_strncpy(&new[i][1], map[i - 1], ft_strlen(map[i - 1]) + 2);
+		printf("\033[1;32m1111 else new[%d]  = %s \033[0m\n",i, new[i]);
+		new[i][ft_strlen(map[i]) + 1] = '1';
+		new[i][ft_strlen(map[i]) + 2] = '\0';
+		printf("\033[1;32m else new[%d] end = %s \033[0m\n",i, new[i]);
+	}
+	// i = -1;
+	// while (new[++i])
+	// 	printf("%s\n",new[i]);
+	
+	return (new);
+
 }
+// char **map_gf(t_mem_alloc *malloc, char **map)
+// {
+// 	int i;
+// 	char **new;
+// 	int max_len;
+// 	int j;
+
+// 	new = mem_alloc(malloc, sizeof(char *) * (count_lines(map) + 3));
+// 	max_len = 0;
+// 	i = -1;
+// 	while (map[++i])
+// 	{
+// 		if (ft_strlen(map[i]) > max_len)
+// 			max_len = ft_strlen(map[i]);
+// 	}
+// 	i = -1;
+// 	while (++i < count_lines(map) + 2)
+// 	{
+// 		new[i] = mem_alloc(malloc, sizeof(char) * (max_len + 3));
+// 	}
+// 	new[i] = NULL;
+// 	i = -1;
+// 	j = -1;
+// 	printf("\033[1;31m new == %d\033[0m\n", count_lines(new));
+// 	while (++i < count_lines(map) + 2)
+// 	{
+	
+// 		if (i == 0 || i == count_lines(new) - 1)
+// 		{
+// 			printf("\033[1;31mcount_line = %d i = %d \033[0m\n",count_lines(map) + 1, i);
+// 			if ( i == 0)
+// 			{
+				
+// 				while (++j < ft_strlen(map[i]) + 2)
+// 					new[i][j] = '1';
+// 			}
+// 			else if (i == count_lines(map))
+// 			{
+// 				while (++j < ft_strlen(map[i]) + 2)
+// 					new[i][j] = '1';
+// 				// if (i == count_lines(map))
+// 				// 	while (++j < ft_strlen(map[i]) + 2)
+// 				// 		new[i][j] = '1';
+// 			}
+// 			printf("\033[1;31m if new[i] = %s \033[0m\n", new[i]);
+// 		}
+// 		else
+// 		{
+// 			printf("\033[1;32m else i = %d \033[0m\n", i);
+// 			new[i][0] = '1';
+// 			ft_strncpy(&new[i][1], map[i - 1], ft_strlen(map[i - 1]) + 2);
+// 			printf("\033[1;32m1111 else new[%d]  = %s \033[0m\n",i, new[i]);
+// 			new[i][ft_strlen(map[i]) + 1] = '1';
+// 			new[i][ft_strlen(map[i]) + 2] = '\0';
+// 			printf("\033[1;32m else new[%d] end = %s \033[0m\n",i, new[i]);
+// 		}
+// 	}
+// 	i = -1;
+// 	while (new[++i])
+// 		printf("%s\n",new[i]);
+	
+// 	return (new);
+
+// }
+
+
+// char    **map_w_null_background(t_mem_alloc *x_chain, char **map)
+// {
+// 	int        i;
+// 	char    **new;
+// 	int        max_len;
+
+// 	new = mem_alloc(x_chain, sizeof(char *) * (count_lines(map) + 3));
+// 	max_len = 0;
+// 	i = -1;
+// 	printf("\033[1;31mwhile == 1 before copy \033[0m\n");
+// 	while (map[++i]){
+// 		printf("%s\n",map[i]);
+// 		if (ft_strlen(map[i]) > max_len)
+// 			max_len = ft_strlen(map[i]);
+// 	}
+// 	i = -1;
+// 	//-->rapel reprise -> // commence a faire la fonction pour mettre des 1 
+// 		//  au lieu de NULL!!!!!!
+// 	while (++i < count_lines(map) + 2){
+// 		new[i] = mem_alloc(x_chain, sizeof(char) * (max_len + 3));
+// 	}
+// 	new[i] = NULL;// Cette ligne reste nécessaire pour marquer la fin du tableau de pointeurs
+// 	// i = -1;	
+	
+// 	i = -1;
+// 	int j = -1;
+// 	printf("\033[1;32m Count_line new = %d \033[0m\n", count_lines(new));
+// 	printf("\033[1;32m Count_line map = %d \033[0m\n", count_lines(map));
+// 	printf("\033[1;31mwhile == 1 after copy \033[0m\n");
+// 	while (++i < count_lines(map) + 2)
+// 	{
+// 		if (i == 0 || i == count_lines(map) + 1)
+// 		{
+// 			j = -1;
+// 			while (++j < ft_strlen(map[i]) + 2)
+// 				new[i][j] = '1';
+// 			printf("\033[1;33m p_new[i] = %p\n p_new[i][j] = %p \n new[i][j] = %s \033[0m\n", new, &new[i], new[i]);
+// 			if (i == count_lines(map) + 1)
+// 			{
+// 				printf("laaaaaaaaaaaaaaalalallallllll\n");
+// 				while (++j < ft_strlen(map[i -1]) + 2)
+// 					new[i][j] = '1';
+// 				printf("\033[1;33mi = %d p_new[i] = %p\n p_new[i][j] = %p \n new[i][j] = %s \033[0m\n",i, new, &new[i], new[i]);
+// 				check_map_d(new); 
+// 				if (i == count_lines(map - 1))
+// 					while (++j < ft_strlen(map[i - 1]) + 2)
+// 						new[i][j] = '1';
+// 			}
+// 		}
+// 		else	
+// 		{
+// 			// if (i == count_lines(map) + 1)
+// 			// 	while (++j < ft_strlen(map[i]) + 2)
+// 			// 		new[i][j] = '1';
+// 			// else{
+				
+// 			// }
+// 			new[i][0] = '1';
+// 			// printf("\033[1;33m p_new[i] = %p\n p_new[i][j] = %p \n new[i][j] = %s \033[0m\n", new, &new[i], new[i]);
+// 			// printf("\033[1;33m new = %p \n else new[i] = %s \033[0m\n", new, new[i]);
+// 			// printf("\033[1;33m i = [%d] &&  p_new[i] = %d \033[0m\n",i, ft_strlen(map[i]));
+// 			ft_strncpy(&new[i][1], map[i], ft_strlen(map[i]) + 2);// Assurez-vous que le '1' est toujours le premier caractère, même après la copie
+// 			new[i][ft_strlen(map[i]) + 1] = '1';
+// 			new[i][ft_strlen(map[i]) + 2] = '\0';
+// 			printf("\033[1;33m%delse new[i][j] = %s \033[0m\n",i, new[i]);
+// 			// printf("\033[1;33m p_new[i] = %p\n p_new[i][j] = %p \n new[i][j] = %s eslse\033[0m\n", new, &new[i], new[i]);
+			
+// 		}
+// 		// ft_strncpy(&new[i][1],map[i],ft_strlen(map[i]));
+// 		// printf("\033[1;31m new = %p \n map[i] = %s \033[0m\n", new, map[i]);
+// 		// printf("%s\n",map[i]);
+// 	}
+// 	printf("\033[1;31mmap_w_null_background \033[0m\n");
+// 	check_map_d(new); 
+// 	return (new);
+// }

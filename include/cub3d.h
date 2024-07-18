@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doctor <doctor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/13 13:30:43 by doctor           ###   ########.fr       */
+/*   Updated: 2024/07/18 06:03:31 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,4 +223,6 @@ void					fill_circle(t_compass *compass, int x, int y,
 void					define_tile_size(t_display *display);
 
 char					**map_w_null_background(t_mem_alloc *x_chain, char **map);
+void 					check_map_d(char **map);
+char					**map_gf(t_mem_alloc *malloc, char **map);
 #endif
