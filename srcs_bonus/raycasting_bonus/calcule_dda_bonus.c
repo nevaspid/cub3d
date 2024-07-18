@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcule_dda_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doctor <doctor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 00:41:27 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/13 08:44:12 by doctor           ###   ########.fr       */
+/*   Updated: 2024/07/18 22:09:10 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	run_raycast(t_display *display, t_ray *ray, t_player *player)
 		init_dda(ray, player);
 		calculate_dda(display, ray);
 		calculate_height_line(ray, player);
-		draw_ray(display, ray, player);
+		// draw_ray(display, ray, player);
 		draw_wall_orientation(display, ray, x);
 		if (x % 2 == 0)
 			ray->angle += angle_rad(FOV) / (WIDTH / 2);
