@@ -17,9 +17,9 @@ char    *ft_strncpy(char *dest, const char *src, size_t n)
 	size_t    i;
 
 	i = 0;
-	// printf("\033[1;33mft_strncpy\033[0m\n");
 	while (src && i < n && src[i])
 	{
+		printf("\033[1;33mft_strncpy %p\033[0m\n", dest);
 		dest[i] = src[i];
 		i++;
 	}
@@ -84,7 +84,11 @@ char **map_gf(t_mem_alloc *malloc, char **map)
 	i = -1;
 	while (++i < count_lines(map) + 2)
 	{
-		new[i] = mem_alloc(malloc, sizeof(char) * (max_len + 3));
+		printf("\033[1;31mcount_line = %p i = %d \033[0m\n", &map[i], i);
+		if (i > count_lines(map))
+			new[i] = mem_alloc(malloc, sizeof(char) * (ft_strlen(map[i -1]) + 3));
+		else
+			new[i] = mem_alloc(malloc, sizeof(char) * (ft_strlen(map[i]) + 3));
 	}
 	// new[i] = NULL;
 	i = -1;
@@ -114,6 +118,7 @@ char **map_gf(t_mem_alloc *malloc, char **map)
 			while (i < count_lines(map) + 2 && i != 0 && i != count_lines(map) + 1)
 			{
 				printf("\033[1;32m else i = %d \033[0m\n", i);
+				printf("\033[1;32m i = %d poi %p \033[0m\n", i, new[i]);
 				new[i][0] = '1';
 				ft_strncpy(&new[i][1], map[i - 1], ft_strlen(map[i - 1]) + 1);
 				printf("\033[1;32m1111 else new[%d]  = %s \033[0m\n", i, new[i]);
@@ -124,7 +129,7 @@ char **map_gf(t_mem_alloc *malloc, char **map)
 			}
 		}
 	}
-	new[i] = '\0';
+	// new[i] = '\0';
 	i = -1;
 	while (new[++i])
 		printf("#%s#  i = %d\n",new[i],i);
