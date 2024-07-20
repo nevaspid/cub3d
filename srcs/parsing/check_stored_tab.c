@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:49:34 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 13:33:08 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 13:41:18 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,17 @@ int	check_tab(t_display *d, t_mem_alloc *malloc)
 	store_minimap(d->m->file, d->m, malloc);
 	d->m->copy = copy_tab(d->m->minimap_array, malloc);
 	d->m->paths->split_c = ft_split(d->m->paths->c, ',', malloc);
+	if (count_lines(d->m->paths->split_c) != 3)
+	{
+		printf("Error\nInvalid color\n");
+		free_and_exit(malloc, NULL);
+	}
 	d->m->paths->split_f = ft_split(d->m->paths->f, ',', malloc);
+	if (count_lines(d->m->paths->split_f) != 3)
+	{
+		printf("Error\nInvalid color\n");
+		free_and_exit(malloc, NULL);
+	}
 	return (1);
 }
 
