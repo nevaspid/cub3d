@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:49:34 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 14:23:54 by gloms            ###   ########.fr       */
+/*   Updated: 2024/07/20 15:57:58 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	check_tab(t_display *d, t_mem_alloc *malloc)
 	store_paths(d->m->file, d->m->paths, malloc);
 	store_minimap(d->m->file, d->m, malloc);
 	store_tab(d->m->file, d->m, malloc);
+	search_player(d->m->copy, &d->m->ff_px, &d->m->ff_py);
+	printf("Player position : %d %d\n", d->m->ff_px, d->m->ff_py);
 	d->m->paths->split_c = ft_split(d->m->paths->c, ',', malloc);
 	if (count_lines(d->m->paths->split_c) != 3)
 	{

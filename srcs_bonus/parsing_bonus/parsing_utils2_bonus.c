@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:57:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 14:45:05 by gloms            ###   ########.fr       */
+/*   Updated: 2024/07/20 15:02:41 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	store_tab(char **file, t_minimap *m, t_mem_alloc *malloc)
 	m->copy[map_height] = NULL;
 	while (file[i])
 	{
+
 		m->copy[j] = ft_strdup(file[i], malloc);
 		i++;
 		j++;

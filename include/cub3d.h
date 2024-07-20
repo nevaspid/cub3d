@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 14:21:37 by gloms            ###   ########.fr       */
+/*   Updated: 2024/07/20 15:53:11 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef struct s_minimap
 	t_paths				*paths;
 	int					p_x;
 	int					p_y;
+	int					ff_px;
+	int					ff_py;
 	int					tile_size;
 }						t_minimap;
 
@@ -144,6 +146,8 @@ char					*fill_with_ones(int len, t_mem_alloc *malloc);
 char					*put_one_start_end(char *to_surround, char *prev,
 							char *next, t_mem_alloc *malloc);
 void					store_tab(char **file, t_minimap *m, t_mem_alloc *malloc);
+int						search_player(char **map, int *x, int *y);
+
 
 
 /*-------------utils-------------*/

@@ -6,7 +6,7 @@
 #    By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/07/20 14:24:53 by gloms            ###   ########.fr        #
+#    Updated: 2024/07/20 15:52:20 by gloms            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ SRCS_BONUS		:=	srcs_bonus/cub3d_bonus.c \
 				srcs_bonus/utils_playeur.c \
 				srcs_bonus/parsing_bonus/arrange_minimap_bonus.c \
 				srcs_bonus/raycasting_bonus/cal_color.c \
+				srcs_bonus/parsing_bonus/search_player_bonus.c \
 
 OBJ_DIR				:=	.objs
 OBJS		:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

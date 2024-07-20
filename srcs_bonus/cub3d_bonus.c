@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 11:33:30 by gloms            ###   ########.fr       */
+/*   Updated: 2024/07/20 16:08:51 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	define_tile_size(t_display *display)
 {
+	print_tab(display->m->minimap_array);
 	if (longest_line(display->m->minimap_array) > \
 		count_lines(display->m->minimap_array))
 		display->m->tile_size = (WIDTH * 0.2)
@@ -38,7 +39,7 @@ int	main(int ac, char **av)
 	read_parse_store(av[1], mylloc, display);
 	define_tile_size(display);
 	print_minimap(display, display->m, display->m->tile_size, mylloc);
-	if (flood_fill(display->m->copy, display->m->p_x, display->m->p_y) > 0)
+	if (flood_fill(display->m->copy, display->m->ff_px, display->m->ff_py) > 0)
 		free_and_exit(mylloc, "ERROR : Map is not closed\n");
 	init_text(display);
 	init_text_to_img(display);
