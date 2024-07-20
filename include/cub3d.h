@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 03:12:14 by gloms            ###   ########.fr       */
+/*   Updated: 2024/07/20 05:34:00 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ typedef struct s_mem_alloc
 
 typedef struct s_paths
 {
-	char	*no;
-	char	*so;
-	char	*se;
-	char	*ea;
-	char	*f;
-	char	*c;
-}	t_paths;
+	char				*no;
+	char				*so;
+	char				*se;
+	char				*ea;
+	char				*f;
+	char				*c;
+}						t_paths;
 
 typedef struct s_minimap
 {
@@ -137,7 +137,8 @@ void					store_minimap(char **file, t_minimap *m,
 							t_mem_alloc *malloc);
 int						check_map(char **map);
 char					*fill_with_ones(int len, t_mem_alloc *malloc);
-char					*put_one_start_end(char *to_surround, char *prev, char *next, t_mem_alloc *malloc);
+char					*put_one_start_end(char *to_surround, char *prev,
+							char *next, t_mem_alloc *malloc);
 
 /*-------------utils-------------*/
 
@@ -176,7 +177,7 @@ void					init_compass(t_compass *cmp);
 void					draw_line(mlx_image_t *img, t_vec_d start, t_vec_d end,
 							int color);
 void					draw_fill_circle(mlx_image_t *img, t_vec *x, int y,
-							int color); // x1, int x2, int y,  int color);
+							int color);
 void					draw_circle(t_compass *compass, int radius, int color,
 							int fill);
 void					draw_compass(t_display *display, t_compass *compass,
@@ -223,7 +224,8 @@ void					fill_circle(t_compass *compass, int x, int y,
 							int color);
 void					define_tile_size(t_display *display);
 
-char					**map_w_null_background(t_mem_alloc *x_chain, char **map);
-void 					check_map_d(char **map);
+char					**map_w_null_background(t_mem_alloc *x_chain,
+							char **map);
+void					check_map_d(char **map);
 char					**map_gf(t_mem_alloc *malloc, char **map);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arrange_minimap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 01:14:17 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 04:55:18 by gloms            ###   ########.fr       */
+/*   Updated: 2024/07/20 05:23:19 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ char	*fill_with_ones(int len, t_mem_alloc *malloc)
 	return (str);
 }
 
-char	*put_one_start_end(char *to_surround, char *prev, char *next, t_mem_alloc *malloc)
+char	*put_one_start_end(char *to_surround, char *prev, char *next,
+		t_mem_alloc *malloc)
 {
 	char	*str;
 	int		len;

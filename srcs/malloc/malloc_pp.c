@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 20:12:32 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/11 01:52:54 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 05:35:52 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	lstadd_back(t_mem_alloc **first, t_mem_alloc *new)
 {
 	t_mem_alloc	*tmp;
 
-	printf("hey %p\n", first);
 	if (!first)
 		return ;
 	if (*first == NULL)

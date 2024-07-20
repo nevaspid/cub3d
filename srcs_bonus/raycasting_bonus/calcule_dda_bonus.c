@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 00:41:27 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/18 22:09:10 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 05:28:22 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,11 @@ void	calculate_dda(t_display *d, t_ray *r)
 			r->side = 1;
 		}
 		if (r->map.y >= 0 || r->map.x >= 0 || r->map.y <= d->m->minimap->height
-			|| r->map.x <= d->m->minimap->width){
-			if (d->m->minimap_array[(int)r->map.y][(int)r->map.x] == '1' )//|| map NULL)
+			|| r->map.x <= d->m->minimap->width)
+		{
+			if (d->m->minimap_array[(int)r->map.y][(int)r->map.x] == '1')
 				hit = 1;
-			}
+		}
 	}
 }
 
@@ -100,7 +101,7 @@ void	run_raycast(t_display *display, t_ray *ray, t_player *player)
 		init_dda(ray, player);
 		calculate_dda(display, ray);
 		calculate_height_line(ray, player);
-		// draw_ray(display, ray, player);
+		draw_ray(display, ray, player);
 		draw_wall_orientation(display, ray, x);
 		if (x % 2 == 0)
 			ray->angle += angle_rad(FOV) / (WIDTH / 2);

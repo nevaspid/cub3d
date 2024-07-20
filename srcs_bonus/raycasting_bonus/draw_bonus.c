@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doctor <doctor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 14:56:32 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/13 13:57:59 by doctor           ###   ########.fr       */
+/*   Updated: 2024/07/20 05:31:28 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,12 @@ mlx_image_t	*get_texture(t_display *s_display, t_ray *ray)
 
 void	draw_wall_orientation(t_display *display, t_ray *ray, int x)
 {
-	t_player *p;
+	t_player	*p;
 
 	p = display->raycast->player;
-	if (p->pos.x >= 0 || p->pos.y >= 0 || p->pos.x < display->img->width || p->pos.y < display->img->height){
+	if (p->pos.x >= 0 || p->pos.y >= 0 || p->pos.x < display->img->width
+		|| p->pos.y < display->img->height)
+	{
 		display->current_tex = get_texture(display, ray);
 		if (ray->side == 1)
 		{
