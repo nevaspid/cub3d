@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 11:33:30 by gloms            ###   ########.fr       */
+/*   Updated: 2024/07/20 19:30:31 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,71 @@ void	define_tile_size(t_display *display)
 			/ count_lines(display->m->minimap_array);
 }
 
+void	remove_player(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'S' || map[i][j] == 'N' || map[i][j] == 'E'
+				|| map[i][j] == 'W')
+				map[i][j] = '0';
+			j++;
+		}
+		i++;
+	}
+}
+
+bool	map_filled(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '0')
+				return (false);
+			j++;
+		}
+		i++;
+	}
+	return (true);
+}
+
+t_vec	get_first_0_pos(char **map)
+{
+	t_vec	pos;
+
+	pos.x = 0;
+	pos.y = 0;
+	while (map[pos.y])
+	{
+		pos.x = 0;
+		while (map[pos.y][pos.x])
+		{
+			if (map[pos.y][pos.x] == '0')
+				return (pos);
+			pos.x++;
+		}
+		pos.y++;
+	}
+	return (pos);
+}
+
 int	main(int ac, char **av)
 {
 	t_display	*display;
 	t_mem_alloc	*mylloc;
+	char		**ffmap;
 
 	if (ac != 2)
 		free_and_exit(NULL, "ERROR : Wrong number of arguments");
@@ -38,8 +99,9 @@ int	main(int ac, char **av)
 	read_parse_store(av[1], mylloc, display);
 	define_tile_size(display);
 	print_minimap(display, display->m, display->m->tile_size, mylloc);
-	if (flood_fill(display->m->copy, display->m->p_x, display->m->p_y) > 0)
-		free_and_exit(mylloc, "ERROR : Map is not closed\n");
+	ffmap = copy_tab(display->m->minimap_array, mylloc);
+	remove_player(ffmap);
+	new_flood_fill(ffmap, display->m->p_x, display->m->p_y, mylloc);
 	init_text(display);
 	init_text_to_img(display);
 	run_raycast(display, display->raycast->ray, display->raycast->player);

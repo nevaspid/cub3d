@@ -6,7 +6,7 @@
 #    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/07/20 13:08:53 by oliove           ###   ########.fr        #
+#    Updated: 2024/07/20 20:03:09 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,36 +18,7 @@ HEADERS		:= -I ./include -I $(LIBMLX)/include
 LIBS		:= $(LIBMLX)/build/libmlx42.a -lm -lglfw #-L
 # ------------------------------ Sources -----------------------------
 
-SRCS		:=	srcs/cub3d.c \
-				srcs/minimap/pixelated_assets.c \
-				srcs/minimap/print_minimap.c \
-				srcs/parsing/read_file.c \
-				srcs/parsing/check_filename.c \
-				srcs/parsing/parsing_utils.c \
-				srcs/parsing/parsing_utils2.c \
-				srcs/parsing/check_stored_tab.c \
-				srcs/utils/utils.c \
-				srcs/utils/utils2.c \
-				srcs/utils/split.c \
-				srcs/malloc/lst_alloc.c \
-				srcs/raycasting/move_player.c \
-				srcs/raycasting/init.c \
-				srcs/raycasting/calcule.c \
-				srcs/raycasting/calcule_dda.c \
-				srcs/utils/free_and_exit.c \
-				srcs/parsing/flood_fill.c \
-				srcs/raycasting/move_player_directions.c \
-				srcs/raycasting/draw_primitive.c \
-				srcs/raycasting/draw.c \
-				srcs/game_loop.c \
-				srcs/raycasting/init_text.c \
-				srcs/raycasting/direction.c \
-				srcs/utils/prim_draw_utils.c \
-				srcs/utils/utils_text.c \
-				srcs/parsing/arrange_minimap.c \
-				srcs_bonus/raycasting_bonus/cal_color.c \
-
-SRCS_BONUS		:=	srcs_bonus/cub3d_bonus.c \
+SRCS		:=	srcs_bonus/cub3d_bonus.c \
 				srcs_bonus/minimap_bonus/pixelated_assets_bonus.c \
 				srcs_bonus/minimap_bonus/print_minimap_bonus.c \
 				srcs_bonus/parsing_bonus/read_file_bonus.c \
@@ -63,7 +34,6 @@ SRCS_BONUS		:=	srcs_bonus/cub3d_bonus.c \
 				srcs_bonus/raycasting_bonus/init_bonus.c \
 				srcs_bonus/raycasting_bonus/calcule_bonus.c \
 				srcs_bonus/raycasting_bonus/calcule_dda_bonus.c \
-				srcs_bonus/raycasting_bonus/atoi_base.c \
 				srcs_bonus/utils_bonus/free_and_exit_bonus.c \
 				srcs_bonus/parsing_bonus/flood_fill_bonus.c \
 				srcs_bonus/raycasting_bonus/move_player_directions_bonus.c \

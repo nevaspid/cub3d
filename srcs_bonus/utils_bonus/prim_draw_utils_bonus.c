@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 01:40:53 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/11 23:57:37 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 20:05:06 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,3 @@ void	draw_circle(t_compass *compass, int radius, int color, int fill)
 		x++;
 	}
 }
-
-// static void	set_line(t_line *l, t_vec_d start, t_vec_d end)
-// {
-// 	l->x1 = start.x;
-// 	l->y1 = start.y;
-// 	l->x2 = end.x;
-// 	l->y2 = end.y;
-// 	l->dx = abs(l->x2 - l->x1);
-// 	l->dy = abs(l->y2 - l->y1);
-// 	if (l->x1 < l->x2)
-// 		l->sx = 1;
-// 	else
-// 		l->sx = -1;
-// 	if (l->y1 < l->y2)
-// 		l->sy = 1;
-// 	else
-// 		l->sy = -1;
-// 	l->err = l->dx - l->dy;
-// 	if (l->x1 < 0 || l->x1 >= WIDTH || l->x2 < 0 || l->x2 >= WIDTH || l->y1 < 0
-// 		|| l->y1 >= HEIGHT || l->y2 < 0 || l->y2 >= HEIGHT)
-// 		return ;
-// }

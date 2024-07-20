@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:41:49 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 17:36:28 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 19:29:46 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,20 @@ int	check_around(char **map, int x, int y)
 		return (1);
 }
 
-int	flood_fill(char **map, int x, int y)
+bool	flood_fill(char **map, int x, int y, t_mem_alloc *myalloc)
+{
+	if (y < 0 || y > count_lines(map) || x < 0 || x >= ft_strlen(map[y]))
+		free_and_exit(myalloc, "ERROR : map is not closed");
+	if (map[y][x] == ' ' || map[y][x] == '0')
+		map[y][x] = 'f';
+	else if (map[y][x] == '1' || map[y][x] == 'f')
+		return (false);
+	return (flood_fill(map, x, y - 1, myalloc) || flood_fill(map, x, y + 1,
+			myalloc) || flood_fill(map, x - 1, y, myalloc) || flood_fill(map, x
+			+ 1, y, myalloc));
+}
+
+int	flood_fill_2(char **map, int x, int y)
 {
 	int	i;
 
@@ -46,13 +59,27 @@ int	flood_fill(char **map, int x, int y)
 	if (is_valid_char(map[y][x]))
 		map[y][x] = 'x';
 	if (y > 0 && x <= ft_strlen(map[y - 1]) && map[y - 1][x] == '0')
-		i += flood_fill(map, x, y - 1);
-	if (y < count_lines(map) && x <= ft_strlen(map[y + 1]) && map[y
-			+ 1][x] == '0')
-		i += flood_fill(map, x, y + 1);
+		i += flood_fill_2(map, x, y - 1);
+	if (y < count_lines(map) && x <= ft_strlen(map[y + 1]) && \
+		map[y + 1][x] == '0')
+		i += flood_fill_2(map, x, y + 1);
 	if (x > 0 && map[y][x - 1] == '0')
-		i += flood_fill(map, x - 1, y);
+		i += flood_fill_2(map, x - 1, y);
 	if (map[y][x + 1] == '0')
-		i += flood_fill(map, x + 1, y);
+		i += flood_fill_2(map, x + 1, y);
 	return (i);
+}
+
+void	new_flood_fill(char **map, int x, int y, t_mem_alloc *myalloc)
+{
+	t_vec	newpos;
+
+	newpos = (t_vec){x, y};
+	while (1)
+	{
+		flood_fill(map, newpos.x, newpos.y, myalloc);
+		if (map_filled(map))
+			break ;
+		newpos = get_first_0_pos(map);
+	}
 }

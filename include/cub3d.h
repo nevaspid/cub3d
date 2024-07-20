@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 13:02:57 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 20:05:21 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 /*-------------DEFINES-------------*/
 
-// # define PI 3.14159265358979323846
 # define HEIGHT 1095
 # define WIDTH 1800
 # define SPEED 0.2f
@@ -127,7 +126,10 @@ void					print_value_player(t_player *player, char *where,
 
 void					read_parse_store(char *file, t_mem_alloc *lst,
 							t_display *d);
-int						flood_fill(char **map, int x, int y);
+bool					flood_fill(char **map, int x, int y, t_mem_alloc *m);
+int						flood_fill_2(char **map, int x, int y);
+void					new_flood_fill(char **map, int x, int y,
+							t_mem_alloc *myalloc);
 char					*return_paths(char *to_search, char **file,
 							t_mem_alloc *m);
 char					*return_rgb(char *to_search, char **file,
@@ -143,7 +145,8 @@ int						check_map(char **map);
 char					*fill_with_ones(int len, t_mem_alloc *malloc);
 char					*put_one_start_end(char *to_surround, char *prev,
 							char *next, t_mem_alloc *malloc);
-
+bool					map_filled(char **map);
+t_vec					get_first_0_pos(char **map);
 /*-------------utils-------------*/
 
 char					*ft_strjoin(char *s1, char *s2, t_mem_alloc *lst);
@@ -166,13 +169,6 @@ int						is_valid_char(char c);
 /*--------------TEMP--------------*/
 
 void					print_tab(char **tab);
-// void					print_value_ray(t_ray *ray, t_player *player,
-// 							char *where, char *who, int n);
-// void					print_value_recast(t_player *player, t_ray *ray,
-// 							char *where, char *who);
-// void					print_value_camera(t_camera *camera, char *where,
-// 							char *who);
-
 /*--------------PRIMITIVE-------------*/
 
 void					init_struct(t_display *display);
