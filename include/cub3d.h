@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/18 06:03:31 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 03:12:14 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct s_paths
 typedef struct s_minimap
 {
 	char				**gf;
-	// mlx_image_t			*gf;
 	mlx_image_t			*minimap;
 	mlx_image_t			*player;
 	char				**file;
@@ -137,6 +136,8 @@ void					store_paths(char **file, t_paths *p, t_mem_alloc *m);
 void					store_minimap(char **file, t_minimap *m,
 							t_mem_alloc *malloc);
 int						check_map(char **map);
+char					*fill_with_ones(int len, t_mem_alloc *malloc);
+char					*put_one_start_end(char *to_surround, char *prev, char *next, t_mem_alloc *malloc);
 
 /*-------------utils-------------*/
 
@@ -159,7 +160,7 @@ int						is_valid_char(char c);
 
 /*--------------TEMP--------------*/
 
-// void					print_tab(char **tab);
+void					print_tab(char **tab);
 // void					print_value_ray(t_ray *ray, t_player *player,
 // 							char *where, char *who, int n);
 // void					print_value_recast(t_player *player, t_ray *ray,

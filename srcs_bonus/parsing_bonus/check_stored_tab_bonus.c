@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_stored_tab_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:49:34 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/18 06:04:53 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 04:53:52 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	check_tab(t_display *d, t_mem_alloc *malloc)
 	// d->m->copy = map_w_null_background(malloc, d->m->file);
 	store_minimap(d->m->file, d->m, malloc);
 	d->m->copy = copy_tab(d->m->minimap_array, malloc);
-	
+
 	// d->m->gf = map_w_null_background(malloc, d->m->copy);
-	d->m->gf = map_gf(malloc, d->m->copy);
+	//d->m->gf = map_gf(malloc, d->m->copy);
 	return (1);
 }
 
@@ -41,17 +41,18 @@ void	store_minimap(char **file, t_minimap *m, t_mem_alloc *malloc)
 	int	map_height;
 
 	i = 6;
-	j = 0;
-	// (void)i;
-	// (void)j;
-	// map_w_null_background(malloc, file);
-	
-	map_height = go_to_endof_file(file) - 5;
+	j = 1;
+	map_height = go_to_endof_file(file) - 5 + 2;
 	m->minimap_array = mem_alloc(malloc, sizeof(char *) * (map_height + 1));
 	m->minimap_array[map_height] = NULL;
+	m->minimap_array[map_height - 1] = fill_with_ones(
+			ft_strlen(file[map_height - 3]) + 3, malloc);
+	m->minimap_array[0] = fill_with_ones(ft_strlen(file[6]) + 3, malloc);
+	print_tab(m->minimap_array);
 	while (file[i])
 	{
-		m->minimap_array[j] = ft_strdup(file[i], malloc);
+		m->minimap_array[j] = put_one_start_end(file[i],
+				m->minimap_array[j - 1], file[i + 1], malloc);
 		i++;
 		j++;
 	}

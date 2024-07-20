@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/18 08:07:40 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 01:41:05 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void check_map_d(char **map)
 	printf("\033[1;31m check map\033[0m\n");
 	while (tab[i])
 		printf("%s\n",tab[i++]);
-	
+
 }
 
-		
+
 int	main(int ac, char **av)
 {
 	t_display	*display;
@@ -51,9 +51,9 @@ int	main(int ac, char **av)
 	display = mem_alloc(mylloc, sizeof(t_display));
 	init_game(display, mylloc);
 	read_parse_store(av[1], mylloc, display);
-	
-	check_map_d(display->m->gf);
-	
+
+	//check_map_d(display->m->gf);
+
 	define_tile_size(display);
 	print_minimap(display, display->m, display->m->tile_size, mylloc);
 	if (flood_fill(display->m->copy, display->m->p_x, display->m->p_y) > 0)

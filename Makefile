@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
+#    By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/07/18 00:29:14 by oliove           ###   ########.fr        #
+#    Updated: 2024/07/20 05:20:31 by gloms            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ LIBMLX		:=	./MLX42
 HEADERS		:=	-I ./include
 MLXA		:= $(LIBMLX)/build/libmlx42.a
 HEADERS		:= -I ./include -I $(LIBMLX)/include
-LIBS		:= $(LIBMLX)/build/libmlx42.a -lm -lglfw #-L 
+LIBS		:= $(LIBMLX)/build/libmlx42.a -lm -lglfw #-L
 # ------------------------------ Sources -----------------------------
 
 SRCS		:=	srcs/cub3d.c \
@@ -44,8 +44,8 @@ SRCS		:=	srcs/cub3d.c \
 				srcs/raycasting/direction.c \
 				srcs/utils/prim_draw_utils.c \
 				srcs/utils/utils_text.c \
-# srcs/utils/check_move.c \
-# srcs/utils/check_move
+				srcs/parsing/arrange_minimap.c \
+
 
 SRCS_BONUS		:=	srcs_bonus/cub3d_bonus.c \
 				srcs_bonus/minimap_bonus/pixelated_assets_bonus.c \
@@ -74,6 +74,7 @@ SRCS_BONUS		:=	srcs_bonus/cub3d_bonus.c \
 				srcs_bonus/utils_bonus/init_bonus.c \
 				srcs_bonus/utils_bonus/utils_text.c \
 				srcs_bonus/utils_playeur.c \
+				srcs_bonus/parsing_bonus/arrange_minimap_bonus.c \
 
 OBJ_DIR				:=	.objs
 OBJS		:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -112,7 +113,7 @@ endif
 
 ifeq ($(TEST), 1)
 	FLAGS = $(filter-out $(OBJS), $(OBJS))
-	FLAGS += -g3 -fsanitize=address 
+	FLAGS += -g3 -fsanitize=address
 endif
 
 ifeq ($(shell uname -s), Darwin) # if Mac

@@ -2,12 +2,12 @@
 ..............MAP MONDE...............
 
 Probleme : SEVG sortie de MAP
-    -1id 
+    -1id
         refaire une map et de +1 L/H qui sera NULL
-    
+
     -2id
         dup la map et pendan la copie rajouter la NULL case
-     
+
 store_minimap >> rapel!
 
 
@@ -46,4 +46,3 @@ https://www.iloveimg.com/crop-image
         {
             return min + (max - min) * Clamp01(t);
         }
-
