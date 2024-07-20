@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:29:08 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/12 23:33:38 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 11:07:53 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ char	*ft_strdup(char *s1, t_mem_alloc *lst)
 	int		i;
 
 	i = 0;
+	if (!s1)
+		return (NULL);
 	str = mem_alloc(lst, sizeof(char) * (ft_strlen(s1) + 1));
 	if (!str)
 		return (NULL);

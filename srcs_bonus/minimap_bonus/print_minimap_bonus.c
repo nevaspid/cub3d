@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_minimap_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:41:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/12 22:03:24 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 11:29:31 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	print_minimap(t_display *mlx, t_minimap *minimap, int tile_size,
 	x = 0;
 	y = 0;
 	print_p = 0;
+	clear_image(minimap->minimap, 0xFF);
 	while (minimap->minimap_array[y])
 	{
 		while (minimap->minimap_array[y][x])

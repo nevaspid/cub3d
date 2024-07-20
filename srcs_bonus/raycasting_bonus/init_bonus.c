@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 01:21:22 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/20 05:30:49 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 11:31:15 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	init_mlx(t_display *display)
 {
 	display->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
-	display->m->minimap = mlx_new_image(display->mlx, WIDTH * SCALE, HEIGHT
-			* SCALE);
-	display->raycast->compass->img = mlx_new_image(display->mlx, WIDTH * SCALE,
-			HEIGHT * SCALE);
-	display->raycast->ray->img = mlx_new_image(display->mlx, WIDTH * SCALE,
-			HEIGHT * SCALE);
+	display->m->minimap = mlx_new_image(display->mlx, WIDTH * 0.2, HEIGHT
+			* 0.2);
+	display->raycast->compass->img = mlx_new_image(display->mlx, WIDTH * 0.2,
+			HEIGHT * 0.2);
+	display->raycast->ray->img = mlx_new_image(display->mlx, WIDTH * 0.2,
+			HEIGHT * 0.2);
 	display->img = mlx_new_image(display->mlx, WIDTH, HEIGHT);
 }
 

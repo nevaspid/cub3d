@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 07:54:39 by gloms            ###   ########.fr       */
+/*   Updated: 2024/07/20 11:11:23 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ typedef struct s_paths
 	char				*ea;
 	char				*f;
 	char				*c;
-	char 				**split_f;
-	char 				**split_c;
+	char				**split_f;
+	char				**split_c;
 }						t_paths;
 
 typedef struct s_minimap

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:41:39 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 05:33:25 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 11:33:30 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	define_tile_size(t_display *display)
 {
 	if (longest_line(display->m->minimap_array) > \
 		count_lines(display->m->minimap_array))
-		display->m->tile_size = (WIDTH * SCALE)
+		display->m->tile_size = (WIDTH * 0.2)
 			/ longest_line(display->m->minimap_array);
 	else
-		display->m->tile_size = (HEIGHT * SCALE)
+		display->m->tile_size = (HEIGHT * 0.2)
 			/ count_lines(display->m->minimap_array);
 }
 

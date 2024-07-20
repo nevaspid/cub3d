@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split.c                                            :+:      :+:    :+:   */
+/*   split_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:14:22 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/07 21:31:29 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 11:16:36 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ static size_t	wordcount(const char *s, char c)
 	return (count);
 }
 
-static char	*nextword(const char *s, size_t *i, size_t len,
-	t_mem_alloc *lst)
+static char	*nextword(const char *s, char c, size_t *i, size_t len)
 {
 	char	*cpy;
 	size_t	y;
@@ -52,7 +51,7 @@ static char	*nextword(const char *s, size_t *i, size_t len,
 	y = 0;
 	while (s[*i] == '\n')
 		(*i)++;
-	cpy = mem_alloc(lst, sizeof(char) * (len + 1));
+	cpy = malloc(sizeof(char) * (len + 1));
 	if (!cpy)
 		return (NULL);
 	while (len)
@@ -60,6 +59,8 @@ static char	*nextword(const char *s, size_t *i, size_t len,
 		cpy[y++] = s[(*i)++];
 		len--;
 	}
+	while (s[*i] && s[*i] == c)
+		(*i)++;
 	cpy[y] = '\0';
 	return (cpy);
 }
@@ -69,6 +70,7 @@ char	**ft_split(const char *s, char c, t_mem_alloc *lst)
 	size_t	i;
 	size_t	y;
 	char	**tab;
+	char	*temp;
 
 	i = 0;
 	y = 0;
@@ -79,9 +81,11 @@ char	**ft_split(const char *s, char c, t_mem_alloc *lst)
 		return (NULL);
 	while (y < wordcount(s, c))
 	{
-		tab[y] = nextword(s, &i, nextlen(s, i, c), lst);
+		temp = nextword(s, c, &i, nextlen(s, i, c));
+		tab[y] = ft_strdup(temp, lst);
 		if (!tab[y])
-			return (0);
+			return (free(temp), NULL);
+		free(temp);
 		y++;
 	}
 	tab[wordcount(s, c)] = NULL;

@@ -6,7 +6,7 @@
 /*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:49:34 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 07:54:29 by gloms            ###   ########.fr       */
+/*   Updated: 2024/07/20 11:16:14 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ int	check_tab(t_display *d, t_mem_alloc *malloc)
 	store_paths(d->m->file, d->m->paths, malloc);
 	store_minimap(d->m->file, d->m, malloc);
 	d->m->copy = copy_tab(d->m->minimap_array, malloc);
+	// printf("f = %p | c = %p\n", d->m->paths->f, d->m->paths->c);
+	// printf("e = %s\n", d->m->paths->ea);
+	d->m->paths->split_c = ft_split(d->m->paths->c, ',', malloc);
+	d->m->paths->split_f = ft_split(d->m->paths->f, ',', malloc);
 	return (1);
 }
 
@@ -28,9 +32,6 @@ void	store_paths(char **file, t_paths *p, t_mem_alloc *m)
 	p->ea = return_paths("EA ", file, m);
 	p->f = return_rgb("F ", file, m);
 	p->c = return_rgb("C ", file, m);
-	p->split_f = ft_split(p->f, ',', m);
-	p->split_c = ft_split(p->c, ',', m);
-}
 }
 
 void	store_minimap(char **file, t_minimap *m, t_mem_alloc *malloc)
