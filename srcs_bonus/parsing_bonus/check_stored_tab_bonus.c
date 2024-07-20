@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_stored_tab_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:49:34 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 15:57:58 by gloms            ###   ########.fr       */
+/*   Updated: 2024/07/20 17:05:48 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,34 +44,26 @@ void	store_paths(char **file, t_paths *p, t_mem_alloc *m)
 	p->c = return_rgb("C ", file, m);
 }
 
-void	store_minimap(char **file, t_minimap *m, t_mem_alloc *malloc)
+void    store_minimap(char **file, t_minimap *m, t_mem_alloc *malloc)
 {
-	int	i;
-	int	j;
-	int	map_height;
+    int    i;
+    int    j;
+    int    map_height;
 
-	i = 6;
-	j = 1;
-	map_height = go_to_endof_file(file) - 5 + 2;
-	m->minimap_array = mem_alloc(malloc, sizeof(char *) * (map_height + 1));
-	m->minimap_array[map_height] = NULL;
-	m->minimap_array[map_height - 1] = fill_with_ones(ft_strlen(file[map_height
-				- 3]) + 3, malloc);
-	m->minimap_array[0] = fill_with_ones(ft_strlen(file[6]) + 3, malloc);
-	while (file[i])
-	{
-		m->minimap_array[j] = put_one_start_end(file[i], m->minimap_array[j
-				- 1], file[i + 1], malloc);
-		i++;
-		j++;
-	}
-	if (check_map(m->minimap_array) == -1)
-	{
-		printf("Error\nInvalid map\n");
-		free_and_exit(malloc, NULL);
-	}
+    i = 6;
+    j = 0;
+    map_height = go_to_endof_file(file) - 5;
+    m->minimap_array = mem_alloc(malloc, sizeof(char *) * (map_height + 1));
+    m->minimap_array[map_height] = NULL;
+    while (file[i])
+    {
+        m->minimap_array[j] = ft_strdup(file[i], malloc);
+        i++;
+        j++;
+    }
+    if (check_map(m->minimap_array) == -1)
+        free_and_exit(malloc, "Error\nInvalid map\n");
 }
-
 int	check_map(char **map)
 {
 	int	i;
