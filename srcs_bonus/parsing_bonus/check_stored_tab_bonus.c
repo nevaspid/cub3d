@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_stored_tab_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:49:34 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 05:37:15 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 07:54:29 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ void	store_paths(char **file, t_paths *p, t_mem_alloc *m)
 	p->ea = return_paths("EA ", file, m);
 	p->f = return_rgb("F ", file, m);
 	p->c = return_rgb("C ", file, m);
+	p->split_f = ft_split(p->f, ',', m);
+	p->split_c = ft_split(p->c, ',', m);
+}
 }
 
 void	store_minimap(char **file, t_minimap *m, t_mem_alloc *malloc)

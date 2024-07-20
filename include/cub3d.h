@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 05:34:00 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 07:54:39 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct s_paths
 	char				*ea;
 	char				*f;
 	char				*c;
+	char 				**split_f;
+	char 				**split_c;
 }						t_paths;
 
 typedef struct s_minimap
