@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:11:16 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/07 21:31:29 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 07:50:53 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int	find_path_in_line(char *tab_line)
 int	find_rgb_in_line(char *tab_line)
 {
 	int	path_start;
-
+	
+	printf("tab_line : %s\n", tab_line);
 	path_start = 0;
 	while (!is_digit(tab_line[path_start]))
 		path_start++;
