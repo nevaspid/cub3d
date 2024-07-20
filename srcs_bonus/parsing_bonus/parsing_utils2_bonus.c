@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils2_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:57:09 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 13:49:46 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 14:45:05 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,22 @@ int	is_space(char c)
 	return (0);
 }
 
-char	**copy_tab(char **src, t_mem_alloc *m)
+void	store_tab(char **file, t_minimap *m, t_mem_alloc *malloc)
 {
-	char	**dst;
-	int		i;
+	int	i;
+	int	j;
+	int	map_height;
 
-	i = 0;
-	dst = mem_alloc(m, sizeof(char *) * (count_lines(src) + 1));
-	while (src[i])
+	i = 6;
+	j = 0;
+	map_height = go_to_endof_file(file) - 5;
+	m->copy = mem_alloc(malloc, sizeof(char *) * (map_height + 1));
+	m->copy[map_height] = NULL;
+	while (file[i])
 	{
-		dst[i] = ft_strdup(src[i], m);
+		m->copy[j] = ft_strdup(file[i], malloc);
 		i++;
+		j++;
 	}
-	dst[i] = NULL;
-	return (dst);
+
 }

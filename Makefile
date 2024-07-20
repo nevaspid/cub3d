@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
+#    By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/07/20 13:08:53 by oliove           ###   ########.fr        #
+#    Updated: 2024/07/20 14:24:53 by gloms            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,6 @@ SRCS_BONUS		:=	srcs_bonus/cub3d_bonus.c \
 				srcs_bonus/raycasting_bonus/init_bonus.c \
 				srcs_bonus/raycasting_bonus/calcule_bonus.c \
 				srcs_bonus/raycasting_bonus/calcule_dda_bonus.c \
-				srcs_bonus/raycasting_bonus/atoi_base.c \
 				srcs_bonus/utils_bonus/free_and_exit_bonus.c \
 				srcs_bonus/parsing_bonus/flood_fill_bonus.c \
 				srcs_bonus/raycasting_bonus/move_player_directions_bonus.c \

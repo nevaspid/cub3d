@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 13:02:57 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 14:21:37 by gloms            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,8 @@ int						check_map(char **map);
 char					*fill_with_ones(int len, t_mem_alloc *malloc);
 char					*put_one_start_end(char *to_surround, char *prev,
 							char *next, t_mem_alloc *malloc);
+void					store_tab(char **file, t_minimap *m, t_mem_alloc *malloc);
+
 
 /*-------------utils-------------*/
 
