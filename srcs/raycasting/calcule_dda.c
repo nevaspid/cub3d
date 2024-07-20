@@ -6,7 +6,7 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 00:02:00 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/11 01:50:51 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 12:51:20 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	run_raycast(t_display *display, t_ray *ray, t_player *player)
 	clear_image(display->raycast->ray->img, 0x000000);
 	ray->angle = camera->angle_min;
 	camera->camera_x = 2 * x / (double)WIDTH - 1;
-	draw_bg(display->img);
+	draw_bg(display, display->img);
 	while (x < WIDTH)
 	{
 		update_cam(display, ray, player, x);

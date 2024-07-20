@@ -6,7 +6,7 @@
 #    By: oliove <oliove@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 18:39:53 by gloms             #+#    #+#              #
-#    Updated: 2024/07/20 07:46:39 by oliove           ###   ########.fr        #
+#    Updated: 2024/07/20 13:08:53 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ SRCS		:=	srcs/cub3d.c \
 				srcs/utils/prim_draw_utils.c \
 				srcs/utils/utils_text.c \
 				srcs/parsing/arrange_minimap.c \
-
+				srcs_bonus/raycasting_bonus/cal_color.c \
 
 SRCS_BONUS		:=	srcs_bonus/cub3d_bonus.c \
 				srcs_bonus/minimap_bonus/pixelated_assets_bonus.c \
@@ -76,6 +76,7 @@ SRCS_BONUS		:=	srcs_bonus/cub3d_bonus.c \
 				srcs_bonus/utils_bonus/utils_text.c \
 				srcs_bonus/utils_playeur.c \
 				srcs_bonus/parsing_bonus/arrange_minimap_bonus.c \
+				srcs_bonus/raycasting_bonus/cal_color.c \
 
 OBJ_DIR				:=	.objs
 OBJS		:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

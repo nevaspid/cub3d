@@ -6,17 +6,25 @@
 /*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 14:56:32 by oliove            #+#    #+#             */
-/*   Updated: 2024/07/11 01:07:27 by oliove           ###   ########.fr       */
+/*   Updated: 2024/07/20 13:32:54 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_bg(mlx_image_t	*img)
+void	draw_bg(t_display *display, mlx_image_t *img)
 {
-	int	x;
-	int	y;
+	int			x;
+	int			y;
+	uint32_t	ceiling;
+	uint32_t	floor;
 
+	ceiling = ft_pixel(ft_atoi(display->m->paths->split_c[0]),
+			ft_atoi(display->m->paths->split_c[1]),
+			ft_atoi(display->m->paths->split_c[2]), 255);
+	floor = ft_pixel(ft_atoi(display->m->paths->split_f[0]),
+			ft_atoi(display->m->paths->split_f[1]),
+			ft_atoi(display->m->paths->split_f[2]), 255);
 	y = 0;
 	while (y <= HEIGHT)
 	{
@@ -24,9 +32,9 @@ void	draw_bg(mlx_image_t	*img)
 		while (x <= WIDTH)
 		{
 			if (y < HEIGHT / 2)
-				mlx_put_pixel(img, x, y, MY_BLACK);
+				mlx_put_pixel(img, x, y, ceiling);
 			else
-				mlx_put_pixel(img, x, y, MY_RED);
+				mlx_put_pixel(img, x, y, floor);
 			x++;
 		}
 		y++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_stored_tab_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:49:34 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 11:16:14 by gloms            ###   ########.fr       */
+/*   Updated: 2024/07/20 13:06:58 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	check_tab(t_display *d, t_mem_alloc *malloc)
 	store_paths(d->m->file, d->m->paths, malloc);
 	store_minimap(d->m->file, d->m, malloc);
 	d->m->copy = copy_tab(d->m->minimap_array, malloc);
-	// printf("f = %p | c = %p\n", d->m->paths->f, d->m->paths->c);
-	// printf("e = %s\n", d->m->paths->ea);
 	d->m->paths->split_c = ft_split(d->m->paths->c, ',', malloc);
 	d->m->paths->split_f = ft_split(d->m->paths->f, ',', malloc);
 	return (1);

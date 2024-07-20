@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gloms <rbrendle@student.42mulhouse.fr>     +#+  +:+       +#+        */
+/*   By: oliove <oliove@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:55 by gloms             #+#    #+#             */
-/*   Updated: 2024/07/20 11:11:23 by gloms            ###   ########.fr       */
+/*   Updated: 2024/07/20 13:02:57 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_paths
 	char				*c;
 	char				**split_f;
 	char				**split_c;
+	uint32_t			floor;
+	uint32_t			ceiling;
 }						t_paths;
 
 typedef struct s_minimap
@@ -97,7 +99,7 @@ void					rotate_player(t_player *player, double rotSpeed);
 void					init_mlx(t_display *display);
 void					init_player(t_display *display, t_player *player);
 void					init_value_st(t_display *display);
-void					draw_bg(mlx_image_t *img);
+void					draw_bg(t_display *display, mlx_image_t *img);
 void					draw_wall_orientation(t_display *display, t_ray *ray,
 							int x);
 void					move_rotated(mlx_key_data_t key, void *param);
@@ -230,4 +232,8 @@ char					**map_w_null_background(t_mem_alloc *x_chain,
 							char **map);
 void					check_map_d(char **map);
 char					**map_gf(t_mem_alloc *malloc, char **map);
+
+int32_t					ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+
+int						ft_atoi(const char *str);
 #endif
